@@ -148,7 +148,7 @@ Future<String> generateCVPdf(BuildContext context) async {
   );
 
   // Get the temporary directory of the device
-  final Directory directory = await getApplicationDocumentsDirectory();
+  final Directory directory = await getTemporaryDirectory();
   final String path = "${directory.path}/DesignerCV.pdf";
 
   // Save the PDF file
