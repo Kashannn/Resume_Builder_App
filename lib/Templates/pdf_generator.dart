@@ -19,7 +19,7 @@ Future<String> generateCVPdf(BuildContext context) async {
               flex: 2,
               child: pw.Container(
                 padding: pw.EdgeInsets.all(16),
-                color: PdfColors.grey200, // Use PdfColors without pw prefix
+                color: PdfColors.grey200,
                 child: pw.Column(
                   children: [
                     // Profile Image Placeholder
@@ -28,8 +28,7 @@ Future<String> generateCVPdf(BuildContext context) async {
                       height: 100,
                       decoration: pw.BoxDecoration(
                         shape: pw.BoxShape.circle,
-                        color:
-                            PdfColors.grey, // Use PdfColors without pw prefix
+                        color: PdfColors.grey,
                       ),
                       alignment: pw.Alignment.center,
                       child:
@@ -148,7 +147,7 @@ Future<String> generateCVPdf(BuildContext context) async {
   );
 
   // Get the temporary directory of the device
-  final Directory directory = await getApplicationDocumentsDirectory();
+  final Directory directory = await getTemporaryDirectory();
   final String path = "${directory.path}/DesignerCV.pdf";
 
   // Save the PDF file
@@ -199,9 +198,7 @@ pw.Widget buildEducationItem(String year, String title, String institution) {
             style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
         pw.Text(title, style: pw.TextStyle(fontSize: 14)),
         pw.Text(institution,
-            style: pw.TextStyle(
-                fontSize: 12,
-                color: PdfColors.grey)),
+            style: pw.TextStyle(fontSize: 12, color: PdfColors.grey)),
       ],
     ),
   );

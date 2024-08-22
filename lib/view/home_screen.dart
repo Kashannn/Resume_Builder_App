@@ -1,9 +1,4 @@
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -22,29 +17,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? localPdfPath;
+  final List<String> imagePaths = [
+    AppImages.template1,
+    AppImages.template2,
+    AppImages.template3,
+    AppImages.template4,
+    AppImages.template5,
+    AppImages.template6,
+    AppImages.template7,
+    AppImages.template8,
+    AppImages.template9,
+    AppImages.template10,
+    AppImages.template11,
+    AppImages.template12,
+    AppImages.template13,
+    AppImages.template14,
+    AppImages.template15,
+    AppImages.template16,
+    AppImages.template17,
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    loadPdfFromAssets();
-  }
-
-  Future<void> loadPdfFromAssets() async {
-    try {
-      final ByteData data =
-          await rootBundle.load('assets/templates/template1.pdf');
-      final Uint8List bytes = data.buffer.asUint8List();
-      final Directory tempDir = await getTemporaryDirectory();
-      final File file = File('${tempDir.path}/template1.pdf');
-      await file.writeAsBytes(bytes, flush: true);
-      setState(() {
-        localPdfPath = file.path;
-      });
-    } catch (e) {
-      print('Error loading PDF: $e');
-    }
-  }
+  String selectedTemplate = 'All';
 
   @override
   Widget build(BuildContext context) {
@@ -70,36 +63,131 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Templates',
                     style: isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
                   ),
-                  SvgPicture.asset(
-                    AppImages.icons,
-                    color: isDarkMode ? Colors.white : AppColors.blackColor,
-                    height: 24.h,
-                    width: 24.w,
+                  PopupMenuButton<String>(
+                    icon: SvgPicture.asset(
+                      AppImages.icons,
+                      color: isDarkMode ? Colors.white : AppColors.blackColor,
+                      height: 24.h,
+                      width: 24.w,
+                    ),
+                    onSelected: (String value) {
+                      setState(() {
+                        selectedTemplate = value;
+                      });
+                    },
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<String>>[
+                      PopupMenuItem<String>(
+                        value: 'All',
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('All',
+                                style: isDarkMode
+                                    ? mStyleWhite16600
+                                    : mStyleBlack16600),
+                            Radio<String>(
+                              value: 'All',
+                              groupValue: selectedTemplate,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedTemplate = value!;
+                                });
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Professional',
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Professional',
+                                style: isDarkMode
+                                    ? mStyleWhite16600
+                                    : mStyleBlack16600),
+                            Radio<String>(
+                              value: 'Professional',
+                              groupValue: selectedTemplate,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedTemplate = value!;
+                                });
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<String>(
+                        value: 'Modern',
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Modern',
+                                style: isDarkMode
+                                    ? mStyleWhite16600
+                                    : mStyleBlack16600),
+                            Radio<String>(
+                              value: 'Modern',
+                              groupValue: selectedTemplate,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  selectedTemplate = value!;
+                                });
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
               SizedBox(height: 20.h),
-              localPdfPath != null
-                  ? GestureDetector(
+              Expanded(
+                child: GridView.builder(
+                  itemCount: imagePaths.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.w,
+                    mainAxisSpacing: 10.h,
+                    childAspectRatio: 193.w / 250.h,
+                  ),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
                       onTap: () {
-                        Get.to(CustomizeTemplateScreen(
-                          filePath: localPdfPath!,
-                        ));
+                        // Get.to(CustomizeTemplateScreen(
+                        //   imagePath: imagePaths[index],
+                        // ));
                       },
                       child: Container(
-                        padding: EdgeInsets.all(10.w),
-                        height: 250.h,
-                        width: 193.w,
                         decoration: BoxDecoration(
-                          color: Color(0xFF151A25),
+                          color: isDarkMode ? Color(0xFF151A25) : Colors.white,
                           borderRadius: BorderRadius.circular(10.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                            ),
+                          ],
                         ),
-                        child: PDFView(
-                          filePath: localPdfPath!,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: Image.asset(
+                            imagePaths[index],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    )
-                  : Center(child: CircularProgressIndicator()),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
