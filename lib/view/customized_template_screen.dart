@@ -1,5 +1,6 @@
 import 'package:cvapp/utils/constant/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -8,7 +9,8 @@ import '../utils/components/custom_button.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 
 class CustomizedTemplateScreen extends StatefulWidget {
-  const CustomizedTemplateScreen({super.key});
+  String filePath;
+ CustomizedTemplateScreen({super.key, required this.filePath});
 
   @override
   State<CustomizedTemplateScreen> createState() =>
@@ -103,7 +105,10 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   color: Color(0xFF151A25),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                // child: Expanded(child: CVTemplateScreen()),
+                child: PDFView(
+                  filePath: widget.filePath,
+
+                ),
               ),
               Spacer(),
               CustomGradientButton(

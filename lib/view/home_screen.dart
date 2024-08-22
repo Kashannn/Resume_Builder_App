@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> loadPdfFromAssets() async {
     try {
-      final ByteData data = await rootBundle.load('assets/templates/template1.pdf');
+      final ByteData data =
+          await rootBundle.load('assets/templates/template1.pdf');
       final Uint8List bytes = data.buffer.asUint8List();
       final Directory tempDir = await getTemporaryDirectory();
       final File file = File('${tempDir.path}/template1.pdf');
@@ -80,23 +81,24 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.h),
               localPdfPath != null
                   ? GestureDetector(
-                onTap: (){Get.to(CustomizeTemplateScreen(
-                  filePath: localPdfPath!,
-                ));},
-                    child: Container(
-                                    padding: EdgeInsets.all(10.w),
-                                    height: 250.h,
-                                    width: 193.w,
-                                    decoration: BoxDecoration(
-                    color: Color(0xFF151A25),
-                    borderRadius: BorderRadius.circular(10.r),
-                                    ),
-                                    child: PDFView(
-                    filePath: localPdfPath!,
-
-                                    ),
-                                  ),
-                  )
+                      onTap: () {
+                        Get.to(CustomizeTemplateScreen(
+                          filePath: localPdfPath!,
+                        ));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(10.w),
+                        height: 250.h,
+                        width: 193.w,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF151A25),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: PDFView(
+                          filePath: localPdfPath!,
+                        ),
+                      ),
+                    )
                   : Center(child: CircularProgressIndicator()),
             ],
           ),

@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
+import 'Templates/cv_template_jane_doe.dart';
 import 'view/dark_mode_screen.dart';
 
 Future<void> main() async {
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: const SplashScreen(),
+      child: CVTemplateJaneDoe(),
     );
   }
 }
