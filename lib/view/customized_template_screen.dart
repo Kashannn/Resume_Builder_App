@@ -1,16 +1,15 @@
 import 'package:cvapp/utils/constant/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 
 class CustomizedTemplateScreen extends StatefulWidget {
-  String filePath;
- CustomizedTemplateScreen({super.key, required this.filePath});
+  final String? imagePath;
+
+  const CustomizedTemplateScreen({super.key, this.imagePath});
 
   @override
   State<CustomizedTemplateScreen> createState() =>
@@ -21,6 +20,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -105,10 +105,20 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   color: Color(0xFF151A25),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: PDFView(
-                  filePath: widget.filePath,
-
-                ),
+                child: widget.imagePath != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(10.r),
+                        child: Image.asset(
+                          widget.imagePath!,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Center(
+                        child: Text(
+                          'No image selected',
+                          style: mStyleWhite20600,
+                        ),
+                      ),
               ),
               Spacer(),
               CustomGradientButton(
@@ -116,7 +126,6 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   // Button action
                 },
                 text: 'Save Info',
-                // icon: Icons.download,
                 gradient: LinearGradient(
                   colors: [
                     Color(0xFFAAAAAA),
@@ -134,7 +143,6 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   // Button action
                 },
                 text: 'Add Saved Info',
-                // icon: Icons.download,
                 gradient: LinearGradient(
                   colors: [
                     Color(0xFF5BBBFF),
