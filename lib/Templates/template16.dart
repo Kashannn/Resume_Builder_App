@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
@@ -128,10 +129,10 @@ class _Template16State extends State<Template16> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(3.0),
-                                          child: Icon(
-                                            Icons.local_bar_outlined,
-                                            color: Colors.white,
-                                            size: 20.0.sp,
+                                          child: SvgPicture.asset(
+                                            AppImages.product,
+                                            height: 17.h,
+                                            width: 17.w,
                                           ),
                                         ),
                                       ),
@@ -166,13 +167,12 @@ class _Template16State extends State<Template16> {
                                           color: Color(0xFF646464),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: Icon(
-                                            Icons.local_bar_outlined,
-                                            color: Colors.white,
-                                            size: 20.0.sp,
-                                          ),
-                                        ),
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: SvgPicture.asset(
+                                              AppImages.search,
+                                              height: 17.h,
+                                              width: 17.w,
+                                            )),
                                       ),
                                       Text(
                                         'UX Research',
@@ -205,13 +205,12 @@ class _Template16State extends State<Template16> {
                                           color: Color(0xFF646464),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: Icon(
-                                            Icons.local_bar_outlined,
-                                            color: Colors.white,
-                                            size: 20.0.sp,
-                                          ),
-                                        ),
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: SvgPicture.asset(
+                                              AppImages.phone,
+                                              height: 17.h,
+                                              width: 17.w,
+                                            )),
                                       ),
                                       Text(
                                         'UI/UX Design',
@@ -245,10 +244,11 @@ class _Template16State extends State<Template16> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(3.0),
-                                          child: Icon(
-                                            Icons.local_bar_outlined,
+                                          child: SvgPicture.asset(
+                                            AppImages.icon,
+                                            height: 17.h,
+                                            width: 17.h,
                                             color: Colors.white,
-                                            size: 20.0.sp,
                                           ),
                                         ),
                                       ),
@@ -359,21 +359,10 @@ class _Template16State extends State<Template16> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.r),
-                                              color: Color(0xFF646464),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(3.0),
-                                              child: Icon(
-                                                Icons.facebook,
-                                                color: Colors.white,
-                                                size: 20.0.sp,
-                                              ),
-                                            ),
+                                          SvgPicture.asset(
+                                            AppImages.facebook,
+                                            height: 17.h,
+                                            width: 17.h,
                                           ),
                                           Text(
                                             'Facebook',
@@ -400,21 +389,10 @@ class _Template16State extends State<Template16> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.r),
-                                              color: Color(0xFF646464),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(3.0),
-                                              child: Icon(
-                                                Icons.wb_twighlight,
-                                                color: Colors.white,
-                                                size: 20.0.sp,
-                                              ),
-                                            ),
+                                          SvgPicture.asset(
+                                            AppImages.twitter,
+                                            height: 17.h,
+                                            width: 17.h,
                                           ),
                                           Text(
                                             'Twitter',
@@ -441,21 +419,10 @@ class _Template16State extends State<Template16> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.r),
-                                              color: Color(0xFF646464),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(3.0),
-                                              child: Icon(
-                                                Icons.facebook,
-                                                color: Colors.white,
-                                                size: 20.0.sp,
-                                              ),
-                                            ),
+                                          SvgPicture.asset(
+                                            AppImages.instagram,
+                                            height: 17.h,
+                                            width: 17.h,
                                           ),
                                           Text(
                                             'Instagram',
@@ -482,21 +449,10 @@ class _Template16State extends State<Template16> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.r),
-                                              color: Color(0xFF646464),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(3.0),
-                                              child: Icon(
-                                                Icons.link_rounded,
-                                                color: Colors.white,
-                                                size: 20.0.sp,
-                                              ),
-                                            ),
+                                          SvgPicture.asset(
+                                            AppImages.linkedin,
+                                            height: 17.h,
+                                            width: 17.h,
                                           ),
                                           Text(
                                             'LinkedIn',

@@ -28,6 +28,14 @@ class AppImages extends AssetImage {
 
 //Svg images
   static const String icons = '$_iconPath/icons.svg';
-  static const String instagram = '$_iconPath/Instagram.svg';
-  static const String twitter = '$_iconPath/Twitter.svg';
+
+  static const String instagram = '$_iconPath/instagram.svg';
+  static const String twitter = '$_iconPath/twitter.svg';
+  static const String linkedin = '$_iconPath/linkedin.svg';
+  static const String facebook = '$_iconPath/facebook.svg';
+  static const String icon = '$_iconPath/Icon.svg';
+  static const String product = '$_iconPath/product.svg';
+  static const String phone = '$_iconPath/phone.svg';
+  static const String search = '$_iconPath/search.svg';
+
 }
