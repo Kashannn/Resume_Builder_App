@@ -12,6 +12,55 @@ class Template10 extends StatefulWidget {
 }
 
 class _Template10State extends State<Template10> {
+  String name = 'John Carter';
+  String jobTitle = 'Digital Marketing';
+
+  void _showEditDialog(String fieldType) {
+    TextEditingController controller = TextEditingController();
+
+    if (fieldType == 'name') {
+      controller.text = name;
+    } else if (fieldType == 'jobTitle') {
+      controller.text = jobTitle;
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit $fieldType'),
+          content: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $fieldType',
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  if (fieldType == 'name') {
+                    name = controller.text;
+                  } else if (fieldType == 'jobTitle') {
+                    jobTitle = controller.text;
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,19 +82,22 @@ class _Template10State extends State<Template10> {
                           backgroundImage: AssetImage(AppImages.profilePicture),
                         ),
                         SizedBox(width: 10.w),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              'John Carter',
-                              style: AppTextStylesTemplate10.nameStyle,
-                            ),
-                            Text(
-                              'Digital Marketing',
-                              style: AppTextStylesTemplate10.jobTitleStyle,
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () => _showEditDialog('name'),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                name,
+                                style: AppTextStylesTemplate10.nameStyle,
+                              ),
+                              Text(
+                                jobTitle,
+                                style: AppTextStylesTemplate10.jobTitleStyle,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -104,7 +156,6 @@ class _Template10State extends State<Template10> {
                 Container(
                   width: 545.w,
                   height: 46.h,
-                  // color: Colors.cyan,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -134,7 +185,6 @@ class _Template10State extends State<Template10> {
                 Container(
                   width: 340.w,
                   height: 229.h,
-                  // color: Colors.cyan,
                   child: Row(
                     children: [
                       Text(
@@ -248,7 +298,6 @@ class _Template10State extends State<Template10> {
   Widget buildDescriptionText(String text) {
     return SizedBox(
       width: 220.w,
-      // height: 10.h,
       child: Text(
         text,
         style: AppTextStylesTemplate10.descriptionTextStyle,

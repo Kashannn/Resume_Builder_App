@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
 import 'Templates/cv_template_jane_doe.dart';
 import 'Templates/template10.dart';
+import 'Templates/template16.dart';
 import 'view/dark_mode_screen.dart';
 
 Future<void> main() async {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template10(),
+      child: Template16(),
     );
   }
 }
