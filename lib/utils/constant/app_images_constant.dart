@@ -24,6 +24,8 @@ class AppImages extends AssetImage {
   static const String template15 = '$_assetsPath/template15.png';
   static const String template16 = '$_assetsPath/template16.png';
   static const String template17 = '$_assetsPath/template17.png';
+  static const String template18 = '$_assetsPath/template18.png';
+  static const String template19 = '$_assetsPath/template19.png';
 
 
 //Svg images

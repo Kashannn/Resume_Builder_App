@@ -36,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
     AppImages.template15,
     AppImages.template16,
     AppImages.template17,
+    AppImages.template18,
+    AppImages.template19,
   ];
 
   String selectedTemplate = 'All';
