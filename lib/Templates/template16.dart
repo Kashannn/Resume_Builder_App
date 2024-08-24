@@ -114,6 +114,7 @@ class _Template16State extends State<Template16> {
                                   height: 41.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
+                                      color: Color(0xFF242424),
                                       border: Border.all(
                                         color: Colors.white,
                                       )),
@@ -153,6 +154,7 @@ class _Template16State extends State<Template16> {
                                   height: 41.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
+                                      color: Color(0xFF242424),
                                       border: Border.all(
                                         color: Colors.white,
                                       )),
@@ -191,6 +193,7 @@ class _Template16State extends State<Template16> {
                                   height: 41.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
+                                      color: Color(0xFF242424),
                                       border: Border.all(
                                         color: Colors.white,
                                       )),
@@ -229,6 +232,7 @@ class _Template16State extends State<Template16> {
                                   height: 41.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
+                                      color: Color(0xFF242424),
                                       border: Border.all(
                                         color: Colors.white,
                                       )),
@@ -352,6 +356,7 @@ class _Template16State extends State<Template16> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
+                                          color: Color(0xFF242424),
                                           border: Border.all(
                                             color: Colors.white,
                                           )),
@@ -382,6 +387,7 @@ class _Template16State extends State<Template16> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
+                                          color: Color(0xFF242424),
                                           border: Border.all(
                                             color: Colors.white,
                                           )),
@@ -412,6 +418,7 @@ class _Template16State extends State<Template16> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
+                                          color: Color(0xFF242424),
                                           border: Border.all(
                                             color: Colors.white,
                                           )),
@@ -442,6 +449,7 @@ class _Template16State extends State<Template16> {
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
+                                          color: Color(0xFF242424),
                                           border: Border.all(
                                             color: Colors.white,
                                           )),
