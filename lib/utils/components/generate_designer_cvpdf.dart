@@ -5,8 +5,6 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:open_file/open_file.dart';
 
-import '../../Templates/pdf_generator.dart';
-
 Future<void> generateDesignerCVPdf(BuildContext context) async {
   final pdf = pw.Document();
 
@@ -16,15 +14,12 @@ Future<void> generateDesignerCVPdf(BuildContext context) async {
       build: (pw.Context context) {
         return pw.Column(
           crossAxisAlignment: pw.CrossAxisAlignment.start,
-          children: [
-
-          ],
+          children: [],
         );
       },
     ),
   );
 
-  // Get the temporary directory of the device
   final Directory directory = await getApplicationDocumentsDirectory();
   final String path = "${directory.path}/DesignerCV.pdf";
 
@@ -32,7 +27,6 @@ Future<void> generateDesignerCVPdf(BuildContext context) async {
   final File file = File(path);
   await file.writeAsBytes(await pdf.save());
 
-  // Open the PDF file to view or share
   OpenFile.open(path);
 
   // Show a Snackbar confirmation

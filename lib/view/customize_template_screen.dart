@@ -24,7 +24,6 @@ class CustomizeTemplateScreen extends StatefulWidget {
 
 class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
   late int currentIndex;
-
   @override
   void initState() {
     super.initState();
@@ -34,8 +33,6 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    // Ensure that the imagePaths list is not null or empty
     if (widget.imagePaths == null || widget.imagePaths!.isEmpty) {
       return SafeArea(
         child: Scaffold(

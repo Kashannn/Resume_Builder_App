@@ -64,3 +64,110 @@ final TextStyle oStyleWhite5400 = GoogleFonts.openSans(
   color: AppColors.profileColor,
   fontWeight: FontWeight.w500,
 );
+
+
+
+
+class AppTextStyles {
+  static const TextStyle header = TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.darkGray,
+  );
+
+  static const TextStyle subHeader = TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    color: AppColors.darkBlue,
+  );
+
+  static const TextStyle bodyText = TextStyle(
+    fontSize: 14.0,
+    color: AppColors.darkGray,
+  );
+
+  static const TextStyle lightText = TextStyle(
+    fontSize: 14.0,
+    color: AppColors.white,
+  );
+}
+
+
+class AppTextStylesTemplate10 {
+  static final TextStyle nameStyle = TextStyle(
+    color: AppColorsTemplate10.primary,
+    fontSize: 20.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle jobTitleStyle = TextStyle(
+    color: AppColorsTemplate10.secondary,
+    fontSize: 15.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle contactLabelStyle = TextStyle(
+    color: AppColorsTemplate10.contactText,
+    fontSize: 10.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle contactInfoStyle = TextStyle(
+    color: AppColorsTemplate10.contactText,
+    fontSize: 10.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle sectionTitleStyle = TextStyle(
+    color: AppColorsTemplate10.primary,
+    fontSize: 14.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle experienceTitleStyle = TextStyle(
+    color: AppColorsTemplate10.contactText,
+    fontSize: 12.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle experienceDurationStyle = TextStyle(
+    color: AppColorsTemplate10.secondary,
+    fontSize: 12.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle descriptionTextStyle = TextStyle(
+    color: AppColorsTemplate10.secondary,
+    fontSize: 10.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle educationTextStyle = TextStyle(
+    color: AppColorsTemplate10.secondary,
+    fontSize: 12.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle degreeTextStyle = TextStyle(
+    color: AppColorsTemplate10.contactText,
+    fontSize: 12.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle skillTextStyle = TextStyle(
+    color: AppColorsTemplate10.secondary,
+    fontSize: 11.0.sp,
+    fontFamily: 'Manrope',
+    fontWeight: FontWeight.w500,
+  );
+}

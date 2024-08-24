@@ -8,9 +8,7 @@ import '../utils/constant/app_textstyle_constant.dart';
 
 class CustomizedTemplateScreen extends StatefulWidget {
   final String? imagePath;
-
   const CustomizedTemplateScreen({super.key, this.imagePath});
-
   @override
   State<CustomizedTemplateScreen> createState() =>
       _CustomizedTemplateScreenState();
@@ -20,7 +18,6 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -123,7 +120,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
               Spacer(),
               CustomGradientButton(
                 onPressed: () {
-                  // Button action
+
                 },
                 text: 'Save Info',
                 gradient: LinearGradient(
