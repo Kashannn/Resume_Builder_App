@@ -40,11 +40,14 @@ class _Template12State extends State<Template12> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFF1F1F1),
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(30),
                                   bottomLeft: Radius.circular(30),
+                                ),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 2,
                                 ),
                               ),
                               child: Padding(
@@ -76,10 +79,6 @@ class _Template12State extends State<Template12> {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(30),
-                                  bottomLeft: Radius.circular(30),
-                                ),
                                 border: Border.all(color: Colors.white),
                               ),
                               child: Padding(
