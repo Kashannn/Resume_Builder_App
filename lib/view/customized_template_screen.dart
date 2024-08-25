@@ -1,3 +1,4 @@
+import 'package:cvapp/Templates/template10.dart';
 import 'package:cvapp/utils/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -102,20 +103,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   color: Color(0xFF151A25),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: widget.imagePath != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(10.r),
-                        child: Image.asset(
-                          widget.imagePath!,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-                    : Center(
-                        child: Text(
-                          'No image selected',
-                          style: mStyleWhite20600,
-                        ),
-                      ),
+                child: SizedBox(
+                    child: Template10()),
               ),
               Spacer(),
               CustomGradientButton(

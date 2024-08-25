@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template8(),
+      child: SplashScreen(),
     );
   }
 }
