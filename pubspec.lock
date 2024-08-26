@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  auto_size_text:
-    dependency: transitive
-    description:
-      name: auto_size_text
-      sha256: "3f5261cd3fb5f2a9ab4e2fc3fba84fd9fcaac8821f20a1d4e71f557521b22599"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   barcode:
     dependency: transitive
     description:
@@ -113,22 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.12.0"
-  dio:
-    dependency: transitive
-    description:
-      name: dio
-      sha256: "0dfb6b6a1979dac1c1245e17cef824d7b452ea29bd33d3467269f9bef3715fb0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.6.0"
-  dio_web_adapter:
-    dependency: transitive
-    description:
-      name: dio_web_adapter
-      sha256: "33259a9276d6cea88774a0000cfae0d861003497755969c92faa223108620dc8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -206,14 +182,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.21"
-  flutter_resume_template:
-    dependency: "direct main"
-    description:
-      name: flutter_resume_template
-      sha256: "857bb288b7ea8ca1e06f323fc2c367c18be2aa790aa69db356354a46f36fa4cb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -222,14 +190,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.9.3"
-  flutter_shake_animated:
-    dependency: transitive
-    description:
-      name: flutter_shake_animated
-      sha256: "93ce87fa31467c28f10f11147243172a7692df846589b30ff16e592de20341b2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -272,14 +232,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.2"
-  http_mock_adapter:
-    dependency: transitive
-    description:
-      name: http_mock_adapter
-      sha256: "00f48d69f31d79e389f7a8544b266a214020a8b79d9f376f54e84ae13d3e2965"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.4"
   http_parser:
     dependency: transitive
     description:
@@ -560,6 +512,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  screenshot:
+    dependency: "direct main"
+    description:
+      name: screenshot
+      sha256: "63817697a7835e6ce82add4228e15d233b74d42975c143ad8cfe07009fab866b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
