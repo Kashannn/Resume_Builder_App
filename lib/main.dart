@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(430, 830),
+      designSize: const Size(393, 852),
       splitScreenMode: true,
       builder: (_, child) {
         return ChangeNotifierProvider(
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template12(),
+      child: SplashScreen(),
     );
   }
 }

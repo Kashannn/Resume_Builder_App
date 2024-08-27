@@ -409,7 +409,6 @@ class _Template12State extends State<Template12> {
           ),
           textAlign: TextAlign.justify,
         ),
-
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
