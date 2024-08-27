@@ -31,90 +31,95 @@ class _Template14State extends State<Template14> {
                       height: 842.h,
                       width: 206,
                       color: Color(0xFF1B2530),
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 88.r,
-                            backgroundColor: Color(0xFF00FF6A),
-                            child: CircleAvatar(
-                              radius: 85.r,
-                              backgroundImage:
-                                  AssetImage(AppImages.profilePicture),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 10.h),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 88.r,
+                              backgroundColor: Color(0xFF00FF6A),
+                              child: CircleAvatar(
+                                radius: 85.r,
+                                backgroundImage:
+                                    AssetImage(AppImages.profilePicture),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 100.h),
-                          SizedBox(
-                            height: 600.h,
-                            width: 240.w,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Contact Section
-                                buildSectionTitle('CONTACT'),
-                                SizedBox(height: 8.h),
-                                buildContactItem(
-                                    Icons.email, 'contact@johncarter.com'),
-                                SizedBox(height: 16.h),
-                                buildContactItem(
-                                    Icons.phone, '(487) 806 - 7204'),
+                            SizedBox(height: 100.h),
+                            SizedBox(
+                              height: 600.h,
+                              width: 240.w,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  // Contact Section
+                                  buildSectionTitle('CONTACT'),
+                                  SizedBox(height: 8.h),
+                                  buildContactItem(
+                                      Icons.email, 'contact@johncarter.com'),
+                                  SizedBox(height: 16.h),
+                                  buildContactItem(
+                                      Icons.phone, '(487) 806 - 7204'),
 
-                                // Divider
-                                buildDivider(),
+                                  // Divider
+                                  buildDivider(),
 
-                                // Skills Section
-                                buildSectionTitle('SKILLS'),
-                                SizedBox(height: 15.h),
-                                buildListItem('Corporate & Compliance'),
-                                buildListItem('Labor & Employment'),
-                                buildListItem('Intellectual Property'),
-                                buildListItem('Mergers & Acquisitions'),
-                                buildListItem('Business Taxation'),
-                                buildListItem('Dispute Resolution'),
-                                buildDivider(),
-                                buildSectionTitle('VALUES'),
-                                SizedBox(height: 15.h),
-                                buildListItem('Excellence'),
-                                buildListItem('Trust'),
-                                buildListItem('Integrity'),
-                                buildListItem('Accountability'),
-                                Spacer(),
-                                buildSectionTitle('@johncarter'),
-                                SizedBox(height: 15.h),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      icon: SvgPicture.asset(
-                                        AppImages.facebook,
-                                        width: 24.0,
-                                        height: 24.0,
+                                  // Skills Section
+                                  buildSectionTitle('SKILLS'),
+                                  SizedBox(height: 15.h),
+                                  buildListItem('Corporate & Compliance'),
+                                  buildListItem('Labor & Employment'),
+                                  buildListItem('Intellectual Property'),
+                                  buildListItem('Mergers & Acquisitions'),
+                                  buildListItem('Business Taxation'),
+                                  buildListItem('Dispute Resolution'),
+                                  buildDivider(),
+                                  buildSectionTitle('VALUES'),
+                                  SizedBox(height: 15.h),
+                                  buildListItem('Excellence'),
+                                  buildListItem('Trust'),
+                                  buildListItem('Integrity'),
+                                  buildListItem('Accountability'),
+                                  Spacer(),
+                                  buildSectionTitle('@johncarter'),
+                                  SizedBox(height: 15.h),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        icon: SvgPicture.asset(
+                                          AppImages.facebook,
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                        onPressed: () {},
                                       ),
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: SvgPicture.asset(
-                                        AppImages.linkedin,
-                                        width: 24.0,
-                                        height: 24.0,
+                                      IconButton(
+                                        icon: SvgPicture.asset(
+                                          AppImages.linkedin,
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                        onPressed: () {},
                                       ),
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: SvgPicture.asset(
-                                        AppImages.instagram,
-                                        width: 24.0,
-                                        height: 24.0,
+                                      IconButton(
+                                        icon: SvgPicture.asset(
+                                          AppImages.instagram,
+                                          width: 24.0,
+                                          height: 24.0,
+                                        ),
+                                        onPressed: () {},
                                       ),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Container(
