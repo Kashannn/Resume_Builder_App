@@ -5,7 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
+import 'Templates/template10.dart';
+import 'Templates/template12.dart';
 import 'Templates/template14.dart';
+import 'Templates/template16.dart';
+import 'Templates/template6.dart';
 import 'Templates/template8.dart';
 
 Future<void> main() async {
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(596, 842),
+      designSize: const Size(430, 830),
       splitScreenMode: true,
       builder: (_, child) {
         return ChangeNotifierProvider(
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template14 (),
+      child: Template12(),
     );
   }
 }
