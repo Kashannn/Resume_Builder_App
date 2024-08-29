@@ -18,21 +18,22 @@ class _Template1State extends State<Template1> {
       child: Scaffold(
         body: Stack(children: [
           Container(
-            width: 595.w,
-            height: 842.h,
+
+             width: 595.w,
+            // height: 842.h,
             color: Color(0xFF343C43),
           ),
           Container(
             width: 205.w,
-            height: 842.h,
+            //height: 842.h,
             color: Color(0xFF353443),
           ),
           Positioned(
-            top: 30.h,
+            top: 10.h,
             left: 34.w,
             child: Container(
               width: 252.w,
-              height: 733.h,
+              //height: 733.h,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.r),
@@ -42,14 +43,14 @@ class _Template1State extends State<Template1> {
                 child: Column(
                   children: [
                     CircleAvatar(
-                      radius: 73.r,
+                      radius: 50.r,
                       backgroundColor: Color(0xFFB3B3B1),
                       child: CircleAvatar(
-                        radius: 70.r,
+                        radius: 50.r,
                         backgroundImage: AssetImage(AppImages.profilePicture),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 5.h),
                     Text("JANE DOE",
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -67,27 +68,27 @@ class _Template1State extends State<Template1> {
                         color: Color(0xFF00101F),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 10.h),
                     Container(
                       width: 193.w,
-                      height: 510.h,
+                      //height: 510.h,
                       // color: Colors.black,
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 12.h),
+                            horizontal: 12.w, vertical: 1.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _buildSectionHeader("BASIC INFO"),
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 5.h),
                             _buildInfoItem("Name", "Jane Doe Williams"),
                             _buildInfoItem("ID", "1-2345-6789"),
                             _buildInfoItem("Phone", "(+506) 0987-6543"),
                             _buildInfoItem("Email", "janedoe@gmail.com"),
                             _buildInfoItem("Address", "Somewhere, Costa Rica"),
-                            SizedBox(height: 16.h),
+                            SizedBox(height: 10.h),
                             _buildSectionHeader("ABILITIES"),
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 5.h),
                             _buildBulletPoint(
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, set do."),
                             _buildBulletPoint("Exercitation ullamco laboris."),
@@ -95,16 +96,16 @@ class _Template1State extends State<Template1> {
                                 "Ut enim ad minim veniam, quis nostrud."),
                             _buildBulletPoint(
                                 "Aliquip ex ea commodo consequat ipsum."),
-                            SizedBox(height: 16.h),
+                            SizedBox(height: 10.h),
                             _buildSectionHeader("REFERENCES"),
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 5.h),
                             _buildReferenceItem(
                               name: "SOMEONES NAME",
                               title: "Production Manager and Marketer",
                               email: "someone@hotmail.com",
                               phone: "(+510) 5600-3700",
                             ),
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 5.h),
                             _buildReferenceItem(
                               name: "LOREM IPSUM",
                               title: "Production Data Operator",
@@ -121,18 +122,18 @@ class _Template1State extends State<Template1> {
             ),
           ),
           Positioned(
-            top: 30.h,
+            top: 10.h,
             left: 290.w,
             child: Container(
               width: 260.w,
-              height: 760.h,
+              //height: 760.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildSectionHeader("Profile"),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 5.h),
                     _buildProfileItem(
                       title: "Desc",
                       description:
@@ -143,7 +144,7 @@ class _Template1State extends State<Template1> {
                           "technical support to users, collaborated on design projects and working in a "
                           "team-oriented environment. Both remotely and on-site.",
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 10.h),
                     _buildProfileItem(
                       title: "Skills",
                       skills: [
@@ -152,7 +153,7 @@ class _Template1State extends State<Template1> {
                         _buildSkillBar("Illustrator", 0.6),
                       ],
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 10.h),
                     _buildProfileItem(
                       title: "Experience",
                       description:
@@ -161,20 +162,17 @@ class _Template1State extends State<Template1> {
                           "our audience’s needs. Designed the foundation’s website and managed its contents "
                           "to pass standard and accurate brand identity.",
                     ),
-                    SizedBox(height: 16.h),
-                    _buildSectionHeader("EDUCATION"),
                     SizedBox(height: 8.h),
+                    _buildSectionHeader("EDUCATION"),
+                    SizedBox(height: 2.h),
                     _buildEducationItem("2014", "A UNIVERSITY TITLE",
                         "Some Educational Institution"),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 2.h),
                     _buildEducationItem(
                         "2006", "DOLOR SIT AMET", "Utnim Ad Minim Veniam"),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 2.h),
                     _buildEducationItem("2005", "EIUSMOD TEMPOR INCIDIDUNT",
                         "National Institute"),
-                    SizedBox(height: 8.h),
-                    _buildEducationItem(
-                        "2004", "EXERCITATION ULLAMCO", "Laboris Nisi Aliquip"),
                   ],
                 ),
               ),
@@ -208,7 +206,7 @@ class _Template1State extends State<Template1> {
 
   Widget _buildInfoItem(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
+      padding: EdgeInsets.symmetric(vertical: 2.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -217,7 +215,7 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: Colors.black,
             ),
             textAlign: TextAlign.justify,
@@ -229,7 +227,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
+                fontSize: 10.sp,
                 color: Colors.black,
               ),
               textAlign: TextAlign.end,
@@ -242,7 +240,7 @@ class _Template1State extends State<Template1> {
 
   Widget _buildBulletPoint(String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
+      padding: EdgeInsets.symmetric(vertical: 2.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -254,7 +252,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
+                fontSize: 10.sp,
                 color: Colors.black,
               ),
             ),
@@ -290,7 +288,7 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: Colors.black,
             ),
           ),
@@ -300,7 +298,7 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: Colors.black,
             ),
           ),
@@ -310,7 +308,7 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: Colors.black,
             ),
           ),
@@ -328,7 +326,8 @@ class _Template1State extends State<Template1> {
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
-            fontSize: 14.sp,
+            fontSize: 12.sp,
+
             color: Color(0xFF00CFFF), // Light blue color
           ),
           textAlign: TextAlign.justify,
@@ -358,7 +357,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 color: Colors.white,
               ),
             ),
@@ -371,14 +370,14 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: Colors.white,
             ),
             textAlign: TextAlign.justify,
           ),
         ],
         if (skills != null) ...[
-          SizedBox(height: 8.h),
+          SizedBox(height: 5.h),
           Column(children: skills),
         ],
       ],
@@ -394,7 +393,7 @@ class _Template1State extends State<Template1> {
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
-            fontSize: 12.sp,
+            fontSize: 10.sp,
             color: Colors.white,
           ),
         ),
@@ -413,7 +412,7 @@ class _Template1State extends State<Template1> {
             ),
           ],
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 5.h),
       ],
     );
   }
@@ -428,7 +427,7 @@ class _Template1State extends State<Template1> {
             SizedBox(height: 4.h),
             Container(
               width: 2.w,
-              height: 50.h,
+              height: 30.h,
               color: Colors.grey,
             ),
           ],
@@ -442,27 +441,27 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 2.h),
             Text(
               title,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
+                fontSize: 10.sp,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 2.h),
             Text(
               institution,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 12.sp,
+                fontSize: 10.sp,
                 color: Colors.white,
               ),
             ),
