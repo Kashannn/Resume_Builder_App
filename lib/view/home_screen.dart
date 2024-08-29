@@ -61,7 +61,40 @@ class _HomeScreenState extends State<HomeScreen> {
                     'CV Maker',
                     style: isDarkMode ? mStyleWhite20600 : mStyleBlack20600,
                   ),
-
+                  GestureDetector(
+                    onTap: () => Get.to(() => ResumeForm()),
+                    child: Container(
+                      height: 40.h,
+                      width: 120.w,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF5BBBFF),
+                            Color(0xFF005592),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                        borderRadius: BorderRadius.circular(30.r),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.note_alt_outlined,
+                            color: Colors.white,
+                            size: 15.sp,
+                          ),
+                          SizedBox(width: 5.w),
+                          Text(
+                            'Save Your Info',
+                            style: mStyleWhite12600,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 20.h),
