@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_images_constant.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -12,54 +15,41 @@ class Template10 extends StatefulWidget {
 }
 
 class _Template10State extends State<Template10> {
-  String name = 'John Carter';
-  String jobTitle = 'Digital Marketing';
+  String name = 'John Doe';
+  String jobTitle = 'Software Developer';
+  String email = 'contact@entreprenur.com';
+  String phone = '(443) 212 - 6501';
+  String aboutMe = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel eu vulputate et id morbi proin quam eget aliquam pellentesque congue massa mattis fringilla platea.';
+  List<Map<String, String>> workExperience = [
+    {'title': 'VP of Marketing', 'from': '2019', 'to': 'Present', 'description': 'Ut in orci suspendisse aliquet justo in faucibus sed lobortis. Semper facilisi non sed interdum ipsum fusce at nisi.'},
+    {'title': 'Head of Marketing', 'from': '2018', 'to': '2019', 'description': 'Id eget faucibus neque tristique ut mi duis nec cursus posuere donec non sagittis pretium tortor ac cursus eget bibendum.'},
+    {'title': 'Growth Hacker', 'from': '2017', 'to': '2018', 'description': 'Nec commodo nulla diam tellus sit sem lorem amet pharetra, sed gravida lectus phasellus in libero nam pulvinar suscipit.'},
+  ];
+  List<Map<String, String>> education = [
+    {'from': '2018', 'to': '2021', 'degree': 'B.S of Business and Marketing', 'institution': 'University of Oxford.'},
+    {'from': '2015', 'to': '2018', 'degree': 'B.S of Digital Marketing', 'institution': 'University of Oxford.'},
+  ];
+  List<String> skills = [
+    'Growth Marketing',
+    'Optimization',
+    'Data Analysis',
+    'Strategy for B2B',
+    'Social Media',
+    'SEO & SEM',
+  ];
 
-  void _showEditDialog(String fieldType) {
-    TextEditingController controller = TextEditingController();
+  File? _profileImage;
 
-    if (fieldType == 'name') {
-      controller.text = name;
-    } else if (fieldType == 'jobTitle') {
-      controller.text = jobTitle;
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
     }
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Edit $fieldType'),
-          content: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: 'Enter new $fieldType',
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  if (fieldType == 'name') {
-                    name = controller.text;
-                  } else if (fieldType == 'jobTitle') {
-                    jobTitle = controller.text;
-                  }
-                });
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
-        );
-      },
-    );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +57,7 @@ class _Template10State extends State<Template10> {
       child: Scaffold(
         backgroundColor: AppColorsTemplate10.lightGray,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,27 +67,35 @@ class _Template10State extends State<Template10> {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage: AssetImage(AppImages.profilePicture),
+                        GestureDetector(
+                          onTap: _pickImage,
+                          child: CircleAvatar(
+                            radius: 30.0,
+                            backgroundImage: _profileImage != null
+                                ? FileImage(_profileImage!)
+                                : AssetImage(AppImages.profilePicture) as ImageProvider,
+                          ),
                         ),
                         SizedBox(width: 10.w),
-                        GestureDetector(
-                          onTap: () => _showEditDialog('name'),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () => _editName(),
+                              child: Text(
                                 name,
                                 style: AppTextStylesTemplate10.nameStyle,
                               ),
-                              Text(
+                            ),
+                            GestureDetector(
+                              onTap: () => _editJobTitle(),
+                              child: Text(
                                 jobTitle,
                                 style: AppTextStylesTemplate10.jobTitleStyle,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -119,10 +117,12 @@ class _Template10State extends State<Template10> {
                                   size: 10.0,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text(
-                                  'contact@entreprenur.com',
-                                  style:
-                                      AppTextStylesTemplate10.contactInfoStyle,
+                                GestureDetector(
+                                  onTap: () => _editContactInfo('email'),
+                                  child: Text(
+                                    email,
+                                    style: AppTextStylesTemplate10.contactInfoStyle,
+                                  ),
                                 ),
                               ],
                             ),
@@ -135,10 +135,12 @@ class _Template10State extends State<Template10> {
                                   size: 10.0,
                                 ),
                                 SizedBox(width: 5.w),
-                                Text(
-                                  '(443) 212 - 6501',
-                                  style:
-                                      AppTextStylesTemplate10.contactInfoStyle,
+                                GestureDetector(
+                                  onTap: () => _editContactInfo('phone'),
+                                  child: Text(
+                                    phone,
+                                    style: AppTextStylesTemplate10.contactInfoStyle,
+                                  ),
                                 ),
                               ],
                             ),
@@ -148,14 +150,11 @@ class _Template10State extends State<Template10> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
+                SizedBox(height: 5.h),
                 Divider(color: AppColorsTemplate10.divider, thickness: 4.h),
-                SizedBox(height: 10.h),
+                SizedBox(height: 5.h),
                 Container(
                   width: 545.w,
-                  height: 46.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -163,66 +162,56 @@ class _Template10State extends State<Template10> {
                         'About Me',
                         style: AppTextStylesTemplate10.sectionTitleStyle,
                       ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
+                      SizedBox(width: 10.w),
                       SizedBox(
                         width: 240.w,
-                        height: 51.h,
-                        child: Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel eu vulputate et id morbi proin quam eget aliquam pellentesque congue massa mattis fringilla platea.',
-                          style: AppTextStylesTemplate10.descriptionTextStyle,
-                          textAlign: TextAlign.justify,
-                          maxLines: 4,
+                        child: GestureDetector(
+                          onTap: () => _editAboutMe(),
+                          child: Text(
+                            aboutMe,
+                            style: AppTextStylesTemplate10.descriptionTextStyle,
+                            textAlign: TextAlign.justify,
+                            maxLines: 4,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
+                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
                 Container(
                   width: 340.w,
-                  height: 229.h,
+                  height: 150.h,
                   child: Row(
                     children: [
                       Text(
                         'Work Experience',
                         style: AppTextStylesTemplate10.sectionTitleStyle,
                       ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
+                      SizedBox(width: 10.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          buildExperienceRow(
-                              'VP of Marketing', '2019 - Present'),
-                          buildDescriptionText(
-                            'Ut in orci suspendisse aliquet justo in faucibus sed lobortis. Semper facilisi non sed interdum ipsum fusce at nisi.',
-                          ),
-                          buildExperienceRow(
-                              'Head of Marketing', '2018 - 2019'),
-                          buildDescriptionText(
-                            'Id eget faucibus neque tristique ut mi duis nec cursus posuere donec non sagittis pretium tortor ac cursus eget bibendum.',
-                          ),
-                          buildExperienceRow('Growth Hacker', '2017 - 2018'),
-                          buildDescriptionText(
-                            'Nec commodo nulla diam tellus sit sem lorem amet pharetra, sed gravida lectus phasellus in libero nam pulvinar suscipit.',
-                          ),
-                        ],
+                        children: workExperience.map((experience) => Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () => _editExperience(experience),
+                              child: buildExperienceRow(
+                                experience['title']!,
+                                '${experience['from']} - ${experience['to']}',
+                              ),
+                            ),
+                            buildDescriptionText(experience['description']!),
+                          ],
+                        )).toList(),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 60.h,
-                ),
+                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
                 Container(
-                  width: 310.w,
-                  height: 130.h,
+                  width: 290.w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -231,28 +220,21 @@ class _Template10State extends State<Template10> {
                         style: AppTextStylesTemplate10.sectionTitleStyle,
                       ),
                       Column(
-                        children: [
-                          buildEducationRow(
-                            '2018 - 2021',
-                            'B.S of Business and Markeing',
-                            'University of Oxford.',
+                        children: education.map((edu) => GestureDetector(
+                          onTap: () => _editEducation(edu),
+                          child: buildEducationRow(
+                            '${edu['from']} - ${edu['to']}',
+                            edu['degree']!,
+                            edu['institution']!,
                           ),
-                          buildEducationRow(
-                            '2015 - 2018',
-                            'B.S of Digital Marketing',
-                            'University of Oxford.',
-                          ),
-                        ],
+                        )).toList(),
                       )
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
+                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
                 Container(
                   width: 530.w,
-                  height: 73.h,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -262,7 +244,10 @@ class _Template10State extends State<Template10> {
                       ),
                       Column(
                         children: [
-                          buildSkillsRow(),
+                          GestureDetector(
+                            onTap: () => _editSkills(),
+                            child: buildSkillsRow(),
+                          ),
                         ],
                       )
                     ],
@@ -306,10 +291,10 @@ class _Template10State extends State<Template10> {
     );
   }
 
-  Widget buildEducationRow(String years, String degree, String university) {
+  Widget buildEducationRow(String years, String degree, String institution) {
     return SizedBox(
       width: 200.w,
-      height: 60.h,
+      height: 50.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -317,14 +302,14 @@ class _Template10State extends State<Template10> {
             years,
             style: AppTextStylesTemplate10.educationTextStyle,
           ),
-          SizedBox(height: 7.h),
+          SizedBox(height: 2.h),
           Text(
             degree,
             style: AppTextStylesTemplate10.degreeTextStyle,
           ),
-          SizedBox(height: 7.h),
+          SizedBox(height: 2.h),
           Text(
-            university,
+            institution,
             style: AppTextStylesTemplate10.educationTextStyle,
           ),
         ],
@@ -333,51 +318,311 @@ class _Template10State extends State<Template10> {
   }
 
   Widget buildSkillsRow() {
+    // Helper function to split the list into chunks of the specified size
+    List<List<String>> splitIntoChunks(List<String> list, int chunkSize) {
+      List<List<String>> chunks = [];
+      for (int i = 0; i < list.length; i += chunkSize) {
+        chunks.add(list.sublist(i, i + chunkSize > list.length ? list.length : i + chunkSize));
+      }
+      return chunks;
+    }
+
+    // Split skills into chunks of 2
+    final skillChunks = splitIntoChunks(skills, 2);
+
     return SizedBox(
       width: 250.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '• Growth Marketing',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                '• Optimization',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                '• Data Analysis',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '• Strategy for B2B',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                '• Social Media',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                '• SEO & SEM',
-                style: AppTextStylesTemplate10.skillTextStyle,
-              ),
-            ],
-          ),
-        ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: skillChunks.map((chunk) => Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: chunk.map((skill) => Expanded(
+            child: Text(
+              '• $skill',
+              style: AppTextStylesTemplate10.skillTextStyle,
+            ),
+          )).toList(),
+        )).toList(),
       ),
     );
+  }
+
+
+  Future<void> _editName() async {
+    final newName = await _showEditDialog('Name', name);
+    if (newName != null && newName.isNotEmpty) {
+      setState(() {
+        name = newName;
+      });
+    }
+  }
+
+  Future<void> _editJobTitle() async {
+    final newJobTitle = await _showEditDialog('Job Title', jobTitle);
+    if (newJobTitle != null && newJobTitle.isNotEmpty) {
+      setState(() {
+        jobTitle = newJobTitle;
+      });
+    }
+  }
+
+  Future<void> _editAboutMe() async {
+    final newAboutMe = await _showEditDialog('About Me', aboutMe, multiline: true);
+    if (newAboutMe != null && newAboutMe.isNotEmpty) {
+      setState(() {
+        aboutMe = newAboutMe;
+      });
+    }
+  }
+
+  Future<void> _editExperience(Map<String, String> experience) async {
+    final updatedExperience = await _showExperienceEditDialog(experience);
+    if (updatedExperience != null) {
+      setState(() {
+        final index = workExperience.indexOf(experience);
+        if (index != -1) {
+          workExperience[index] = updatedExperience;
+        }
+      });
+    }
+  }
+
+  Future<void> _editEducation(Map<String, String> edu) async {
+    final updatedEducation = await _showEducationEditDialog(edu);
+    if (updatedEducation != null) {
+      setState(() {
+        final index = education.indexOf(edu);
+        if (index != -1) {
+          education[index] = updatedEducation;
+        }
+      });
+    }
+  }
+
+  Future<void> _editSkills() async {
+    final updatedSkills = await _showSkillsEditDialog();
+    if (updatedSkills != null) {
+      setState(() {
+        skills = updatedSkills;
+      });
+    }
+  }
+
+  Future<String?> _showEditDialog(String title, String initialValue, {bool multiline = false}) async {
+    final controller = TextEditingController(text: initialValue);
+    return await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: multiline
+              ? TextField(
+            controller: controller,
+            maxLines: 5,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          )
+              : TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, controller.text),
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<Map<String, String>?> _showExperienceEditDialog(Map<String, String> experience) async {
+    final titleController = TextEditingController(text: experience['title']);
+    final fromController = TextEditingController(text: experience['from']);
+    final toController = TextEditingController(text: experience['to']);
+    final descriptionController = TextEditingController(text: experience['description']);
+
+    return await showDialog<Map<String, String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                ),
+              ),
+              TextField(
+                controller: fromController,
+                decoration: InputDecoration(
+                  labelText: 'From',
+                ),
+              ),
+              TextField(
+                controller: toController,
+                decoration: InputDecoration(
+                  labelText: 'To',
+                ),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                ),
+                maxLines: 3,
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, {
+                  'title': titleController.text,
+                  'from': fromController.text,
+                  'to': toController.text,
+                  'description': descriptionController.text,
+                });
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<Map<String, String>?> _showEducationEditDialog(Map<String, String> edu) async {
+    final institutionController = TextEditingController(text: edu['institution']);
+    final titleController = TextEditingController(text: edu['degree']);
+    final fromController = TextEditingController(text: edu['from']);
+    final toController = TextEditingController(text: edu['to']);
+
+    return await showDialog<Map<String, String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: institutionController,
+                decoration: InputDecoration(
+                  labelText: 'Institution',
+                ),
+              ),
+              TextField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  labelText: 'Degree',
+                ),
+              ),
+              TextField(
+                controller: fromController,
+                decoration: InputDecoration(
+                  labelText: 'From',
+                ),
+              ),
+              TextField(
+                controller: toController,
+                decoration: InputDecoration(
+                  labelText: 'To',
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, {
+                  'institution': institutionController.text,
+                  'degree': titleController.text,
+                  'from': fromController.text,
+                  'to': toController.text,
+                });
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<List<String>?> _showSkillsEditDialog() async {
+    final skillsController = TextEditingController(text: skills.join(', '));
+    return await showDialog<List<String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skills'),
+          content: TextField(
+            controller: skillsController,
+            decoration: InputDecoration(
+              labelText: 'Skills (comma separated)',
+            ),
+            maxLines: 5,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, skillsController.text.split(',').map((s) => s.trim()).toList());
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editContactInfo(String field) async {
+    String? initialValue;
+    if (field == 'email') {
+      initialValue = email;
+    } else if (field == 'phone') {
+      initialValue = phone;
+    }
+
+    final newValue = await _showEditDialog(field.capitalize(), initialValue!);
+    if (newValue != null && newValue.isNotEmpty) {
+      setState(() {
+        if (field == 'email') {
+          email = newValue;
+        } else if (field == 'phone') {
+          phone = newValue;
+        }
+      });
+    }
+  }
+}
+
+extension CapitalizeExtension on String {
+  String capitalize() {
+    return this[0].toUpperCase() + substring(1);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../utils/constant/app_images_constant.dart';
 
 class Template16 extends StatefulWidget {
@@ -21,7 +20,7 @@ class _Template16State extends State<Template16> {
           child: Column(
             children: [
               Container(
-                height: 798.h,
+                //height: 798.h,
                 width: 595.w,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -42,14 +41,13 @@ class _Template16State extends State<Template16> {
                     children: [
                       //header section
                       SizedBox(
-                        height: 113.h,
                         width: 525.w,
                         child: Column(
                           children: [
                             Row(
                               children: [
                                 CircleAvatar(
-                                  radius: 50.r,
+                                  radius: 40.r,
                                   backgroundImage: AssetImage(
                                     AppImages.profilePicture,
                                   ),
@@ -81,9 +79,6 @@ class _Template16State extends State<Template16> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
                             Divider(
                               color: Colors.white,
                             )
@@ -94,7 +89,7 @@ class _Template16State extends State<Template16> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            height: 227.h,
+                            height: 160.h,
                             width: 152.w,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +106,7 @@ class _Template16State extends State<Template16> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  height: 41.h,
+                                  height: 35.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
                                       color: Color(0xFF242424),
@@ -132,8 +127,8 @@ class _Template16State extends State<Template16> {
                                           padding: const EdgeInsets.all(3.0),
                                           child: SvgPicture.asset(
                                             AppImages.product,
-                                            height: 17.h,
-                                            width: 17.w,
+                                            height: 14.h,
+                                            width: 14.w,
                                           ),
                                         ),
                                       ),
@@ -151,7 +146,7 @@ class _Template16State extends State<Template16> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  height: 41.h,
+                                  height: 35.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
                                       color: Color(0xFF242424),
@@ -172,8 +167,8 @@ class _Template16State extends State<Template16> {
                                             padding: const EdgeInsets.all(3.0),
                                             child: SvgPicture.asset(
                                               AppImages.search,
-                                              height: 17.h,
-                                              width: 17.w,
+                                              height: 14.h,
+                                              width: 14.w,
                                             )),
                                       ),
                                       Text(
@@ -190,7 +185,7 @@ class _Template16State extends State<Template16> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  height: 41.h,
+                                  height: 35.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
                                       color: Color(0xFF242424),
@@ -211,8 +206,8 @@ class _Template16State extends State<Template16> {
                                             padding: const EdgeInsets.all(3.0),
                                             child: SvgPicture.asset(
                                               AppImages.phone,
-                                              height: 17.h,
-                                              width: 17.w,
+                                              height: 14.h,
+                                              width: 14.w,
                                             )),
                                       ),
                                       Text(
@@ -229,7 +224,7 @@ class _Template16State extends State<Template16> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  height: 41.h,
+                                  height: 35.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
                                       color: Color(0xFF242424),
@@ -250,8 +245,8 @@ class _Template16State extends State<Template16> {
                                           padding: const EdgeInsets.all(3.0),
                                           child: SvgPicture.asset(
                                             AppImages.icon,
-                                            height: 17.h,
-                                            width: 17.h,
+                                            height: 14.h,
+                                            width: 14.h,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -272,7 +267,7 @@ class _Template16State extends State<Template16> {
                             ),
                           ),
                           SizedBox(
-                            height: 227.h,
+                            height: 160.h,
                             width: 314.w,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -317,7 +312,7 @@ class _Template16State extends State<Template16> {
                         ],
                       ),
                       SizedBox(
-                        height: 30.h,
+                        height: 15.h,
                       ),
                       Column(
                         children: [
@@ -325,7 +320,7 @@ class _Template16State extends State<Template16> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                height: 227.h,
+                                height: 160.h,
                                 width: 152.w,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -352,7 +347,7 @@ class _Template16State extends State<Template16> {
                                     ),
                                     Container(
                                       width: double.infinity,
-                                      height: 41.h,
+                                      height: 32.h,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
@@ -366,8 +361,8 @@ class _Template16State extends State<Template16> {
                                         children: [
                                           SvgPicture.asset(
                                             AppImages.facebook,
-                                            height: 17.h,
-                                            width: 17.h,
+                                            height: 14.h,
+                                            width: 14.h,
                                           ),
                                           Text(
                                             'Facebook',
@@ -383,7 +378,7 @@ class _Template16State extends State<Template16> {
                                     ),
                                     Container(
                                       width: double.infinity,
-                                      height: 41.h,
+                                      height: 32.h,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
@@ -397,8 +392,8 @@ class _Template16State extends State<Template16> {
                                         children: [
                                           SvgPicture.asset(
                                             AppImages.twitter,
-                                            height: 17.h,
-                                            width: 17.h,
+                                            height: 14.h,
+                                            width: 14.h,
                                           ),
                                           Text(
                                             'Twitter',
@@ -414,7 +409,7 @@ class _Template16State extends State<Template16> {
                                     ),
                                     Container(
                                       width: double.infinity,
-                                      height: 41.h,
+                                      height: 32.h,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
@@ -428,8 +423,8 @@ class _Template16State extends State<Template16> {
                                         children: [
                                           SvgPicture.asset(
                                             AppImages.instagram,
-                                            height: 17.h,
-                                            width: 17.h,
+                                            height: 14.h,
+                                            width: 14.h,
                                           ),
                                           Text(
                                             'Instagram',
@@ -445,7 +440,7 @@ class _Template16State extends State<Template16> {
                                     ),
                                     Container(
                                       width: double.infinity,
-                                      height: 41.h,
+                                      height: 32.h,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5.r),
@@ -459,8 +454,8 @@ class _Template16State extends State<Template16> {
                                         children: [
                                           SvgPicture.asset(
                                             AppImages.linkedin,
-                                            height: 17.h,
-                                            width: 17.h,
+                                            height: 14.h,
+                                            width: 14.h,
                                           ),
                                           Text(
                                             'LinkedIn',
@@ -478,7 +473,7 @@ class _Template16State extends State<Template16> {
                                 ),
                               ),
                               SizedBox(
-                                height: 227.h,
+                                height: 160.h,
                                 width: 150.w,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -615,7 +610,7 @@ class _Template16State extends State<Template16> {
                                 ),
                               ),
                               SizedBox(
-                                height: 227.h,
+                                height: 160.h,
                                 width: 150.w,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -754,7 +749,7 @@ class _Template16State extends State<Template16> {
                             ],
                           ),
                           SizedBox(
-                            height: 20.h,
+                            height: 10.h,
                           ),
                           Divider(
                             color: Colors.white,
@@ -763,10 +758,7 @@ class _Template16State extends State<Template16> {
                         ],
                       ),
                       SizedBox(
-                        height: 20.h,
-                      ),
-                      SizedBox(
-                        height: 60.h,
+                        // height: 60.h,
                         width: 525.w,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
