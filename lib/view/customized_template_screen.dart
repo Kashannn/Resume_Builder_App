@@ -168,7 +168,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 key: _containerKey,
                 child: SizedBox(
                   height: 522.h,
-                  child: Template8(),
+                  child: Template16(),
                 ),
               ),
               SizedBox(height: 20.h),
