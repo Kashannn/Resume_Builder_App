@@ -11,7 +11,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../Templates/template10.dart';
 import '../Templates/template12.dart';
+import '../Templates/template16.dart';
+import '../Templates/template8.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -38,11 +41,17 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
 
       // Generate PDF
       final pdf = pw.Document();
+      final pdfImage = pw.MemoryImage(pngBytes);
+
       pdf.addPage(
         pw.Page(
-          build: (pw.Context context) => pw.Image(
-            pw.MemoryImage(pngBytes),
-          ),
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Image(
+              pdfImage,
+              fit: pw.BoxFit.cover,
+            );
+          },
         ),
       );
 
@@ -157,9 +166,9 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
               ),
               RepaintBoundary(
                 key: _containerKey,
-                child: Container(
+                child: SizedBox(
                   height: 522.h,
-                  child: Template12(),
+                  child: Template8(),
                 ),
               ),
               SizedBox(height: 20.h),
