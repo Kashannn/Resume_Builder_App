@@ -1,16 +1,10 @@
 import 'package:cvapp/utils/constant/app_theme.dart';
-import 'package:cvapp/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
-import 'Templates/template10.dart';
-import 'Templates/template12.dart';
-import 'Templates/template14.dart';
-import 'Templates/template16.dart';
-import 'Templates/template6.dart';
-import 'Templates/template8.dart';
+import 'Templates/template18.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -41,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: SplashScreen(),
+      child:Template18(),
     );
   }
 }
