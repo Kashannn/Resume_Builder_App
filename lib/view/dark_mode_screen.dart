@@ -52,10 +52,6 @@ class _DarkScreenState extends State<DarkScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-          child: CustomBottomNavigationBar(),
-        ),
       ),
     );
   }

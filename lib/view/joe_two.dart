@@ -76,10 +76,6 @@ class _JoeTwoState extends State<JoeTwo> {
             ],
           ),
         ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
-          child: CustomBottomNavigationBar(),
-        ),
       ),
     );
   }

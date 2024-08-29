@@ -1,4 +1,5 @@
 import 'package:cvapp/utils/constant/app_theme.dart';
+import 'package:cvapp/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child:Template18(),
+      child:SplashScreen(),
     );
   }
 }
