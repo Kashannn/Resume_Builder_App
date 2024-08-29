@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:cvapp/view/home_screen.dart';
-import 'package:cvapp/view/joe_two.dart';
-import 'package:cvapp/view/dark_mode_screen.dart';
+import '../view/dark_mode_screen.dart';
+import '../view/home_screen.dart';
+import '../view/joe_two.dart';
 
 class BottomNavigationController extends GetxController {
   var selectedIndex = 0.obs;
@@ -11,8 +11,7 @@ class BottomNavigationController extends GetxController {
   final List<Widget> screens = [
     const HomeScreen(),
     const JoeTwo(),
-    const  DarkScreen(),
-
+    const DarkScreen(),
   ];
 
   void changeIndex(int index) {

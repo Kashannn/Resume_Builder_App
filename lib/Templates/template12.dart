@@ -13,7 +13,7 @@ class Template12 extends StatefulWidget {
 }
 
 class _Template12State extends State<Template12> {
-  File? _profileImage;  // Variable to hold the image file
+  File? _profileImage; // Variable to hold the image file
 
   String userName = 'ELIZABETH HARRIS';
   String userRole = 'WEB DESIGNER & DEVELOPER';
@@ -21,17 +21,20 @@ class _Template12State extends State<Template12> {
   String email = 'Info@yourmail.com';
   String website = 'www.youwebsite.com';
   String location = 'Street Name, Country';
-  String aboutDetails = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+  String aboutDetails =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
   List<Map<String, String>> experiences = [
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company  Institute Name  Location or Country - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company  Institute Name  Location or Country - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
   ];
   List<Map<String, String>> education = [
@@ -67,12 +70,14 @@ class _Template12State extends State<Template12> {
     {
       'year': '2015',
       'title': 'Consectetuer elit uteum',
-      'description': 'Aliquip exercitation ullamco laboris nisi ut ex ea commodo consequat.',
+      'description':
+          'Aliquip exercitation ullamco laboris nisi ut ex ea commodo consequat.',
     },
     {
       'year': '2012',
       'title': 'Lamco laboris nisi ut',
-      'description': 'Doconseque exercitation ullamco laboris nisi ut aliquip ex commodo.',
+      'description':
+          'Doconseque exercitation ullamco laboris nisi ut aliquip ex commodo.',
     },
   ];
 
@@ -83,7 +88,8 @@ class _Template12State extends State<Template12> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -101,7 +107,6 @@ class _Template12State extends State<Template12> {
           height: 842.h,
           child: SingleChildScrollView(
             child: Column(
-
               children: [
                 // Top Section
                 SizedBox(
@@ -111,9 +116,8 @@ class _Template12State extends State<Template12> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-
                         width: 225.w,
-                        decoration:  const BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xFF1E2837),
                         ),
                         child: Column(
@@ -124,7 +128,8 @@ class _Template12State extends State<Template12> {
                               onTap: _pickImage,
                               child: Container(
                                 height: 80.h,
-                                width: 80.h, // Make sure the width and height are equal to ensure a proper aspect ratio
+                                width: 80
+                                    .h, // Make sure the width and height are equal to ensure a proper aspect ratio
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(30.r),
@@ -142,20 +147,20 @@ class _Template12State extends State<Template12> {
                                       topRight: Radius.circular(30.r),
                                       bottomLeft: Radius.circular(30.r),
                                     ),
-                                    child:_profileImage == null
+                                    child: _profileImage == null
                                         ? Image.asset(
-                                      AppImages.profilePicture,
-                                      fit: BoxFit.cover, // Default image
-                                    )
+                                            AppImages.profilePicture,
+                                            fit: BoxFit.cover, // Default image
+                                          )
                                         : Image.file(
-                                      _profileImage!,
-                                      fit: BoxFit.cover, // Display picked image
-                                    ),
+                                            _profileImage!,
+                                            fit: BoxFit
+                                                .cover, // Display picked image
+                                          ),
                                   ),
                                 ),
                               ),
                             )
-
                           ],
                         ),
                       ),
@@ -245,7 +250,8 @@ class _Template12State extends State<Template12> {
                           SizedBox(height: 8.h),
                           GestureDetector(
                             onTap: () => _editContactDetails(context),
-                            child: buildContactItem(Icons.location_on, location),
+                            child:
+                                buildContactItem(Icons.location_on, location),
                           ),
                           SizedBox(height: 8.h),
 
@@ -255,9 +261,9 @@ class _Template12State extends State<Template12> {
                           Column(
                             children: skills
                                 .map((skill) => GestureDetector(
-                              onTap: () => _editSkill(context, skill),
-                              child: buildSkillItem(skill),
-                            ))
+                                      onTap: () => _editSkill(context, skill),
+                                      child: buildSkillItem(skill),
+                                    ))
                                 .toList(),
                           ),
                           SizedBox(height: 8.h),
@@ -268,9 +274,10 @@ class _Template12State extends State<Template12> {
                           Column(
                             children: languages
                                 .map((language) => GestureDetector(
-                              onTap: () => _editLanguage(context, language),
-                              child: buildSkillItem(language),
-                            ))
+                                      onTap: () =>
+                                          _editLanguage(context, language),
+                                      child: buildSkillItem(language),
+                                    ))
                                 .toList(),
                           ),
                           SizedBox(height: 8.h),
@@ -302,13 +309,11 @@ class _Template12State extends State<Template12> {
                           Column(
                             children: education
                                 .map((e) => GestureDetector(
-                              onTap: () =>
-                                  _editEducationItem(context, e),
-                              child: buildEducationItem(
-                                  e['year']!,
-                                  e['degree']!,
-                                  e['institution']!),
-                            ))
+                                      onTap: () =>
+                                          _editEducationItem(context, e),
+                                      child: buildEducationItem(e['year']!,
+                                          e['degree']!, e['institution']!),
+                                    ))
                                 .toList(),
                           ),
                           //SizedBox(height: 24.h),
@@ -319,13 +324,13 @@ class _Template12State extends State<Template12> {
                           Column(
                             children: experiences
                                 .map((e) => GestureDetector(
-                              onTap: () =>
-                                  _editExperienceItem(context, e),
-                              child: buildWorkExperienceItem(
-                                  e['title']!,
-                                  e['details']!,
-                                  e['description']!),
-                            ))
+                                      onTap: () =>
+                                          _editExperienceItem(context, e),
+                                      child: buildWorkExperienceItem(
+                                          e['title']!,
+                                          e['details']!,
+                                          e['description']!),
+                                    ))
                                 .toList(),
                           ),
                           SizedBox(height: 8.h),
@@ -335,11 +340,11 @@ class _Template12State extends State<Template12> {
                           SizedBox(height: 8.h),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-
                             children: List.generate(awards.length, (index) {
                               final award = awards[index];
                               return GestureDetector(
-                                onTap: () => _editAwardItem(context, index), // Pass the index
+                                onTap: () => _editAwardItem(
+                                    context, index), // Pass the index
                                 child: buildAwardsItem(
                                   award['year']!,
                                   award['title']!,
@@ -348,7 +353,6 @@ class _Template12State extends State<Template12> {
                               );
                             }),
                           ),
-
                         ],
                       ),
                     ),
@@ -364,9 +368,9 @@ class _Template12State extends State<Template12> {
 
   Widget buildSectionHeader(String title) {
     return Container(
-      width: MediaQuery.of(context).size.width*0.8,
+      width: MediaQuery.of(context).size.width * 0.8,
       color: const Color(0xFF202636),
-      padding: EdgeInsets.symmetric(vertical: 8.h,horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
       child: Text(
         title,
         style: TextStyle(
@@ -404,14 +408,13 @@ class _Template12State extends State<Template12> {
           ),
           SizedBox(width: 8.w),
           Expanded(
-            child: Container(
-              height: 4.h,
-              decoration: BoxDecoration(
-                color: const Color(0xFF202636),
-                borderRadius: BorderRadius.circular(2),
-              ),
-          )
-        ),
+              child: Container(
+            height: 4.h,
+            decoration: BoxDecoration(
+              color: const Color(0xFF202636),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          )),
         ],
       ),
     );
@@ -540,9 +543,9 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -587,13 +590,13 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: phone);
+            TextEditingController(text: phone);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
         final TextEditingController websiteController =
-        TextEditingController(text: website);
+            TextEditingController(text: website);
         final TextEditingController locationController =
-        TextEditingController(text: location);
+            TextEditingController(text: location);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -648,11 +651,11 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -702,11 +705,11 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -752,9 +755,12 @@ class _Template12State extends State<Template12> {
   }
 
   Future<void> _editAwardItem(BuildContext context, int index) async {
-    TextEditingController yearController = TextEditingController(text: awards[index]['year']);
-    TextEditingController titleController = TextEditingController(text: awards[index]['title']);
-    TextEditingController descriptionController = TextEditingController(text: awards[index]['description']);
+    TextEditingController yearController =
+        TextEditingController(text: awards[index]['year']);
+    TextEditingController titleController =
+        TextEditingController(text: awards[index]['title']);
+    TextEditingController descriptionController =
+        TextEditingController(text: awards[index]['description']);
 
     return showDialog(
       context: context,
@@ -803,8 +809,10 @@ class _Template12State extends State<Template12> {
   }
 
   Future<void> _editReference(BuildContext context) async {
-    TextEditingController nameController = TextEditingController(text: reference['name']);
-    TextEditingController companyController = TextEditingController(text: reference['company']);
+    TextEditingController nameController =
+        TextEditingController(text: reference['name']);
+    TextEditingController companyController =
+        TextEditingController(text: reference['company']);
 
     return showDialog(
       context: context,
@@ -846,7 +854,8 @@ class _Template12State extends State<Template12> {
   }
 
   Future<void> _editLanguage(BuildContext context, String language) async {
-    TextEditingController languageController = TextEditingController(text: language);
+    TextEditingController languageController =
+        TextEditingController(text: language);
 
     return showDialog(
       context: context,
@@ -861,7 +870,8 @@ class _Template12State extends State<Template12> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  languages[languages.indexOf(language)] = languageController.text;
+                  languages[languages.indexOf(language)] =
+                      languageController.text;
                 });
                 Navigator.pop(context);
               },
@@ -908,6 +918,4 @@ class _Template12State extends State<Template12> {
       },
     );
   }
-
-
 }

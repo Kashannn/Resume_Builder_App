@@ -44,5 +44,12 @@ class AppImages extends AssetImage {
   static const String react = '$_iconPath/React.svg';
   static const String java = '$_iconPath/Java.svg';
   static const String html = '$_iconPath/Html.svg';
+  static const String behance7 = '$_iconPath/Behance7.svg';
+  static const String dribble7 = '$_iconPath/Dribble7.svg';
+  static const String facebook7 = '$_iconPath/Facebook7.svg';
+  static const String instagram7 = '$_iconPath/Instagram7.svg';
+  static const String LinkedIn7 = '$_iconPath/Linkedin7.svg';
+  static const String twitter7 = '$_iconPath/Twitter7.svg';
+
 
 }
