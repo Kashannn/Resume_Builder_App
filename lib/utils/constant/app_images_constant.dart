@@ -50,6 +50,10 @@ class AppImages extends AssetImage {
   static const String instagram7 = '$_iconPath/Instagram7.svg';
   static const String LinkedIn7 = '$_iconPath/Linkedin7.svg';
   static const String twitter7 = '$_iconPath/Twitter7.svg';
+  static const String twitter12 = '$_iconPath/twitter12.svg';
+  static const String google12 = '$_iconPath/google12.svg';
+  static const String facebook12 = '$_iconPath/facebook12.svg';
+  static const String whatsapp12 = '$_iconPath/whatsapp12.svg';
 
 
 }
