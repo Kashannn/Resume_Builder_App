@@ -30,7 +30,7 @@ class _Template7State extends State<Template7> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      height: 175.h,
+                      height: 180.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(160.r),
@@ -162,7 +162,7 @@ class _Template7State extends State<Template7> {
                             children: [
                               Container(
                                 width: 3.w,
-                                height: 255.h,
+                                height: 290.h,
                                 color: Color(0xFF3D586D),
                               ),
                               Container(
@@ -190,7 +190,7 @@ class _Template7State extends State<Template7> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16.sp,
+                                          fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -209,7 +209,7 @@ class _Template7State extends State<Template7> {
                                       'Wardiere university 2013-2016',
                                       style: TextStyle(
                                         color: Colors.grey,
-                                        fontSize: 13.sp,
+                                        fontSize: 14.sp,
                                       ),
                                     ),
                                     SizedBox(height: 8.h),
@@ -246,7 +246,7 @@ class _Template7State extends State<Template7> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16.sp,
+                                          fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -260,7 +260,7 @@ class _Template7State extends State<Template7> {
                                           '• Communication',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                         SizedBox(height: 4.h),
@@ -268,7 +268,7 @@ class _Template7State extends State<Template7> {
                                           '• Time management',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                         SizedBox(height: 4.h),
@@ -276,7 +276,7 @@ class _Template7State extends State<Template7> {
                                           '• Organization',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                         SizedBox(height: 4.h),
@@ -284,7 +284,7 @@ class _Template7State extends State<Template7> {
                                           '• Technical skills',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                         SizedBox(height: 4.h),
@@ -292,7 +292,7 @@ class _Template7State extends State<Template7> {
                                           '• Creativity',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                         SizedBox(height: 4.h),
@@ -300,7 +300,7 @@ class _Template7State extends State<Template7> {
                                           '• Research',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14.sp,
+                                            fontSize: 20.sp,
                                           ),
                                         ),
                                       ],
