@@ -7,14 +7,14 @@ import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_images_constant.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 
-class Template10 extends StatefulWidget {
-  const Template10({super.key});
+class Template6 extends StatefulWidget {
+  const Template6({super.key});
 
   @override
-  State<Template10> createState() => _Template10State();
+  State<Template6> createState() => _Template6State();
 }
 
-class _Template10State extends State<Template10> {
+class _Template6State extends State<Template6> {
   String name = 'John Doe';
   String jobTitle = 'Software Developer';
   String email = 'contact@entreprenur.com';
