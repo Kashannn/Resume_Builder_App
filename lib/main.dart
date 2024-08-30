@@ -5,9 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
-import 'Templates/template1.dart';
-import 'Templates/template18.dart';
-import 'Templates/template7.dart';
 
 Future<void> main() async {
   runApp(const MyApp());

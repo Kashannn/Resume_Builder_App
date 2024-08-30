@@ -10,13 +10,6 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-
-import '../Templates/template1.dart';
-import '../Templates/template10.dart';
-import '../Templates/template12.dart';
-import '../Templates/template16.dart';
-import '../Templates/template7.dart';
-import '../Templates/template8.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -170,7 +163,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 key: _containerKey,
                 child: SizedBox(
                   height: 522.h,
-                  child: Template7(),
+                  // child: Template5(),
                 ),
               ),
               SizedBox(height: 20.h),
