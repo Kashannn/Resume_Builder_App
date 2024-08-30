@@ -180,18 +180,15 @@ class _Template16State extends State<Template16> {
                                     SvgPicture.asset(AppImages.twitter,
                                         width: 10.w,
                                         height: 10.h,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                     SvgPicture.asset(AppImages.facebook,
                                         width: 10.w,
                                         height: 10.h,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
                                     SvgPicture.asset(AppImages.whatsapp12,
                                         width: 10.w,
                                         height: 10.h,
-                                        color: Colors.black
-                                    ),
+                                        color: Colors.black),
 
                                     Icon(Icons.youtube_searched_for,
                                         size: 20.w,
@@ -314,104 +311,107 @@ class _Template16State extends State<Template16> {
                     height: 685.h,
                     child: Padding(
                       padding: EdgeInsets.all(8.w),
-                      child: Column(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Past experience",
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20.sp,
-                                  color: Colors.black,
+                          Container(
+                            width: 5.w,
+                            height: 685.h,
+                            color: Color(0xFFBFBFBF),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Past experience",
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20.sp,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 16.h),
-                              _buildExperienceItem(
-                                iconPath: AppImages
-                                    .facebook16, // Replace with the correct path to your asset
-                                companyName: "Facebook",
-                                duration: "2021 / Present",
-                                jobTitle: "Senior Product Designer",
-                                description:
-                                    "Lorem ipsum dolor sit amet tragon consectetur dolseclm adipiscing elit mattis faucibus odio feugiat.",
-                              ),
-                              SizedBox(height: 16.h),
-                              _buildExperienceItem(
-                                iconPath: AppImages
-                                    .youtube16, // Replace with the correct path to your asset
-                                companyName: "Youtube",
-                                duration: "2020 / 2021",
-                                jobTitle: "Head of UX Engineering",
-                                description:
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam.",
-                              ),
-                              SizedBox(height: 16.h),
-                              _buildExperienceItem(
-                                iconPath: AppImages
-                                    .twitter16, // Replace with the correct path to your asset
-                                companyName: "Twitter",
-                                duration: "2019 / 2020",
-                                jobTitle: "Head of UX Engineering",
-                                description:
-                                    "Lorem ipsum dolor sit amet, consectetur elit. Volutpat hac id diam malesuada adipiscing volutpat quis tellus.",
-                              ),
-                              SizedBox(height: 16.h),
-                              _buildExperienceItem(
-                                iconPath: AppImages
-                                    .twitch16, // Replace with the correct path to your asset
-                                companyName: "Twitch",
-                                duration: "2018 / 2019",
-                                jobTitle: "Lead of Mobile Design",
-                                description:
-                                    "Lorem ipsum dolor sit amet, consectetur elit. Volutpat hac id diam malesuada adipiscing volutpat quis tellus.",
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 280.w,
-                            height: 200.h,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.w),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Education",
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20.sp,
-                                      color: Colors.black,
+                                SizedBox(height: 16.h),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        _buildExperienceItem(
+                                          iconPath: AppImages.facebook16,
+                                          companyName: "Facebook",
+                                          duration: "2021 /2020",
+                                          jobTitle: "Senior Product Designer",
+                                          description:
+                                              "Lorem ipsum dolor sit amet tragon consectetur dolseclm adipiscing elit mattis faucibus odio feugiat.",
+                                        ),
+                                        SizedBox(height: 16.h),
+                                        _buildExperienceItem(
+                                          iconPath: AppImages.youtube16,
+                                          companyName: "Youtube",
+                                          duration: "2020 / 2021",
+                                          jobTitle: "Head of UX Engineering",
+                                          description:
+                                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque tempor, malesuada adipiscing congue diam.",
+                                        ),
+                                        SizedBox(height: 16.h),
+                                        _buildExperienceItem(
+                                          iconPath: AppImages.twitter16,
+                                          companyName: "Twitter",
+                                          duration: "2019 / 2020",
+                                          jobTitle: "Head of UX Engineering",
+                                          description:
+                                              "Lorem ipsum dolor sit amet, consectetur elit. Volutpat hac id diam malesuada adipiscing volutpat quis tellus.",
+                                        ),
+                                        SizedBox(height: 16.h),
+                                        _buildExperienceItem(
+                                          iconPath: AppImages.twitch16,
+                                          companyName: "Twitch",
+                                          duration: "2018 / 2019",
+                                          jobTitle: "Lead of Mobile Design",
+                                          description:
+                                              "Lorem ipsum dolor sit amet, consectetur elit. Volutpat hac id diam malesuada adipiscing volutpat quis tellus.",
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(height: 16.h),
-                                  _buildEducationItem(
-                                    duration: "2021 — Present",
-                                    degree: "B.S Arts in Graphic Design",
-                                    institution: "Stanford University",
+                                ),
+                                SizedBox(height: 20.h),
+                                Text(
+                                  "Education",
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20.sp,
+                                    color: Colors.black,
                                   ),
-                                  SizedBox(height: 16.h),
-                                  _buildEducationItem(
-                                    duration: "2018 — 2015",
-                                    degree: "B.S of Design",
-                                    institution: "Stanford University",
-                                  ),
-                                  SizedBox(height: 16.h),
-                                  _buildEducationItem(
-                                    duration: "2012 — 2009",
-                                    degree: "VP of Design",
-                                    institution: "Stanford University",
-                                  ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: 16.h),
+                                _buildEducationItem(
+                                  duration: "2021 — Present",
+                                  degree: "B.S Arts in Graphic Design",
+                                  institution: "Stanford University",
+                                ),
+                                SizedBox(height: 16.h),
+                                _buildEducationItem(
+                                  duration: "2018 — 2015",
+                                  degree: "B.S of Design",
+                                  institution: "Stanford University",
+                                ),
+                                SizedBox(height: 16.h),
+                                _buildEducationItem(
+                                  duration: "2012 — 2009",
+                                  degree: "VP of Design",
+                                  institution: "Stanford University",
+                                ),
+                              ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
