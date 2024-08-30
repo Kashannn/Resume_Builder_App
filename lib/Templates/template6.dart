@@ -19,15 +19,44 @@ class _Template6State extends State<Template6> {
   String jobTitle = 'Software Developer';
   String email = 'contact@entreprenur.com';
   String phone = '(443) 212 - 6501';
-  String aboutMe = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel eu vulputate et id morbi proin quam eget aliquam pellentesque congue massa mattis fringilla platea.';
+  String aboutMe =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel eu vulputate et id morbi proin quam eget aliquam pellentesque congue massa mattis fringilla platea.';
   List<Map<String, String>> workExperience = [
-    {'title': 'VP of Marketing', 'from': '2019', 'to': 'Present', 'description': 'Ut in orci suspendisse aliquet justo in faucibus sed lobortis. Semper facilisi non sed interdum ipsum fusce at nisi.'},
-    {'title': 'Head of Marketing', 'from': '2018', 'to': '2019', 'description': 'Id eget faucibus neque tristique ut mi duis nec cursus posuere donec non sagittis pretium tortor ac cursus eget bibendum.'},
-    {'title': 'Growth Hacker', 'from': '2017', 'to': '2018', 'description': 'Nec commodo nulla diam tellus sit sem lorem amet pharetra, sed gravida lectus phasellus in libero nam pulvinar suscipit.'},
+    {
+      'title': 'VP of Marketing',
+      'from': '2019',
+      'to': 'Present',
+      'description':
+          'Ut in orci suspendisse aliquet justo in faucibus sed lobortis. Semper facilisi non sed interdum ipsum fusce at nisi.'
+    },
+    {
+      'title': 'Head of Marketing',
+      'from': '2018',
+      'to': '2019',
+      'description':
+          'Id eget faucibus neque tristique ut mi duis nec cursus posuere donec non sagittis pretium tortor ac cursus eget bibendum.'
+    },
+    {
+      'title': 'Growth Hacker',
+      'from': '2017',
+      'to': '2018',
+      'description':
+          'Nec commodo nulla diam tellus sit sem lorem amet pharetra, sed gravida lectus phasellus in libero nam pulvinar suscipit.'
+    },
   ];
   List<Map<String, String>> education = [
-    {'from': '2018', 'to': '2021', 'degree': 'B.S of Business and Marketing', 'institution': 'University of Oxford.'},
-    {'from': '2015', 'to': '2018', 'degree': 'B.S of Digital Marketing', 'institution': 'University of Oxford.'},
+    {
+      'from': '2018',
+      'to': '2021',
+      'degree': 'B.S of Business and Marketing',
+      'institution': 'University of Oxford.'
+    },
+    {
+      'from': '2015',
+      'to': '2018',
+      'degree': 'B.S of Digital Marketing',
+      'institution': 'University of Oxford.'
+    },
   ];
   List<String> skills = [
     'Growth Marketing',
@@ -42,14 +71,14 @@ class _Template6State extends State<Template6> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +102,8 @@ class _Template6State extends State<Template6> {
                             radius: 30.0,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(AppImages.profilePicture) as ImageProvider,
+                                : AssetImage(AppImages.profilePicture)
+                                    as ImageProvider,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -121,7 +151,8 @@ class _Template6State extends State<Template6> {
                                   onTap: () => _editContactInfo('email'),
                                   child: Text(
                                     email,
-                                    style: AppTextStylesTemplate10.contactInfoStyle,
+                                    style: AppTextStylesTemplate10
+                                        .contactInfoStyle,
                                   ),
                                 ),
                               ],
@@ -139,7 +170,8 @@ class _Template6State extends State<Template6> {
                                   onTap: () => _editContactInfo('phone'),
                                   child: Text(
                                     phone,
-                                    style: AppTextStylesTemplate10.contactInfoStyle,
+                                    style: AppTextStylesTemplate10
+                                        .contactInfoStyle,
                                   ),
                                 ),
                               ],
@@ -192,19 +224,22 @@ class _Template6State extends State<Template6> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: workExperience.map((experience) => Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () => _editExperience(experience),
-                              child: buildExperienceRow(
-                                experience['title']!,
-                                '${experience['from']} - ${experience['to']}',
-                              ),
-                            ),
-                            buildDescriptionText(experience['description']!),
-                          ],
-                        )).toList(),
+                        children: workExperience
+                            .map((experience) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => _editExperience(experience),
+                                      child: buildExperienceRow(
+                                        experience['title']!,
+                                        '${experience['from']} - ${experience['to']}',
+                                      ),
+                                    ),
+                                    buildDescriptionText(
+                                        experience['description']!),
+                                  ],
+                                ))
+                            .toList(),
                       ),
                     ],
                   ),
@@ -220,14 +255,16 @@ class _Template6State extends State<Template6> {
                         style: AppTextStylesTemplate10.sectionTitleStyle,
                       ),
                       Column(
-                        children: education.map((edu) => GestureDetector(
-                          onTap: () => _editEducation(edu),
-                          child: buildEducationRow(
-                            '${edu['from']} - ${edu['to']}',
-                            edu['degree']!,
-                            edu['institution']!,
-                          ),
-                        )).toList(),
+                        children: education
+                            .map((edu) => GestureDetector(
+                                  onTap: () => _editEducation(edu),
+                                  child: buildEducationRow(
+                                    '${edu['from']} - ${edu['to']}',
+                                    edu['degree']!,
+                                    edu['institution']!,
+                                  ),
+                                ))
+                            .toList(),
                       )
                     ],
                   ),
@@ -322,7 +359,8 @@ class _Template6State extends State<Template6> {
     List<List<String>> splitIntoChunks(List<String> list, int chunkSize) {
       List<List<String>> chunks = [];
       for (int i = 0; i < list.length; i += chunkSize) {
-        chunks.add(list.sublist(i, i + chunkSize > list.length ? list.length : i + chunkSize));
+        chunks.add(list.sublist(
+            i, i + chunkSize > list.length ? list.length : i + chunkSize));
       }
       return chunks;
     }
@@ -334,19 +372,22 @@ class _Template6State extends State<Template6> {
       width: 250.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: skillChunks.map((chunk) => Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: chunk.map((skill) => Expanded(
-            child: Text(
-              '• $skill',
-              style: AppTextStylesTemplate10.skillTextStyle,
-            ),
-          )).toList(),
-        )).toList(),
+        children: skillChunks
+            .map((chunk) => Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: chunk
+                      .map((skill) => Expanded(
+                            child: Text(
+                              '• $skill',
+                              style: AppTextStylesTemplate10.skillTextStyle,
+                            ),
+                          ))
+                      .toList(),
+                ))
+            .toList(),
       ),
     );
   }
-
 
   Future<void> _editName() async {
     final newName = await _showEditDialog('Name', name);
@@ -367,7 +408,8 @@ class _Template6State extends State<Template6> {
   }
 
   Future<void> _editAboutMe() async {
-    final newAboutMe = await _showEditDialog('About Me', aboutMe, multiline: true);
+    final newAboutMe =
+        await _showEditDialog('About Me', aboutMe, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         aboutMe = newAboutMe;
@@ -408,7 +450,8 @@ class _Template6State extends State<Template6> {
     }
   }
 
-  Future<String?> _showEditDialog(String title, String initialValue, {bool multiline = false}) async {
+  Future<String?> _showEditDialog(String title, String initialValue,
+      {bool multiline = false}) async {
     final controller = TextEditingController(text: initialValue);
     return await showDialog<String>(
       context: context,
@@ -417,18 +460,18 @@ class _Template6State extends State<Template6> {
           title: Text(title),
           content: multiline
               ? TextField(
-            controller: controller,
-            maxLines: 5,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          )
+                  controller: controller,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                )
               : TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          ),
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -444,11 +487,13 @@ class _Template6State extends State<Template6> {
     );
   }
 
-  Future<Map<String, String>?> _showExperienceEditDialog(Map<String, String> experience) async {
+  Future<Map<String, String>?> _showExperienceEditDialog(
+      Map<String, String> experience) async {
     final titleController = TextEditingController(text: experience['title']);
     final fromController = TextEditingController(text: experience['from']);
     final toController = TextEditingController(text: experience['to']);
-    final descriptionController = TextEditingController(text: experience['description']);
+    final descriptionController =
+        TextEditingController(text: experience['description']);
 
     return await showDialog<Map<String, String>>(
       context: context,
@@ -507,8 +552,10 @@ class _Template6State extends State<Template6> {
     );
   }
 
-  Future<Map<String, String>?> _showEducationEditDialog(Map<String, String> edu) async {
-    final institutionController = TextEditingController(text: edu['institution']);
+  Future<Map<String, String>?> _showEducationEditDialog(
+      Map<String, String> edu) async {
+    final institutionController =
+        TextEditingController(text: edu['institution']);
     final titleController = TextEditingController(text: edu['degree']);
     final fromController = TextEditingController(text: edu['from']);
     final toController = TextEditingController(text: edu['to']);
@@ -586,7 +633,12 @@ class _Template6State extends State<Template6> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context, skillsController.text.split(',').map((s) => s.trim()).toList());
+                Navigator.pop(
+                    context,
+                    skillsController.text
+                        .split(',')
+                        .map((s) => s.trim())
+                        .toList());
               },
               child: Text('Save'),
             ),

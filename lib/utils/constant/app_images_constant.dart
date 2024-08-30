@@ -55,6 +55,10 @@ class AppImages extends AssetImage {
   static const String facebook12 = '$_iconPath/facebook12.svg';
   static const String whatsapp12 = '$_iconPath/whatsapp12.svg';
   static const String toptemplate16 = '$_iconPath/template16.svg';
+  static const String facebook16 = '$_iconPath/Facebook16.svg';
+  static const String youtube16 = '$_iconPath/Youtube16.svg';
+  static const String twitter16 = '$_iconPath/TwitterIcon16.svg';
+  static const String twitch16 = '$_iconPath/Twitch16.svg';
 
 
 }

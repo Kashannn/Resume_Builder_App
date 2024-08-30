@@ -15,11 +15,11 @@ class Template8 extends StatefulWidget {
 }
 
 class _Template8State extends State<Template8> {
-
   String userName = 'John';
   String userRole = 'WEB DEVELOPER';
   String socialMedia = '@johncarter';
-  String about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit fames turpis pretium bibendum nisl est sagittis aliquam pretium nunc curabitur est in nulla id volutpat et nenatis at lacus.";
+  String about =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit fames turpis pretium bibendum nisl est sagittis aliquam pretium nunc curabitur est in nulla id volutpat et nenatis at lacus.";
 
   List<Map<String, String>> education = [
     {
@@ -43,30 +43,33 @@ class _Template8State extends State<Template8> {
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
   ];
-
 
   String phone = '+001 123 456 789';
   String email = 'Info@yourmail.com';
 
-      File? _profileImage;
+  File? _profileImage;
 
   // Method to pick an image
   Future<void> _pickImage() async {
@@ -107,19 +110,18 @@ class _Template8State extends State<Template8> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-
                                 GestureDetector(
                                   onTap: _pickImage,
                                   child: CircleAvatar(
-
                                     backgroundColor: Colors.transparent,
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)
-                                        : AssetImage(AppImages.Template8ProfilePhoto) as ImageProvider,
+                                        : AssetImage(
+                                                AppImages.Template8ProfilePhoto)
+                                            as ImageProvider,
                                     radius: 45.h,
                                   ),
                                 ),
-
                               ],
                             ),
                           ),
@@ -128,15 +130,17 @@ class _Template8State extends State<Template8> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               GestureDetector(
-                                  onTap: () => _editUserDetails(context),
+                                onTap: () => _editUserDetails(context),
                                 child: SizedBox(
                                   width: 315.w,
                                   child: SizedBox(
                                     height: 53.h,
                                     width: 223.w,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "I’m $userName, a",
@@ -192,15 +196,22 @@ class _Template8State extends State<Template8> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              SvgPicture.asset(AppImages.twitter,
-                                                  height: 10.h, width: 10.h
-                                              ),
-                                              SvgPicture.asset(AppImages.facebook,
-                                                  height: 10.h, width: 10.h),
-                                              SvgPicture.asset(AppImages.instagram,
-                                                  height: 10.h, width: 10.h),
-                                              SvgPicture.asset(AppImages.linkedin,
-                                                  height: 10.h, width: 10.h),
+                                              SvgPicture.asset(
+                                                  AppImages.twitter,
+                                                  height: 10.h,
+                                                  width: 10.h),
+                                              SvgPicture.asset(
+                                                  AppImages.facebook,
+                                                  height: 10.h,
+                                                  width: 10.h),
+                                              SvgPicture.asset(
+                                                  AppImages.instagram,
+                                                  height: 10.h,
+                                                  width: 10.h),
+                                              SvgPicture.asset(
+                                                  AppImages.linkedin,
+                                                  height: 10.h,
+                                                  width: 10.h),
                                             ],
                                           ),
                                         ],
@@ -225,7 +236,6 @@ class _Template8State extends State<Template8> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 15.h),
                             child: Container(
-
                               width: 225.w,
                               decoration: BoxDecoration(
                                 color: Color(0xFF1B1F24),
@@ -238,7 +248,6 @@ class _Template8State extends State<Template8> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-
                                       width: 230.w,
                                       child: Column(
                                           crossAxisAlignment:
@@ -267,7 +276,6 @@ class _Template8State extends State<Template8> {
                                             ),
                                             GestureDetector(
                                               onTap: () => _editAbout(context),
-
                                               child: Text(
                                                 about,
                                                 style: TextStyle(
@@ -312,42 +320,64 @@ class _Template8State extends State<Template8> {
                                             ),
                                             //LOOP FOR EDUCATION
                                             Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: education.map((entry) {
                                                 return Padding(
-                                                  padding: EdgeInsets.only(bottom: 10.h),
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 10.h),
                                                   child: GestureDetector(
-                                                    onTap: () => _editEducationItem(context, entry),
+                                                    onTap: () =>
+                                                        _editEducationItem(
+                                                            context, entry),
                                                     child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
                                                             Text(
-                                                              entry['institution'] ?? '',
+                                                              entry['institution'] ??
+                                                                  '',
                                                               style: TextStyle(
-                                                                fontFamily: 'SpaceGrotesk',
-                                                                fontWeight: FontWeight.w400,
-                                                                color: Color(0xFFC3CAD5),
+                                                                fontFamily:
+                                                                    'SpaceGrotesk',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color: Color(
+                                                                    0xFFC3CAD5),
                                                                 fontSize: 9.sp,
                                                               ),
                                                             ),
                                                             Text(
                                                               "/",
                                                               style: TextStyle(
-                                                                fontFamily: 'SpaceGrotesk',
-                                                                fontWeight: FontWeight.w900,
-                                                                color: Color(0xFF075FE4),
+                                                                fontFamily:
+                                                                    'SpaceGrotesk',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w900,
+                                                                color: Color(
+                                                                    0xFF075FE4),
                                                                 fontSize: 15.sp,
                                                               ),
                                                             ),
                                                             Text(
-                                                              entry['year'] ?? '',
+                                                              entry['year'] ??
+                                                                  '',
                                                               style: TextStyle(
-                                                                fontFamily: 'SpaceGrotesk',
-                                                                fontWeight: FontWeight.w400,
-                                                                color: Color(0xFFC3CAD5),
+                                                                fontFamily:
+                                                                    'SpaceGrotesk',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color: Color(
+                                                                    0xFFC3CAD5),
                                                                 fontSize: 9.sp,
                                                               ),
                                                             ),
@@ -356,9 +386,12 @@ class _Template8State extends State<Template8> {
                                                         Text(
                                                           entry['degree'] ?? '',
                                                           style: TextStyle(
-                                                            fontFamily: 'SpaceGrotesk',
-                                                            fontWeight: FontWeight.w700,
-                                                            color: Color(0xFFFFFFFF),
+                                                            fontFamily:
+                                                                'SpaceGrotesk',
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: Color(
+                                                                0xFFFFFFFF),
                                                             fontSize: 10.sp,
                                                           ),
                                                         ),
@@ -368,8 +401,6 @@ class _Template8State extends State<Template8> {
                                                 );
                                               }).toList(),
                                             ),
-
-
                                           ]),
                                     ),
                                     SizedBox(
@@ -378,7 +409,8 @@ class _Template8State extends State<Template8> {
                                     SizedBox(
                                       width: 157.w,
                                       child: GestureDetector(
-                                        onTap: ()=>_editContactDetails(context),
+                                        onTap: () =>
+                                            _editContactDetails(context),
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -479,7 +511,8 @@ class _Template8State extends State<Template8> {
                                             width: 200.w,
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Column(
                                                   crossAxisAlignment:
@@ -497,7 +530,8 @@ class _Template8State extends State<Template8> {
                                                               'SpaceGrotesk',
                                                           fontWeight:
                                                               FontWeight.w700,
-                                                          color: Color(0xFFFFFFFF),
+                                                          color:
+                                                              Color(0xFFFFFFFF),
                                                           fontSize: 8.sp,
                                                         ))
                                                   ],
@@ -518,7 +552,8 @@ class _Template8State extends State<Template8> {
                                                               'SpaceGrotesk',
                                                           fontWeight:
                                                               FontWeight.w700,
-                                                          color: Color(0xFFFFFFFF),
+                                                          color:
+                                                              Color(0xFFFFFFFF),
                                                           fontSize: 8.sp,
                                                         ))
                                                   ],
@@ -539,7 +574,8 @@ class _Template8State extends State<Template8> {
                                                               'SpaceGrotesk',
                                                           fontWeight:
                                                               FontWeight.w700,
-                                                          color: Color(0xFFFFFFFF),
+                                                          color:
+                                                              Color(0xFFFFFFFF),
                                                           fontSize: 8.sp,
                                                         ))
                                                   ],
@@ -551,14 +587,18 @@ class _Template8State extends State<Template8> {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    SvgPicture.asset(AppImages.web),
+                                                    SvgPicture.asset(
+                                                        AppImages.web),
                                                     SizedBox(height: 5.h),
                                                     Text(
                                                       "Web Flutter",
                                                       style: TextStyle(
-                                                        fontFamily: 'SpaceGrotesk',
-                                                        fontWeight: FontWeight.w700,
-                                                        color: Color(0xFFFFFFFF),
+                                                        fontFamily:
+                                                            'SpaceGrotesk',
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color:
+                                                            Color(0xFFFFFFFF),
                                                         fontSize: 8.sp,
                                                       ),
                                                     )
@@ -584,7 +624,8 @@ class _Template8State extends State<Template8> {
                                 SizedBox(
                                   width: 130.w,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         width: 40.w,
@@ -614,21 +655,28 @@ class _Template8State extends State<Template8> {
                                         height: 80.h,
                                         width: 267.w,
                                         child: GestureDetector(
-                                          onTap: () =>
-                                              _editExperienceItem(context, experience),
+                                          onTap: () => _editExperienceItem(
+                                              context, experience),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text(
                                                     experience['title'] ?? '',
                                                     style: TextStyle(
-                                                      fontFamily: 'SpaceGrotesk',
-                                                      fontWeight: FontWeight.w700,
+                                                      fontFamily:
+                                                          'SpaceGrotesk',
+                                                      fontWeight:
+                                                          FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
                                                       fontSize: 12.sp,
                                                     ),
@@ -636,8 +684,10 @@ class _Template8State extends State<Template8> {
                                                   Text(
                                                     experience['details'] ?? '',
                                                     style: TextStyle(
-                                                      fontFamily: 'SpaceGrotesk',
-                                                      fontWeight: FontWeight.w700,
+                                                      fontFamily:
+                                                          'SpaceGrotesk',
+                                                      fontWeight:
+                                                          FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
                                                       fontSize: 12.sp,
                                                     ),
@@ -666,7 +716,6 @@ class _Template8State extends State<Template8> {
                                 ),
                               ],
                             ),
-
                           ),
                         ],
                       ),
@@ -679,8 +728,6 @@ class _Template8State extends State<Template8> {
         ),
       ),
     );
-
-
   }
 
   void _editUserDetails(BuildContext context) {
@@ -688,9 +735,9 @@ class _Template8State extends State<Template8> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -730,45 +777,44 @@ class _Template8State extends State<Template8> {
     );
   }
 
-    void _editSocialMedia(BuildContext context) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          final TextEditingController nameController =
-          TextEditingController(text: socialMedia);
+  void _editSocialMedia(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+            TextEditingController(text: socialMedia);
 
-
-          return AlertDialog(
-            title: const Text('Edit User Name'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(labelText: 'UserName'),
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    socialMedia = nameController.text;
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Save'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel'),
+        return AlertDialog(
+          title: const Text('Edit User Name'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'UserName'),
               ),
             ],
-          );
-        },
-      );
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  socialMedia = nameController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _editAbout(BuildContext context) {
@@ -776,8 +822,7 @@ class _Template8State extends State<Template8> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
-
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -817,11 +862,11 @@ class _Template8State extends State<Template8> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -871,9 +916,9 @@ class _Template8State extends State<Template8> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: phone);
+            TextEditingController(text: phone);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -888,7 +933,6 @@ class _Template8State extends State<Template8> {
                 controller: emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
-
             ],
           ),
           actions: [
@@ -919,11 +963,11 @@ class _Template8State extends State<Template8> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -967,5 +1011,4 @@ class _Template8State extends State<Template8> {
       },
     );
   }
-
 }
