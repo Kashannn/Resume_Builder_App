@@ -177,9 +177,22 @@ class _Template16State extends State<Template16> {
                                   children: [
                                     Icon(Icons.facebook,
                                         size: 20.w, color: Colors.black),
-                                    // Icon(Icons.twitter, size: 20.w, color: Colors.black),
-                                    // Icon(Icons.instagram, size: 20.w, color: Colors.black),
-                                    // Icon(Icons.linkedin, size: 20.w, color: Colors.black),
+                                    SvgPicture.asset(AppImages.twitter,
+                                        width: 10.w,
+                                        height: 10.h,
+                                        color: Colors.black
+                                    ),
+                                    SvgPicture.asset(AppImages.facebook,
+                                        width: 10.w,
+                                        height: 10.h,
+                                        color: Colors.black
+                                    ),
+                                    SvgPicture.asset(AppImages.whatsapp12,
+                                        width: 10.w,
+                                        height: 10.h,
+                                        color: Colors.black
+                                    ),
+
                                     Icon(Icons.youtube_searched_for,
                                         size: 20.w,
                                         color: Colors
