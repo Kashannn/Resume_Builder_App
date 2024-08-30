@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/constant/app_images_constant.dart';
 
-class Template2 extends StatefulWidget {
-  const Template2({super.key});
+class Template11 extends StatefulWidget {
+  const Template11({super.key});
 
   @override
-  State createState() => _Template2State();
+  State createState() => _Template11State();
 }
 
-class _Template2State extends State<Template2> {
+class _Template11State extends State<Template11> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(450, 850));
-
     return SafeArea(
       child: Scaffold(
         body: Row(

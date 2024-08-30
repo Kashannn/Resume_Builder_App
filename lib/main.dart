@@ -5,10 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
-import 'Templates/template15.dart';
-import 'Templates/template17.dart';
-import 'Templates/template18.dart';
-import 'Templates/template2.dart';
+import 'Templates/template11.dart';
 import 'Templates/template20.dart';
 
 Future<void> main() async {
@@ -40,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child:Template20(),
+      child: Template20(),
     );
   }
 }
