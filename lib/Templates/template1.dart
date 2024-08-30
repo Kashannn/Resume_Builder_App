@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
@@ -11,6 +14,74 @@ class Template1 extends StatefulWidget {
 }
 
 class _Template1State extends State<Template1> {
+
+  String userName = 'Peter';
+  String userRole = 'Product Designer';
+  String socialMedia = '@peterdesigner';
+  String id = '123456789';
+  String email = 'contact@peter.com';
+  String mobile = '+001 123 456 789';
+  String address = 'address, city, country';
+  String ability1 = 'Lorem ipsum dolor sit amet';
+  String ability2 = 'Lorem ipsum dolor sit amet';
+  String ability3 = 'Lorem ipsum dolor sit amet';
+  String ability4 = 'Lorem ipsum dolor sit amet';
+
+  String about = "Position title and any relevant details. I am a tech enthusiast .I am passionate about designs, goal driven, quick to learn and a highly productive individual. I have various industry ready design skills, I am experienced in various software design tools, experienced in providing technical support to users, collaborated on design projects and working in a team-oriented environment. Both remotely and on-site.";
+  String experience = "As the creative director at Longchris foundation, I worked to create graphic design and marketing solutions to deliver engaging content that meets our audience’s needs. Designed the foundation’s website and managed its contentsto pass standard and accurate brand identity.";
+
+  List<Map<String, String>> reference = [
+    {
+      'name': 'Someone Name',
+      'title': 'Company  Institute Name',
+      'email': 'contact@peterdesigner.com',
+      'phone': '+001 123 456 789',
+    },
+    {
+      'name': 'Someone Name',
+      'title': 'Company  Institute Name',
+      'email': 'contact@peterdesigner.com',
+      'phone': '+001 123 456 789',
+    },
+  ];
+
+  List<Map<String, dynamic>> skillsData = [
+    {'name': 'Figma - XD', 'proficiency': 0.8},
+    {'name': 'Photoshop', 'proficiency': 0.7},
+    {'name': 'Illustrator', 'proficiency': 0.6},
+  ];
+
+  List<Map<String, String>> education = [
+    {
+      'year': '2015',
+      'degree': 'Enter Masters Degree',
+      'institution': 'University / College / Institute',
+    },
+    {
+      'year': '2012',
+      'degree': 'Enter Bachelor Degree',
+      'institution': 'University / College / Institute',
+    },
+    {
+      'year': '2012',
+      'degree': 'Enter Bachelor Degree',
+      'institution': 'University / College / Institute',
+    },
+  ];
+
+  File? _profileImage; // Variable to hold the image file
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+    await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));
@@ -24,12 +95,12 @@ class _Template1State extends State<Template1> {
             color: Color(0xFF343C43),
           ),
           Container(
-            width: 205.w,
+            width: 220.w,
             //height: 842.h,
             color: Color(0xFF353443),
           ),
           Positioned(
-            top: 10.h,
+            top: 25.h,
             left: 34.w,
             child: Container(
               width: 252.w,
@@ -40,83 +111,121 @@ class _Template1State extends State<Template1> {
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 50.r,
-                      backgroundColor: Color(0xFFB3B3B1),
-                      child: CircleAvatar(
-                        radius: 50.r,
-                        backgroundImage: AssetImage(AppImages.profilePicture),
-                      ),
-                    ),
-                    SizedBox(height: 5.h),
-                    Text("JANE DOE",
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.sp,
-                          color: Color(0xFF00101F),
-                        )),
-                    SizedBox(height: 5.h),
-                    Text(
-                      "TITLE GOES HERE",
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 9.sp,
-                        color: Color(0xFF00101F),
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Container(
-                      width: 193.w,
-                      //height: 510.h,
-                      // color: Colors.black,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 1.h),
+                child: GestureDetector(
+                  onTap: () => _pickImage(),
+                  child: Column(
+                    children: [
+                      _profileImage == null
+                                            ? ClipOval(
+
+                                              child: Image.asset(
+                                              AppImages.profilePicture,
+                                                                  fit: BoxFit.cover,
+                                                width: 65.h,
+                                                height: 65.h,
+                                              ),
+                                            )
+                                            : ClipOval(
+                                              child: Image.file(
+                                                                                      _profileImage!,
+                                                                                      fit: BoxFit
+                                              .cover,
+                                                                                      width: 65.h,
+                                                                                      height: 65.h,
+                                                                                    ),
+                                            ),
+                      SizedBox(height: 5.h),
+                      GestureDetector(
+                        onTap: () => _editUserDetails(context),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildSectionHeader("BASIC INFO"),
+                            Text(userName,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16.sp,
+                                  color: Color(0xFF00101F),
+                                )),
                             SizedBox(height: 5.h),
-                            _buildInfoItem("Name", "Jane Doe Williams"),
-                            _buildInfoItem("ID", "1-2345-6789"),
-                            _buildInfoItem("Phone", "(+506) 0987-6543"),
-                            _buildInfoItem("Email", "janedoe@gmail.com"),
-                            _buildInfoItem("Address", "Somewhere, Costa Rica"),
-                            SizedBox(height: 10.h),
-                            _buildSectionHeader("ABILITIES"),
-                            SizedBox(height: 5.h),
-                            _buildBulletPoint(
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, set do."),
-                            _buildBulletPoint("Exercitation ullamco laboris."),
-                            _buildBulletPoint(
-                                "Ut enim ad minim veniam, quis nostrud."),
-                            _buildBulletPoint(
-                                "Aliquip ex ea commodo consequat ipsum."),
-                            SizedBox(height: 10.h),
-                            _buildSectionHeader("REFERENCES"),
-                            SizedBox(height: 5.h),
-                            _buildReferenceItem(
-                              name: "SOMEONES NAME",
-                              title: "Production Manager and Marketer",
-                              email: "someone@hotmail.com",
-                              phone: "(+510) 5600-3700",
-                            ),
-                            SizedBox(height: 5.h),
-                            _buildReferenceItem(
-                              name: "LOREM IPSUM",
-                              title: "Production Data Operator",
-                              email: "someone@gmail.com",
-                              phone: "(+756) 1200-3400",
+                            Text(
+                              userRole,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 9.sp,
+                                color: Color(0xFF00101F),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10.h),
+                      Container(
+                        width: 193.w,
+                        //height: 510.h,
+                        // color: Colors.black,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 1.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSectionHeader("BASIC INFO"),
+                              SizedBox(height: 5.h),
+                              GestureDetector(
+                                onTap: () => _editContactDetails(context),
+                                child: Column(
+                                  children: [
+                                    _buildInfoItem("Name", userName),
+                                    _buildInfoItem("ID", id),
+                                    _buildInfoItem("Phone", mobile),
+                                    _buildInfoItem("Email", email),
+                                    _buildInfoItem("Address", address),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                              _buildSectionHeader("ABILITIES"),
+                              GestureDetector(
+                                onTap: () => _editAbilityDetails(context),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 5.h),
+                                    _buildBulletPoint(ability1),
+                                    _buildBulletPoint(ability2),
+                                    _buildBulletPoint(ability3),
+                                    _buildBulletPoint(ability4),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                              _buildSectionHeader("REFERENCES"),
+                              SizedBox(height: 2.h),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: reference.map((ref) {
+                              return GestureDetector(
+                                onTap: () => _editReferenceDetails(context, ref),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _buildReferenceItem(
+                                      name: ref['name']!,
+                                      title: ref['title']!,
+                                      email: ref['email']!,
+                                      phone: ref['phone']!,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -134,45 +243,49 @@ class _Template1State extends State<Template1> {
                   children: [
                     _buildSectionHeader("Profile"),
                     SizedBox(height: 5.h),
-                    _buildProfileItem(
-                      title: "Desc",
-                      description:
-                          "Position title and any relevant details. I am a tech enthusiast, "
-                          "I am passionate about designs, goal driven, quick to learn and a highly "
-                          "productive individual. I have various industry ready design skills, "
-                          "I am experienced in various software design tools, experienced in providing "
-                          "technical support to users, collaborated on design projects and working in a "
-                          "team-oriented environment. Both remotely and on-site.",
+                    GestureDetector(
+                      onTap: () => _editAboutMe(),
+                      child: _buildProfileItem(
+                        title: "Desc",
+                        description: about
+                      ),
                     ),
                     SizedBox(height: 10.h),
                     _buildProfileItem(
                       title: "Skills",
-                      skills: [
-                        _buildSkillBar("Figma - XD", 0.8),
-                        _buildSkillBar("Photoshop", 0.7),
-                        _buildSkillBar("Illustrator", 0.6),
-                      ],
+                      skills: skillsData.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        Map<String, dynamic> skill = entry.value;
+
+                        return GestureDetector(
+                          onTap: () => _editSkillDialog(context, index, skill['name'], skill['proficiency']),
+                          child: _buildSkillBar(skill['name'], skill['proficiency']),
+                        );
+                      }).toList(),
+
                     ),
                     SizedBox(height: 10.h),
-                    _buildProfileItem(
-                      title: "Experience",
-                      description:
-                          "As the creative director at Longchris foundation, I worked to create "
-                          "graphic design and marketing solutions to deliver engaging content that meets "
-                          "our audience’s needs. Designed the foundation’s website and managed its contents "
-                          "to pass standard and accurate brand identity.",
+                    GestureDetector(
+                      onTap: ()=> _editExperience(),
+                      child: _buildProfileItem(
+                        title: "Experience",
+                        description: experience,
+                      ),
                     ),
                     SizedBox(height: 8.h),
                     _buildSectionHeader("EDUCATION"),
                     SizedBox(height: 2.h),
-                    _buildEducationItem("2014", "A UNIVERSITY TITLE",
-                        "Some Educational Institution"),
-                    SizedBox(height: 2.h),
-                    _buildEducationItem(
-                        "2006", "DOLOR SIT AMET", "Utnim Ad Minim Veniam"),
-                    SizedBox(height: 2.h),
-                    _buildEducationItem("2005", "EIUSMOD TEMPOR INCIDIDUNT",
-                        "National Institute"),
+                    Column(
+                      children: education
+                          .map((e) => GestureDetector(
+                        onTap: () =>
+                            _editEducationItem(context, e),
+                        child: _buildEducationItem(e['year']!,
+                            e['degree']!, e['institution']!),
+                      ))
+                          .toList(),
+                    ),
+
                   ],
                 ),
               ),
@@ -470,4 +583,396 @@ class _Template1State extends State<Template1> {
       ],
     );
   }
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: userName);
+        final TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  userRole = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: mobile);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+        final TextEditingController websiteController =
+        TextEditingController(text: id);
+        final TextEditingController locationController =
+        TextEditingController(text: address);
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: websiteController,
+                decoration: const InputDecoration(labelText: 'Id'),
+              ),
+              TextField(
+                controller: locationController,
+                decoration: const InputDecoration(labelText: 'Address'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  mobile = phoneController.text;
+                  email = emailController.text;
+                  id = websiteController.text;
+                  address = locationController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editAbilityDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: ability1);
+        final TextEditingController emailController =
+        TextEditingController(text: ability2);
+        final TextEditingController websiteController =
+        TextEditingController(text: ability3);
+        final TextEditingController locationController =
+        TextEditingController(text: ability4);
+
+        return AlertDialog(
+          title: const Text('Edit Ability Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Ability 1'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Ability 2'),
+              ),
+              TextField(
+                controller: websiteController,
+                decoration: const InputDecoration(labelText: 'Ability 3'),
+              ),
+              TextField(
+                controller: locationController,
+                decoration: const InputDecoration(labelText: 'Ability 4'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  ability1 = phoneController.text;
+                  ability2 = emailController.text;
+                  ability3 = websiteController.text;
+                  ability4 = locationController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editReferenceDetails(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: item['name']);
+        final TextEditingController titleController =
+        TextEditingController(text: item['title']);
+        final TextEditingController emailController =
+        TextEditingController(text: item['email']);
+        final TextEditingController phoneController =
+        TextEditingController(text: item['phone']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Institute'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['name'] = nameController.text;
+                  item['title'] = titleController.text;
+                  item['email'] = emailController.text;
+                  item['phone'] = phoneController.text;
+
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editAboutMe() async {
+    final newAboutMe = await _showEditDialog('Description', about, multiline: true);
+    if (newAboutMe != null && newAboutMe.isNotEmpty) {
+      setState(() {
+        about = newAboutMe;
+      });
+    }
+  }
+
+  Future<void> _editExperience() async {
+    final newAboutMe = await _showEditDialog('Experience', experience, multiline: true);
+    if (newAboutMe != null && newAboutMe.isNotEmpty) {
+      setState(() {
+        experience = newAboutMe;
+      });
+    }
+  }
+
+  Future<String?> _showEditDialog(String title, String initialValue, {bool multiline = false}) async {
+    final controller = TextEditingController(text: initialValue);
+    return await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: multiline
+              ? TextField(
+            controller: controller,
+            maxLines: 5,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          )
+              : TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, controller.text),
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editSkillDialog(BuildContext context, int index, String currentName, double currentValue) async {
+    TextEditingController nameController = TextEditingController(text: currentName);
+    TextEditingController valueController = TextEditingController(text: currentValue.toString());
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skill'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Skill Name'),
+              ),
+              TextField(
+                controller: valueController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+                double newValue = double.tryParse(valueController.text) ?? currentValue;
+
+                setState(() {
+                  skillsData[index] = {
+                    'name': newName,
+                    'proficiency': newValue,
+                  };
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['year']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['year'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }

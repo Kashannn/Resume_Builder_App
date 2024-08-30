@@ -19,13 +19,13 @@ class _Template7State extends State<Template7> {
       child: Scaffold(
         body: Container(
           width: 595.w,
-          height: 842.h,
+          ///height: 842.h,
           color: Colors.black,
           child: Column(
             children: [
               Container(
                 width: 595.w,
-                height: 160.h,
+                height: 90.h,
                 color: Colors.black,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -131,13 +131,13 @@ class _Template7State extends State<Template7> {
                 children: [
                   SizedBox(
                     width: 237.w,
-                    height: 614.h,
+                    //height: 614.h,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
                           width: 190.w,
-                          height: 113.h,
+                          //height: 113.h,
                           // color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -212,7 +212,7 @@ class _Template7State extends State<Template7> {
                         ),
                         SizedBox(
                           width: 190.w,
-                          height: 130.h,
+                          //height: 130.h,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8.w, vertical: 8.h),
@@ -293,7 +293,7 @@ class _Template7State extends State<Template7> {
                         ),
                         SizedBox(
                           width: 190.w,
-                          height: 113.h,
+                          //height: 113.h,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8.w, vertical: 8.h),
@@ -323,7 +323,7 @@ class _Template7State extends State<Template7> {
                         ),
                         SizedBox(
                           width: 190.w,
-                          height: 113.h,
+                          //height: 113.h,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8.w, vertical: 8.h),
@@ -360,8 +360,8 @@ class _Template7State extends State<Template7> {
                       bottomLeft: Radius.circular(20.r),
                     ),
                     child: Container(
-                      width: 358.w,
-                      height: 614.h,
+                      //width: MediaQuery.of(context).size.width ,
+                      //height: 614.h,
                       decoration: BoxDecoration(
                         color: Color(0xFF1D1D1D),
                         borderRadius: BorderRadius.only(
@@ -373,8 +373,8 @@ class _Template7State extends State<Template7> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
-                            width: 5.w,
-                            height: 590.h,
+                            //width: 5.w,
+                            //height: 590.h,
                             color: Colors.grey,
                           ),
                           SizedBox(width: 10.w),
@@ -382,8 +382,8 @@ class _Template7State extends State<Template7> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               SizedBox(
-                                width: 275.w,
-                                height: 100.h,
+                                width: 300.w,
+                                //height: 100.h,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 12.w, vertical: 8.h),
@@ -424,8 +424,8 @@ class _Template7State extends State<Template7> {
                                 ),
                               ),
                               SizedBox(
-                                width: 305.w,
-                                height: 433.h,
+                                width: 290.w,
+                                //height: 433.h,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 12.w, vertical: 12.h),
