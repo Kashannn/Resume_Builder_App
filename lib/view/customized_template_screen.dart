@@ -10,6 +10,8 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import '../Templates/template19.dart';
+import '../Templates/template3.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -29,7 +31,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
   Future<void> _capturePng() async {
     try {
       RenderRepaintBoundary boundary = _containerKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+      ui.Image image = await boundary.toImage(pixelRatio:5.0);
       ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
       print('Image captured successfully');
@@ -44,7 +46,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
           build: (pw.Context context) {
             return pw.Image(
               pdfImage,
-              fit: pw.BoxFit.cover,
+              fit: pw.BoxFit.fill,
             );
           },
         ),
@@ -162,8 +164,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
               RepaintBoundary(
                 key: _containerKey,
                 child: SizedBox(
-                  height: 522.h,
-                  // child: Template5(),
+                  height: 520.h,
+                  child: Template19(),
                 ),
               ),
               SizedBox(height: 20.h),
