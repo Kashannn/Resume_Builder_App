@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_images_constant.dart';
 
-class Template12 extends StatefulWidget {
-  const Template12({super.key});
+class Template13 extends StatefulWidget {
+  const Template13({super.key});
 
   @override
-  State<Template12> createState() => _Template12State();
+  State<Template13> createState() => _Template13State();
 }
 
-class _Template12State extends State<Template12> {
+class _Template13State extends State<Template13> {
   File? _profileImage; // Variable to hold the image file
 
   String userName = 'ELIZABETH HARRIS';

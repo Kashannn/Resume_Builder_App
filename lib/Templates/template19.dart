@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
-class Template18 extends StatefulWidget {
-  const Template18({super.key});
+class Template19 extends StatefulWidget {
+  const Template19({super.key});
 
   @override
-  State<Template18> createState() => _Template18State();
+  State<Template19> createState() => _Template19State();
 }
 
-class _Template18State extends State<Template18> {
+class _Template19State extends State<Template19> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));

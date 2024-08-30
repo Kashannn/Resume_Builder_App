@@ -4,14 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
-class Template7 extends StatefulWidget {
-  const Template7({super.key});
+class Template3 extends StatefulWidget {
+  const Template3({super.key});
 
   @override
-  State<Template7> createState() => _Template7State();
+  State<Template3> createState() => _Template3State();
 }
 
-class _Template7State extends State<Template7> {
+class _Template3State extends State<Template3> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));
