@@ -111,7 +111,6 @@ class _Template8State extends State<Template8> {
                                 GestureDetector(
                                   onTap: _pickImage,
                                   child: CircleAvatar(
-
                                     backgroundColor: Colors.transparent,
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)

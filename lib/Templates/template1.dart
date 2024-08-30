@@ -14,7 +14,6 @@ class Template1 extends StatefulWidget {
 }
 
 class _Template1State extends State<Template1> {
-
   String userName = 'Peter';
   String userRole = 'Product Designer';
   String socialMedia = '@peterdesigner';
@@ -27,8 +26,10 @@ class _Template1State extends State<Template1> {
   String ability3 = 'Lorem ipsum dolor sit amet';
   String ability4 = 'Lorem ipsum dolor sit amet';
 
-  String about = "Position title and any relevant details. I am a tech enthusiast .I am passionate about designs, goal driven, quick to learn and a highly productive individual. I have various industry ready design skills, I am experienced in various software design tools, experienced in providing technical support to users, collaborated on design projects and working in a team-oriented environment. Both remotely and on-site.";
-  String experience = "As the creative director at Longchris foundation, I worked to create graphic design and marketing solutions to deliver engaging content that meets our audience’s needs. Designed the foundation’s website and managed its contentsto pass standard and accurate brand identity.";
+  String about =
+      "Position title and any relevant details. I am a tech enthusiast .I am passionate about designs, goal driven, quick to learn and a highly productive individual. I have various industry ready design skills, I am experienced in various software design tools, experienced in providing technical support to users, collaborated on design projects and working in a team-oriented environment. Both remotely and on-site.";
+  String experience =
+      "As the creative director at Longchris foundation, I worked to create graphic design and marketing solutions to deliver engaging content that meets our audience’s needs. Designed the foundation’s website and managed its contentsto pass standard and accurate brand identity.";
 
   List<Map<String, String>> reference = [
     {
@@ -74,7 +75,7 @@ class _Template1State extends State<Template1> {
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile =
-    await picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -89,8 +90,7 @@ class _Template1State extends State<Template1> {
       child: Scaffold(
         body: Stack(children: [
           Container(
-
-             width: 595.w,
+            width: 595.w,
             // height: 842.h,
             color: Color(0xFF343C43),
           ),
@@ -116,24 +116,22 @@ class _Template1State extends State<Template1> {
                   child: Column(
                     children: [
                       _profileImage == null
-                                            ? ClipOval(
-
-                                              child: Image.asset(
-                                              AppImages.profilePicture,
-                                                                  fit: BoxFit.cover,
-                                                width: 65.h,
-                                                height: 65.h,
-                                              ),
-                                            )
-                                            : ClipOval(
-                                              child: Image.file(
-                                                                                      _profileImage!,
-                                                                                      fit: BoxFit
-                                              .cover,
-                                                                                      width: 65.h,
-                                                                                      height: 65.h,
-                                                                                    ),
-                                            ),
+                          ? ClipOval(
+                              child: Image.asset(
+                                AppImages.profilePicture,
+                                fit: BoxFit.cover,
+                                width: 65.h,
+                                height: 65.h,
+                              ),
+                            )
+                          : ClipOval(
+                              child: Image.file(
+                                _profileImage!,
+                                fit: BoxFit.cover,
+                                width: 65.h,
+                                height: 65.h,
+                              ),
+                            ),
                       SizedBox(height: 5.h),
                       GestureDetector(
                         onTap: () => _editUserDetails(context),
@@ -201,25 +199,27 @@ class _Template1State extends State<Template1> {
                               SizedBox(height: 10.h),
                               _buildSectionHeader("REFERENCES"),
                               SizedBox(height: 2.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: reference.map((ref) {
-                              return GestureDetector(
-                                onTap: () => _editReferenceDetails(context, ref),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    _buildReferenceItem(
-                                      name: ref['name']!,
-                                      title: ref['title']!,
-                                      email: ref['email']!,
-                                      phone: ref['phone']!,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: reference.map((ref) {
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        _editReferenceDetails(context, ref),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        _buildReferenceItem(
+                                          name: ref['name']!,
+                                          title: ref['title']!,
+                                          email: ref['email']!,
+                                          phone: ref['phone']!,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                          ),
+                                  );
+                                }).toList(),
+                              ),
                             ],
                           ),
                         ),
@@ -245,10 +245,8 @@ class _Template1State extends State<Template1> {
                     SizedBox(height: 5.h),
                     GestureDetector(
                       onTap: () => _editAboutMe(),
-                      child: _buildProfileItem(
-                        title: "Desc",
-                        description: about
-                      ),
+                      child:
+                          _buildProfileItem(title: "Desc", description: about),
                     ),
                     SizedBox(height: 10.h),
                     _buildProfileItem(
@@ -258,15 +256,16 @@ class _Template1State extends State<Template1> {
                         Map<String, dynamic> skill = entry.value;
 
                         return GestureDetector(
-                          onTap: () => _editSkillDialog(context, index, skill['name'], skill['proficiency']),
-                          child: _buildSkillBar(skill['name'], skill['proficiency']),
+                          onTap: () => _editSkillDialog(context, index,
+                              skill['name'], skill['proficiency']),
+                          child: _buildSkillBar(
+                              skill['name'], skill['proficiency']),
                         );
                       }).toList(),
-
                     ),
                     SizedBox(height: 10.h),
                     GestureDetector(
-                      onTap: ()=> _editExperience(),
+                      onTap: () => _editExperience(),
                       child: _buildProfileItem(
                         title: "Experience",
                         description: experience,
@@ -278,14 +277,12 @@ class _Template1State extends State<Template1> {
                     Column(
                       children: education
                           .map((e) => GestureDetector(
-                        onTap: () =>
-                            _editEducationItem(context, e),
-                        child: _buildEducationItem(e['year']!,
-                            e['degree']!, e['institution']!),
-                      ))
+                                onTap: () => _editEducationItem(context, e),
+                                child: _buildEducationItem(e['year']!,
+                                    e['degree']!, e['institution']!),
+                              ))
                           .toList(),
                     ),
-
                   ],
                 ),
               ),
@@ -589,9 +586,9 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -636,13 +633,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
         final TextEditingController websiteController =
-        TextEditingController(text: id);
+            TextEditingController(text: id);
         final TextEditingController locationController =
-        TextEditingController(text: address);
+            TextEditingController(text: address);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -697,13 +694,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: ability1);
+            TextEditingController(text: ability1);
         final TextEditingController emailController =
-        TextEditingController(text: ability2);
+            TextEditingController(text: ability2);
         final TextEditingController websiteController =
-        TextEditingController(text: ability3);
+            TextEditingController(text: ability3);
         final TextEditingController locationController =
-        TextEditingController(text: ability4);
+            TextEditingController(text: ability4);
 
         return AlertDialog(
           title: const Text('Edit Ability Details'),
@@ -758,13 +755,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: item['name']);
+            TextEditingController(text: item['name']);
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController emailController =
-        TextEditingController(text: item['email']);
+            TextEditingController(text: item['email']);
         final TextEditingController phoneController =
-        TextEditingController(text: item['phone']);
+            TextEditingController(text: item['phone']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -797,7 +794,6 @@ class _Template1State extends State<Template1> {
                   item['title'] = titleController.text;
                   item['email'] = emailController.text;
                   item['phone'] = phoneController.text;
-
                 });
                 Navigator.of(context).pop();
               },
@@ -816,7 +812,8 @@ class _Template1State extends State<Template1> {
   }
 
   Future<void> _editAboutMe() async {
-    final newAboutMe = await _showEditDialog('Description', about, multiline: true);
+    final newAboutMe =
+        await _showEditDialog('Description', about, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         about = newAboutMe;
@@ -825,7 +822,8 @@ class _Template1State extends State<Template1> {
   }
 
   Future<void> _editExperience() async {
-    final newAboutMe = await _showEditDialog('Experience', experience, multiline: true);
+    final newAboutMe =
+        await _showEditDialog('Experience', experience, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         experience = newAboutMe;
@@ -833,7 +831,8 @@ class _Template1State extends State<Template1> {
     }
   }
 
-  Future<String?> _showEditDialog(String title, String initialValue, {bool multiline = false}) async {
+  Future<String?> _showEditDialog(String title, String initialValue,
+      {bool multiline = false}) async {
     final controller = TextEditingController(text: initialValue);
     return await showDialog<String>(
       context: context,
@@ -842,18 +841,18 @@ class _Template1State extends State<Template1> {
           title: Text(title),
           content: multiline
               ? TextField(
-            controller: controller,
-            maxLines: 5,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          )
+                  controller: controller,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                )
               : TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          ),
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -869,9 +868,12 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  Future<void> _editSkillDialog(BuildContext context, int index, String currentName, double currentValue) async {
-    TextEditingController nameController = TextEditingController(text: currentName);
-    TextEditingController valueController = TextEditingController(text: currentValue.toString());
+  Future<void> _editSkillDialog(BuildContext context, int index,
+      String currentName, double currentValue) async {
+    TextEditingController nameController =
+        TextEditingController(text: currentName);
+    TextEditingController valueController =
+        TextEditingController(text: currentValue.toString());
 
     await showDialog(
       context: context,
@@ -888,7 +890,8 @@ class _Template1State extends State<Template1> {
               TextField(
                 controller: valueController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+                decoration:
+                    InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
               ),
             ],
           ),
@@ -902,7 +905,8 @@ class _Template1State extends State<Template1> {
             TextButton(
               onPressed: () {
                 String newName = nameController.text;
-                double newValue = double.tryParse(valueController.text) ?? currentValue;
+                double newValue =
+                    double.tryParse(valueController.text) ?? currentValue;
 
                 setState(() {
                   skillsData[index] = {
@@ -926,11 +930,11 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -974,5 +978,4 @@ class _Template1State extends State<Template1> {
       },
     );
   }
-
 }

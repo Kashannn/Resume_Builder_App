@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
@@ -11,13 +14,88 @@ class Template19 extends StatefulWidget {
 }
 
 class _Template19State extends State<Template19> {
+
+  String userName = 'John Deo';
+  String userRole = 'UI DESIGNER';
+  String mobile1 = '+001 123 456 789';
+  String mobile2 = '+001 123 456 789';
+  String email = 'contact@john.com';
+  String address = '123 Main St, Anytown USA';
+  String portfolio = 'www.johnmoore.com';
+
+  String about = "A student majoring in Advertising and UI / UX design. In this CV is my design and marketing experience. Things I achieve through projects and works. Therefore, I want a job starting UI/UX as a career to stabilize and enhance my competence.";
+
+  List<Map<String, String>> education = [
+    {
+      'year': '2017 - 2020',
+      'degree': 'Enter Masters Degree',
+      'institution': ' Institute',
+    },
+    {
+      'year': '2012-2015',
+      'degree': 'Enter Bachelor Degree',
+      'institution': 'Institute',
+    },
+    {
+      'year': '2009-2012',
+      'degree': 'Enter Bachelor Degree',
+      'institution': 'Institute',
+    },
+  ];
+
+  List<Map<String, String>> experiences = [
+    {
+      'title': 'JOB POSITION / TITLE HERE',
+      'details': 'Company Name',
+      'fromto': '2010 - 2014',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+    },
+    {
+      'title': 'JOB POSITION / TITLE HERE',
+      'details': 'Company Name',
+      'fromto': '2010 - 2014',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+    },
+
+  ];
+
+  List<String> skills = [
+    'Photoshop',
+    'Illustrator',
+    'Figma',
+    'UI/UX Designing',
+  ];
+
+  List<String> hobbies = [
+    'Reading',
+    'Playing Chess',
+    'Swimming',
+    'Travelling',
+    'Hiking',
+    'Watching Movies',
+  ];
+
+  File? _profileImage;
+
+  // Method to pick an image
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));
     return SafeArea(
       child: Scaffold(
         body: Container(
-          height: 842.h,
+          //height: 842.h,
           width: 595.w,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -30,178 +108,198 @@ class _Template19State extends State<Template19> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 60.h,
-                  width: 204.w,
+                  //height: 60.h,
+                  //width: 204.w,
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                  child: Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'JOHN DEO',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          color: Colors.white,
-                          fontSize: 35.sp,
-                          fontWeight: FontWeight.w700,
+                      GestureDetector(
+                        onTap: () => _editUserDetails(context),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              userName,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                color: Colors.white,
+                                fontSize: 35.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              userRole,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                color: Color(0xFFE3E3E3),
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+
+                          ],
                         ),
                       ),
-                      SizedBox(height: 4.h),
-                      Text(
-                        'UI DESIGNER',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          color: Color(0xFFE3E3E3),
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
+                      GestureDetector(
+                        onTap: _pickImage,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: _profileImage != null
+                              ? FileImage(_profileImage!)
+                              : AssetImage(AppImages.profilePicture) as ImageProvider,
+                          radius: 45.r,
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 10.h),
-                Row(
-                  children: [
-                    Container(
-                      height: 40.h,
-                      width: 409.w,
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.phone, color: Colors.white),
-                              SizedBox(width: 4.w),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start
-                                ,
-                                children: [
-                                  Text(
-                                    '+1 123 456 7890',
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      color: Colors.white,
-                                      fontSize: 10.sp,
-                                    ),
-                                  ),
-                                  SizedBox(height: 4.h),
-                                  Text(
-                                    '+1 321 654 9870',
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      color: Colors.white,
-                                      fontSize: 6.sp,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.email, color: Colors.white),
-                              SizedBox(width: 4.w),
-                              Text(
-                                'johndeo@gmail.com',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  fontSize: 6.sp,
+                GestureDetector(
+                  onTap: () => _editContactDetails(context),
+                  child: Row(
+                    children: [
+                      Container(
+                        // /height: 40.h,
+                        //width: 400.w,
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(Icons.phone, color: Colors.white,
+                                  size: 20.h,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.location_on, color: Colors.white),
-                              SizedBox(width: 4.w),
-                              Text(
-                                'Apt. 352 375 Tonya Drive, Hirtheport, IA 54690',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  fontSize: 6.sp,
+                                SizedBox(width: 2.w),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start
+                                  ,
+                                  children: [
+                                    Text(
+                                      mobile1,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        color: Colors.white,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                    SizedBox(height: 4.h),
+                                    Text(
+                                      mobile2,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        color: Colors.white,
+                                        fontSize: 10.sp,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                            SizedBox(width: 10.w),
+                            Row(
+                              children: [
+                                Icon(Icons.email, color: Colors.white,
+
+                                  size: 20.h,),
+                                SizedBox(width: 4.w),
+                                Text(
+                                  email,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 10.w),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on, color: Colors.white,
+                                  size: 20.h,),
+                                SizedBox(width: 4.w),
+                                Text(
+                                  address,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    CircleAvatar(
-                      radius: 55.r,
-                      backgroundImage: AssetImage(AppImages.profilePicture),
-                    )
-                  ],
+
+                    ],
+                  ),
                 ),
-                SizedBox(height: 30.h),
+                SizedBox(height: 20.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 138.h,
+                      //height: 138.h,
                       width: 360.w,
                       padding: EdgeInsets.all(10.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Header with Icon
-                          Row(
-                            children: [
-                              Icon(Icons.person,
-                                  color: Colors.white, size: 12.sp),
-                              SizedBox(width: 8.w),
-                              Text(
-                                'About Me',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 11.81.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                      child: GestureDetector(
+                        onTap: ()=>_editAbout(context),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Header with Icon
+                            Row(
+                              children: [
+                                Icon(Icons.person,
+                                    color: Colors.white, size: 12.sp),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'About Me',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 11.81.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
                                 ),
+                              ],
+                            ),
+                            SizedBox(height: 8.h),
+                            // Main Content
+                            Text(
+                             about,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 9.81.sp,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                                height: 13.74 / 9.81,
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 8.h),
-                          // Main Content
-                          Text(
-                            'A student majoring in Advertising and UI / UX design. In this CV is my design and marketing experience. Things I achieve through projects and works. Therefore, I want a job starting UI/UX as a career to stabilize and enhance my competence.',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 9.81.sp,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                              height: 13.74 / 9.81,
                             ),
-                          ),
-                          SizedBox(height: 8.h),
-                          // Secondary Content
-                          Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                        ],
+                            SizedBox(height: 8.h),
+                            // Secondary Content
+                          ],
+                        ),
                       ),
                     ),
                     Container(
-                      height: 120.h,
+                      //height: 120.h,
                       width: 150.w,
                       padding: EdgeInsets.all(8.w),
                       child: Column(
@@ -210,8 +308,7 @@ class _Template19State extends State<Template19> {
                           // Header with Icon
                           Row(
                             children: [
-                              Icon(Icons.school,
-                                  color: Colors.white, size: 12.sp),
+                              Icon(Icons.school, color: Colors.white, size: 12.sp),
                               SizedBox(width: 4.w),
                               Text(
                                 'Education',
@@ -225,81 +322,64 @@ class _Template19State extends State<Template19> {
                             ],
                           ),
                           SizedBox(height: 4.h),
-                          // University 1
-                          Text(
-                            'University Of Economics & Finance',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                          Text(
-                            'Advertising Manager',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                          Text(
-                            '2020 - 2024',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                          SizedBox(height: 4.h),
-                          // University 2
-                          Text(
-                            'University Of Science HCM',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                          Text(
-                            'UI/UX Design',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
-                          Text(
-                            '2018 - 2019',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 7.85.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 7.85,
-                            ),
-                          ),
+
+                          // Loop through the education list and build each item
+                          ...education.map((edu) {
+                            return GestureDetector(
+                              onTap: () => _editEducationItem(context,edu),
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 4.h), // Add spacing between items
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      edu['institution']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 7.85.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        height: 13.74 / 7.85,
+                                      ),
+                                    ),
+                                    Text(
+                                      edu['degree']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 7.85.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                        height: 13.74 / 7.85,
+                                      ),
+                                    ),
+                                    Text(
+                                      edu['year']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 7.85.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                        height: 13.74 / 7.85,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ],
-                      ),
+                      )
+
                     ),
                   ],
                 ),
-                SizedBox(height: 30.h),
+                SizedBox(height: 20.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 172.h,
+                      //height: 172.h,
                       width: 360.w,
                       padding: EdgeInsets.all(10.w),
                       child: Column(
@@ -308,8 +388,7 @@ class _Template19State extends State<Template19> {
                           // Header with Icon
                           Row(
                             children: [
-                              Icon(Icons.work,
-                                  color: Colors.white, size: 12.sp),
+                              Icon(Icons.work, color: Colors.white, size: 12.sp),
                               SizedBox(width: 8.w),
                               Text(
                                 'Job Experience',
@@ -323,94 +402,67 @@ class _Template19State extends State<Template19> {
                             ],
                           ),
                           SizedBox(height: 8.h),
-                          // Job 1
-                          Text(
-                            '2021 - 2022',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Project Manager',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Harper and partners Inc.',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Maintained 100% client satisfaction by ensuring that all projects meet quality and budget standards',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          SizedBox(height: 8.h),
-                          // Job 2
-                          Text(
-                            '2020 - 2022',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Junior Project Manager',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Scheduster Digital Group',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
-                          Text(
-                            'Met 100% of project deadlines and objectives every year by efficiently communicating with managers and coordinating with employees',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
-                            ),
-                          ),
+
+                          // Loop through the experiences list and build each item
+                          ...experiences.map((exp) {
+                            return GestureDetector(
+                              onTap: ()=> _editExperienceItem(context,exp),
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 8.h), // Add spacing between items
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      exp['fromto']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 8.83.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        height: 13.74 / 8.83,
+                                      ),
+                                    ),
+                                    Text(
+                                      exp['title']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 8.83.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        height: 13.74 / 8.83,
+                                      ),
+                                    ),
+                                    Text(
+                                      exp['details']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 8.83.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                        height: 13.74 / 8.83,
+                                      ),
+                                    ),
+                                    Text(
+                                      exp['description']!,
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 8.83.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                        height: 13.74 / 8.83,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ],
-                      ),
+                      )
+
                     ),
                     Container(
-                      height: 47.h,
+                      //height: 47.h,
                       width: 150.w,
                       padding: EdgeInsets.all(5.w),
                       child: Column(
@@ -435,14 +487,17 @@ class _Template19State extends State<Template19> {
                           ),
                           SizedBox(height: 4.h),
                           // Portfolio Link
-                          Text(
-                            'Enter Your Portfolio Link Here',
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 8.83.sp,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              height: 13.74 / 8.83,
+                          GestureDetector(
+                            onTap: () => _editPortfolio(context),
+                            child: Text(
+                              portfolio,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: 8.83.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                                height: 13.74 / 8.83,
+                              ),
                             ),
                           ),
                         ],
@@ -459,47 +514,51 @@ class _Template19State extends State<Template19> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 55.h,
+                          //height: 55.h,
                           width: 360.w,
                           padding: EdgeInsets.all(5.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Header with Icon
-                              Row(
-                                children: [
-                                  Icon(Icons.work,
-                                      color: Colors.white, size: 12.sp),
-                                  SizedBox(width: 4.w),
-                                  Text(
-                                    'Expertise & Skills',
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 11.81.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Header with Icon
+                                Row(
+                                  children: [
+                                    Icon(Icons.work, color: Colors.white, size: 12.sp),
+                                    SizedBox(width: 4.w),
+                                    Text(
+                                      'Expertise & Skills',
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 11.81.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10.h),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  buildSkillCircle('Photoshop'),
-                                  buildSkillCircle('Illustrator'),
-                                  buildSkillCircle('Figma'),
-                                  buildSkillCircle('UI/UX Designing'),
-                                ],
-                              ),
-                            ],
-                          ),
+                                  ],
+                                ),
+                                SizedBox(height: 10.h),
+
+                                // Dynamically generate the skill circles
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: skills.asMap().entries.map((entry) {
+                                    int index = entry.key;
+                                    String skill = entry.value;
+                                    return GestureDetector(
+                                      onTap: () => _editSkillDialog(context, index,skill),
+                                      child: buildSkillCircle(skill),
+                                    );
+                                  }).toList(),
+                                ),
+
+                              ],
+                            )
+
                         ),
                       ],
                     ),
                     Container(
-                      height: 107.h,
+                      //height: 107.h,
                       width: 150.w,
                       padding: EdgeInsets.all(5.w),
                       child: Column(
@@ -507,8 +566,7 @@ class _Template19State extends State<Template19> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.sports_handball,
-                                  color: Colors.white, size: 12.sp),
+                              Icon(Icons.sports_handball, color: Colors.white, size: 12.sp),
                               SizedBox(width: 4.w),
                               Text(
                                 'Hobbies',
@@ -522,31 +580,28 @@ class _Template19State extends State<Template19> {
                             ],
                           ),
                           SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Column(
                             children: [
-                              buildHobbyItem('Reading'),
-                              buildHobbyItem('Playing Chess'),
-                            ],
-                          ),
-                          SizedBox(height: 4.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              buildHobbyItem('Swimming'),
-                              buildHobbyItem('Traveling'),
-                            ],
-                          ),
-                          SizedBox(height: 4.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              buildHobbyItem('Hiking'),
-                              buildHobbyItem('Watching Movies'),
+                              // Create rows with two hobbies per row
+                              for (int i = 0; i < hobbies.length; i += 2)
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 4.h),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      GestureDetector(
+                                          onTap: () => _editHobbies(context, i,hobbies[i]),
+                                          child: buildHobbyItem(hobbies[i])),
+                                      // Check if there's a second hobby in the current pair
+                                      if (i + 1 < hobbies.length) buildHobbyItem(hobbies[i + 1]),
+                                    ],
+                                  ),
+                                ),
                             ],
                           ),
                         ],
                       ),
+
                     )
                   ],
                 )
@@ -557,6 +612,402 @@ class _Template19State extends State<Template19> {
       ),
     );
   }
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: userName);
+        final TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  userRole = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: mobile1);
+        final TextEditingController phone2Controller =
+        TextEditingController(text: mobile2);
+        final TextEditingController addressController =
+        TextEditingController(text: address);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone 1'),
+              ),
+              TextField(
+                controller: phone2Controller,
+                decoration: const InputDecoration(labelText: 'Phone 2'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: addressController,
+                decoration: const InputDecoration(labelText: 'Address'),
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  mobile1 = phoneController.text;
+                  mobile2 = phone2Controller.text;
+                  address = addressController.text;
+                  email = emailController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editAbout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController aboutController =
+        TextEditingController(text: about);
+
+
+        return AlertDialog(
+          title: const Text('Edit About'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: aboutController,
+                decoration: const InputDecoration(labelText: 'About'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  about = aboutController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['year']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['year'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController titleController =
+        TextEditingController(text: item['title']);
+        final TextEditingController detailsController =
+        TextEditingController(text: item['details']);
+        final TextEditingController fromtoController =
+        TextEditingController(text: item['fromto']);
+
+        final TextEditingController descriptionController =
+        TextEditingController(text: item['description']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+              TextField(
+                controller: detailsController,
+                decoration: const InputDecoration(labelText: 'Details'),
+              ),
+              TextField(
+                controller: fromtoController,
+                decoration: const InputDecoration(labelText: 'From - To'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['title'] = titleController.text;
+                  item['details'] = detailsController.text;
+                  item['fromto'] = fromtoController.text;
+                  item['description'] = descriptionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editPortfolio(BuildContext context,) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController about1Controller =
+        TextEditingController(text: portfolio);
+
+
+        return AlertDialog(
+          title:  Text('Edit Portfolio'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: about1Controller,
+                decoration: InputDecoration(labelText: 'Portfolio'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  portfolio = about1Controller.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editSkillDialog(BuildContext context, int index,
+      String currentName) async {
+    TextEditingController nameController =
+    TextEditingController(text: currentName);
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skill'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Skill Name'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+
+                setState(() {
+                  skills[index] = newName;
+
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editHobbies(BuildContext context, int index,
+      String currentName) async {
+    TextEditingController nameController =
+    TextEditingController(text: currentName);
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Hobbies'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Hobbies Name'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+
+                setState(() {
+                  hobbies[index] = newName;
+
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
 
 Widget buildSkillCircle(String skillName) {
@@ -575,7 +1026,7 @@ Widget buildSkillCircle(String skillName) {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Inter',
-              fontSize: 6.sp,
+              fontSize: 10.sp,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
@@ -597,3 +1048,5 @@ Widget buildHobbyItem(String hobby) {
     ),
   );
 }
+
+
