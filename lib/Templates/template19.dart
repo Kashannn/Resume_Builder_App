@@ -83,8 +83,7 @@ class _Template19State extends State<Template19> {
                               SizedBox(width: 4.w),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start
-                                ,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
                                     '+1 123 456 7890',
