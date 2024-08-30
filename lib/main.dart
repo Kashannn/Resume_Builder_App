@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
 import 'Templates/template15.dart';
 import 'Templates/template17.dart';
+import 'Templates/template18.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template15(),
+      child: Template18(),
     );
   }
 }
