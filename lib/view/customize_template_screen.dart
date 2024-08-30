@@ -24,6 +24,7 @@ class CustomizeTemplateScreen extends StatefulWidget {
 
 class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
   late int currentIndex;
+
   @override
   void initState() {
     super.initState();
@@ -95,15 +96,15 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
                     width: 100.w,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (currentIndex > 0) {
-                          setState(() {
+                        setState(() {
+                          if (currentIndex > 0) {
                             currentIndex--;
-                          });
-                        }
+                          }
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            isDarkMode ? Colors.grey[800] : AppColors.lightGray,
+                        isDarkMode ? Colors.grey[800] : AppColors.lightGray,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(27.r),
                         ),
@@ -131,11 +132,11 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        if (currentIndex < widget.imagePaths!.length - 1) {
-                          setState(() {
+                        setState(() {
+                          if (currentIndex < widget.imagePaths!.length - 1) {
                             currentIndex++;
-                          });
-                        }
+                          }
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
@@ -158,8 +159,8 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
                 child: CustomGradientButton(
                   onPressed: () {
                     Get.to(() => CustomizedTemplateScreen(
-                          imagePath: widget.imagePaths![currentIndex],
-                        ));
+                      imagePath: widget.imagePaths![currentIndex],
+                    ));
                   },
                   text: 'Customize Template',
                   gradient: LinearGradient(
