@@ -157,13 +157,19 @@ class _Template9State extends State<Template9> {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        Text(
-                          'Skills',
-                          style: GoogleFonts.poppins(
-                            fontSize: 22.sp,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(AppImages.skill),
+                            SizedBox(width: 10.w),
+                            Text(
+                              'Skills',
+                              style: GoogleFonts.poppins(
+                                fontSize: 22.sp,
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                         Divider(
                           color: Colors.grey,

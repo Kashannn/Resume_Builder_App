@@ -62,6 +62,7 @@ class AppImages extends AssetImage {
   static const String twitter16 = '$_iconPath/TwitterIcon16.svg';
   static const String twitch16 = '$_iconPath/Twitch16.svg';
   static const String tool = '$_iconPath/tool.svg';
+  static const String skill = '$_iconPath/skill.svg';
 
 
 }
