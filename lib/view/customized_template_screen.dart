@@ -10,15 +10,20 @@ import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import '../Templates/template10.dart';
+import '../Templates/template11.dart';
 import '../Templates/template12.dart';
 import '../Templates/template15.dart';
 import '../Templates/template16.dart';
 import '../Templates/template17.dart';
+import '../Templates/template18.dart';
 import '../Templates/template19.dart';
 import '../Templates/template3.dart';
 import '../Templates/template4.dart';
 import '../Templates/template6.dart';
+import '../Templates/template7.dart';
 import '../Templates/template8.dart';
+import '../Templates/template9.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -172,7 +177,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 key: _containerKey,
                 child: SizedBox(
                   height: 520.h,
-                  child: Template17(),
+                  child: Template18(),
                 ),
               ),
               SizedBox(height: 20.h),

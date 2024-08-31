@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Template9 extends StatefulWidget {
   const Template9({super.key});
@@ -12,9 +15,81 @@ class Template9 extends StatefulWidget {
 }
 
 class _Template9State extends State<Template9> {
+
+  String userName = 'Emily Johnson';
+  String jobTitle = 'UX/UI Designer';
+  String email = 'hello@reallygreatsite.com';
+  String phoneNumber = '+123-456-7890';
+  String linkdin = 'www.linkedin.com';
+  String website = 'www.mysite.com';
+  String aboutMe = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+  //Skill
+  List<String> skills = [
+    'UI/UX',
+    'Visual Design',
+    'Wireframes',
+    'Storyboarding',
+    'User Flows'
+  ];
+  //Tools
+  List<String> tools = [
+    'Figma',
+    'Adobe XD',
+    'Adobe Photoshop',
+    'Adobe Illustrator',
+  ];
+
+  List<Map<String, String>> experience = [
+    {
+      'company': 'Borcelle Studio',
+      'position': 'Photographer',
+      'years': '2021',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      'company': 'Creative Lens',
+      'position': 'Assistant Photographer',
+      'years': '2016',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+  ];
+
+  List<Map<String, String>> education = [
+    {
+      'degree': 'Master of Media and Journalism',
+      'institution': 'Wardiere University',
+      'years': '2013-2016'
+    },
+    {
+      'degree': 'Bachelor of Arts in Communication',
+      'institution': 'Wardiere University',
+      'years': '2009-2012'
+    },
+  ];
+
+
+  String reference = 'John Smith - 123-456-7890';
+
+
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+    await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 842));
+    ScreenUtil.init(context, designSize: const Size(650, 1400));
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFF333132),
@@ -29,7 +104,7 @@ class _Template9State extends State<Template9> {
                   ),
                   child: Container(
                     width: 250.w,
-                    height: 798.h,
+                    //height: 550.h,
                     padding: EdgeInsets.all(16.w),
                     decoration: BoxDecoration(
                         color: Color(0xFF333132),
@@ -39,118 +114,132 @@ class _Template9State extends State<Template9> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+                          padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
                           child: CircleAvatar(
-                            radius: 90.r,
+                            radius: 65.r,
                             backgroundColor: Color(0xFFFFA200),
-                            child: CircleAvatar(
-                              radius: 85.r,
-                              backgroundImage: AssetImage(AppImages
-                                  .profilePicture), // Replace with your image path
+                            child: GestureDetector(
+                              onTap: _pickImage,
+                              child: CircleAvatar(
+                                radius: 60.h,
+                                backgroundImage: _profileImage != null
+                                    ? FileImage(_profileImage!)
+                                    : AssetImage(AppImages.profilePicture)
+                                as ImageProvider,
+                              ),
                             ),
                           ),
                         ),
-                        Text(
-                          'Contact',
-                          style: GoogleFonts.poppins(
-                            fontSize: 22.sp,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1.5.h,
-                          indent: 20.w,
-                          endIndent: 20.w,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.h, horizontal: 20.w),
-                          child: Row(
+                        GestureDetector(
+                          onTap: ()=>_editContactDetails(context),
+                          child: Column(
+
                             children: [
-                              Icon(
-                                Icons.phone,
-                                color: Colors.orange,
-                                size: 24.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  '+123-456-7890',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+
+                              Text(
+                                'Contact',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20.sp,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.link,
-                                color: Colors.orange,
-                                size: 24.sp,
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1.5.h,
+                                indent: 20.w,
+                                endIndent: 20.w,
                               ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Linkedin profile',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 5.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.orange,
+                                      size: 22.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        phoneNumber,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.email,
-                                color: Colors.orange,
-                                size: 24.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'hello@mywebsite.com',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.link,
+                                      color: Colors.orange,
+                                      size: 22.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        linkdin,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 8.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.web,
-                                color: Colors.orange,
-                                size: 24.sp,
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.email,
+                                      color: Colors.orange,
+                                      size: 22.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        email,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'www.mywebsite.com',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.web,
+                                      color: Colors.orange,
+                                      size: 22.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        website,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -159,12 +248,14 @@ class _Template9State extends State<Template9> {
                         SizedBox(height: 20.h),
                         Row(
                           children: [
-                            SvgPicture.asset(AppImages.skill),
+                            SvgPicture.asset(AppImages.skill,
+                                width: 20.sp, height: 20.sp
+                            ),
                             SizedBox(width: 10.w),
                             Text(
                               'Skills',
                               style: GoogleFonts.poppins(
-                                fontSize: 22.sp,
+                                fontSize: 20.sp,
                                 color: Colors.orange,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -177,130 +268,46 @@ class _Template9State extends State<Template9> {
                           indent: 20.w,
                           endIndent: 20.w,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'UI/UX',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+                        Column(
+                          children: skills.map((skill) {
+                            return GestureDetector(
+                              onTap: ()=> _showSkillsEditDialog(),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.circle,
+                                      color: Colors.orange,
+                                      size: 8.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        skill,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            );
+                          }).toList(),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Visual Design',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Wireframes',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Storyboards',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'User Flows',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 10.h),
                         Row(
                           children: [
-                            SvgPicture.asset(AppImages.tool),
+                            SvgPicture.asset(AppImages.tool,
+                                width: 20.sp, height: 20.sp
+                            ),
                             SizedBox(width: 10.w),
                             Text(
                               'Tools',
                               style: GoogleFonts.poppins(
-                                fontSize: 22.sp,
+                                fontSize: 20.sp,
                                 color: Colors.orange,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -313,97 +320,34 @@ class _Template9State extends State<Template9> {
                           indent: 20.w,
                           endIndent: 20.w,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Figma',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
+                        Column(
+                          children: tools.map((skill) {
+                            return GestureDetector(
+                              onTap: ()=> _showToolsEditDialog(),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.circle,
+                                      color: Colors.orange,
+                                      size: 8.sp,
+                                    ),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: Text(
+                                        skill,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Adobe XD',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'WordPress',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 4.h, horizontal: 20.w),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: Colors.orange,
-                                size: 8.sp,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                child: Text(
-                                  'Webflow',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            );
+                          }).toList(),
                         ),
                       ],
                     ),
@@ -411,43 +355,46 @@ class _Template9State extends State<Template9> {
                 ),
                 Container(
                   width: 345.w,
-                  height: 798.h,
+                  //height: 550.h,
                   color: Colors.grey[700],
                   child: Column(
                     children: [
                       Container(
                         width: 345.w,
-                        height: 200.h,
+                        //height: 200.h,
                         color: Colors.grey[800],
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 24.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Emily Johnson',
-                              style: GoogleFonts.poppins(
-                                fontSize: 36.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                        child: GestureDetector(
+                          onTap: ()=>_editUserDetails(context),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                userName,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 36.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 8.h),
-                            Text(
-                              'UI/UX Designer',
-                              style: GoogleFonts.poppins(
-                                fontSize: 20.sp,
-                                color: Colors.orangeAccent,
-                                fontWeight: FontWeight.w400,
+                              SizedBox(height: 8.h),
+                              Text(
+                                jobTitle,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20.sp,
+                                  color: Colors.orangeAccent,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Container(
                         width: 345.w,
-                        height: 598.h,
+                        height: 700.h,
                         color: Colors.white,
                         padding: EdgeInsets.symmetric(
                           horizontal: 16.w,
@@ -465,12 +412,15 @@ class _Template9State extends State<Template9> {
                                 color: Colors.black,
                               ),
                             ),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque, arcu in pellentesque tincidunt, odio justo vulputate nulla, id convallis justo tortor sed odio. Vestibulum ante ipsum primis in faucibus orci luctus.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
+                            GestureDetector(
+                              onTap: ()=>_editAbout(context),
+                              child: Text(
+                                aboutMe,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
 
@@ -484,28 +434,19 @@ class _Template9State extends State<Template9> {
                               ),
                             ),
                             Divider(color: Colors.black),
-                            _buildWorkExperienceItem(
-                              position: 'Job position',
-                              company: 'Company Name',
-                              duration: '2017-2018',
-                              description:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque, arcu in pellentesque tincidunt, odio justo vulputate nulla, id convallis justo tortor sed odio. Vestibulum ante ipsum primis in faucibus orci luctus.',
+                            Column(
+                              children: experience.map((exp) {
+                                return GestureDetector(
+                                  onTap: ()=>_editExperienceItem(context,exp),
+                                  child: _buildWorkExperienceItem(
+                                    position: exp['position'] ?? 'Unknown Position',
+                                    company: exp['company'] ?? 'Unknown Company',
+                                    duration: exp['years'] ?? 'Unknown Duration',
+                                    description: exp['description'] ?? 'No description provided',
+                                  ),
+                                );
+                              }).toList(),
                             ),
-                            _buildWorkExperienceItem(
-                              position: 'Job position',
-                              company: 'Company Name',
-                              duration: '2018-2020',
-                              description:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque, arcu in pellentesque tincidunt, odio justo vulputate nulla, id convallis justo tortor sed odio. Vestibulum ante ipsum primis in faucibus orci luctus.',
-                            ),
-                            _buildWorkExperienceItem(
-                              position: 'Job position',
-                              company: 'Company Name',
-                              duration: '2020-2023',
-                              description:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque, arcu in pellentesque tincidunt, odio justo vulputate nulla, id convallis justo tortor sed odio. Vestibulum ante ipsum primis in faucibus orci luctus.',
-                            ),
-
                             // Education Section
                             Text(
                               'Education',
@@ -516,15 +457,21 @@ class _Template9State extends State<Template9> {
                               ),
                             ),
                             Divider(color: Colors.black),
-                            _buildEducationItem(
-                              degree: 'Degree Name',
-                              institution: 'University Name Here',
-                              duration: '2014-2020',
-                            ),
-                            _buildEducationItem(
-                              degree: 'Degree Name',
-                              institution: 'University Name Here',
-                              duration: '2013-2016',
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: education.map((edu) {
+                                int index = education.indexOf(edu);
+                                return GestureDetector(
+                                  onTap: ()=>_editEducationItem(context,edu),
+                                  child: _buildEducationItem(
+                                    degree: edu['degree'] ?? 'Unknown Degree',
+                                    institution: edu['institution'] ?? 'Unknown Institution',
+                                    duration: edu['years'] ?? 'Unknown Duration',
+                                  ),
+                                );
+                              }).toList(),
                             ),
 
                             // Referees Section
@@ -537,12 +484,15 @@ class _Template9State extends State<Template9> {
                               ),
                             ),
                             Divider(color: Colors.black),
-                            Text(
-                              'OnRequest',
-                              style: GoogleFonts.poppins(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
+                            GestureDetector(
+                              onTap:()=>_editRefernce(),
+                              child: Text(
+                                reference,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -645,4 +595,388 @@ class _Template9State extends State<Template9> {
       ),
     );
   }
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: userName);
+        final TextEditingController roleController =
+        TextEditingController(text: jobTitle);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  jobTitle = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<List<String>?> _showSkillsEditDialog() async {
+    final skillsController = TextEditingController(text: skills.join(', '));
+
+    return await showDialog<List<String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skills'),
+          content: TextField(
+            controller: skillsController,
+            decoration: InputDecoration(
+              labelText: 'Skills (comma separated)',
+            ),
+            maxLines: 5,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  skills = skillsController.text
+                      .split(',')
+                      .map((s) => s.trim())
+                      .where((s) => s.isNotEmpty) // filter out any empty skills
+                      .toList();
+                });
+                Navigator.pop(context, skills);
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<List<String>?> _showToolsEditDialog() async {
+    final skillsController = TextEditingController(text: tools.join(', '));
+
+    return await showDialog<List<String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Tools'),
+          content: TextField(
+            controller: skillsController,
+            decoration: InputDecoration(
+              labelText: 'Tools (comma separated)',
+            ),
+            maxLines: 5,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  tools = skillsController.text
+                      .split(',')
+                      .map((s) => s.trim())
+                      .where((s) => s.isNotEmpty) // filter out any empty skills
+                      .toList();
+                });
+                Navigator.pop(context, tools);
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editAbout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController aboutController =
+        TextEditingController(text: aboutMe);
+
+        return AlertDialog(
+          title: const Text('Edit About'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: aboutController,
+                decoration: const InputDecoration(labelText: 'About'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  aboutMe = aboutController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editRefernce() async {
+    final newLocation = await _editField('Refernce', reference);
+    if (newLocation != null) {
+      setState(() {
+        reference = newLocation;
+      });
+    }
+  }
+
+  Future<String?> _editField(String field, String initialValue) async {
+    TextEditingController controller =
+    TextEditingController(text: initialValue);
+    return await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit $field'),
+          content: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter $field',
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('CANCEL'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('SAVE'),
+              onPressed: () {
+                Navigator.of(context).pop(controller.text);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: phoneNumber);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+        final TextEditingController webisteController =
+        TextEditingController(text: website);
+        final TextEditingController linkdeinController =
+        TextEditingController(text: linkdin);
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+              TextField(
+                controller: linkdeinController,
+                decoration: const InputDecoration(labelText: 'Linkedin'),
+              ),
+              TextField(
+                controller: webisteController,
+                decoration: const InputDecoration(labelText: 'Website'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  phoneNumber = phoneController.text;
+                  email = emailController.text;
+                  website = webisteController.text;
+                  linkdin = linkdeinController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController titleController =
+        TextEditingController(text: item['company']);
+        final TextEditingController positionController =
+        TextEditingController(text: item['position']);
+        final TextEditingController fromtoController =
+        TextEditingController(text: item['years']);
+
+        final TextEditingController descriptionController =
+        TextEditingController(text: item['description']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Company'),
+              ),
+              TextField(
+                controller: positionController,
+                decoration: const InputDecoration(labelText: 'Position'),
+              ),
+              TextField(
+                controller: fromtoController,
+                decoration: const InputDecoration(labelText: 'From - To'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['company'] = titleController.text;
+                  item['position'] = positionController.text;
+                  item['years'] = fromtoController.text;
+                  item['description'] = descriptionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['years']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['years'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
