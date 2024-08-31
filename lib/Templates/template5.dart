@@ -155,7 +155,7 @@ class _Template5State extends State<Template5> {
                         Container(
                           width: 345.w,
                           height: 80.h,
-                          color: Color(0xFF1B2530), // Dark background color
+                          color: Color(0xFF1B2530),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 16.w, vertical: 8.h),
@@ -202,7 +202,7 @@ class _Template5State extends State<Template5> {
                           color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 8.h),
+                                horizontal: 25.w, vertical: 8.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -246,7 +246,7 @@ class _Template5State extends State<Template5> {
                           color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 16.h),
+                                horizontal: 25.w, vertical: 16.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -309,7 +309,7 @@ class _Template5State extends State<Template5> {
                           color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 16.h),
+                                horizontal: 25.w, vertical: 16.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
