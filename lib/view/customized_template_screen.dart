@@ -12,17 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Templates/template1.dart';
-import '../Templates/template12.dart';
-import '../Templates/template15.dart';
-import '../Templates/template16.dart';
-import '../Templates/template17.dart';
-import '../Templates/template19.dart';
-import '../Templates/template20.dart';
 import '../Templates/template3.dart';
-import '../Templates/template4.dart';
-import '../Templates/template6.dart';
-import '../Templates/template8.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
@@ -230,7 +220,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,7 +240,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                     onTap: _capturePng,
                     child: Container(
                       height: 40.h,
-                      width: 109.w,
+                      width: 100.w,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
