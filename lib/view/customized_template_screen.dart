@@ -173,7 +173,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
           .findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 5.0);
       ByteData? byteData =
-      await image.toByteData(format: ui.ImageByteFormat.png);
+          await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
       print('Image captured successfully');
 
@@ -250,7 +250,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                     onTap: _capturePng,
                     child: Container(
                       height: 40.h,
-                      width: 112.w,
+                      width: 109.w,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -290,14 +290,14 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                         TextSpan(
                           text: 'TIP: ',
                           style:
-                          isDarkMode ? mStyleWhite12600 : mStyleBlack12600,
+                              isDarkMode ? mStyleWhite12600 : mStyleBlack12600,
                         ),
                         TextSpan(
                           text: 'Click on any text/image to edit.',
                           style: isDarkMode
                               ? mStyleWhite12600
                               : mStyleBlack12600.copyWith(
-                              color: AppColors.lightGray2),
+                                  color: AppColors.lightGray2),
                         ),
                       ],
                     ),
