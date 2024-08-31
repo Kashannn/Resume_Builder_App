@@ -14,7 +14,6 @@ class Template19 extends StatefulWidget {
 }
 
 class _Template19State extends State<Template19> {
-
   String userName = 'John Deo';
   String userRole = 'UI DESIGNER';
   String mobile1 = '+001 123 456 789';
@@ -23,7 +22,8 @@ class _Template19State extends State<Template19> {
   String address = '123 Main St, Anytown USA';
   String portfolio = 'www.johnmoore.com';
 
-  String about = "A student majoring in Advertising and UI / UX design. In this CV is my design and marketing experience. Things I achieve through projects and works. Therefore, I want a job starting UI/UX as a career to stabilize and enhance my competence.";
+  String about =
+      "A student majoring in Advertising and UI / UX design. In this CV is my design and marketing experience. Things I achieve through projects and works. Therefore, I want a job starting UI/UX as a career to stabilize and enhance my competence.";
 
   List<Map<String, String>> education = [
     {
@@ -48,15 +48,16 @@ class _Template19State extends State<Template19> {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name',
       'fromto': '2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name',
       'fromto': '2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
-
   ];
 
   List<String> skills = [
@@ -146,7 +147,6 @@ class _Template19State extends State<Template19> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -156,7 +156,8 @@ class _Template19State extends State<Template19> {
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(AppImages.profilePicture) as ImageProvider,
+                              : AssetImage(AppImages.profilePicture)
+                                  as ImageProvider,
                           radius: 45.r,
                         ),
                       ),
@@ -179,14 +180,15 @@ class _Template19State extends State<Template19> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(Icons.phone, color: Colors.white,
+                                Icon(
+                                  Icons.phone,
+                                  color: Colors.white,
                                   size: 20.h,
                                 ),
                                 SizedBox(width: 2.w),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start
-                                  ,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       mobile1,
@@ -212,9 +214,11 @@ class _Template19State extends State<Template19> {
                             SizedBox(width: 10.w),
                             Row(
                               children: [
-                                Icon(Icons.email, color: Colors.white,
-
-                                  size: 20.h,),
+                                Icon(
+                                  Icons.email,
+                                  color: Colors.white,
+                                  size: 20.h,
+                                ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   email,
@@ -229,8 +233,11 @@ class _Template19State extends State<Template19> {
                             SizedBox(width: 10.w),
                             Row(
                               children: [
-                                Icon(Icons.location_on, color: Colors.white,
-                                  size: 20.h,),
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.white,
+                                  size: 20.h,
+                                ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   address,
@@ -245,7 +252,6 @@ class _Template19State extends State<Template19> {
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -259,7 +265,7 @@ class _Template19State extends State<Template19> {
                       width: 360.w,
                       padding: EdgeInsets.all(10.w),
                       child: GestureDetector(
-                        onTap: ()=>_editAbout(context),
+                        onTap: () => _editAbout(context),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -283,7 +289,7 @@ class _Template19State extends State<Template19> {
                             SizedBox(height: 8.h),
                             // Main Content
                             Text(
-                             about,
+                              about,
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 9.81.sp,
@@ -299,78 +305,79 @@ class _Template19State extends State<Template19> {
                       ),
                     ),
                     Container(
-                      //height: 120.h,
-                      width: 150.w,
-                      padding: EdgeInsets.all(8.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Header with Icon
-                          Row(
-                            children: [
-                              Icon(Icons.school, color: Colors.white, size: 12.sp),
-                              SizedBox(width: 4.w),
-                              Text(
-                                'Education',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 11.81.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                        //height: 120.h,
+                        width: 150.w,
+                        padding: EdgeInsets.all(8.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Header with Icon
+                            Row(
+                              children: [
+                                Icon(Icons.school,
+                                    color: Colors.white, size: 12.sp),
+                                SizedBox(width: 4.w),
+                                Text(
+                                  'Education',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 11.81.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 4.h),
+                              ],
+                            ),
+                            SizedBox(height: 4.h),
 
-                          // Loop through the education list and build each item
-                          ...education.map((edu) {
-                            return GestureDetector(
-                              onTap: () => _editEducationItem(context,edu),
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: 4.h), // Add spacing between items
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      edu['institution']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 7.85.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                        height: 13.74 / 7.85,
+                            // Loop through the education list and build each item
+                            ...education.map((edu) {
+                              return GestureDetector(
+                                onTap: () => _editEducationItem(context, edu),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: 4.h), // Add spacing between items
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        edu['institution']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 7.85.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                          height: 13.74 / 7.85,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      edu['degree']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 7.85.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                        height: 13.74 / 7.85,
+                                      Text(
+                                        edu['degree']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 7.85.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                          height: 13.74 / 7.85,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      edu['year']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 7.85.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                        height: 13.74 / 7.85,
+                                      Text(
+                                        edu['year']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 7.85.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                          height: 13.74 / 7.85,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
-                        ],
-                      )
-
-                    ),
+                              );
+                            }).toList(),
+                          ],
+                        )),
                   ],
                 ),
                 SizedBox(height: 20.h),
@@ -379,88 +386,89 @@ class _Template19State extends State<Template19> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      //height: 172.h,
-                      width: 360.w,
-                      padding: EdgeInsets.all(10.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Header with Icon
-                          Row(
-                            children: [
-                              Icon(Icons.work, color: Colors.white, size: 12.sp),
-                              SizedBox(width: 8.w),
-                              Text(
-                                'Job Experience',
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: 11.81.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                        //height: 172.h,
+                        width: 360.w,
+                        padding: EdgeInsets.all(10.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Header with Icon
+                            Row(
+                              children: [
+                                Icon(Icons.work,
+                                    color: Colors.white, size: 12.sp),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Job Experience',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: 11.81.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8.h),
+                              ],
+                            ),
+                            SizedBox(height: 8.h),
 
-                          // Loop through the experiences list and build each item
-                          ...experiences.map((exp) {
-                            return GestureDetector(
-                              onTap: ()=> _editExperienceItem(context,exp),
-                              child: Padding(
-                                padding: EdgeInsets.only(bottom: 8.h), // Add spacing between items
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      exp['fromto']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 8.83.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                        height: 13.74 / 8.83,
+                            // Loop through the experiences list and build each item
+                            ...experiences.map((exp) {
+                              return GestureDetector(
+                                onTap: () => _editExperienceItem(context, exp),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: 8.h), // Add spacing between items
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        exp['fromto']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 8.83.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                          height: 13.74 / 8.83,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      exp['title']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 8.83.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                        height: 13.74 / 8.83,
+                                      Text(
+                                        exp['title']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 8.83.sp,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                          height: 13.74 / 8.83,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      exp['details']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 8.83.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                        height: 13.74 / 8.83,
+                                      Text(
+                                        exp['details']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 8.83.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                          height: 13.74 / 8.83,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      exp['description']!,
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 8.83.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                        height: 13.74 / 8.83,
+                                      Text(
+                                        exp['description']!,
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 8.83.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                          height: 13.74 / 8.83,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
-                        ],
-                      )
-
-                    ),
+                              );
+                            }).toList(),
+                          ],
+                        )),
                     Container(
                       //height: 47.h,
                       width: 150.w,
@@ -514,16 +522,17 @@ class _Template19State extends State<Template19> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          //height: 55.h,
-                          width: 360.w,
-                          padding: EdgeInsets.all(5.w),
+                            //height: 55.h,
+                            width: 360.w,
+                            padding: EdgeInsets.all(5.w),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Header with Icon
                                 Row(
                                   children: [
-                                    Icon(Icons.work, color: Colors.white, size: 12.sp),
+                                    Icon(Icons.work,
+                                        color: Colors.white, size: 12.sp),
                                     SizedBox(width: 4.w),
                                     Text(
                                       'Expertise & Skills',
@@ -540,21 +549,20 @@ class _Template19State extends State<Template19> {
 
                                 // Dynamically generate the skill circles
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: skills.asMap().entries.map((entry) {
                                     int index = entry.key;
                                     String skill = entry.value;
                                     return GestureDetector(
-                                      onTap: () => _editSkillDialog(context, index,skill),
+                                      onTap: () => _editSkillDialog(
+                                          context, index, skill),
                                       child: buildSkillCircle(skill),
                                     );
                                   }).toList(),
                                 ),
-
                               ],
-                            )
-
-                        ),
+                            )),
                       ],
                     ),
                     Container(
@@ -566,7 +574,8 @@ class _Template19State extends State<Template19> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.sports_handball, color: Colors.white, size: 12.sp),
+                              Icon(Icons.sports_handball,
+                                  color: Colors.white, size: 12.sp),
                               SizedBox(width: 4.w),
                               Text(
                                 'Hobbies',
@@ -587,13 +596,16 @@ class _Template19State extends State<Template19> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 4.h),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       GestureDetector(
-                                          onTap: () => _editHobbies(context, i,hobbies[i]),
+                                          onTap: () => _editHobbies(
+                                              context, i, hobbies[i]),
                                           child: buildHobbyItem(hobbies[i])),
                                       // Check if there's a second hobby in the current pair
-                                      if (i + 1 < hobbies.length) buildHobbyItem(hobbies[i + 1]),
+                                      if (i + 1 < hobbies.length)
+                                        buildHobbyItem(hobbies[i + 1]),
                                     ],
                                   ),
                                 ),
@@ -601,7 +613,6 @@ class _Template19State extends State<Template19> {
                           ),
                         ],
                       ),
-
                     )
                   ],
                 )
@@ -618,9 +629,9 @@ class _Template19State extends State<Template19> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -665,13 +676,13 @@ class _Template19State extends State<Template19> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile1);
+            TextEditingController(text: mobile1);
         final TextEditingController phone2Controller =
-        TextEditingController(text: mobile2);
+            TextEditingController(text: mobile2);
         final TextEditingController addressController =
-        TextEditingController(text: address);
+            TextEditingController(text: address);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -694,7 +705,6 @@ class _Template19State extends State<Template19> {
                 controller: addressController,
                 decoration: const InputDecoration(labelText: 'Address'),
               ),
-
             ],
           ),
           actions: [
@@ -727,8 +737,7 @@ class _Template19State extends State<Template19> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
-
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -768,11 +777,11 @@ class _Template19State extends State<Template19> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -822,14 +831,14 @@ class _Template19State extends State<Template19> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController fromtoController =
-        TextEditingController(text: item['fromto']);
+            TextEditingController(text: item['fromto']);
 
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -879,16 +888,17 @@ class _Template19State extends State<Template19> {
     );
   }
 
-  void _editPortfolio(BuildContext context,) {
+  void _editPortfolio(
+    BuildContext context,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-        TextEditingController(text: portfolio);
-
+            TextEditingController(text: portfolio);
 
         return AlertDialog(
-          title:  Text('Edit Portfolio'),
+          title: Text('Edit Portfolio'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -920,10 +930,10 @@ class _Template19State extends State<Template19> {
     );
   }
 
-  Future<void> _editSkillDialog(BuildContext context, int index,
-      String currentName) async {
+  Future<void> _editSkillDialog(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -951,7 +961,6 @@ class _Template19State extends State<Template19> {
 
                 setState(() {
                   skills[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -964,10 +973,10 @@ class _Template19State extends State<Template19> {
     );
   }
 
-  Future<void> _editHobbies(BuildContext context, int index,
-      String currentName) async {
+  Future<void> _editHobbies(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -995,7 +1004,6 @@ class _Template19State extends State<Template19> {
 
                 setState(() {
                   hobbies[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -1007,7 +1015,6 @@ class _Template19State extends State<Template19> {
       },
     );
   }
-
 }
 
 Widget buildSkillCircle(String skillName) {
@@ -1048,5 +1055,3 @@ Widget buildHobbyItem(String hobby) {
     ),
   );
 }
-
-
