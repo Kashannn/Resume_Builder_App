@@ -29,20 +29,23 @@ class _Template7State extends State<Template7> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 180.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(160.r),
-                            topRight: Radius.circular(160.r),
-                          ),
-                          border: Border.all(
-                            color: Colors.white,
-                          )),
-                      child: CircleAvatar(
-                        backgroundColor: Color(0xFFFFFFFF),
-                        radius: 70.h,
-                        backgroundImage: AssetImage(AppImages.profilePicture),
+                    Padding(
+                      padding: EdgeInsets.only(top: 32.h),
+                      child: Container(
+                        height: 140.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(160.r),
+                              topRight: Radius.circular(160.r),
+                            ),
+                            border: Border.all(
+                              color: Colors.white,
+                            )),
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xFFFFFFFF),
+                          radius: 70.h,
+                          backgroundImage: AssetImage(AppImages.profilePicture),
+                        ),
                       ),
                     ),
                     SizedBox(
