@@ -43,10 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(393, 855));
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     List<String> filteredTemplates = _getFilteredTemplates();
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
