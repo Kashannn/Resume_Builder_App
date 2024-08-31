@@ -70,6 +70,9 @@ class AppImages extends AssetImage {
   static const String Css10 = '$_iconPath/css310.svg';
   static const String Figma10 = '$_iconPath/Figma10.svg';
   static const String Javascript10 = '$_iconPath/Javascript10.svg';
+  static const String  template141 = '$_iconPath/template141.svg';
+  static const String  template142 = '$_iconPath/template142.svg';
+  static const String  pictemplate14 = '$_iconPath/pictemplate14.svg';
 
 
 }
