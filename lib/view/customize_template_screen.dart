@@ -34,6 +34,14 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    // Rebuilds the widget with a new state on navigation back
+    void _onTemplateSelected() {
+      setState(() {
+        currentIndex = widget.initialIndex;
+      });
+    }
+
     if (widget.imagePaths == null || widget.imagePaths!.isEmpty) {
       return SafeArea(
         child: Scaffold(
@@ -58,7 +66,10 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () {
+                      _onTemplateSelected();
+                      Get.back();
+                    },
                     icon: Icon(Icons.arrow_back),
                   ),
                   SizedBox(width: 10.w),
@@ -104,7 +115,7 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                        isDarkMode ? Colors.grey[800] : AppColors.lightGray,
+                            isDarkMode ? Colors.grey[800] : AppColors.lightGray,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(27.r),
                         ),
@@ -158,9 +169,14 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
               Center(
                 child: CustomGradientButton(
                   onPressed: () {
-                    Get.to(() => CustomizedTemplateScreen(
-                      imagePath: widget.imagePaths![currentIndex],
-                    ));
+                    // Pass the selected template's identifier to the next screen
+                    Get.to(
+                      () => CustomizedTemplateScreen(
+                        templateIdentifier: 'Template${currentIndex + 1}',
+                      ),
+                    )?.then((_) {
+                      _onTemplateSelected();
+                    });
                   },
                   text: 'Customize Template',
                   gradient: LinearGradient(

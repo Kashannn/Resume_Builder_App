@@ -20,7 +20,8 @@ class _Template16State extends State<Template16> {
   String socialMedia = '@john_designer';
   String email = 'contact@john_designer.com';
   String mobile = '+001 123 456 789';
-  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, .";
+  String about =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, .";
 
   List<String> skills = [
     "UI/UX Design",
@@ -38,13 +39,13 @@ class _Template16State extends State<Template16> {
       'title': 'JOB POSITION ',
       'details': 'Company Name  2010 - 2014',
       'description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
     {
       'title': 'JOB POSITION ',
       'details': 'Company Name  2010 - 2014',
       'description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
     },
   ];
 
@@ -79,8 +80,6 @@ class _Template16State extends State<Template16> {
       });
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,15 +119,14 @@ class _Template16State extends State<Template16> {
                             backgroundColor: Colors.transparent,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(
-                                AppImages.profilePicture)
-                            as ImageProvider,
+                                : AssetImage(AppImages.profilePicture)
+                                    as ImageProvider,
                             radius: 80.h,
                           ),
                         ),
                         SizedBox(
                           width: 166.w,
-                         // height: 68.h,
+                          // height: 68.h,
                           child: GestureDetector(
                             onTap: () => _editUserDetails(context),
                             child: Column(
@@ -150,12 +148,13 @@ class _Template16State extends State<Template16> {
                                       ),
                                     ),
                                     SizedBox(
-                                        width: 4.w
-                                    ), // Adjust spacing between first and last name
+                                        width: 4
+                                            .w), // Adjust spacing between first and last name
                                   ],
                                 ),
                                 SizedBox(
-                                    height: 4.h), // Space between name and title
+                                    height:
+                                        4.h), // Space between name and title
                                 Text(
                                   userRole,
                                   style: TextStyle(
@@ -176,11 +175,12 @@ class _Template16State extends State<Template16> {
                             width: 240.w,
                             //height: 140.h,
                             child: Padding(
-                              padding:
-                                  EdgeInsets.all(8.w), // Adjust padding as needed
+                              padding: EdgeInsets.all(
+                                  8.w), // Adjust padding as needed
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   // Email Row
                                   Row(
@@ -189,7 +189,7 @@ class _Template16State extends State<Template16> {
                                           size: 20.w, color: Colors.black),
                                       SizedBox(width: 8.w),
                                       Text(
-                                       email,
+                                        email,
                                         style: TextStyle(
                                           fontFamily:
                                               'Inter', // Ensure 'Inter' is set as the font family
@@ -339,36 +339,48 @@ class _Template16State extends State<Template16> {
                                 ),
                                 SizedBox(height: 8.h),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        for (int i = 0; i < skills.length; i += 2)
+                                        for (int i = 0;
+                                            i < skills.length;
+                                            i += 2)
                                           Padding(
-                                            padding: EdgeInsets.only(bottom: 8.h),
+                                            padding:
+                                                EdgeInsets.only(bottom: 8.h),
                                             child: GestureDetector(
-                                              onTap: ()=> _editskills(context, i, skills[i]),
-                                                child: _buildSkillItem(skills[i])),
+                                                onTap: () => _editskills(
+                                                    context, i, skills[i]),
+                                                child:
+                                                    _buildSkillItem(skills[i])),
                                           ),
                                       ],
                                     ),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        for (int i = 1; i < skills.length; i += 2)
+                                        for (int i = 1;
+                                            i < skills.length;
+                                            i += 2)
                                           Padding(
-                                            padding: EdgeInsets.only(bottom: 8.h),
+                                            padding:
+                                                EdgeInsets.only(bottom: 8.h),
                                             child: GestureDetector(
-                                                onTap: ()=> _editskills(context, i, skills[i]),
-                                                child: _buildSkillItem(skills[i])),
+                                                onTap: () => _editskills(
+                                                    context, i, skills[i]),
+                                                child:
+                                                    _buildSkillItem(skills[i])),
                                           ),
                                       ],
                                     ),
                                   ],
                                 )
-
                               ],
                             ),
                           ),
@@ -408,31 +420,31 @@ class _Template16State extends State<Template16> {
                                 SizedBox(height: 16.h),
                                 Expanded(
                                   child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        for (var experience in experiences)
-                                          GestureDetector(
-                                            onTap: () => _editExperienceItem(
-                                              context,
-                                              experience,
-                                            ),
-                                            child: Column(
-                                              children:[
-                                                _buildExperienceItem(
-                                                iconPath: '', // Use a default icon or set dynamically
-                                                companyName: experience['title']!,
-                                                  jobTitle: experience['details']!,
-                                                description: experience['description']!,
-                                                duration: '',
-                                              ),
-                                                SizedBox(height: 16.h),
-                                              ]
-                                            ),
+                                      child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      for (var experience in experiences)
+                                        GestureDetector(
+                                          onTap: () => _editExperienceItem(
+                                            context,
+                                            experience,
                                           ),
-                                      ],
-                                    )
-                                  ),
+                                          child: Column(children: [
+                                            _buildExperienceItem(
+                                              iconPath:
+                                                  '', // Use a default icon or set dynamically
+                                              companyName: experience['title']!,
+                                              jobTitle: experience['details']!,
+                                              description:
+                                                  experience['description']!,
+                                              duration: '',
+                                            ),
+                                            SizedBox(height: 16.h),
+                                          ]),
+                                        ),
+                                    ],
+                                  )),
                                 ),
                                 Text(
                                   "Education",
@@ -451,7 +463,8 @@ class _Template16State extends State<Template16> {
                                       Padding(
                                         padding: EdgeInsets.only(bottom: 16.h),
                                         child: GestureDetector(
-                                          onTap: () => _editEducationItem(context, edu),
+                                          onTap: () =>
+                                              _editEducationItem(context, edu),
                                           child: _buildEducationItem(
                                             duration: edu['year']!,
                                             degree: edu['degree']!,
@@ -461,7 +474,6 @@ class _Template16State extends State<Template16> {
                                       ),
                                   ],
                                 )
-
                               ],
                             ),
                           ),
@@ -617,9 +629,9 @@ class _Template16State extends State<Template16> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -664,12 +676,12 @@ class _Template16State extends State<Template16> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
 
         final TextEditingController socialController =
-        TextEditingController(text: socialMedia);
+            TextEditingController(text: socialMedia);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -719,7 +731,7 @@ class _Template16State extends State<Template16> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -754,10 +766,10 @@ class _Template16State extends State<Template16> {
     );
   }
 
-  Future<void> _editskills(BuildContext context, int index,
-      String currentName) async {
+  Future<void> _editskills(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -785,7 +797,6 @@ class _Template16State extends State<Template16> {
 
                 setState(() {
                   skills[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -803,11 +814,11 @@ class _Template16State extends State<Template16> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -857,11 +868,11 @@ class _Template16State extends State<Template16> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -905,5 +916,4 @@ class _Template16State extends State<Template16> {
       },
     );
   }
-
 }

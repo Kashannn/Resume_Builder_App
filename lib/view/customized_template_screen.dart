@@ -12,14 +12,35 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Templates/template1.dart';
+import '../Templates/template10.dart';
+import '../Templates/template11.dart';
+import '../Templates/template12.dart';
+import '../Templates/template13.dart';
+import '../Templates/template14.dart';
+import '../Templates/template15.dart';
+import '../Templates/template16.dart';
+import '../Templates/template17.dart';
+import '../Templates/template18.dart';
+import '../Templates/template19.dart';
+import '../Templates/template2.dart';
+import '../Templates/template20.dart';
 import '../Templates/template3.dart';
+import '../Templates/template4.dart';
+import '../Templates/template5.dart';
+import '../Templates/template6.dart';
+import '../Templates/template7.dart';
+import '../Templates/template8.dart';
+import '../Templates/template9.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 
 class CustomizedTemplateScreen extends StatefulWidget {
-  final String? imagePath;
-  const CustomizedTemplateScreen({super.key, this.imagePath});
+  final String templateIdentifier;
+  const CustomizedTemplateScreen({Key? key, required this.templateIdentifier})
+      : super(key: key);
 
   @override
   State<CustomizedTemplateScreen> createState() =>
@@ -28,6 +49,96 @@ class CustomizedTemplateScreen extends StatefulWidget {
 
 class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
   final GlobalKey _containerKey = GlobalKey();
+
+  Widget _loadSelectedTemplate() {
+    final Map<String, Widget Function()> templateMap = {
+      'Template1': () => Template1(),
+      'Template2': () => Template2(),
+      'Template3': () => Template3(),
+      'Template4': () => Template4(),
+      'Template5': () => Template5(),
+      'Template6': () => Template6(),
+      'Template7': () => Template7(),
+      'Template8': () => Template8(),
+      'Template9': () => Template9(),
+      'Template10': () => Template10(),
+      'Template11': () => Template11(),
+      'Template12': () => Template12(),
+      'Template13': () => Template13(),
+      'Template14': () => Template14(),
+      'Template15': () => Template15(),
+      'Template16': () => Template16(),
+      'Template17': () => Template17(),
+      'Template18': () => Template18(),
+      'Template19': () => Template19(),
+      'Template20': () => Template20(),
+    };
+
+    return templateMap[widget.templateIdentifier]?.call() ??
+        Container(
+          child: Center(
+            child: Text('Template not found'),
+          ),
+        );
+  }
+
+  Future<void> _capturePng() async {
+    try {
+      RenderRepaintBoundary boundary = _containerKey.currentContext!
+          .findRenderObject() as RenderRepaintBoundary;
+      ui.Image image = await boundary.toImage(pixelRatio: 5.0);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
+      print('Image captured successfully');
+
+      // Generate PDF
+      final pdf = pw.Document();
+      final pdfImage = pw.MemoryImage(pngBytes);
+
+      pdf.addPage(
+        pw.Page(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Image(
+              pdfImage,
+              fit: pw.BoxFit.fill,
+            );
+          },
+        ),
+      );
+
+      // Save PDF
+      final outputFile = await _getOutputFile();
+      final file = File(outputFile);
+      await file.writeAsBytes(await pdf.save());
+      print('PDF saved successfully at $outputFile');
+
+      // Open PDF
+      OpenFile.open(outputFile);
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<String> _getOutputFile() async {
+    try {
+      final directory = await getTemporaryDirectory();
+      final filePath = '${directory.path}/custom_template.pdf';
+      print('Output file path: $filePath');
+      return filePath;
+    } catch (e) {
+      print('Error: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
   String userName = 'Peter';
   String userRole = 'Product Designer';
   String socialMedia = '@peterdesigner';
@@ -78,6 +189,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
       'institution': 'University / College / Institute',
     },
   ];
+
   Future<void> _saveUserData() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
@@ -157,65 +269,10 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
     print('User data loaded successfully');
   }
 
-  Future<void> _capturePng() async {
-    try {
-      RenderRepaintBoundary boundary = _containerKey.currentContext!
-          .findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 5.0);
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData!.buffer.asUint8List();
-      print('Image captured successfully');
-
-      // Generate PDF
-      final pdf = pw.Document();
-      final pdfImage = pw.MemoryImage(pngBytes);
-
-      pdf.addPage(
-        pw.Page(
-          pageFormat: PdfPageFormat.a4,
-          build: (pw.Context context) {
-            return pw.Image(
-              pdfImage,
-              fit: pw.BoxFit.fill,
-            );
-          },
-        ),
-      );
-
-      // Save PDF
-      final outputFile = await _getOutputFile();
-      final file = File(outputFile);
-      await file.writeAsBytes(await pdf.save());
-      print('PDF saved successfully at $outputFile');
-
-      // Open PDF
-      OpenFile.open(outputFile);
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
-
-  Future<String> _getOutputFile() async {
-    try {
-      final directory = await getTemporaryDirectory();
-      final filePath = '${directory.path}/custom_template.pdf';
-      print('Output file path: $filePath');
-      return filePath;
-    } catch (e) {
-      print('Error: $e');
-      rethrow;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        designSize: const Size(375, 812), minTextAdapt: true);
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
@@ -301,7 +358,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 key: _containerKey,
                 child: SizedBox(
                   height: 520.h,
-                  child: Template3(),
+                  child: _loadSelectedTemplate(),
                 ),
               ),
               SizedBox(height: 20.h),
@@ -317,7 +374,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                   end: Alignment.bottomCenter,
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
               CustomGradientButton(
                 onPressed: () {
                   // Button action
