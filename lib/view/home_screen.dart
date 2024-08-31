@@ -1,11 +1,8 @@
-import 'package:cvapp/utils/components/custom_bottom_navigation_bar.dart';
-import 'package:cvapp/utils/constant/app_colors.dart';
-import 'package:cvapp/view/resume_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../utils/components/custom_button.dart';
+import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_images_constant.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 import 'customize_template_screen.dart';
@@ -38,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppImages.template17,
     AppImages.template18,
     AppImages.template19,
+    AppImages.template20,
   ];
 
   String selectedTemplate = 'All';
@@ -45,6 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    List<String> filteredTemplates = _getFilteredTemplates();
 
     return SafeArea(
       child: Scaffold(
@@ -60,40 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'CV Maker',
                     style: isDarkMode ? mStyleWhite20600 : mStyleBlack20600,
-                  ),
-                  GestureDetector(
-                    onTap: () => Get.to(() => ResumeForm()),
-                    child: Container(
-                      height: 40.h,
-                      width: 120.w,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF5BBBFF),
-                            Color(0xFF005592),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        borderRadius: BorderRadius.circular(30.r),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.note_alt_outlined,
-                            color: Colors.white,
-                            size: 15.sp,
-                          ),
-                          SizedBox(width: 5.w),
-                          Text(
-                            'Save Your Info',
-                            style: mStyleWhite12600,
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ],
               ),
@@ -190,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.h),
               Expanded(
                 child: GridView.builder(
-                  itemCount: imagePaths.length,
+                  itemCount: filteredTemplates.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.w,
@@ -201,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return GestureDetector(
                       onTap: () {
                         Get.to(() => CustomizeTemplateScreen(
-                              imagePaths: imagePaths,
+                              imagePaths: filteredTemplates,
                               initialIndex: index,
                             ));
                       },
@@ -220,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),
                           child: Image.asset(
-                            imagePaths[index],
+                            filteredTemplates[index],
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -234,5 +200,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  List<String> _getFilteredTemplates() {
+    if (selectedTemplate == 'All') {
+      return imagePaths;
+    } else if (selectedTemplate == 'Professional') {
+      return imagePaths.sublist(0, 10);
+    } else if (selectedTemplate == 'Modern') {
+      return imagePaths.sublist(10, 20);
+    } else {
+      return imagePaths;
+    }
   }
 }
