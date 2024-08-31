@@ -1,6 +1,7 @@
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Template9 extends StatefulWidget {
@@ -286,13 +287,19 @@ class _Template9State extends State<Template9> {
                           ),
                         ),
                         SizedBox(height: 20.h),
-                        Text(
-                          'Tools',
-                          style: GoogleFonts.poppins(
-                            fontSize: 22.sp,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(AppImages.tool),
+                            SizedBox(width: 10.w),
+                            Text(
+                              'Tools',
+                              style: GoogleFonts.poppins(
+                                fontSize: 22.sp,
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                         Divider(
                           color: Colors.grey,
