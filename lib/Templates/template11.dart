@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_images_constant.dart';
 
 class Template11 extends StatefulWidget {
@@ -10,6 +13,70 @@ class Template11 extends StatefulWidget {
 }
 
 class _Template11State extends State<Template11> {
+
+  String name = 'Jhon Doe';
+  String role = 'UX/UI Designer';
+  String email = 'hello@mysite.com';
+  String phone = '+123-456-7890';
+  String website = 'www.mysite.com';
+
+  String about = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+
+
+  final List<String> languages = [
+    'Urdu',
+    'English',
+  ];
+
+  List<Map<String, dynamic>> skillsData = [
+    {'name': 'Figma', 'proficiency': 80},
+    {'name': 'XD', 'proficiency': 70},
+    {'name': 'PS', 'proficiency': 60},
+    {'name': 'AL', 'proficiency': 60},
+  ];
+
+  final List<Map<String, String>> experiences = [
+    {
+      'title': 'UI Designer',
+      'fromto': 'Aug 2020 - Present',
+      'description': 'Product team to prototype, design and deliver the UI and UX experience with a lean design process: research, design, test, and iterate.',
+    },
+    {
+      'title': 'UX Designer',
+      'fromto': 'Aug 2015 - Aug 2020',
+      'description': 'Lead the UI design with the accountability of the design system, collaborated with product and development teams on core projects to improve product interfaces and experiences.',
+    },
+  ];
+
+
+  List<Map<String, String>> education = [
+    {
+      'year': '2017 - 2020',
+      'degree': 'Masters Degree',
+      'institution': ' Institute',
+    },
+    {
+      'year': '2012-2015',
+      'degree': 'Bachelor Degree',
+      'institution': 'Institute',
+    },
+
+  ];
+
+  File? _profileImage;
+
+  // Method to pick an image
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(450, 850));
@@ -19,8 +86,8 @@ class _Template11State extends State<Template11> {
           children: [
             // Left side
             Container(
-              width: 170.w,
-              height: 1000.h,
+              width: 182.w,
+             // height: 1000.h,
               color: Colors.black,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +95,7 @@ class _Template11State extends State<Template11> {
                 children: [
                   SizedBox(
                     width: 150.w,
-                    height: 200.h,
+                    //height: 200.h,
                     child: Padding(
                       padding: EdgeInsets.only(top: 24.h, left: 24.h),
                       child: Align(
@@ -36,34 +103,45 @@ class _Template11State extends State<Template11> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppImages.profilePicture),
-                              radius: 60.w,
+                            GestureDetector(
+                              onTap: _pickImage,
+                              child: CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                backgroundImage: _profileImage != null
+                                    ? FileImage(_profileImage!)
+                                    : AssetImage(
+                                    AppImages.profilePicture)
+                                as ImageProvider,
+                                radius: 60.h,
+                              ),
                             ),
                             SizedBox(height: 12.h, width: 12.w),
-                            RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: "Jhon Doe\n",
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 24.sp,
-                                      color: Colors.cyanAccent,
+                            GestureDetector(
+                              onTap: () => _editUserDetails(context),
+                              child: RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "$name\n",
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 24.sp,
+                                        color: Colors.cyanAccent,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: "UI/UX Designer",
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12.sp,
-                                      color: Colors.white70,
+                                    TextSpan(
+                                      text: "$role",
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12.sp,
+                                        color: Colors.white70,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -71,17 +149,19 @@ class _Template11State extends State<Template11> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 0.h),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          _buildContactSection(),
-                          SizedBox(height: 24.h),
+                          GestureDetector(
+                            onTap: ()=>_editContactDetails(context),
+                              child: _buildContactSection()),
+                          SizedBox(height: 0.h),
                           _buildSkillsSection(),
-                          SizedBox(height: 24.h),
+                          SizedBox(height: 0.h),
                           _buildLanguageSection(),
                         ],
                       ),
@@ -141,18 +221,17 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 16.h),
           _buildVerticalSeparator(),
-          SizedBox(height: 8.h),
-          _buildContactItem(Icons.email, "contact@johnmoore.com"),
-          SizedBox(height: 8.h),
-          _buildContactItem(Icons.phone, "+1 (450) 780 9317"),
-          SizedBox(height: 8.h),
-          _buildContactItem(Icons.language, "www.johncarter.com"),
+          SizedBox(height: 5.h),
+          _buildContactItem(Icons.email, email),
+          SizedBox(height: 5.h),
+          _buildContactItem(Icons.phone, phone),
+          SizedBox(height: 5.h),
+          _buildContactItem(Icons.language, website),
         ],
       ),
     );
@@ -170,26 +249,32 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 16.h),
+
           _buildVerticalSeparator(),
-          SizedBox(height: 16.h),
+          SizedBox(height: 5.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildSkillCircle("Figma", 80),
-              _buildSkillCircle("XD", 95),
+              GestureDetector(
+                  onTap: () => _editSkillDialog(context, 0,
+                      skillsData[0]['name'], skillsData[0]['proficiency']),
+                  child: _buildSkillCircle(skillsData[0]['name'], skillsData[0]['proficiency'])),
+              GestureDetector(
+                  onTap: () => _editSkillDialog(context, 1,
+                      skillsData[1]['name'], skillsData[1]['proficiency']),
+                  child: _buildSkillCircle(skillsData[1]['name'], skillsData[1]['proficiency'])),
             ],
           ),
           SizedBox(height: 8.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildSkillCircle("PS", 80),
-              _buildSkillCircle("AI", 95),
+              _buildSkillCircle(skillsData[2]['name'], skillsData[2]['proficiency']),
+              _buildSkillCircle(skillsData[3]['name'], skillsData[3]['proficiency']),
             ],
           ),
         ],
@@ -209,16 +294,20 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 16.h),
           _buildVerticalSeparator(),
           SizedBox(height: 16.h),
-          _buildExpertiseItem("URDU"),
-          SizedBox(height: 8.h),
-          _buildExpertiseItem("English"),
+          Column(
+            children: languages.map((item) {
+              int index = languages.indexOf(item);
+              return GestureDetector(
+                  onTap: ()=>_editLanguagesDialog(context,index,item),
+                  child: _buildExpertiseItem(item));
+            }).toList(),
+          )
         ],
       ),
     );
@@ -227,7 +316,7 @@ class _Template11State extends State<Template11> {
   Widget _buildProfileSection() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -236,21 +325,24 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.cyanAccent,
             ),
           ),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
-          Text(
-            "Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque sit senectus maecenas donec amet viverra. Aliquam aenean eget gravida vitae nunc vitae sit.\n Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque sit senectus maecenas donec amet viverra. Aliquam aenean eget gravida vitae nunc vitae sit.\n Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque sit senectus maecenas donec amet viverra. Aliquam aenean eget gravida vitae nunc vitae sit.",
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w400,
-              fontSize: 12.sp,
-              color: Colors.black,
+          GestureDetector(
+            onTap: () => _editAbout(context),
+            child: Text(
+              about,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
+                fontSize: 10.sp,
+                color: Colors.black,
+              ),
+
             ),
-            textAlign: TextAlign.justify,
           ),
         ],
       ),
@@ -260,7 +352,7 @@ class _Template11State extends State<Template11> {
   Widget _buildExperienceSection() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -269,41 +361,33 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.cyanAccent,
             ),
           ),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
-          _buildExperienceItem(
-            jobTitle: " Designer",
-            duration: "2019 Present",
-            description:
-            "Eleifend volutpat sit eros, lobortis id lobortis placerat volutpat penatibus purus vestibulum id proin in eros a. Justo.",
-          ),
-          SizedBox(height: 16.h),
-          _buildExperienceItem(
-            jobTitle: " Product ",
-            duration: "2018 - 2019",
-            description:
-            "Ultrices proin elit, tellus euismod. Leo id volutpat cursus integer faucibus ultrices. Convallis ipsum eu adipiscing lorem.",
-          ),
-          SizedBox(height: 16.h),
-          _buildExperienceItem(
-            jobTitle: "Programming ",
-            duration: "2017 – 2018",
-            description:
-            "Etiam commodo vulputate aliquam urna ac lacus. Sagittis arcu pulvinar ullamcorper ut. Blandit vel felis etiam.",
-          ),
+          ...experiences.map((experience) => Padding(
+            padding: EdgeInsets.only(bottom: 8.h),
+            child: GestureDetector(
+              onTap: () => _editExperienceItem(context, experience),
+              child: _buildExperienceItem(
+                jobTitle: experience['title'] ?? '',
+                duration: experience['fromto'] ?? '',
+                description: experience['description'] ?? '',
+              ),
+            ),
+          )).toList(),
         ],
       ),
     );
   }
 
+
   Widget buildExperienceSection2() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -312,45 +396,46 @@ class _Template11State extends State<Template11> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               color: Colors.cyanAccent,
             ),
           ),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
-          _buildExperienceItem(
-            jobTitle: " Designer",
-            duration: "2019 Present",
-            description:
-            "Eleifend volutpat sit eros, lobortis id lobortis placerat volutpat penatibus purus vestibulum id proin in eros a. Justo.",
-          ),
-          SizedBox(height: 16.h),
-          _buildExperienceItem(
-            jobTitle: "Programming ",
-            duration: "2017 – 2018",
-            description:
-            "Etiam commodo vulputate aliquam urna ac lacus. Sagittis arcu pulvinar ullamcorper ut. Blandit vel felis etiam.",
-          ),
+          ...education.map((experience) => Padding(
+            padding: EdgeInsets.only(bottom: 16.h),
+            child: GestureDetector(
+              onTap: () => _editEducationItem(context, experience),
+              child: _buildExperienceItem(
+                jobTitle: experience['degree'] ?? '',
+                duration: experience['year'] ?? '',
+                description: experience['institution'] ?? '',
+              ),
+            ),
+          )).toList(),
         ],
       ),
     );
   }
 
   Widget _buildContactItem(IconData icon, String text) {
-    return Row(
-      children: [
-        Icon(icon, color: Colors.cyanAccent, size: 16.w),
-        SizedBox(width: 8.w),
-        Text(
-          text,
-          style: TextStyle(
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.w400,
-            fontSize: 12.sp,
-            color: Colors.white,
+    return Container(
+      width: 180.w,
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.cyanAccent, size: 16.w),
+          SizedBox(width: 8.w),
+          Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+              fontSize: 12.sp,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -424,7 +509,7 @@ class _Template11State extends State<Template11> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 color: Colors.cyanAccent,
               ),
             ),
@@ -434,7 +519,7 @@ class _Template11State extends State<Template11> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 14.sp,
+                fontSize: 10.sp,
                 color: Colors.black,
               ),
             ),
@@ -446,11 +531,362 @@ class _Template11State extends State<Template11> {
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
-            fontSize: 12.sp,
+            fontSize: 10.sp,
             color: Colors.black,
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _editLanguagesDialog(BuildContext context, int index,
+      String currentName) async {
+    TextEditingController nameController =
+    TextEditingController(text: currentName);
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Language'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Name'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+
+                setState(() {
+                  languages[index] = newName;
+
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editSkillDialog(BuildContext context, int index,
+      String currentName, int currentValue) async {
+    TextEditingController nameController =
+    TextEditingController(text: currentName);
+    TextEditingController valueController =
+    TextEditingController(text: currentValue.toString());
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skill'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Skill Name'),
+              ),
+              TextField(
+                controller: valueController,
+                keyboardType: TextInputType.number,
+                decoration:
+                InputDecoration(labelText: 'Skill Value (00 - 100)'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+                int newValue = int.tryParse(valueController.text) ?? currentValue;
+
+                setState(() {
+                  skillsData[index] = {
+                    'name': newName,
+                    'proficiency': newValue,
+                  };
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController titleController =
+        TextEditingController(text: item['title']);
+        final TextEditingController fromtoController =
+        TextEditingController(text: item['fromto']);
+
+        final TextEditingController descriptionController =
+        TextEditingController(text: item['description']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Company'),
+              ),
+              TextField(
+                controller: fromtoController,
+                decoration: const InputDecoration(labelText: 'From - To'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['title'] = titleController.text;
+                  item['fromto'] = fromtoController.text;
+                  item['description'] = descriptionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editAbout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController aboutController =
+        TextEditingController(text: about);
+
+        return AlertDialog(
+          title: const Text('Edit About'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: aboutController,
+                decoration: const InputDecoration(labelText: 'About'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  about = aboutController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['year']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['year'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: name);
+        final TextEditingController roleController =
+        TextEditingController(text: role);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  name = nameController.text;
+                  role = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: phone);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+        final TextEditingController websiteController =
+        TextEditingController(text: website);
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: websiteController,
+                decoration: const InputDecoration(labelText: 'Website'),
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  phone = phoneController.text;
+                  email = emailController.text;
+                  website = websiteController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
