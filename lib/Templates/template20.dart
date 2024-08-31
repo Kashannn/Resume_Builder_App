@@ -1030,33 +1030,7 @@ class _Template20State extends State<Template20> {
     );
   }
 
-  Widget _buildSkillBar(String skill, double level) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            skill,
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontSize: 14.sp,
-              color: Colors.black,
-            ),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: LinearProgressIndicator(
-              value: level,
-              backgroundColor: Colors.grey[300],
-              color: Colors.blue,
-              minHeight: 4.h,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+
 
   void _editUserDetails(BuildContext context) {
     showDialog(
@@ -1105,6 +1079,33 @@ class _Template20State extends State<Template20> {
     );
   }
 
+  Widget _buildSkillBar(String skill, double level) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            skill,
+            style: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 14.sp,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(width: 8.w),
+          Expanded(
+            child: LinearProgressIndicator(
+              value: level,
+              backgroundColor: Colors.grey[300],
+              color: Colors.blue,
+              minHeight: 4.h,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildContactItem(IconData icon, String title, String detail) {
     return Padding(
