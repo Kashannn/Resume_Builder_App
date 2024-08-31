@@ -214,7 +214,7 @@ class _Template10State extends State<Template10> {
                     ),
                     Container(
                       width: 297.w,
-                      height: 222.h,
+                      height: 244.h,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -226,7 +226,7 @@ class _Template10State extends State<Template10> {
                           // Experience Header
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 8.w, vertical: 8.h),
+                                horizontal: 8.w, vertical: 25.h),
                             child: Row(
                               children: [
                                 Container(
@@ -278,7 +278,7 @@ class _Template10State extends State<Template10> {
                     ),
                     Container(
                       width: 297.w,
-                      height: 222.h,
+                      height: 200.h,
                       color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,7 +286,7 @@ class _Template10State extends State<Template10> {
                           // Education Header
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 8.w, vertical: 8.h),
+                                horizontal: 8.w, vertical: 20.h),
                             child: Row(
                               children: [
                                 Container(
@@ -314,7 +314,6 @@ class _Template10State extends State<Template10> {
                               ],
                             ),
                           ),
-                          // Education Item 1
                           _buildEducationItem(
                             degree:
                                 "Bachelor of Engineering in Information Technology",
@@ -322,44 +321,12 @@ class _Template10State extends State<Template10> {
                             duration: "2011-2015, New York",
                           ),
                           SizedBox(height: 12.h),
-                          // Education Item 2
                           _buildEducationItem(
                             degree: "NJIT Higher",
                             institution: "AB Experiment Campus",
                             duration: "2009-2011, New York",
                           ),
-                          SizedBox(height: 20.h),
-                          // Skills Header
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8.w, vertical: 8.h),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 4.h, horizontal: 8.w),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[800],
-                                    borderRadius: BorderRadius.circular(4.r),
-                                  ),
-                                  child: Text(
-                                    "MY SKILLS",
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 12.sp,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Spacer(),
-                                Container(
-                                  width: 50.w,
-                                  height: 1.h,
-                                  color: Colors.grey[400],
-                                ),
-                              ],
-                            ),
-                          ),
+
                           // Skills List (you can replace this with actual skill items)
                         ],
                       ),
