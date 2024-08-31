@@ -63,6 +63,13 @@ class AppImages extends AssetImage {
   static const String twitch16 = '$_iconPath/Twitch16.svg';
   static const String tool = '$_iconPath/tool.svg';
   static const String skill = '$_iconPath/skill.svg';
+  static const String Adobeillustrator10 = '$_iconPath/Adobeillustrator10.svg';
+  static const String Adobeindesign10 = '$_iconPath/Adobeindesign10.svg';
+  static const String Adobephotoshop10 = '$_iconPath/AdobePhotoshop10.svg';
+  static const String Adobexd10 = '$_iconPath/AdobeXd10.svg';
+  static const String Css10 = '$_iconPath/css310.svg';
+  static const String Figma10 = '$_iconPath/Figma10.svg';
+  static const String Javascript10 = '$_iconPath/Javascript10.svg';
 
 
 }
