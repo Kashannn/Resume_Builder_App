@@ -4,10 +4,9 @@ import '../../utils/components/custom_bottom_navigation_bar.dart';
 import '../Allcontrollers/bottom_navigation_bar_controller.dart';
 
 class AdminMainScreen extends StatelessWidget {
-  final BottomNavigationController bottomNavController = Get.put(BottomNavigationController());
-
+  final BottomNavigationController bottomNavController =
+      Get.put(BottomNavigationController());
   AdminMainScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

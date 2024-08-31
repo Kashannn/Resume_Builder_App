@@ -437,13 +437,12 @@ class _Template1State extends State<Template1> {
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
             fontSize: 12.sp,
-
-            color: Color(0xFF00CFFF), // Light blue color
+            color: Color(0xFF00CFFF),
           ),
           textAlign: TextAlign.justify,
         ),
         Divider(
-          color: Colors.grey, // Adjust the color to match your design
+          color: Colors.grey,
           thickness: 1,
         ),
       ],

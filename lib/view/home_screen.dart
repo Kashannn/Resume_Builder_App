@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../utils/constant/app_colors.dart';
@@ -72,9 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
                   ),
                   PopupMenuButton<String>(
-                    icon: Icon(
-                      Icons.more_vert,
-                      color: isDarkMode ? Colors.white : AppColors.blackColor,
+                    icon: Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        AppImages.homemenubar,
+                        color: isDarkMode ? Colors.white : AppColors.blackColor,
+                      ),
                     ),
                     onSelected: (String value) {
                       setState(() {
@@ -150,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
               SizedBox(height: 20.h),
