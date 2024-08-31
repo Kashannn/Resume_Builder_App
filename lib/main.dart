@@ -10,6 +10,7 @@ import 'Templates/template10.dart';
 import 'Templates/template15.dart';
 import 'Templates/template17.dart';
 import 'Templates/template18.dart';
+import 'Templates/template2.dart';
 import 'Templates/template20.dart';
 import 'Templates/template5.dart';
 import 'Templates/template7.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child: Template5(),
+      child: Template2(),
     );
   }
 }
