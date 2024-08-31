@@ -1,5 +1,6 @@
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,14 +13,76 @@ class Template5 extends StatefulWidget {
 }
 
 class _Template5State extends State<Template5> {
+
+  String userName = 'John Carter';
+  String userRole = 'Attorney';
+  String email = 'contact@johncarter.com';
+  String mobile = '+001 123 456 789';
+  String socialMedia = '@johncarter';
+
+  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+
+  List<Map<String, String>> workExperience = [
+    {
+      'company': 'FACEBOOK',
+      'duration': '2020 - 2021',
+      'title': 'Lead Product Designer',
+      'description': 'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
+    },
+    {
+      'company': 'GOOGLE',
+      'duration': '2019 - 2020',
+      'title': 'Lead Product Designer',
+      'description': 'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
+    },
+    {
+      'company': 'TWITTER',
+      'duration': '2018 - 2019',
+      'title': 'Lead Product Designer',
+      'description': 'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
+    },
+  ];
+
+
+  //list of skill
+  List<String> skills = [
+    'Leadership',
+    'Communication',
+    'Problem Solving',
+    'Creativity',
+    'Teamwork',
+  ];
+
+  List<String> Values = [
+    'Excellence',
+    'Trust',
+    'Integrity',
+    'Accountability',
+
+  ];
+
+  List<Map<String, String>> education = [
+    {
+      'degree': 'Master of Media and Journalism',
+      'institution': 'Wardiere University',
+      'years': '2013-2016'
+    },
+    {
+      'degree': 'Bachelor of Arts in Communication',
+      'institution': 'Wardiere University',
+      'years': '2009-2012'
+    },
+  ];
+
+
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 842));
+    ScreenUtil.init(context, designSize: const Size(650, 1330));
     return SafeArea(
       child: Scaffold(
         body: Container(
           width: 595.w,
-          height: 842.h,
+          //height: 842.h,
           color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,10 +104,10 @@ class _Template5State extends State<Template5> {
                         Padding(
                           padding: EdgeInsets.only(top: 16.h),
                           child: CircleAvatar(
-                            radius: 85.r,
+                            radius: 70.r,
                             backgroundColor: Color(0xFF00FF6A),
                             child: CircleAvatar(
-                              radius: 80.r,
+                              radius: 65.r,
                               backgroundImage:
                                   AssetImage(AppImages.profilePicture),
                             ),
@@ -54,39 +117,40 @@ class _Template5State extends State<Template5> {
                         // Contact Section
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildSectionHeader('CONTACT'),
-                              SizedBox(height: 8.h),
-                              _buildContactItem(
-                                icon: Icons.email_outlined,
-                                text: 'contact@johncarter.com',
-                              ),
-                              SizedBox(height: 8.h),
-                              _buildContactItem(
-                                icon: Icons.phone_outlined,
-                                text: '(487) 806 - 7204',
-                              ),
-                            ],
+                          child: GestureDetector(
+                            onTap: () => _editContactDetails(context),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildSectionHeader('CONTACT'),
+                                SizedBox(height: 8.h),
+                                _buildContactItem(
+                                  icon: Icons.email_outlined,
+                                  text: 'contact@johncarter.com',
+                                ),
+                                SizedBox(height: 8.h),
+                                _buildContactItem(
+                                  icon: Icons.phone_outlined,
+                                  text: '(487) 806 - 7204',
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(height: 16.h),
                         // Skills Section
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildSectionHeader('SKILLS'),
-                              SizedBox(height: 8.h),
-                              _buildSkillItem('Corporate & Compliance'),
-                              _buildSkillItem('Labor & Employment'),
-                              _buildSkillItem('Intellectual Property'),
-                              _buildSkillItem('Mergers & Acquisitions'),
-                              _buildSkillItem('Business Taxation'),
-                              _buildSkillItem('Dispute Resolution'),
-                            ],
+                          child: GestureDetector(
+                            onTap: ()=> _showSkillsEditDialog(),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildSectionHeader('SKILLS'),
+                                SizedBox(height: 8.h),
+                                ...skills.map((skill) => _buildSkillItem(skill)).toList(),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(height: 16.h),
@@ -98,49 +162,51 @@ class _Template5State extends State<Template5> {
                             children: [
                               _buildSectionHeader('VALUES'),
                               SizedBox(height: 8.h),
-                              _buildSkillItem('Excellence'),
-                              _buildSkillItem('Trust'),
-                              _buildSkillItem('Integrity'),
-                              _buildSkillItem('Accountability'),
+                              ...Values.map((skill) => GestureDetector(
+                                  onTap: ()=> _showValuesEditDialog(),
+                                  child: _buildSkillItem(skill))).toList(),
                             ],
                           ),
                         ),
                         SizedBox(height: 16.h),
                         // Social Media Section
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '@johncarter',
-                                style: GoogleFonts.mulish(
-                                  fontSize: 14.sp,
-                                  color: Colors.white,
+                        GestureDetector(
+                          onTap: () => _editSocialMedia(context),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  socialMedia,
+                                  style: GoogleFonts.mulish(
+                                    fontSize: 14.sp,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 8.h),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  _buildSocialIcon(Icons.facebook),
-                                  _buildSocialIcon(Icons.youtube_searched_for),
-                                  SvgPicture.asset(
-                                    AppImages.whatsapp12,
-                                    color: Colors.white,
-                                  ),
-                                  SvgPicture.asset(
-                                    AppImages.linkedin,
-                                    color: Colors.white,
-                                  ),
-                                  SvgPicture.asset(
-                                    AppImages.instagram,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              ),
-                            ],
+                                SizedBox(height: 8.h),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    _buildSocialIcon(Icons.facebook),
+                                    _buildSocialIcon(Icons.youtube_searched_for),
+                                    SvgPicture.asset(
+                                      AppImages.whatsapp12,
+                                      color: Colors.white,
+                                    ),
+                                    SvgPicture.asset(
+                                      AppImages.linkedin,
+                                      color: Colors.white,
+                                    ),
+                                    SvgPicture.asset(
+                                      AppImages.instagram,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -148,57 +214,60 @@ class _Template5State extends State<Template5> {
                   ),
                   Container(
                     width: 345.w,
-                    height: 798.h,
+                    height: 800.h,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Container(
-                          width: 345.w,
-                          height: 80.h,
-                          color: Color(0xFF1B2530),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 8.h),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                // Title
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: 25.w,
-                                      height: 2.h,
-                                      color: Colors.greenAccent,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      'ATTORNEY',
-                                      style: GoogleFonts.mulish(
-                                        fontSize: 12.sp,
-                                        color: Colors.white.withOpacity(0.7),
-                                        letterSpacing: 1.5,
+                        GestureDetector(
+                          onTap: ()=> _editUserDetails(context),
+                          child: Container(
+                            width: 345.w,
+                            height: 80.h,
+                            color: Color(0xFF1B2530),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 8.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  // Title
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 25.w,
+                                        height: 2.h,
+                                        color: Colors.greenAccent,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 8.h),
-                                // Name
-                                Text(
-                                  'John Carter',
-                                  style: GoogleFonts.mulish(
-                                    fontSize: 24.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                      SizedBox(width: 8.w),
+                                      Text(
+                                        userRole,
+                                        style: GoogleFonts.mulish(
+                                          fontSize: 12.sp,
+                                          color: Colors.white.withOpacity(0.7),
+                                          letterSpacing: 1.5,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                  SizedBox(height: 8.h),
+                                  // Name
+                                  Text(
+                                    userName,
+                                    style: GoogleFonts.mulish(
+                                      fontSize: 24.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         Container(
                           width: 345.w,
-                          height: 100.h,
+                          //height: 100.h,
                           color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -216,7 +285,7 @@ class _Template5State extends State<Template5> {
                                     ),
                                     SizedBox(width: 8.w),
                                     Text(
-                                      'ABOUT JOHN CARTER',
+                                      'ABOUT $userName',
                                       style: GoogleFonts.mulish(
                                         fontSize: 16.sp,
                                         color: Color(
@@ -228,13 +297,16 @@ class _Template5State extends State<Template5> {
                                 ),
                                 SizedBox(height: 8.h),
                                 // Description
-                                Text(
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo, euismod felis, eros mi purus in est. Vitae sodales tellus vitae, tincidunt in sed orci. Blandit proin posuere dui vitae.',
-                                  style: GoogleFonts.mulish(
-                                    fontSize: 12.sp,
-                                    color:
-                                        Color(0xFF666666), // Lighter grey color
-                                    height: 1.5,
+                                GestureDetector(
+                                  onTap: ()=>_editAboutDetail(context),
+                                  child: Text(
+                                    about,
+                                    style: GoogleFonts.mulish(
+                                      fontSize: 12.sp,
+                                      color:
+                                          Color(0xFF666666), // Lighter grey color
+                                      height: 1.5,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -270,36 +342,19 @@ class _Template5State extends State<Template5> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16.h),
+                                SizedBox(height: 8.h),
+                                ...workExperience.map((experience) =>
 
-                                // Facebook Experience
-                                _buildExperienceItem(
-                                  company: 'FACEBOOK',
-                                  position: 'LEGAL COURT',
-                                  duration: '2019 - PRESENT',
-                                  description:
-                                      'Ultrices proin elit, tellus euismod. Leo id volutpat cursus integer faucibus ultrices. Convallis ipsum eu adipiscing lorem.',
-                                ),
-                                SizedBox(height: 16.h),
+                                    GestureDetector(
+                                      onTap: ()=>_editExperienceItem(context,experience),
+                                      child: _buildExperienceItem(
+                                                                        company: experience['company']!,
+                                                                        position: experience['title']!,
+                                                                        duration: experience['duration']!,
+                                                                        description: experience['description']!,
+                                                                      ),
+                                    )).toList(),
 
-                                // Google Experience
-                                _buildExperienceItem(
-                                  company: 'GOOGLE',
-                                  position: 'TRADEMARK ATTORNEY',
-                                  duration: '2018 - 2019',
-                                  description:
-                                      'Lorem ipsum dolor sit amet consectetur adipiscing elit justo euismod felis eros mi purus in est vitae sodales tellus vitae tincidunt in sed orci.',
-                                ),
-                                SizedBox(height: 16.h),
-
-                                // Twitter Experience
-                                _buildExperienceItem(
-                                  company: 'TWITTER',
-                                  position: 'ASSOCIATE ATTORNEY',
-                                  duration: '2017 - 2018',
-                                  description:
-                                      'Lorem ipsum dolor sit amet consectetur adipiscing elit vitae cursus enim eget elit tincidunt platea egestas tempus.',
-                                ),
                               ],
                             ),
                           ),
@@ -333,30 +388,21 @@ class _Template5State extends State<Template5> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16.h),
+                                SizedBox(height: 8.h),
 
                                 // Education Item 1
-                                _buildEducationItem(
-                                  degree: 'B.S OF ECONOMICS',
-                                  institution: 'Harvard',
-                                  duration: '2017 - 2020',
-                                ),
-                                SizedBox(height: 16.h),
+                                ...education.map((edu) => GestureDetector(
+                                  onTap: () => _editEducationItem(context, edu),
+                                  child: _buildEducationItem(
+                                    degree: edu['degree']!,
+                                    institution: edu['institution']!,
+                                    duration: edu['years']!,
+                                  ),
+                                )).toList(),
+                                SizedBox(height: 8.h),
 
-                                // Education Item 2
-                                _buildEducationItem(
-                                  degree: 'B.A POLITICAL SCIENCE',
-                                  institution: 'Stanford',
-                                  duration: '2013 - 2017',
-                                ),
-                                SizedBox(height: 16.h),
 
-                                // Education Item 3
-                                _buildEducationItem(
-                                  degree: 'B.S OF LAW AND BUSINESS ADM.',
-                                  institution: 'MIT',
-                                  duration: '2009 - 2013',
-                                ),
+
                               ],
                             ),
                           ),
@@ -371,6 +417,380 @@ class _Template5State extends State<Template5> {
         ),
       ),
     );
+
+  }
+
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['years']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['years'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController titleController =
+        TextEditingController(text: item['title']);
+        final TextEditingController companyController =
+        TextEditingController(text: item['company']);
+        final TextEditingController descriptionController =
+        TextEditingController(text: item['description']);
+        final TextEditingController durationController =
+        TextEditingController(text: item['duration']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+              TextField(
+                controller: companyController,
+                decoration: const InputDecoration(labelText: 'Company'),
+              ),
+
+              TextField(
+                controller: durationController,
+                decoration: const InputDecoration(labelText: 'Duration'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['title'] = titleController.text;
+                  item['company'] = companyController.text;
+                  item['description'] = descriptionController.text;
+                  item['duration'] = durationController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<List<String>?> _showSkillsEditDialog() async {
+    final skillsController = TextEditingController(text: skills.join(', '));
+
+    return await showDialog<List<String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skills'),
+          content: TextField(
+            controller: skillsController,
+            decoration: InputDecoration(
+              labelText: 'Skills (comma separated)',
+            ),
+            maxLines: 5,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  skills = skillsController.text
+                      .split(',')
+                      .map((s) => s.trim())
+                      .where((s) => s.isNotEmpty) // filter out any empty skills
+                      .toList();
+                });
+                Navigator.pop(context, skills);
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Future<List<String>?> _showValuesEditDialog() async {
+    final skillsController = TextEditingController(text: Values.join(', '));
+
+    return await showDialog<List<String>>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Values'),
+          content: TextField(
+            controller: skillsController,
+            decoration: InputDecoration(
+              labelText: 'Values (comma separated)',
+            ),
+            maxLines: 5,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  Values = skillsController.text
+                      .split(',')
+                      .map((s) => s.trim())
+                      .where((s) => s.isNotEmpty) // filter out any empty skills
+                      .toList();
+                });
+                Navigator.pop(context, skills);
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: mobile);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  mobile = phoneController.text;
+                  email = emailController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editSocialMedia(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: socialMedia);
+
+        return AlertDialog(
+          title: const Text('Edit User Name'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'UserName'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  socialMedia = nameController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: userName);
+        final TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  userRole = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editAboutDetail(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController about1Controller =
+        TextEditingController(text: about);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: about1Controller,
+                decoration: const InputDecoration(labelText: 'About'),
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+
+                  about = about1Controller.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget _buildEducationItem({
@@ -384,7 +804,7 @@ class _Template5State extends State<Template5> {
         Text(
           degree,
           style: GoogleFonts.mulish(
-            fontSize: 16.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.bold,
             color: Colors.grey[800],
           ),
@@ -395,7 +815,7 @@ class _Template5State extends State<Template5> {
             Text(
               institution,
               style: GoogleFonts.mulish(
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 color: Colors.grey[600],
               ),
             ),
@@ -403,7 +823,7 @@ class _Template5State extends State<Template5> {
             Text(
               '|',
               style: GoogleFonts.mulish(
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 color: Colors.grey[600],
               ),
             ),
@@ -433,7 +853,7 @@ class _Template5State extends State<Template5> {
         Text(
           company,
           style: GoogleFonts.mulish(
-            fontSize: 16.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.bold,
             color: Colors.greenAccent,
           ),
@@ -444,7 +864,7 @@ class _Template5State extends State<Template5> {
             Text(
               position.toUpperCase(),
               style: GoogleFonts.mulish(
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[800],
               ),
@@ -453,7 +873,7 @@ class _Template5State extends State<Template5> {
             Text(
               '|',
               style: GoogleFonts.mulish(
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 color: Colors.grey[600],
               ),
             ),
@@ -472,7 +892,7 @@ class _Template5State extends State<Template5> {
         Text(
           description,
           style: GoogleFonts.mulish(
-            fontSize: 12.sp,
+            fontSize: 14.sp,
             color: Colors.grey[600],
             height: 1.5,
           ),

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_images_constant.dart';
 
 class Template2 extends StatefulWidget {
@@ -11,9 +14,104 @@ class Template2 extends StatefulWidget {
 }
 
 class _Template2State extends State<Template2> {
+
+  String userName = 'John Carter';
+  String userRole = 'Product Designer';
+  String email = 'contact@johncarter.com';
+  String mobile = '+001 123 456 789';
+  String website = 'johncarter.com';
+
+  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+
+  // List of languages with proficiency levels
+  List<Map<String, String>> languages = [
+    {
+      'language': 'English',
+      'proficiency': 'Native',
+    },
+    {
+      'language': 'Spanish',
+      'proficiency': 'Fluent',
+    },
+    {
+      'language': 'French',
+      'proficiency': 'Intermediate',
+    },
+  ];
+
+  List<Map<String, String>> workExperience = [
+    {
+
+      'duration': '2020 - 2021',
+      'title': 'Lead Product Designer',
+      'description': 'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
+    },
+    {
+      'duration': '2019 - 2020',
+      'title': 'Lead Product Designer',
+      'description': 'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
+    },
+    {
+
+      'duration': '2018 - 2019',
+      'title': 'Lead Product Designer',
+      'description': 'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
+    },
+  ];
+
+  List<Map<String, String>> education = [
+    {
+      'year': '2017 - 2020',
+      'degree': 'Masters Degree',
+      'institution': 'The University of Lahore',
+    },
+    {
+      'year': '2013 - 2017',
+      'degree': 'Bachelor Degree',
+      'institution': 'Punjab University',
+    },
+    {
+      'year': '2012 - 2015',
+      'degree': 'Associate Degree',
+      'institution': 'Some Other Institute',
+    },
+  ];
+
+  List<Map<String, dynamic>> skills = [
+    {
+      'name': 'Figma',
+      'level': 95,
+    },
+    {
+      'name': 'Photoshop',
+      'level': 80,
+    },
+    {
+      'name': 'Illustrator',
+      'level': 85,
+    },
+  ];
+
+  File? _profileImage;
+
+  // Method to pick an image
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 850));
+    ScreenUtil.init(context, designSize: const Size(595, 1400));
 
     return SafeArea(
       child: Scaffold(
@@ -22,11 +120,11 @@ class _Template2State extends State<Template2> {
           children: [
             Container(
               width: 595.w,
-              height: 942.h,
+              //height: 942.h,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Left side (Mobile Frame with Avatar and Name, Profile, Experience, Languages)
+
                   Expanded(
                     flex: 1,
                     child: Column(
@@ -37,8 +135,7 @@ class _Template2State extends State<Template2> {
                         _buildAvatarAndFrame(),
                         // Combine avatar and frame
                         SizedBox(
-                            height: 34
-                                .h),
+                            height: 20.h),
                         // Add space between avatar/frame and other sections
                         _buildSectionWithLine(
                           title: "P R O F I L E",
@@ -114,28 +211,41 @@ class _Template2State extends State<Template2> {
   }
 
   Widget _buildAvatarAndFrame() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        // Circular Avatar
-        _buildAvatar(),
-        // Mobile Frame
-        _buildMobileFrame(),
-      ],
+    return SizedBox(
+      child: Container(
+        width: 300.h,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Circular Avatar
+            _buildAvatar(),
+            // Mobile Frame
+            _buildMobileFrame(),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildAvatar() {
-    return CircleAvatar(
-      backgroundImage: AssetImage(AppImages.profilePicture),
-      radius: 70.w,
+    return  GestureDetector(
+        onTap: _pickImage,
+        child: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        backgroundImage: _profileImage != null
+        ? FileImage(_profileImage!)
+        : AssetImage(
+    AppImages.profilePicture)
+    as ImageProvider,
+    radius: 50.w,
+    ),
     );
   }
 
   Widget _buildMobileFrame() {
     return Container(
-      width: 100.w, // Adjust width as needed
-      height: 150.h, // Adjust height as needed
+      width: 120.w, // Adjust width as needed
+      height: 100.h, // Adjust height as needed
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(7.r),
@@ -148,46 +258,63 @@ class _Template2State extends State<Template2> {
           bottom: BorderSide(color: Colors.white70, width: 1.w),
         ),
       ),
-      child: Column(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            "J h o n \nD o e",
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              fontSize: 24.sp,
-              color: Color(0xff00FF88),
+        children:[
+          SizedBox(width: 2,),
+
+          GestureDetector(
+            onTap: ()=> _editUserDetails(context),
+            child: Container(
+              width: 80,
+              alignment: Alignment.center,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  userName,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22.sp,
+                    color: Color(0xff00FF88),
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  userRole,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14.sp,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+                      ),
             ),
           ),
-          SizedBox(height: 8.h),
-          Text(
-            " U I Designers",
-            style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.normal,
-              fontSize: 15.sp,
-              color: Colors.white70,
-            ),
-          ),
-        ],
+      ]
       ),
     );
   }
 
   Widget _buildProfileSection() {
-    return Container(
-      padding: EdgeInsets.only(left: 24.w, right: 16.w), // Add padding here
-      child: Text(
-        "Passionate about creating intuitive and visually appealing user interfaces that enhance user experience. With skills in design tools and user research, I am confident in bringing ideas to life and improving user satisfaction.",
-        style: TextStyle(
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w400,
-          fontSize: 14.sp,
-          color: Colors.white70,
+    return GestureDetector(
+      onTap: () => _editAboutMe(),
+      child: Container(
+        padding: EdgeInsets.only(left: 24.w, right: 16.w), // Add padding here
+        child: Text(
+          about,
+          style: TextStyle(
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w400,
+            fontSize: 14.sp,
+            color: Colors.white70,
+          ),
+          textAlign: TextAlign.justify,
         ),
-        textAlign: TextAlign.justify,
       ),
     );
   }
@@ -195,23 +322,18 @@ class _Template2State extends State<Template2> {
   Widget _buildExperienceSection() {
     return Container(
       padding: EdgeInsets.only(
-          left: 24.w, right: 16.w, top: 24.h, bottom: 24.h), // Add padding here
+          left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildExperienceItem(
-            jobTitle: "UI Designer",
-            duration: "2022 - Present",
-            description:
-            "Currently working as a UI Designer at TechOverflow, creating innovative and user-friendly designs for web applications.",
-          ),
-          SizedBox(height: 16.h),
-          _buildExperienceItem(
-            jobTitle: "Junior Designer",
-            duration: "2019 - 2022",
-            description:
-            "As a Junior Designer at MK Graphics, I gained valuable experience in creating visually appealing marketing materials.",
-          ),
+          ...workExperience.map((expItem) => GestureDetector(
+            onTap: ()=> _editExperienceItem(context, expItem),
+            child: _buildExperienceItem(
+              jobTitle: expItem['title']!,
+              duration: expItem['duration']!,
+              description: expItem['description']!,
+            ),
+          )).toList(),
         ],
       ),
     );
@@ -220,75 +342,90 @@ class _Template2State extends State<Template2> {
   Widget _buildLanguagesSection() {
     return Container(
       padding: EdgeInsets.only(
-          left: 24.w, right: 16.w, top: 24.h, bottom: 24.h), // Add padding here
+          left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLanguageItem("English", "Native"),
-          SizedBox(height: 8.h),
-          _buildLanguageItem("Spanish", "Fluent"),
-          SizedBox(height: 8.h),
-          _buildLanguageItem("French", "Intermediate"),
+          ...languages.asMap().entries.map((entry) {
+            int index = entry.key;
+            Map<String, String> lang = entry.value;
+
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () => _editLanguages(context, index, lang['language']!, lang['proficiency']!),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 8.h),
+                    child: _buildLanguageItem(lang['language']!, lang['proficiency']!),
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
         ],
-      ),
+      )
+
     );
   }
 
   Widget _buildContactSection() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.email, color: Color(0xff00FF88), size: 16.w),
-              SizedBox(width: 8.w),
-              Text(
-                "jhon.doe@example.com",
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12.sp,
-                  color: Colors.white70,
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
+      child: GestureDetector(
+        onTap: ()=> _editContactDetails(context),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.email, color: Color(0xff00FF88), size: 16.w),
+                SizedBox(width: 8.w),
+                Text(
+                  email,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.sp,
+                    color: Colors.white70,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 4.h),
-          Row(
-            children: [
-              Icon(Icons.phone, color: Color(0xff00FF88), size: 16.w),
-              SizedBox(width: 8.w),
-              Text(
-                "+123 456 7890",
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12.sp,
-                  color: Colors.white70,
+              ],
+            ),
+            SizedBox(height: 4.h),
+            Row(
+              children: [
+                Icon(Icons.phone, color: Color(0xff00FF88), size: 16.w),
+                SizedBox(width: 8.w),
+                Text(
+                  mobile,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.sp,
+                    color: Colors.white70,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Icon(Icons.ac_unit_outlined,
-                  color: Color(0xff00FF88), size: 16.w),
-              SizedBox(width: 8.w),
-              Text(
-                "muhammadbilalansariwebsite.io",
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12.sp,
-                  color: Colors.white70,
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.ac_unit_outlined,
+                    color: Color(0xff00FF88), size: 16.w),
+                SizedBox(width: 8.w),
+                Text(
+                 website,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.sp,
+                    color: Colors.white70,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -299,17 +436,19 @@ class _Template2State extends State<Template2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStudiesItem(
-            "The University of Lahore",
-            "2017 – 2020",
-            " A graphic designer is a creative professional who crafts visual content for print and digital media. They use typography, color, and imagery to create logos, websites, brochures, and promotional materials. ",
-          ),
-          SizedBox(height: 8.h),
-          _buildStudiesItem(
-            "Punjab University",
-            "2013 – 2017",
-            "A graphic designer is a creative professional who crafts visual content for print and digital media. They use typography, color, and imagery to create logos, websites, brochures, and promotional materials.",
-          ),
+          ...education.map((edu) => Column(
+            children: [
+              GestureDetector(
+                onTap: ()=> _editEducationItem(context, edu),
+                child: _buildStudiesItem(
+                  edu['institution']!,
+                  edu['year']!,
+                  edu['degree']!,
+                   ),
+              ),
+              SizedBox(height: 8.h),
+            ],
+          )).toList(),
         ],
       ),
     );
@@ -322,12 +461,17 @@ class _Template2State extends State<Template2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 16.h),
-          _buildSkillItem("Figma", 95),
-          SizedBox(height: 8.h),
-          _buildSkillItem("Photoshop", 79),
-          SizedBox(height: 8.h),
-          _buildSkillItem("Illustrator", 85),
+          ...skills.asMap().entries.map((entry) {
+            int index = entry.key;
+            Map<String, dynamic> skill = entry.value;
+            return GestureDetector(
+              onTap: () => _editSkillDialog(context, index, skill['name']!, skill['level']!),
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 8.h),
+                child: _buildSkillItem(skill['name']!, skill['level']!),
+              ),
+            );
+          }).toList(),
         ],
       ),
     );
@@ -376,11 +520,11 @@ class _Template2State extends State<Template2> {
   Widget _buildSectionWithLine({
     required String title,
     required Widget child,
-    double lineHeight = 250.0, // Default line height
+    double lineHeight = 100.0, // Default line height
     Icon? showIcon, // Optional parameter to show icon
   }) {
     return Container(
-      padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 5, bottom: 6),
+      padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 5.h, bottom: 6.h),
       // Add padding here
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -423,6 +567,378 @@ class _Template2State extends State<Template2> {
       ),
     );
   }
+
+  Future<void> _editSkillDialog(BuildContext context, int index,
+      String currentName, int currentValue) async {
+    TextEditingController nameController =
+    TextEditingController(text: currentName);
+    TextEditingController valueController =
+    TextEditingController(text: currentValue.toString());
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Skill'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Skill Name'),
+              ),
+              TextField(
+                controller: valueController,
+                keyboardType: TextInputType.number,
+                decoration:
+                InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+                int newValue =
+                    int.tryParse(valueController.text) ?? currentValue;
+
+                setState(() {
+                  skills[index] = {
+                    'name': newName,
+                    'level': newValue,
+                  };
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editEducationItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController yearController =
+        TextEditingController(text: item['year']);
+        final TextEditingController degreeController =
+        TextEditingController(text: item['degree']);
+        final TextEditingController institutionController =
+        TextEditingController(text: item['institution']);
+
+        return AlertDialog(
+          title: const Text('Edit Education'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: yearController,
+                decoration: const InputDecoration(labelText: 'Year'),
+              ),
+              TextField(
+                controller: degreeController,
+                decoration: const InputDecoration(labelText: 'Degree'),
+              ),
+              TextField(
+                controller: institutionController,
+                decoration: const InputDecoration(labelText: 'Institution'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['year'] = yearController.text;
+                  item['degree'] = degreeController.text;
+                  item['institution'] = institutionController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editLanguages(BuildContext context, int index, String currentName, String currentProficiency) async {
+    TextEditingController nameController = TextEditingController(text: currentName);
+    TextEditingController proficiencyController = TextEditingController(text: currentProficiency);
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Edit Language'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Language Name'),
+              ),
+              SizedBox(height: 16.h),
+              TextField(
+                controller: proficiencyController,
+                decoration: InputDecoration(labelText: 'Proficiency Level'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String newName = nameController.text;
+                String newProficiency = proficiencyController.text;
+
+                setState(() {
+                  languages[index] = {
+                    'language': newName,
+                    'proficiency': newProficiency,
+                  };
+                });
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  void _editUserDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController nameController =
+        TextEditingController(text: userName);
+        final TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+        return AlertDialog(
+          title: const Text('Edit User Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: roleController,
+                decoration: const InputDecoration(labelText: 'Role'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  userName = nameController.text;
+                  userRole = roleController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController titleController =
+        TextEditingController(text: item['title']);
+        final TextEditingController descriptionController =
+        TextEditingController(text: item['description']);
+        final TextEditingController durationController =
+        TextEditingController(text: item['duration']);
+
+        return AlertDialog(
+          title: const Text('Edit Experience'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+
+
+              TextField(
+                controller: durationController,
+                decoration: const InputDecoration(labelText: 'Duration'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  item['title'] = titleController.text;
+                  item['description'] = descriptionController.text;
+                  item['duration'] = durationController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _editContactDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController phoneController =
+        TextEditingController(text: mobile);
+        final TextEditingController emailController =
+        TextEditingController(text: email);
+        final TextEditingController websiteController =
+        TextEditingController(text: website);
+
+        return AlertDialog(
+          title: const Text('Edit Contact Details'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: phoneController,
+                decoration: const InputDecoration(labelText: 'Phone'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: websiteController,
+                decoration: const InputDecoration(labelText: 'Website'),
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  mobile = phoneController.text;
+                  email = emailController.text;
+                  website = websiteController.text;
+
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _editAboutMe() async {
+    final newAboutMe =
+    await _showEditDialog('Description', about, multiline: true);
+    if (newAboutMe != null && newAboutMe.isNotEmpty) {
+      setState(() {
+        about = newAboutMe;
+      });
+    }
+  }
+  Future<String?> _showEditDialog(String title, String initialValue,
+      {bool multiline = false}) async {
+    final controller = TextEditingController(text: initialValue);
+    return await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: multiline
+              ? TextField(
+            controller: controller,
+            maxLines: 5,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          )
+              : TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, controller.text),
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, null),
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
 }
 
 Widget _buildExperienceItem({
@@ -438,18 +954,17 @@ Widget _buildExperienceItem({
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w600,
-          fontSize: 16.sp,
+          fontSize: 14.sp,
           color: Color(0xff00FF88),
         ),
       ),
-      SizedBox(height: 4.h),
       SizedBox(height: 4.h),
       Text(
         duration,
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           color: Colors.white70,
         ),
       ),
@@ -459,7 +974,7 @@ Widget _buildExperienceItem({
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           color: Colors.white70,
         ),
         textAlign: TextAlign.justify,
@@ -477,7 +992,7 @@ Widget _buildLanguageItem(String language, String proficiency) {
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w600,
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           color: Colors.white,
         ),
       ),
@@ -486,7 +1001,7 @@ Widget _buildLanguageItem(String language, String proficiency) {
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           color: Colors.white70,
         ),
       ),

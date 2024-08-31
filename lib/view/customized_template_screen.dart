@@ -18,8 +18,11 @@ import '../Templates/template16.dart';
 import '../Templates/template17.dart';
 import '../Templates/template18.dart';
 import '../Templates/template19.dart';
+import '../Templates/template2.dart';
+import '../Templates/template20.dart';
 import '../Templates/template3.dart';
 import '../Templates/template4.dart';
+import '../Templates/template5.dart';
 import '../Templates/template6.dart';
 import '../Templates/template7.dart';
 import '../Templates/template8.dart';
@@ -177,7 +180,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 key: _containerKey,
                 child: SizedBox(
                   height: 520.h,
-                  child: Template18(),
+                  child: Template20(),
                 ),
               ),
               SizedBox(height: 20.h),

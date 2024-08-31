@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
 
@@ -72,6 +75,19 @@ class _Template17State extends State<Template17> {
     'ENGLISH',
   ];
 
+  File? _profileImage;
+
+  // Method to pick an image
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
+  }
 
 
   Widget build(BuildContext context) {
@@ -98,12 +114,16 @@ class _Template17State extends State<Template17> {
                   children: [
                     Padding(
                       padding: EdgeInsets.all(8.w),
-                      child: CircleAvatar(
-                        radius: 35.r,
-                        backgroundColor: Colors.blueAccent,
+                      child: GestureDetector(
+                        onTap: _pickImage,
                         child: CircleAvatar(
-                          radius: 30.r,
-                          backgroundImage: AssetImage(AppImages.profilePicture),
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: _profileImage != null
+                              ? FileImage(_profileImage!)
+                              : AssetImage(
+                              AppImages.profilePicture)
+                          as ImageProvider,
+                          radius: 35.r,
                         ),
                       ),
                     ),

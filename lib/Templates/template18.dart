@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Template18 extends StatefulWidget {
   const Template18({super.key});
@@ -64,6 +67,20 @@ class _Template18State extends State<Template18> {
     },
   ];
 
+  File? _profileImage;
+
+  // Method to pick an image
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(670, 1300));
@@ -88,9 +105,17 @@ class _Template18State extends State<Template18> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 20.w, top: 40.h),
-                        child: CircleAvatar(
-                          radius: 90.r,
-                          backgroundImage: AssetImage(AppImages.profilePicture),
+                        child: GestureDetector(
+                          onTap: _pickImage,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: _profileImage != null
+                                ? FileImage(_profileImage!)
+                                : AssetImage(
+                                AppImages.profilePicture)
+                            as ImageProvider,
+                            radius: 90.r,
+                          ),
                         ),
                       ),
                       Column(
@@ -376,18 +401,20 @@ class _Template18State extends State<Template18> {
                                 ),
                               ),
                               //SizedBox(height: 12.h),
-                              ...experience.map((expItem) =>
-
-                                  GestureDetector(
-                                    onTap: () => _editExperienceItem(context,expItem),
-                                    child: _buildExperienceItem(
-                                                                    year: expItem['years']!,
-                                                                    title: expItem['position']!,
-                                                                    company: expItem['company']!,
-                                                                    description: expItem['description']!,
-                                                                    showDot: true, // Adjust based on your logic for showing the dot
-                                                                  ),
-                                  )).toList(),
+                              ...experience
+                                  .map((expItem) => GestureDetector(
+                                        onTap: () => _editExperienceItem(
+                                            context, expItem),
+                                        child: _buildExperienceItem(
+                                          year: expItem['years']!,
+                                          title: expItem['position']!,
+                                          company: expItem['company']!,
+                                          description: expItem['description']!,
+                                          showDot:
+                                              true, // Adjust based on your logic for showing the dot
+                                        ),
+                                      ))
+                                  .toList(),
                             ],
                           ),
                         ),
@@ -918,14 +945,14 @@ class _Template18State extends State<Template18> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['company']);
+            TextEditingController(text: item['company']);
         final TextEditingController positionController =
-        TextEditingController(text: item['position']);
+            TextEditingController(text: item['position']);
         final TextEditingController fromtoController =
-        TextEditingController(text: item['years']);
+            TextEditingController(text: item['years']);
 
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -974,5 +1001,4 @@ class _Template18State extends State<Template18> {
       },
     );
   }
-
 }
