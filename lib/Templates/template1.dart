@@ -87,214 +87,208 @@ class _Template1State extends State<Template1> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));
     return SafeArea(
-
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: Column(
-          children: [
-            Stack(children: [
-              Container(
-                width: 595.w,
-                // height: 842.h,
-                color: Color(0xFF343C43),
+        body: Stack(children: [
+          Container(
+            width: 595.w,
+            // height: 842.h,
+            color: Color(0xFF343C43),
+          ),
+          Container(
+            width: 220.w,
+            //height: 842.h,
+            color: Color(0xFF353443),
+          ),
+          Positioned(
+            top: 25.h,
+            left: 34.w,
+            child: Container(
+              width: 252.w,
+              //height: 733.h,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.r),
               ),
-              Container(
-                width: 220.w,
-                //height: 842.h,
-                color: Color(0xFF353443),
-              ),
-              Positioned(
-                top: 25.h,
-                left: 34.w,
-                child: Container(
-                  width: 252.w,
-                  //height: 733.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                    child: GestureDetector(
-                      onTap: () => _pickImage(),
-                      child: Column(
-                        children: [
-                          _profileImage == null
-                              ? ClipOval(
-                                  child: Image.asset(
-                                    AppImages.profilePicture,
-                                    fit: BoxFit.cover,
-                                    width: 65.h,
-                                    height: 65.h,
-                                  ),
-                                )
-                              : ClipOval(
-                                  child: Image.file(
-                                    _profileImage!,
-                                    fit: BoxFit.cover,
-                                    width: 65.h,
-                                    height: 65.h,
-                                  ),
-                                ),
-                          SizedBox(height: 5.h),
-                          GestureDetector(
-                            onTap: () => _editUserDetails(context),
-                            child: Column(
-                              children: [
-                                Text(userName,
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.sp,
-                                      color: Color(0xFF00101F),
-                                    )),
-                                SizedBox(height: 5.h),
-                                Text(
-                                  userRole,
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 9.sp,
-                                    color: Color(0xFF00101F),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          Container(
-                            width: 193.w,
-                            //height: 510.h,
-                            // color: Colors.black,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w, vertical: 1.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildSectionHeader("BASIC INFO"),
-                                  SizedBox(height: 5.h),
-                                  GestureDetector(
-                                    onTap: () => _editContactDetails(context),
-                                    child: Column(
-                                      children: [
-                                        _buildInfoItem("Name", userName),
-                                        _buildInfoItem("ID", id),
-                                        _buildInfoItem("Phone", mobile),
-                                        _buildInfoItem("Email", email),
-                                        _buildInfoItem("Address", address),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.h),
-                                  _buildSectionHeader("ABILITIES"),
-                                  GestureDetector(
-                                    onTap: () => _editAbilityDetails(context),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(height: 5.h),
-                                        _buildBulletPoint(ability1),
-                                        _buildBulletPoint(ability2),
-                                        _buildBulletPoint(ability3),
-                                        _buildBulletPoint(ability4),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.h),
-                                  _buildSectionHeader("REFERENCES"),
-                                  SizedBox(height: 2.h),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: reference.map((ref) {
-                                      return GestureDetector(
-                                        onTap: () =>
-                                            _editReferenceDetails(context, ref),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            _buildReferenceItem(
-                                              name: ref['name']!,
-                                              title: ref['title']!,
-                                              email: ref['email']!,
-                                              phone: ref['phone']!,
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ],
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: GestureDetector(
+                  onTap: () => _pickImage(),
+                  child: Column(
+                    children: [
+                      _profileImage == null
+                          ? ClipOval(
+                              child: Image.asset(
+                                AppImages.profilePicture,
+                                fit: BoxFit.cover,
+                                width: 65.h,
+                                height: 65.h,
+                              ),
+                            )
+                          : ClipOval(
+                              child: Image.file(
+                                _profileImage!,
+                                fit: BoxFit.cover,
+                                width: 65.h,
+                                height: 65.h,
                               ),
                             ),
+                      SizedBox(height: 5.h),
+                      GestureDetector(
+                        onTap: () => _editUserDetails(context),
+                        child: Column(
+                          children: [
+                            Text(userName,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16.sp,
+                                  color: Color(0xFF00101F),
+                                )),
+                            SizedBox(height: 5.h),
+                            Text(
+                              userRole,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 9.sp,
+                                color: Color(0xFF00101F),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Container(
+                        width: 193.w,
+                        //height: 510.h,
+                        // color: Colors.black,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 1.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSectionHeader("BASIC INFO"),
+                              SizedBox(height: 5.h),
+                              GestureDetector(
+                                onTap: () => _editContactDetails(context),
+                                child: Column(
+                                  children: [
+                                    _buildInfoItem("Name", userName),
+                                    _buildInfoItem("ID", id),
+                                    _buildInfoItem("Phone", mobile),
+                                    _buildInfoItem("Email", email),
+                                    _buildInfoItem("Address", address),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                              _buildSectionHeader("ABILITIES"),
+                              GestureDetector(
+                                onTap: () => _editAbilityDetails(context),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 5.h),
+                                    _buildBulletPoint(ability1),
+                                    _buildBulletPoint(ability2),
+                                    _buildBulletPoint(ability3),
+                                    _buildBulletPoint(ability4),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                              _buildSectionHeader("REFERENCES"),
+                              SizedBox(height: 2.h),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: reference.map((ref) {
+                                  return GestureDetector(
+                                    onTap: () =>
+                                        _editReferenceDetails(context, ref),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        _buildReferenceItem(
+                                          name: ref['name']!,
+                                          title: ref['title']!,
+                                          email: ref['email']!,
+                                          phone: ref['phone']!,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 10.h,
+            left: 290.w,
+            child: Container(
+              width: 260.w,
+              //height: 760.h,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionHeader("Profile"),
+                    SizedBox(height: 5.h),
+                    GestureDetector(
+                      onTap: () => _editAboutMe(),
+                      child:
+                          _buildProfileItem(title: "Desc", description: about),
+                    ),
+                    SizedBox(height: 10.h),
+                    _buildProfileItem(
+                      title: "Skills",
+                      skills: skillsData.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        Map<String, dynamic> skill = entry.value;
+
+                        return GestureDetector(
+                          onTap: () => _editSkillDialog(context, index,
+                              skill['name'], skill['proficiency']),
+                          child: _buildSkillBar(
+                              skill['name'], skill['proficiency']),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 10.h),
+                    GestureDetector(
+                      onTap: () => _editExperience(),
+                      child: _buildProfileItem(
+                        title: "Experience",
+                        description: experience,
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 10.h,
-                left: 290.w,
-                child: Container(
-                  width: 260.w,
-                  //height: 760.h,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildSectionHeader("Profile"),
-                        SizedBox(height: 5.h),
-                        GestureDetector(
-                          onTap: () => _editAboutMe(),
-                          child:
-                              _buildProfileItem(title: "Desc", description: about),
-                        ),
-                        SizedBox(height: 10.h),
-                        _buildProfileItem(
-                          title: "Skills",
-                          skills: skillsData.asMap().entries.map((entry) {
-                            int index = entry.key;
-                            Map<String, dynamic> skill = entry.value;
-
-                            return GestureDetector(
-                              onTap: () => _editSkillDialog(context, index,
-                                  skill['name'], skill['proficiency']),
-                              child: _buildSkillBar(
-                                  skill['name'], skill['proficiency']),
-                            );
-                          }).toList(),
-                        ),
-                        SizedBox(height: 10.h),
-                        GestureDetector(
-                          onTap: () => _editExperience(),
-                          child: _buildProfileItem(
-                            title: "Experience",
-                            description: experience,
-                          ),
-                        ),
-                        SizedBox(height: 8.h),
-                        _buildSectionHeader("EDUCATION"),
-                        SizedBox(height: 2.h),
-                        Column(
-                          children: education
-                              .map((e) => GestureDetector(
-                                    onTap: () => _editEducationItem(context, e),
-                                    child: _buildEducationItem(e['year']!,
-                                        e['degree']!, e['institution']!),
-                                  ))
-                              .toList(),
-                        ),
-                      ],
+                    SizedBox(height: 8.h),
+                    _buildSectionHeader("EDUCATION"),
+                    SizedBox(height: 2.h),
+                    Column(
+                      children: education
+                          .map((e) => GestureDetector(
+                                onTap: () => _editEducationItem(context, e),
+                                child: _buildEducationItem(e['year']!,
+                                    e['degree']!, e['institution']!),
+                              ))
+                          .toList(),
                     ),
-                  ),
+                  ],
                 ),
               ),
-            ]),
-          ],
-        ),
+            ),
+          ),
+        ]),
       ),
     );
   }

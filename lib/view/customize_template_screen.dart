@@ -37,6 +37,8 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(393, 855));
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    // Rebuilds the widget with a new state on navigation back
     void _onTemplateSelected() {
       setState(() {
         currentIndex = widget.initialIndex;

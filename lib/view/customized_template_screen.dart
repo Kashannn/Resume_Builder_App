@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Templates/template1.dart';
 import '../Templates/template10.dart';
 import '../Templates/template11.dart';
@@ -239,7 +240,9 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
+
     setState(() {
+      // Load user data from SharedPreferences
       userName = prefs.getString('userName') ?? userName;
       userRole = prefs.getString('userRole') ?? userRole;
       socialMedia = prefs.getString('socialMedia') ?? socialMedia;
@@ -253,6 +256,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
       ability4 = prefs.getString('ability4') ?? ability4;
       about = prefs.getString('about') ?? about;
       experience = prefs.getString('experience') ?? experience;
+
+      // Load lists from JSON strings
       reference = jsonDecode(prefs.getString('reference') ?? '[]')
           .cast<Map<String, String>>();
       skillsData = jsonDecode(prefs.getString('skillsData') ?? '[]')
@@ -332,8 +337,9 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                         children: [
                           TextSpan(
                             text: 'TIP: ',
-                            style:
-                                isDarkMode ? mStyleWhite12600 : mStyleBlack12600,
+                            style: isDarkMode
+                                ? mStyleWhite12600
+                                : mStyleBlack12600,
                           ),
                           TextSpan(
                             text: 'Click on any text/image to edit.',
@@ -373,7 +379,13 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 SizedBox(height: 10.h),
                 CustomGradientButton(
                   onPressed: () {
-                    // Button action
+                    _capturePng();
+                    _saveUserData();
+                    Get.showSnackbar(GetSnackBar(
+                      title: 'Success',
+                      message: 'Your template has been saved successfully!',
+                    ));
+                    Get.back();
                   },
                   text: 'Add Saved Info',
                   gradient: LinearGradient(
