@@ -85,32 +85,36 @@ class _Template1State extends State<Template1> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 842));
+    ScreenUtil.init(context, designSize: const Size(192, 249));
     return SafeArea(
       child: Scaffold(
         body: Stack(children: [
           Container(
-            width: 595.w,
-            // height: 842.h,
+            width: 192.w,
+             height: 249.h,
             color: Color(0xFF343C43),
+
           ),
           Container(
-            width: 220.w,
-            //height: 842.h,
-            color: Color(0xFF353443),
+            width: 64.w,
+            height: 249.h,
+            color: Color(0xFF344353),
+
+
           ),
           Positioned(
-            top: 25.h,
-            left: 34.w,
+            top: 8.h,
+            left: 10.w,
+            bottom: 9.h,
             child: Container(
-              width: 252.w,
-              //height: 733.h,
+              width: 79.w,
+              height: 230.h,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
                 child: GestureDetector(
                   onTap: () => _pickImage(),
                   child: Column(
@@ -120,19 +124,19 @@ class _Template1State extends State<Template1> {
                               child: Image.asset(
                                 AppImages.profilePicture,
                                 fit: BoxFit.cover,
-                                width: 65.h,
-                                height: 65.h,
+                                width: 49.w,
+                                height: 49.w,
                               ),
                             )
                           : ClipOval(
                               child: Image.file(
                                 _profileImage!,
                                 fit: BoxFit.cover,
-                                width: 65.h,
-                                height: 65.h,
+                                width: 49.w,
+                                height: 49.w,
                               ),
                             ),
-                      SizedBox(height: 5.h),
+                      SizedBox(height: 4.h),
                       GestureDetector(
                         onTap: () => _editUserDetails(context),
                         child: Column(
@@ -141,35 +145,34 @@ class _Template1State extends State<Template1> {
                                 style: TextStyle(
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 16.sp,
+                                  fontSize: 5.sp,
                                   color: Color(0xFF00101F),
                                 )),
-                            SizedBox(height: 5.h),
                             Text(
                               userRole,
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w700,
-                                fontSize: 9.sp,
+                                fontSize: 3.9.sp,
                                 color: Color(0xFF00101F),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 6.h),
                       Container(
-                        width: 193.w,
-                        //height: 510.h,
+                        width: 142.w,
+                        //height: 60.85.h,
                         // color: Colors.black,
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 1.h),
+                              horizontal: 1.w, vertical: 1.h),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               _buildSectionHeader("BASIC INFO"),
-                              SizedBox(height: 5.h),
+                              SizedBox(height: 1.h),
                               GestureDetector(
                                 onTap: () => _editContactDetails(context),
                                 child: Column(
@@ -182,13 +185,13 @@ class _Template1State extends State<Template1> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10.h),
+                              SizedBox(height: 4.h),
                               _buildSectionHeader("ABILITIES"),
                               GestureDetector(
                                 onTap: () => _editAbilityDetails(context),
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 5.h),
+                                    //SizedBox(height: 5.h),
                                     _buildBulletPoint(ability1),
                                     _buildBulletPoint(ability2),
                                     _buildBulletPoint(ability3),
@@ -196,9 +199,9 @@ class _Template1State extends State<Template1> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10.h),
+                              SizedBox(height: 5.h),
                               _buildSectionHeader("REFERENCES"),
-                              SizedBox(height: 2.h),
+                              //SizedBox(height: 2.h),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: reference.map((ref) {
@@ -231,24 +234,25 @@ class _Template1State extends State<Template1> {
             ),
           ),
           Positioned(
-            top: 10.h,
-            left: 290.w,
+            top: 14.h,
+            left: 96.w,
             child: Container(
-              width: 260.w,
+
+              width: 84.w,
               //height: 760.h,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildSectionHeader("Profile"),
-                    SizedBox(height: 5.h),
+                    //SizedBox(height: 5.h),
                     GestureDetector(
                       onTap: () => _editAboutMe(),
                       child:
                           _buildProfileItem(title: "Desc", description: about),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 3.h),
                     _buildProfileItem(
                       title: "Skills",
                       skills: skillsData.asMap().entries.map((entry) {
@@ -263,7 +267,7 @@ class _Template1State extends State<Template1> {
                         );
                       }).toList(),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 3.h),
                     GestureDetector(
                       onTap: () => _editExperience(),
                       child: _buildProfileItem(
@@ -271,7 +275,7 @@ class _Template1State extends State<Template1> {
                         description: experience,
                       ),
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 10.h),
                     _buildSectionHeader("EDUCATION"),
                     SizedBox(height: 2.h),
                     Column(
@@ -302,7 +306,7 @@ class _Template1State extends State<Template1> {
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
-            fontSize: 14.sp,
+            fontSize: 3.15.sp,
             color: Color(0xFF00EBFA),
           ),
         ),
@@ -316,7 +320,7 @@ class _Template1State extends State<Template1> {
 
   Widget _buildInfoItem(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -325,19 +329,18 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
-              fontSize: 10.sp,
+              fontSize: 2.52.sp,
               color: Colors.black,
             ),
             textAlign: TextAlign.justify,
           ),
-          SizedBox(width: 8.w),
           Expanded(
             child: Text(
               value,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 2.52.sp,
                 color: Colors.black,
               ),
               textAlign: TextAlign.end,
@@ -350,19 +353,19 @@ class _Template1State extends State<Template1> {
 
   Widget _buildBulletPoint(String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.circle, size: 6.w, color: Colors.white),
-          SizedBox(width: 8.w),
+          Icon(Icons.circle, size: 1.w, color: Colors.black),
+          SizedBox(width: 1.w),
           Expanded(
             child: Text(
               text,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 2.52.sp,
                 color: Colors.black,
               ),
             ),
@@ -379,7 +382,7 @@ class _Template1State extends State<Template1> {
     required String phone,
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -388,37 +391,37 @@ class _Template1State extends State<Template1> {
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
-              fontSize: 12.sp,
+              fontSize: 2.52.sp,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 1.h),
           Text(
             title,
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 10.sp,
+              fontSize: 2.52.sp,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 1.h),
           Text(
             email,
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 10.sp,
+              fontSize: 2.52.sp,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 1.h),
           Text(
             phone,
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 10.sp,
+              fontSize: 2.52.sp,
               color: Colors.black,
             ),
           ),
@@ -459,34 +462,34 @@ class _Template1State extends State<Template1> {
       children: [
         Row(
           children: [
-            Icon(Icons.circle, size: 6.w, color: Color(0xFF00CFFF)),
-            SizedBox(width: 8.w),
+            Icon(Icons.circle, size: 2.w, color: Color(0xFF00CFFF)),
+            SizedBox(width: 2.w),
             Text(
               title,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-                fontSize: 12.sp,
+                fontSize: 2.8.sp,
                 color: Colors.white,
               ),
             ),
           ],
         ),
         if (description != null) ...[
-          SizedBox(height: 8.h),
+          SizedBox(height: 1.6.h),
           Text(
             description,
             style: TextStyle(
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
-              fontSize: 10.sp,
+              fontSize: 2.53.sp,
               color: Colors.white,
             ),
             textAlign: TextAlign.justify,
           ),
         ],
         if (skills != null) ...[
-          SizedBox(height: 5.h),
+          SizedBox(height: 2.h),
           Column(children: skills),
         ],
       ],
@@ -502,26 +505,26 @@ class _Template1State extends State<Template1> {
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
-            fontSize: 10.sp,
+            fontSize: 2.97.sp,
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 4.h),
+        //SizedBox(height: 4.h),
         Stack(
           children: [
             Container(
-              height: 6.h,
-              width: 200.w,
+              height: 1.5.h,
+              width: 80.w,
               color: Colors.grey[700],
             ),
             Container(
-              height: 6.h,
-              width: 200.w * proficiency,
+              height: 1.5.h,
+              width: 80.w * proficiency,
               color: Color(0xFF00CFFF),
             ),
           ],
         ),
-        SizedBox(height: 5.h),
+        SizedBox(height: 2.h),
       ],
     );
   }
@@ -532,16 +535,16 @@ class _Template1State extends State<Template1> {
       children: [
         Column(
           children: [
-            Icon(Icons.circle, size: 6.w, color: Color(0xFF00CFFF)),
-            SizedBox(height: 4.h),
+            Icon(Icons.circle, size: 2.8.w, color: Color(0xFF00CFFF)),
+            SizedBox(height: 0.h),
             Container(
-              width: 2.w,
-              height: 30.h,
+              width: 1.w,
+              height: 11.h,
               color: Colors.grey,
             ),
           ],
         ),
-        SizedBox(width: 8.w),
+        SizedBox(width: 3.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -550,7 +553,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
-                fontSize: 12.sp,
+                fontSize: 2.8.sp,
                 color: Colors.white,
               ),
             ),
@@ -560,7 +563,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 2.8.sp,
                 color: Colors.white,
               ),
             ),
@@ -570,7 +573,7 @@ class _Template1State extends State<Template1> {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 2.8.sp,
                 color: Colors.white,
               ),
             ),
