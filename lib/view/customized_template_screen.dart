@@ -271,8 +271,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,
-        designSize: const Size(375, 812), minTextAdapt: true);
+
+    ScreenUtil.init(context, designSize: const Size(393, 855));
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: Scaffold(
@@ -359,7 +359,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                 RepaintBoundary(
                   key: _containerKey,
                   child: SizedBox(
-                    height: 520.h,
+                    height: 522.h,
+                    width: 403.w,
                     child: _loadSelectedTemplate(),
                   ),
                 ),
