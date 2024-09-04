@@ -1,5 +1,8 @@
+import 'package:cvapp/view/save_information_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,21 +19,11 @@ class JoeTwo extends StatefulWidget {
 }
 
 class _JoeTwoState extends State<JoeTwo> {
-  final List<String> _items = ["My Info", "Lorem ipsum", "Lorem ipsum"];
-  String? savedInfo;
+  final List<String> _items = ["My Info"];
 
   @override
   void initState() {
     super.initState();
-    _loadSavedInfo();
-  }
-
-  Future<void> _loadSavedInfo() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      savedInfo = prefs.getString('userName') ?? 'No Info Available';
-      // Load more saved info as needed
-    });
   }
 
   @override
@@ -41,9 +34,7 @@ class _JoeTwoState extends State<JoeTwo> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          decoration: isDarkMode
-              ? AppThemes.darkGradientBackground
-              : null, // Apply the gradient in dark mode
+          decoration: isDarkMode ? AppThemes.darkGradientBackground : null,
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -60,33 +51,23 @@ class _JoeTwoState extends State<JoeTwo> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 10.h),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        color: isDarkMode ? Colors.black26 : Colors.white,
-                        child: ListTile(
-                          title: Text(
-                            _items[index],
-                            style: isDarkMode
-                                ? mStyleWhite16600
-                                : mStyleBlack16600,
+                      child: InkWell(
+                        onTap:  () {
+                          Get.to(() => SaveInformationScreen());
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.r),
                           ),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.more_vert,
-                              color: isDarkMode ? Colors.white : Colors.black,
+                          color: isDarkMode ? Colors.black26 : Colors.white,
+                          child: ListTile(
+                            title: Text(
+                              _items[index],
+                              style: isDarkMode
+                                  ? mStyleWhite16600
+                                  : mStyleBlack16600,
                             ),
-                            onPressed: () {
-                              // Handle the overflow menu action here
-                            },
                           ),
-                          onTap: () {
-                            if (index == 0) {
-                              _showSavedInfoDialog();
-                            }
-                            // Handle other items if needed
-                          },
                         ),
                       ),
                     );
@@ -97,26 +78,6 @@ class _JoeTwoState extends State<JoeTwo> {
           ),
         ),
       ),
-    );
-  }
-
-  void _showSavedInfoDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('My Info'),
-          content: Text(savedInfo ?? 'No information saved'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

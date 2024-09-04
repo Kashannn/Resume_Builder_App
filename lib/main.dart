@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             builder: (context, themeChanger, _) {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
-                title: 'Cv App',
+                title: 'Modern CV',
                 theme: AppThemes.lightTheme,
                 darkTheme: AppThemes.darkTheme,
                 themeMode: themeChanger.themeMode,

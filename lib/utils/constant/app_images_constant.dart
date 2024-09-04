@@ -28,6 +28,8 @@ class AppImages extends AssetImage {
   static const String template18 = '$_assetsPath/template18.png';
   static const String template19 = '$_assetsPath/template19.png';
   static const String template20 = '$_assetsPath/template20.png';
+  static const String AppLogoIcon = '$_assetsPath/AppLogoIcon.png';
+  static const String imagepicker = '$_assetsPath/imagepicker.png';
 
 
 //Svg images
@@ -75,6 +77,8 @@ class AppImages extends AssetImage {
   static const String  template141 = '$_iconPath/template141.svg';
   static const String  template142 = '$_iconPath/template142.svg';
   static const String  pictemplate14 = '$_iconPath/pictemplate14.svg';
+  static const String  applogo = '$_iconPath/applogo.svg';
+
 
 
 }

@@ -38,11 +38,24 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(child: Image(image: AssetImage(AppImages.splash))),
-              SizedBox(height: 20.h),
-              CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 200.h),
+                  child: Image(
+                    image: AssetImage(AppImages.splash),
+                    height: 300.h,
+                    width: 300.w,
+                  ),
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.only(bottom: 50.h),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
               ),
             ],
           ),
