@@ -33,14 +33,16 @@ class SaveInformationController extends GetxController {
   }
 
   // Method to update language proficiency
-  void updateLanguageProficiency(Map<String, dynamic> language, double proficiency) {
+  void updateLanguageProficiency(
+      Map<String, dynamic> language, double proficiency) {
     language['proficiency'] = proficiency;
     languages.refresh();
   }
 
   // Method to pick an image from gallery
   Future<void> pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       image.value = File(pickedFile.path);
     }

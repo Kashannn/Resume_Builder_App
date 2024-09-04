@@ -164,7 +164,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.w,
                     mainAxisSpacing: 10.h,
-                    childAspectRatio: 193.w / 250.h,
+                    childAspectRatio: 193.w /
+                        250.h, // Adjust aspect ratio to fit images better
                   ),
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -187,10 +188,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.r),
+                          borderRadius: BorderRadius.circular(
+                              10.r), // Ensures rounded corners
                           child: Image.asset(
                             filteredTemplates[index],
-                            fit: BoxFit.cover,
+                            fit: BoxFit
+                                .contain, // Ensures the entire image is visible and not cut off
                           ),
                         ),
                       ),

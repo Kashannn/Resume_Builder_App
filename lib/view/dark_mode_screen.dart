@@ -15,6 +15,13 @@ class DarkScreen extends StatefulWidget {
 }
 
 class _DarkScreenState extends State<DarkScreen> {
+  bool showExportOptions = false;
+  bool isPdfSelected = true;
+  bool isPngSelected = false;
+  bool isJpgSelected = false;
+
+  final List<Color> gradientColors = [Color(0xFF5BBBFF), Color(0xFF005592)];
+
   @override
   Widget build(BuildContext context) {
     final themeChanger = Provider.of<ThemeChangerController>(context);
@@ -30,9 +37,10 @@ class _DarkScreenState extends State<DarkScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Setting',
+                'Settings',
                 style: isDarkMode ? mStyleWhite20600 : mStyleBlack20600,
               ),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -49,9 +57,114 @@ class _DarkScreenState extends State<DarkScreen> {
                   ),
                 ],
               ),
+              SizedBox(height: 20.h),
+              Divider(color: isDarkMode ? Colors.white : Colors.grey),
+              SizedBox(height: 20.h),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    showExportOptions = !showExportOptions;
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Export Settings',
+                          style:
+                              isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
+                        ),
+                        Text(
+                          'Export As',
+                          style: isDarkMode
+                              ? mStyleWhite12600.copyWith(color: Colors.grey)
+                              : mStyleBlack12600.copyWith(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      showExportOptions ? Icons.expand_less : Icons.expand_more,
+                      color: isDarkMode ? Colors.blue : Colors.blue,
+                    ),
+                  ],
+                ),
+              ),
+              if (showExportOptions) ...[
+                SizedBox(height: 10.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'PDF',
+                      style: isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
+                    ),
+                    _buildGradientCheckbox(isPdfSelected, (value) {
+                      setState(() {
+                        isPdfSelected = value!;
+                      });
+                    }),
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Png',
+                      style: isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
+                    ),
+                    _buildGradientCheckbox(isPngSelected, (value) {
+                      setState(() {
+                        isPngSelected = value!;
+                      });
+                    }),
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Jpg',
+                      style: isDarkMode ? mStyleWhite16600 : mStyleBlack16600,
+                    ),
+                    _buildGradientCheckbox(isJpgSelected, (value) {
+                      setState(() {
+                        isJpgSelected = value!;
+                      });
+                    }),
+                  ],
+                ),
+              ],
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildGradientCheckbox(bool isSelected, Function(bool?) onChanged) {
+    return Container(
+      width: 20.w,
+      height: 20.h,
+      decoration: isSelected
+          ? BoxDecoration(
+              gradient: LinearGradient(
+                colors: gradientColors,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            )
+          : null,
+      child: Checkbox(
+        value: isSelected,
+        onChanged: onChanged,
+        activeColor: Colors.transparent,
+        checkColor: Colors.white,
       ),
     );
   }
