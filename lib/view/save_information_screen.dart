@@ -12,8 +12,7 @@ import '../utils/components/custom_button.dart';
 import '../utils/constant/app_textstyle_constant.dart';
 
 class SaveInformationScreen extends StatelessWidget {
-  final SaveInformationController controller =
-      Get.put(SaveInformationController());
+  final SaveInformationController controller = Get.put(SaveInformationController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +31,17 @@ class SaveInformationScreen extends StatelessWidget {
             SizedBox(height: 20.h),
             buildPersonalInfoSection(isDarkMode),
             SizedBox(height: 20.h),
-            buildTextField('Full Name', 'John Doe', isDarkMode),
-            buildTextField(
-                'About You', 'Tell something about yourself...', isDarkMode,
-                maxLines: 7),
-            buildTextField('Email Address', 'johndoe@gmail.com', isDarkMode),
-            buildTextField(
-                'Phone Number', 'e.g., +92 234-567-8901', isDarkMode),
-            buildTextField('Address',
-                '1234 Elm Street, Apt 5B, Springfield, IL 62704', isDarkMode),
+            buildTextField('Full Name', 'John Doe', isDarkMode, controller.fullNameController),
+            buildTextField('About You', 'Tell something about yourself...', isDarkMode, controller.aboutController, maxLines: 7),
+            buildTextField('Email Address', 'johndoe@gmail.com', isDarkMode, controller.emailController),
+            buildTextField('Phone Number', 'e.g., +92 234-567-8901', isDarkMode, controller.phoneController),
+            buildTextField('Address', '1234 Elm Street, Apt 5B, Springfield, IL 62704', isDarkMode, controller.addressController),
             SizedBox(height: 20.h),
             buildSocialLinksSection(isDarkMode),
             SizedBox(height: 20.h),
             buildSectionTitle('Work Experience', isDarkMode),
-            buildTextField('Job Title', 'UI/UX Designer', isDarkMode),
-            buildTextField('Description', 'Describe your role...', isDarkMode,
-                maxLines: 7),
+            buildTextField('Job Title', 'UI/UX Designer', isDarkMode, null), // Passing null for no controller
+            buildTextField('Description', 'Describe your role...', isDarkMode, null, maxLines: 7), // Passing null for no controller
             SizedBox(height: 20.h),
             buildSectionTitle('Skills', isDarkMode),
             SizedBox(height: 10.h),
@@ -65,9 +59,11 @@ class SaveInformationScreen extends StatelessWidget {
             SizedBox(height: 30.h),
             CustomGradientButton(
               onPressed: () {
+                controller.saveDataLocally();
                 Get.showSnackbar(GetSnackBar(
                   title: 'Success',
-                  message: 'Your template has been saved successfully!',
+                  message: 'Your information has been saved!',
+                  duration: Duration(seconds: 2),
                 ));
                 Get.back();
               },
@@ -136,8 +132,8 @@ class SaveInformationScreen extends StatelessWidget {
                 : null,
             child: controller.image.value == null
                 ? Image(
-                    image: AssetImage(AppImages.imagepicker),
-                  )
+              image: AssetImage(AppImages.imagepicker),
+            )
                 : null,
           );
         }),
@@ -165,25 +161,19 @@ class SaveInformationScreen extends StatelessWidget {
               children: [
                 buildSectionTitle('Social Links', isDarkMode),
                 Icon(Icons.expand_less,
-                    color:
-                        isDarkMode ? Colors.white : Colors.blue), // Arrow icon
+                    color: isDarkMode ? Colors.white : Colors.blue), // Arrow icon
               ],
             ),
             SizedBox(height: 10.h),
-            buildSocialLinkInputRow(FontAwesomeIcons.facebook, 'Facebook',
-                controller.facebookController, isDarkMode),
+            buildSocialLinkInputRow(FontAwesomeIcons.facebook, 'Facebook', controller.facebookController, isDarkMode),
             buildDivider(isDarkMode),
-            buildSocialLinkInputRow(FontAwesomeIcons.instagram, 'Instagram',
-                controller.instagramController, isDarkMode),
+            buildSocialLinkInputRow(FontAwesomeIcons.instagram, 'Instagram', controller.instagramController, isDarkMode),
             buildDivider(isDarkMode),
-            buildSocialLinkInputRow(FontAwesomeIcons.linkedin, 'LinkedIn',
-                controller.linkedinController, isDarkMode),
+            buildSocialLinkInputRow(FontAwesomeIcons.linkedin, 'LinkedIn', controller.linkedinController, isDarkMode),
             buildDivider(isDarkMode),
-            buildSocialLinkInputRow(FontAwesomeIcons.twitter, 'Twitter',
-                controller.twitterController, isDarkMode),
+            buildSocialLinkInputRow(FontAwesomeIcons.twitter, 'Twitter', controller.twitterController, isDarkMode),
             buildDivider(isDarkMode),
-            buildSocialLinkInputRow(FontAwesomeIcons.globe, 'Portfolio',
-                controller.portfolioController, isDarkMode),
+            buildSocialLinkInputRow(FontAwesomeIcons.globe, 'Portfolio', controller.portfolioController, isDarkMode),
           ],
         ),
       ),
@@ -195,22 +185,22 @@ class SaveInformationScreen extends StatelessWidget {
       return Column(
         children: controller.skills
             .map((skill) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: buildTextField('Skill', skill, isDarkMode),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete_outline_rounded,
-                            color: isDarkMode ? Colors.red : Colors.red),
-                        onPressed: () {
-                          controller.removeSkill(skill);
-                        },
-                      ),
-                    ],
-                  ),
-                ))
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: buildTextField('Skill', skill, isDarkMode, null), // Passing null for no controller
+              ),
+              IconButton(
+                icon: Icon(Icons.delete_outline_rounded,
+                    color: isDarkMode ? Colors.red : Colors.red),
+                onPressed: () {
+                  controller.removeSkill(skill);
+                },
+              ),
+            ],
+          ),
+        ))
             .toList(),
       );
     });
@@ -233,11 +223,11 @@ class SaveInformationScreen extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Enter your $label link',
               hintStyle:
-                  TextStyle(color: isDarkMode ? Colors.grey : Colors.black54),
+              TextStyle(color: isDarkMode ? Colors.grey : Colors.black54),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
                 borderSide:
-                    BorderSide(color: isDarkMode ? Colors.white : Colors.blue),
+                BorderSide(color: isDarkMode ? Colors.white : Colors.blue),
               ),
             ),
           ),
@@ -251,49 +241,48 @@ class SaveInformationScreen extends StatelessWidget {
       return Column(
         children: controller.languages
             .map((languageMap) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: buildTextField('Language',
-                                languageMap['language'], isDarkMode),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete,
-                                color: isDarkMode ? Colors.red : Colors.red),
-                            onPressed: () {
-                              controller.removeLanguage(languageMap);
-                            },
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Proficiency Level: ${languageMap['proficiency'].round()}%',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: isDarkMode ? Colors.white : Colors.black,
-                        ),
-                      ),
-                      Slider(
-                        value: languageMap['proficiency'],
-                        min: 0,
-                        max: 100,
-                        divisions: 5,
-                        label: '${languageMap['proficiency'].round()}%',
-                        onChanged: (value) {
-                          controller.updateLanguageProficiency(
-                              languageMap, value);
-                        },
-                        activeColor: isDarkMode ? Colors.blue : Colors.blue,
-                        inactiveColor:
-                            isDarkMode ? Colors.white24 : Colors.blueGrey,
-                      ),
-                    ],
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: buildTextField('Language', languageMap['language'], isDarkMode, null), // Passing null
                   ),
-                ))
+                  IconButton(
+                    icon: Icon(Icons.delete,
+                        color: isDarkMode ? Colors.red : Colors.red),
+                    onPressed: () {
+                      controller.removeLanguage(languageMap);
+                    },
+                  ),
+                ],
+              ),
+              Text(
+                'Proficiency Level: ${languageMap['proficiency'].round()}%',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
+              Slider(
+                value: languageMap['proficiency'],
+                min: 0,
+                max: 100,
+                divisions: 5,
+                label: '${languageMap['proficiency'].round()}%',
+                onChanged: (value) {
+                  controller.updateLanguageProficiency(
+                      languageMap, value);
+                },
+                activeColor: isDarkMode ? Colors.blue : Colors.blue,
+                inactiveColor:
+                isDarkMode ? Colors.white24 : Colors.blueGrey,
+              ),
+            ],
+          ),
+        ))
             .toList(),
       );
     });
@@ -344,12 +333,12 @@ class SaveInformationScreen extends StatelessWidget {
   }
 
   // Text Field Builder
-  Widget buildTextField(String label, String hint, bool isDarkMode,
-      {int maxLines = 1}) {
+  Widget buildTextField(String label, String hint, bool isDarkMode, TextEditingController? controller, {int maxLines = 1}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: TextField(
         maxLines: maxLines,
+        controller: controller,
         style: GoogleFonts.montserrat(
           fontSize: 16,
           fontWeight: FontWeight.w400,
