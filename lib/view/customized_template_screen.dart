@@ -293,7 +293,8 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                             icon: Icon(Icons.arrow_back)),
                         Text(
                           'Customize Template',
-                          style: isDarkMode ? mStyleWhite18600 : mStyleBlack18600,
+                          style:
+                              isDarkMode ? mStyleWhite18600 : mStyleBlack18600,
                         ),
                         Spacer(),
                         GestureDetector(
@@ -366,28 +367,31 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                         child: _loadSelectedTemplate(),
                       ),
                     ),
-
                   ],
                 ),
                 SizedBox(height: 90.h),
-                CustomGradientButton(
-                  onPressed: () {
-                    _capturePng();
-                    _saveUserData();
-                    Get.showSnackbar(GetSnackBar(
-                      title: 'Success',
-                      message: 'Your template has been saved successfully!',
-                    ));
-                    Get.back();
-                  },
-                  text: 'Add Saved Info',
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFF5BBBFF),
-                      Color(0xFF005592),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                SizedBox(
+                  width: double.infinity,
+                  height: 60.h,
+                  child: CustomGradientButton(
+                    onPressed: () {
+                      _capturePng();
+                      _saveUserData();
+                      Get.showSnackbar(GetSnackBar(
+                        title: 'Success',
+                        message: 'Your template has been saved successfully!',
+                      ));
+                      Get.back();
+                    },
+                    text: 'Add Saved Info',
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF5BBBFF),
+                        Color(0xFF005592),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
                   ),
                 )
               ],
