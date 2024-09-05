@@ -242,7 +242,6 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
     final prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      // Load user data from SharedPreferences
       userName = prefs.getString('userName') ?? userName;
       userRole = prefs.getString('userRole') ?? userRole;
       socialMedia = prefs.getString('socialMedia') ?? socialMedia;
@@ -271,7 +270,6 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     ScreenUtil.init(context, designSize: const Size(393, 855));
     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
@@ -280,104 +278,98 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    IconButton(
-                        onPressed: () => Get.back(),
-                        icon: Icon(Icons.arrow_back)),
-                    Text(
-                      'Customize Template',
-                      style: isDarkMode ? mStyleWhite18600 : mStyleBlack18600,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () => Get.back(),
+                            icon: Icon(Icons.arrow_back)),
+                        Text(
+                          'Customize Template',
+                          style: isDarkMode ? mStyleWhite18600 : mStyleBlack18600,
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: _capturePng,
+                          child: Container(
+                            height: 40.h,
+                            width: 100.w,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFF5BBBFF),
+                                  Color(0xFF005592),
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                              borderRadius: BorderRadius.circular(30.r),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.file_download_outlined,
+                                  color: Colors.white,
+                                  size: 15.sp,
+                                ),
+                                SizedBox(width: 5.w),
+                                Text(
+                                  'Download',
+                                  style: mStyleWhite12600,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: _capturePng,
-                      child: Container(
-                        height: 40.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0xFF5BBBFF),
-                              Color(0xFF005592),
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'TIP: ',
+                                style: isDarkMode
+                                    ? mStyleWhite12600
+                                    : mStyleBlack12600,
+                              ),
+                              TextSpan(
+                                text: 'Click on any text/image to edit.',
+                                style: isDarkMode
+                                    ? mStyleWhite12600
+                                    : mStyleBlack12600.copyWith(
+                                        color: AppColors.lightGray2),
+                              ),
                             ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
                           ),
-                          borderRadius: BorderRadius.circular(30.r),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.file_download_outlined,
-                              color: Colors.white,
-                              size: 15.sp,
-                            ),
-                            SizedBox(width: 5.w),
-                            Text(
-                              'Download',
-                              style: mStyleWhite12600,
-                            ),
-                          ],
-                        ),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    RepaintBoundary(
+                      key: _containerKey,
+                      child: SizedBox(
+                        height: 522.h,
+                        width: 403.w,
+                        child: _loadSelectedTemplate(),
                       ),
                     ),
+
                   ],
                 ),
-                Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'TIP: ',
-                            style: isDarkMode
-                                ? mStyleWhite12600
-                                : mStyleBlack12600,
-                          ),
-                          TextSpan(
-                            text: 'Click on any text/image to edit.',
-                            style: isDarkMode
-                                ? mStyleWhite12600
-                                : mStyleBlack12600.copyWith(
-                                    color: AppColors.lightGray2),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                RepaintBoundary(
-                  key: _containerKey,
-                  child: SizedBox(
-                    height: 522.h,
-                    width: 403.w,
-                    child: _loadSelectedTemplate(),
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                CustomGradientButton(
-                  onPressed: _saveUserData,
-                  text: 'Save Info',
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFFAAAAAA),
-                      Color(0xFFAAAAAA),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 90.h),
                 CustomGradientButton(
                   onPressed: () {
                     _capturePng();

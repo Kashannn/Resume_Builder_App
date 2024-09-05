@@ -7,14 +7,14 @@ class CustomGradientButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final IconData? icon;
-  final LinearGradient gradient; // New parameter to accept custom gradient
+  final LinearGradient gradient;
 
   const CustomGradientButton({
     Key? key,
     required this.onPressed,
     required this.text,
     this.icon,
-    required this.gradient, // Make gradient required
+    required this.gradient,
   }) : super(key: key);
 
   @override
@@ -25,12 +25,13 @@ class CustomGradientButton extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
         decoration: BoxDecoration(
-          gradient: gradient, // Use the passed gradient
+          gradient: gradient,
           borderRadius: BorderRadius.circular(30.r),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (icon != null) ...[
               Icon(
