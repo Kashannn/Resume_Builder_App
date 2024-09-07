@@ -75,7 +75,7 @@ class _Template1State extends State<Template1> {
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery);
+    await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -84,218 +84,224 @@ class _Template1State extends State<Template1> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(192, 249));
     return SafeArea(
       child: Scaffold(
-        body: Stack(children: [
-          Container(
-            width: 192.w,
-             height: 249.h,
-            color: Color(0xFF343C43),
-
-          ),
-          Container(
-            width: 64.w,
-            height: 249.h,
-            color: Color(0xFF344353),
-
-
-          ),
-          Positioned(
-            top: 8.h,
-            left: 10.w,
-            bottom: 9.h,
-            child: Container(
-              width: 79.w,
-              height: 230.h,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
-                child: GestureDetector(
-                  onTap: () => _pickImage(),
-                  child: Column(
-                    children: [
-                      _profileImage == null
-                          ? ClipOval(
-                              child: Image.asset(
-                                AppImages.profilePicture,
-                                fit: BoxFit.cover,
-                                width: 49.w,
-                                height: 49.w,
-                              ),
-                            )
-                          : ClipOval(
-                              child: Image.file(
-                                _profileImage!,
-                                fit: BoxFit.cover,
-                                width: 49.w,
-                                height: 49.w,
-                              ),
+        body: Stack(
+          children: [
+            Container(
+              width: 192.w,
+              height: 249.h,
+              color: Color(0xFF343C43),
+            ),
+            Container(
+              width: 64.w,
+              height: 249.h,
+              color: Color(0xFF344353),
+            ),
+            Positioned(
+              top: 8.h,
+              left: 10.w,
+              bottom: 9.h,
+              child: Container(
+                width: 79.w,
+                // Removed the height parameter
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
+                  child: SingleChildScrollView( // Added SingleChildScrollView
+                    child: GestureDetector(
+                      onTap: () => _pickImage(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min, // Added mainAxisSize
+                        children: [
+                          _profileImage == null
+                              ? ClipOval(
+                            child: Image.asset(
+                              AppImages.profilePicture,
+                              fit: BoxFit.cover,
+                              width: 49.w,
+                              height: 49.w,
                             ),
-                      SizedBox(height: 4.h),
-                      GestureDetector(
-                        onTap: () => _editUserDetails(context),
-                        child: Column(
-                          children: [
-                            Text(userName,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 5.sp,
-                                  color: Color(0xFF00101F),
-                                )),
-                            Text(
-                              userRole,
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 3.9.sp,
-                                color: Color(0xFF00101F),
-                              ),
+                          )
+                              : ClipOval(
+                            child: Image.file(
+                              _profileImage!,
+                              fit: BoxFit.cover,
+                              width: 49.w,
+                              height: 49.w,
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 6.h),
-                      Container(
-                        width: 142.w,
-                        //height: 60.85.h,
-                        // color: Colors.black,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 1.w, vertical: 1.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildSectionHeader("BASIC INFO"),
-                              SizedBox(height: 1.h),
-                              GestureDetector(
-                                onTap: () => _editContactDetails(context),
-                                child: Column(
-                                  children: [
-                                    _buildInfoItem("Name", userName),
-                                    _buildInfoItem("ID", id),
-                                    _buildInfoItem("Phone", mobile),
-                                    _buildInfoItem("Email", email),
-                                    _buildInfoItem("Address", address),
-                                  ],
+                          ),
+                          SizedBox(height: 4.h),
+                          GestureDetector(
+                            onTap: () => _editUserDetails(context),
+                            child: Column(
+                              children: [
+                                Text(
+                                  userName,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 5.sp,
+                                    color: Color(0xFF00101F),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 4.h),
-                              _buildSectionHeader("ABILITIES"),
-                              GestureDetector(
-                                onTap: () => _editAbilityDetails(context),
-                                child: Column(
-                                  children: [
-                                    //SizedBox(height: 5.h),
-                                    _buildBulletPoint(ability1),
-                                    _buildBulletPoint(ability2),
-                                    _buildBulletPoint(ability3),
-                                    _buildBulletPoint(ability4),
-                                  ],
+                                Text(
+                                  userRole,
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 3.9.sp,
+                                    color: Color(0xFF00101F),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 5.h),
-                              _buildSectionHeader("REFERENCES"),
-                              //SizedBox(height: 2.h),
-                              Column(
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 6.h),
+                          Container(
+                            width: 142.w,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 1.w, vertical: 1.h),
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: reference.map((ref) {
-                                  return GestureDetector(
-                                    onTap: () =>
-                                        _editReferenceDetails(context, ref),
+                                children: [
+                                  _buildSectionHeader("BASIC INFO"),
+                                  SizedBox(height: 1.h),
+                                  GestureDetector(
+                                    onTap: () => _editContactDetails(context),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
                                       children: [
-                                        _buildReferenceItem(
+                                        _buildInfoItem("Name", userName),
+                                        _buildInfoItem("ID", id),
+                                        _buildInfoItem("Phone", mobile),
+                                        _buildInfoItem("Email", email),
+                                        _buildInfoItem("Address", address),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 4.h),
+                                  _buildSectionHeader("ABILITIES"),
+                                  GestureDetector(
+                                    onTap: () => _editAbilityDetails(context),
+                                    child: Column(
+                                      children: [
+                                        _buildBulletPoint(ability1),
+                                        _buildBulletPoint(ability2),
+                                        _buildBulletPoint(ability3),
+                                        _buildBulletPoint(ability4),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5.h),
+                                  _buildSectionHeader("REFERENCES"),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: reference.map((ref) {
+                                      return GestureDetector(
+                                        onTap: () =>
+                                            _editReferenceDetails(context, ref),
+                                        child: _buildReferenceItem(
                                           name: ref['name']!,
                                           title: ref['title']!,
                                           email: ref['email']!,
                                           phone: ref['phone']!,
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                }).toList(),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 14.h,
-            left: 96.w,
-            child: Container(
+            Positioned(
+              top: 14.h,
+              left: 96.w,
+              child: Container(
+                width: 84.w,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
+                  child: SingleChildScrollView( // Added SingleChildScrollView
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildSectionHeader("Profile"),
+                        GestureDetector(
+                          onTap: () => _editAboutMe(),
+                          child: _buildProfileItem(
+                            title: "Desc",
+                            description: about,
+                          ),
+                        ),
+                        SizedBox(height: 3.h),
+                        _buildProfileItem(
+                          title: "Skills",
+                          skills: skillsData.asMap().entries.map((entry) {
+                            int index = entry.key;
+                            Map<String, dynamic> skill = entry.value;
 
-              width: 84.w,
-              //height: 760.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildSectionHeader("Profile"),
-                    //SizedBox(height: 5.h),
-                    GestureDetector(
-                      onTap: () => _editAboutMe(),
-                      child:
-                          _buildProfileItem(title: "Desc", description: about),
+                            return GestureDetector(
+                              onTap: () => _editSkillDialog(
+                                context,
+                                index,
+                                skill['name'],
+                                skill['proficiency'],
+                              ),
+                              child: _buildSkillBar(
+                                skill['name'],
+                                skill['proficiency'],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                        SizedBox(height: 3.h),
+                        GestureDetector(
+                          onTap: () => _editExperience(),
+                          child: _buildProfileItem(
+                            title: "Experience",
+                            description: experience,
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        _buildSectionHeader("EDUCATION"),
+                        SizedBox(height: 2.h),
+                        Column(
+                          children: education.map((e) {
+                            return GestureDetector(
+                              onTap: () => _editEducationItem(context, e),
+                              child: _buildEducationItem(
+                                e['year']!,
+                                e['degree']!,
+                                e['institution']!,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 3.h),
-                    _buildProfileItem(
-                      title: "Skills",
-                      skills: skillsData.asMap().entries.map((entry) {
-                        int index = entry.key;
-                        Map<String, dynamic> skill = entry.value;
-
-                        return GestureDetector(
-                          onTap: () => _editSkillDialog(context, index,
-                              skill['name'], skill['proficiency']),
-                          child: _buildSkillBar(
-                              skill['name'], skill['proficiency']),
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 3.h),
-                    GestureDetector(
-                      onTap: () => _editExperience(),
-                      child: _buildProfileItem(
-                        title: "Experience",
-                        description: experience,
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    _buildSectionHeader("EDUCATION"),
-                    SizedBox(height: 2.h),
-                    Column(
-                      children: education
-                          .map((e) => GestureDetector(
-                                onTap: () => _editEducationItem(context, e),
-                                child: _buildEducationItem(e['year']!,
-                                    e['degree']!, e['institution']!),
-                              ))
-                          .toList(),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
+
 
   Widget _buildSectionHeader(String title) {
     return Column(
@@ -588,9 +594,9 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-            TextEditingController(text: userName);
+        TextEditingController(text: userName);
         final TextEditingController roleController =
-            TextEditingController(text: userRole);
+        TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -635,13 +641,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-            TextEditingController(text: mobile);
+        TextEditingController(text: mobile);
         final TextEditingController emailController =
-            TextEditingController(text: email);
+        TextEditingController(text: email);
         final TextEditingController websiteController =
-            TextEditingController(text: id);
+        TextEditingController(text: id);
         final TextEditingController locationController =
-            TextEditingController(text: address);
+        TextEditingController(text: address);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -696,13 +702,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-            TextEditingController(text: ability1);
+        TextEditingController(text: ability1);
         final TextEditingController emailController =
-            TextEditingController(text: ability2);
+        TextEditingController(text: ability2);
         final TextEditingController websiteController =
-            TextEditingController(text: ability3);
+        TextEditingController(text: ability3);
         final TextEditingController locationController =
-            TextEditingController(text: ability4);
+        TextEditingController(text: ability4);
 
         return AlertDialog(
           title: const Text('Edit Ability Details'),
@@ -757,13 +763,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-            TextEditingController(text: item['name']);
+        TextEditingController(text: item['name']);
         final TextEditingController titleController =
-            TextEditingController(text: item['title']);
+        TextEditingController(text: item['title']);
         final TextEditingController emailController =
-            TextEditingController(text: item['email']);
+        TextEditingController(text: item['email']);
         final TextEditingController phoneController =
-            TextEditingController(text: item['phone']);
+        TextEditingController(text: item['phone']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -815,7 +821,7 @@ class _Template1State extends State<Template1> {
 
   Future<void> _editAboutMe() async {
     final newAboutMe =
-        await _showEditDialog('Description', about, multiline: true);
+    await _showEditDialog('Description', about, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         about = newAboutMe;
@@ -825,7 +831,7 @@ class _Template1State extends State<Template1> {
 
   Future<void> _editExperience() async {
     final newAboutMe =
-        await _showEditDialog('Experience', experience, multiline: true);
+    await _showEditDialog('Experience', experience, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         experience = newAboutMe;
@@ -843,18 +849,18 @@ class _Template1State extends State<Template1> {
           title: Text(title),
           content: multiline
               ? TextField(
-                  controller: controller,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
-                )
+            controller: controller,
+            maxLines: 5,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          )
               : TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
-                ),
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -873,9 +879,9 @@ class _Template1State extends State<Template1> {
   Future<void> _editSkillDialog(BuildContext context, int index,
       String currentName, double currentValue) async {
     TextEditingController nameController =
-        TextEditingController(text: currentName);
+    TextEditingController(text: currentName);
     TextEditingController valueController =
-        TextEditingController(text: currentValue.toString());
+    TextEditingController(text: currentValue.toString());
 
     await showDialog(
       context: context,
@@ -893,7 +899,7 @@ class _Template1State extends State<Template1> {
                 controller: valueController,
                 keyboardType: TextInputType.number,
                 decoration:
-                    InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+                InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
               ),
             ],
           ),
@@ -932,11 +938,11 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-            TextEditingController(text: item['year']);
+        TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-            TextEditingController(text: item['degree']);
+        TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-            TextEditingController(text: item['institution']);
+        TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),

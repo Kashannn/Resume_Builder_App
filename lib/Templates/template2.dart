@@ -113,75 +113,74 @@ class _Template2State extends State<Template2> {
         backgroundColor: Color(0xFF26272E), // Dark background color
         body: Stack(
           children: [
-            Container(
-              width: 595.w,
-              //height: 942.h,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 40.h),
-                        // Space from the top
-                        _buildAvatarAndFrame(),
-                        // Combine avatar and frame
-                        SizedBox(height: 20.h),
-                        // Add space between avatar/frame and other sections
-                        _buildSectionWithLine(
-                          title: "P R O F I L E",
-                          child: _buildProfileSection(),
-                          lineHeight: 100,
-                          showIcon: Icon(Icons.circle,
-                              color: Color(0xff00FF88), size: 10.w),
-                        ),
-                        _buildSectionWithLine(
-                          title: "E X P E R I E N C E",
-                          child: _buildExperienceSection(),
-                          showIcon: Icon(Icons.circle,
-                              color: Color(0xff00FF88), size: 10.w),
-                        ),
-                        _buildSectionWithLine(
-                          title: " L A N G U A G E S",
-                          child: _buildLanguagesSection(),
-                          lineHeight: 100,
-                          showIcon: Icon(Icons.circle,
-                              color: Color(0xff00FF88), size: 10.w),
-                        ),
-                      ],
+            // Wrapped Row in SingleChildScrollView to handle overflow
+            SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                width: 595.w,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 55.h), // Space from the top
+                          _buildAvatarAndFrame(), // Combine avatar and frame
+                          SizedBox(height: 30.h), // Add space between sections
+                          _buildSectionWithLine(
+                            title: "P R O F I L E",
+                            child: _buildProfileSection(),
+                            lineHeight: 150,
+                            showIcon: Icon(Icons.circle,
+                                color: Color(0xff00FF88), size: 10.w),
+                          ),
+                          _buildSectionWithLine(
+                            title: "E X P E R I E N C E",
+                            child: _buildExperienceSection(),
+                            showIcon: Icon(Icons.circle,
+                                color: Color(0xff00FF88), size: 10.w),
+                            lineHeight: 250,
+                          ),
+                          _buildSectionWithLine(
+                            title: " L A N G U A G E S",
+                            child: _buildLanguagesSection(),
+                            lineHeight: 100,
+                            showIcon: Icon(Icons.circle,
+                                color: Color(0xff00FF88), size: 10.w),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-
-                  // Right side (Contact, Studies, Skills, Social Media)
-                  Expanded(
-                    flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 120.h,
-                          width: 20,
-                        ), // Space to align with the mobile frame
-                        _buildContactSection(),
-                        SizedBox(
-                          height: 10,
-                        ), // Place contact section at the top
-                        _buildSectionWithLine(
-                          title: "S T U D I E S",
-                          child: _buildStudiesSection(),
-                        ),
-                        _buildSectionWithLine(
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 120.h,
+                            width: 20.w,
+                          ), // Space to align with the mobile frame
+                          _buildContactSection(), // Space between sections
+                          _buildSectionWithLine(
+                            title: "S T U D I E S",
+                            child: _buildStudiesSection(),
+                            lineHeight: 200,
+                          ),
+                          _buildSectionWithLine(
                             title: "S K I L L S",
                             child: _buildSkillsSection(),
-                            lineHeight: 200),
-                      ],
+                            lineHeight: 200,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
+            // Adjusted Positioned Container on the left
             Positioned(
               top: 0,
               left: 0,
@@ -191,12 +190,13 @@ class _Template2State extends State<Template2> {
                 color: Color(0xff00FF88), // Green color
               ),
             ),
+            // Adjusted Positioned Container on the right
             Positioned(
               bottom: 0,
               right: 0,
               child: Container(
                 width: 50.w,
-                height: 20,
+                height: 20.h,
                 color: Color(0xff00FF88), // Green color
               ),
             ),
@@ -206,10 +206,13 @@ class _Template2State extends State<Template2> {
     );
   }
 
+
+
   Widget _buildAvatarAndFrame() {
     return SizedBox(
       child: Container(
-        width: 300.h,
+        width: 600.h,
+        padding: EdgeInsets.only(left: 16.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -231,15 +234,15 @@ class _Template2State extends State<Template2> {
         backgroundImage: _profileImage != null
             ? FileImage(_profileImage!)
             : AssetImage(AppImages.profilePicture) as ImageProvider,
-        radius: 50.w,
+        radius: 70.w,
       ),
     );
   }
 
   Widget _buildMobileFrame() {
     return Container(
-      width: 120.w, // Adjust width as needed
-      height: 100.h, // Adjust height as needed
+      width: 110.w, // Adjust width as needed
+      height: 200.h, // Adjust height as needed
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(7.r),
@@ -365,7 +368,7 @@ class _Template2State extends State<Template2> {
   Widget _buildContactSection() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
+      padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 60.h),
       child: GestureDetector(
         onTap: () => _editContactDetails(context),
         child: Column(
