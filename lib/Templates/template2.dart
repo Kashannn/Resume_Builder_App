@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,14 +15,22 @@ class Template2 extends StatefulWidget {
 }
 
 class _Template2State extends State<Template2> {
-
+  Color aboutColor = Colors.white70;
+  Color userNameColor = Color(0xff00FF88);
+  Color userRoleColor = Colors.white70;
+  Color phoneColor = Colors.white;
+  Color emailColor = Colors.white;
+  Color websiteColor = Colors.white;
+  Color experienceTitleColor = Colors.white;
+  Color experienceDescriptionColor = Colors.white;
   String userName = 'John Carter';
   String userRole = 'Product Designer';
   String email = 'contact@johncarter.com';
   String mobile = '+001 123 456 789';
   String website = 'johncarter.com';
 
-  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+  String about =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
 
   // List of languages with proficiency levels
   List<Map<String, String>> languages = [
@@ -41,21 +50,22 @@ class _Template2State extends State<Template2> {
 
   List<Map<String, String>> workExperience = [
     {
-
       'duration': '2020 - 2021',
       'title': 'Lead Product Designer',
-      'description': 'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
+      'description':
+          'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
     },
     {
       'duration': '2019 - 2020',
       'title': 'Lead Product Designer',
-      'description': 'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
+      'description':
+          'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
     },
     {
-
       'duration': '2018 - 2019',
       'title': 'Lead Product Designer',
-      'description': 'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
+      'description':
+          'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
     },
   ];
 
@@ -106,9 +116,6 @@ class _Template2State extends State<Template2> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 1400));
@@ -123,9 +130,7 @@ class _Template2State extends State<Template2> {
               //height: 942.h,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
-
                   Expanded(
                     flex: 1,
                     child: Column(
@@ -135,25 +140,27 @@ class _Template2State extends State<Template2> {
                         // Space from the top
                         _buildAvatarAndFrame(),
                         // Combine avatar and frame
-                        SizedBox(
-                            height: 20.h),
+                        SizedBox(height: 20.h),
                         // Add space between avatar/frame and other sections
                         _buildSectionWithLine(
                           title: "P R O F I L E",
                           child: _buildProfileSection(),
                           lineHeight: 100,
-                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                          showIcon: Icon(Icons.circle,
+                              color: Color(0xff00FF88), size: 10.w),
                         ),
                         _buildSectionWithLine(
                           title: "E X P E R I E N C E",
                           child: _buildExperienceSection(),
-                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                          showIcon: Icon(Icons.circle,
+                              color: Color(0xff00FF88), size: 10.w),
                         ),
                         _buildSectionWithLine(
                           title: " L A N G U A G E S",
                           child: _buildLanguagesSection(),
                           lineHeight: 100,
-                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                          showIcon: Icon(Icons.circle,
+                              color: Color(0xff00FF88), size: 10.w),
                         ),
                       ],
                     ),
@@ -229,17 +236,15 @@ class _Template2State extends State<Template2> {
   }
 
   Widget _buildAvatar() {
-    return  GestureDetector(
-        onTap: _pickImage,
-        child: CircleAvatar(
+    return GestureDetector(
+      onTap: _pickImage,
+      child: CircleAvatar(
         backgroundColor: Colors.transparent,
         backgroundImage: _profileImage != null
-        ? FileImage(_profileImage!)
-        : AssetImage(
-    AppImages.profilePicture)
-    as ImageProvider,
-    radius: 70.w,
-    ),
+            ? FileImage(_profileImage!)
+            : AssetImage(AppImages.profilePicture) as ImageProvider,
+        radius: 70.w,
+      ),
     );
   }
 
@@ -259,17 +264,16 @@ class _Template2State extends State<Template2> {
           bottom: BorderSide(color: Colors.white70, width: 1.w),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[
-          SizedBox(width: 2,),
-
-          GestureDetector(
-            onTap: ()=> _editUserDetails(context),
-            child: Container(
-              width: 80,
-              alignment: Alignment.center,
-              child: Column(
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        SizedBox(
+          width: 2,
+        ),
+        GestureDetector(
+          onTap: () => _editUserDetails(context),
+          child: Container(
+            width: 80,
+            alignment: Alignment.center,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -279,7 +283,7 @@ class _Template2State extends State<Template2> {
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w700,
                     fontSize: 22.sp,
-                    color: Color(0xff00FF88),
+                    color: userNameColor, // Apply dynamic color
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -289,15 +293,14 @@ class _Template2State extends State<Template2> {
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.normal,
                     fontSize: 14.sp,
-                    color: Colors.white70,
+                    color: userRoleColor, // Apply dynamic color
                   ),
                 ),
               ],
-                      ),
             ),
           ),
-      ]
-      ),
+        ),
+      ]),
     );
   }
 
@@ -305,14 +308,14 @@ class _Template2State extends State<Template2> {
     return GestureDetector(
       onTap: () => _editAboutMe(),
       child: Container(
-        padding: EdgeInsets.only(left: 24.w, right: 16.w), // Add padding here
+        padding: EdgeInsets.only(left: 24.w, right: 16.w),
         child: Text(
           about,
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
             fontSize: 14.sp,
-            color: Colors.white70,
+            color: aboutColor,
           ),
           textAlign: TextAlign.justify,
         ),
@@ -322,19 +325,23 @@ class _Template2State extends State<Template2> {
 
   Widget _buildExperienceSection() {
     return Container(
-      padding: EdgeInsets.only(
-          left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
+      padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 5.h, bottom: 5.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...workExperience.map((expItem) => GestureDetector(
-            onTap: ()=> _editExperienceItem(context, expItem),
-            child: _buildExperienceItem(
-              jobTitle: expItem['title']!,
-              duration: expItem['duration']!,
-              description: expItem['description']!,
-            ),
-          )).toList(),
+          ...workExperience
+              .map((expItem) => GestureDetector(
+                    onTap: () => _editExperienceItem(context, expItem),
+                    child: _buildExperienceItem(
+                      jobTitle: expItem['title']!,
+                      duration: expItem['duration']!,
+                      description: expItem['description']!,
+                      titleColor: Colors.greenAccent,
+                      durationColor: Colors.white70,
+                      descriptionColor: Colors.white70,
+                    ),
+                  ))
+              .toList(),
         ],
       ),
     );
@@ -342,31 +349,31 @@ class _Template2State extends State<Template2> {
 
   Widget _buildLanguagesSection() {
     return Container(
-      padding: EdgeInsets.only(
-          left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ...languages.asMap().entries.map((entry) {
-            int index = entry.key;
-            Map<String, String> lang = entry.value;
+        padding: EdgeInsets.only(
+            left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ...languages.asMap().entries.map((entry) {
+              int index = entry.key;
+              Map<String, String> lang = entry.value;
 
-            return Column(
-              children: [
-                GestureDetector(
-                  onTap: () => _editLanguages(context, index, lang['language']!, lang['proficiency']!),
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 8.h),
-                    child: _buildLanguageItem(lang['language']!, lang['proficiency']!),
+              return Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => _editLanguages(context, index,
+                        lang['language']!, lang['proficiency']!),
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 8.h),
+                      child: _buildLanguageItem(
+                          lang['language']!, lang['proficiency']!),
+                    ),
                   ),
-                ),
-              ],
-            );
-          }).toList(),
-        ],
-      )
-
-    );
+                ],
+              );
+            }).toList(),
+          ],
+        ));
   }
 
   Widget _buildContactSection() {
@@ -374,7 +381,7 @@ class _Template2State extends State<Template2> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
       child: GestureDetector(
-        onTap: ()=> _editContactDetails(context),
+        onTap: () => _editContactDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -415,7 +422,7 @@ class _Template2State extends State<Template2> {
                     color: Color(0xff00FF88), size: 16.w),
                 SizedBox(width: 8.w),
                 Text(
-                 website,
+                  website,
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
@@ -437,19 +444,21 @@ class _Template2State extends State<Template2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...education.map((edu) => Column(
-            children: [
-              GestureDetector(
-                onTap: ()=> _editEducationItem(context, edu),
-                child: _buildStudiesItem(
-                  edu['institution']!,
-                  edu['year']!,
-                  edu['degree']!,
-                   ),
-              ),
-              SizedBox(height: 8.h),
-            ],
-          )).toList(),
+          ...education
+              .map((edu) => Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => _editEducationItem(context, edu),
+                        child: _buildStudiesItem(
+                          edu['institution']!,
+                          edu['year']!,
+                          edu['degree']!,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                    ],
+                  ))
+              .toList(),
         ],
       ),
     );
@@ -466,7 +475,8 @@ class _Template2State extends State<Template2> {
             int index = entry.key;
             Map<String, dynamic> skill = entry.value;
             return GestureDetector(
-              onTap: () => _editSkillDialog(context, index, skill['name']!, skill['level']!),
+              onTap: () => _editSkillDialog(
+                  context, index, skill['name']!, skill['level']!),
               child: Padding(
                 padding: EdgeInsets.only(bottom: 8.h),
                 child: _buildSkillItem(skill['name']!, skill['level']!),
@@ -503,7 +513,7 @@ class _Template2State extends State<Template2> {
               ),
             ),
             Container(
-              width: (343 * (percentage / 100)).w, // Width based on percentage
+              width: (343 * (percentage / 100)).w,
               height: 8.h,
               decoration: BoxDecoration(
                 color: percentage >= 80
@@ -539,7 +549,8 @@ class _Template2State extends State<Template2> {
               ),
               if (showIcon != null)
                 Positioned(
-                  top: lineHeight.h / 2 - (showIcon.size ?? 10.w) / 2, // Center the icon vertically
+                  top: lineHeight.h / 2 -
+                      (showIcon.size ?? 10.w) / 2, // Center the icon vertically
                   left: -5.w, // Adjust the position as needed
                   child: showIcon, // Use the passed icon
                 ),
@@ -572,9 +583,9 @@ class _Template2State extends State<Template2> {
   Future<void> _editSkillDialog(BuildContext context, int index,
       String currentName, int currentValue) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     TextEditingController valueController =
-    TextEditingController(text: currentValue.toString());
+        TextEditingController(text: currentValue.toString());
 
     await showDialog(
       context: context,
@@ -592,7 +603,7 @@ class _Template2State extends State<Template2> {
                 controller: valueController,
                 keyboardType: TextInputType.number,
                 decoration:
-                InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
+                    InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
               ),
             ],
           ),
@@ -631,11 +642,11 @@ class _Template2State extends State<Template2> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -680,9 +691,12 @@ class _Template2State extends State<Template2> {
     );
   }
 
-  Future<void> _editLanguages(BuildContext context, int index, String currentName, String currentProficiency) async {
-    TextEditingController nameController = TextEditingController(text: currentName);
-    TextEditingController proficiencyController = TextEditingController(text: currentProficiency);
+  Future<void> _editLanguages(BuildContext context, int index,
+      String currentName, String currentProficiency) async {
+    TextEditingController nameController =
+        TextEditingController(text: currentName);
+    TextEditingController proficiencyController =
+        TextEditingController(text: currentProficiency);
 
     await showDialog(
       context: context,
@@ -732,105 +746,192 @@ class _Template2State extends State<Template2> {
     );
   }
 
-
   void _editUserDetails(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
+        Color tempNameColor = Colors.greenAccent;
+        Color tempRoleColor = Colors.blue;
 
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return SizedBox(
+          height: 300.h,
+          width: 300.w,
+          child: AlertDialog(
+            title: const Text('Edit User Details'),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(labelText: 'Name'),
+                  ),
+                  SizedBox(height: 10.h),
+                  TextField(
+                    controller: roleController,
+                    decoration: const InputDecoration(labelText: 'Role'),
+                  ),
+                  SizedBox(height: 20.h),
+                  Text('Select Name Color:'),
+                  BlockPicker(
+                    pickerColor: tempNameColor,
+                    onColorChanged: (Color color) {
+                      setState(() {
+                        tempNameColor = color;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 10.h),
+                  Text('Select Role Color:'),
+                  BlockPicker(
+                    pickerColor: tempRoleColor,
+                    onColorChanged: (Color color) {
+                      setState(() {
+                        tempRoleColor = color;
+                      });
+                    },
+                  ),
+                ],
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    userName = nameController.text;
+                    userRole = roleController.text;
+                    userNameColor = tempNameColor;
+                    userRoleColor = tempRoleColor;
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Save'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
               ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
         );
       },
     );
   }
 
   void _editExperienceItem(BuildContext context, Map<String, String> item) {
+    Color tempTitleColor = Colors.greenAccent; // Temporary color for the title
+    Color tempDescriptionColor =
+        Colors.white70; // Temporary color for the description
+    Color tempDurationColor =
+        Colors.white70; // Temporary color for the duration
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
         final TextEditingController durationController =
-        TextEditingController(text: item['duration']);
+            TextEditingController(text: item['duration']);
 
-        return AlertDialog(
-          title: const Text('Edit Experience'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Edit Experience'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(labelText: 'Title'),
+                      style: TextStyle(color: tempTitleColor),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Select Title Color:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    BlockPicker(
+                      pickerColor: tempTitleColor,
+                      onColorChanged: (Color color) {
+                        setState(() {
+                          tempTitleColor = color;
+                        });
+                      },
+                    ),
+                    SizedBox(height: 10.h),
+                    TextField(
+                      controller: durationController,
+                      decoration: const InputDecoration(labelText: 'Duration'),
+                      style: TextStyle(color: tempDurationColor),
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Select Duration Color:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    BlockPicker(
+                      pickerColor: tempDurationColor,
+                      onColorChanged: (Color color) {
+                        setState(() {
+                          tempDurationColor = color;
+                        });
+                      },
+                    ),
+                    SizedBox(height: 10.h),
+                    TextField(
+                      controller: descriptionController,
+                      decoration:
+                          const InputDecoration(labelText: 'Description'),
+                      style: TextStyle(color: tempDescriptionColor),
+                      maxLines: 5,
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      'Select Description Color:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    BlockPicker(
+                      pickerColor: tempDescriptionColor,
+                      onColorChanged: (Color color) {
+                        setState(() {
+                          tempDescriptionColor = color;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
-
-
-              TextField(
-                controller: durationController,
-                decoration: const InputDecoration(labelText: 'Duration'),
-              ),
-              TextField(
-                controller: descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  item['title'] = titleController.text;
-                  item['description'] = descriptionController.text;
-                  item['duration'] = durationController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      item['title'] = titleController.text;
+                      item['description'] = descriptionController.text;
+                      item['duration'] = durationController.text;
+                      // Save the selected colors
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -841,11 +942,11 @@ class _Template2State extends State<Template2> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
         final TextEditingController websiteController =
-        TextEditingController(text: website);
+            TextEditingController(text: website);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -864,7 +965,6 @@ class _Template2State extends State<Template2> {
                 controller: websiteController,
                 decoration: const InputDecoration(labelText: 'Website'),
               ),
-
             ],
           ),
           actions: [
@@ -874,7 +974,6 @@ class _Template2State extends State<Template2> {
                   mobile = phoneController.text;
                   email = emailController.text;
                   website = websiteController.text;
-
                 });
                 Navigator.of(context).pop();
               },
@@ -893,14 +992,67 @@ class _Template2State extends State<Template2> {
   }
 
   Future<void> _editAboutMe() async {
-    final newAboutMe =
-    await _showEditDialog('Description', about, multiline: true);
+    Color tempAboutColor = aboutColor; // Temporary variable to store the color
+
+    final newAboutMe = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        final TextEditingController aboutController =
+            TextEditingController(text: about);
+
+        return AlertDialog(
+          title: const Text('Edit About Me'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: aboutController,
+                  maxLines: 10,
+                  decoration: const InputDecoration(labelText: 'About'),
+                ),
+                SizedBox(height: 20.h),
+                Text('Select About Text Color:'),
+                BlockPicker(
+                  pickerColor: tempAboutColor,
+                  onColorChanged: (Color color) {
+                    setState(() {
+                      tempAboutColor = color;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  about = aboutController.text;
+                  aboutColor = tempAboutColor;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         about = newAboutMe;
       });
     }
   }
+
   Future<String?> _showEditDialog(String title, String initialValue,
       {bool multiline = false}) async {
     final controller = TextEditingController(text: initialValue);
@@ -911,18 +1063,18 @@ class _Template2State extends State<Template2> {
           title: Text(title),
           content: multiline
               ? TextField(
-            controller: controller,
-            maxLines: 5,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          )
+                  controller: controller,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                )
               : TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          ),
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -937,15 +1089,15 @@ class _Template2State extends State<Template2> {
       },
     );
   }
-
-
-
 }
 
 Widget _buildExperienceItem({
   required String jobTitle,
   required String duration,
   required String description,
+  required Color titleColor,
+  required Color durationColor,
+  required Color descriptionColor,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -956,7 +1108,7 @@ Widget _buildExperienceItem({
           fontFamily: 'Inter',
           fontWeight: FontWeight.w600,
           fontSize: 14.sp,
-          color: Color(0xff00FF88),
+          color: titleColor, // Apply dynamic color
         ),
       ),
       SizedBox(height: 4.h),
@@ -966,7 +1118,7 @@ Widget _buildExperienceItem({
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
           fontSize: 12.sp,
-          color: Colors.white70,
+          color: durationColor, // Apply dynamic color
         ),
       ),
       SizedBox(height: 4.h),
@@ -976,7 +1128,7 @@ Widget _buildExperienceItem({
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
           fontSize: 12.sp,
-          color: Colors.white70,
+          color: descriptionColor, // Apply dynamic color
         ),
         textAlign: TextAlign.justify,
       ),

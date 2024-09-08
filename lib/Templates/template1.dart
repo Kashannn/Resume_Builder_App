@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,6 +15,24 @@ class Template1 extends StatefulWidget {
 }
 
 class _Template1State extends State<Template1> {
+  Color userNameColor = Colors.black;
+  Color userRoleColor = Colors.black;
+  Color ability1Color = Colors.black;
+  Color phoneColor = Colors.black;
+  Color emailColor = Colors.black;
+  Color idColor = Colors.black;
+  Color addressColor = Colors.black;
+  Color ability2Color = Colors.black;
+  Color ability3Color = Colors.black;
+  Color ability4Color = Colors.black;
+  Color referenceNameColor = Colors.black;
+  Color referenceTitleColor = Colors.black;
+  Color referenceEmailColor = Colors.black;
+  Color referencePhoneColor = Colors.black;
+  Color aboutMeColor = Colors.white;
+  List<Color> skillColors = [];
+  List<Color> educationColors = [];
+
   String userName = 'Peter';
   String userRole = 'Product Designer';
   String socialMedia = '@peterdesigner';
@@ -70,7 +89,7 @@ class _Template1State extends State<Template1> {
     },
   ];
 
-  File? _profileImage; // Variable to hold the image file
+  File? _profileImage;
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -84,6 +103,13 @@ class _Template1State extends State<Template1> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    skillColors = List<Color>.filled(skillsData.length, Colors.white);
+    educationColors =
+        List<Color>.generate(education.length, (index) => Colors.white);
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(192, 249));
@@ -149,7 +175,7 @@ class _Template1State extends State<Template1> {
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 5.sp,
-                                    color: Color(0xFF00101F),
+                                    color: userNameColor,
                                   ),
                                 ),
                                 Text(
@@ -158,7 +184,7 @@ class _Template1State extends State<Template1> {
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 3.9.sp,
-                                    color: Color(0xFF00101F),
+                                    color: userRoleColor,
                                   ),
                                 ),
                               ],
@@ -179,11 +205,13 @@ class _Template1State extends State<Template1> {
                                     onTap: () => _editContactDetails(context),
                                     child: Column(
                                       children: [
-                                        _buildInfoItem("Name", userName),
-                                        _buildInfoItem("ID", id),
-                                        _buildInfoItem("Phone", mobile),
-                                        _buildInfoItem("Email", email),
-                                        _buildInfoItem("Address", address),
+                                        _buildInfoItem(
+                                            "Phone", mobile, phoneColor),
+                                        _buildInfoItem(
+                                            "Email", email, emailColor),
+                                        _buildInfoItem("ID", id, idColor),
+                                        _buildInfoItem(
+                                            "Address", address, addressColor),
                                       ],
                                     ),
                                   ),
@@ -193,10 +221,14 @@ class _Template1State extends State<Template1> {
                                     onTap: () => _editAbilityDetails(context),
                                     child: Column(
                                       children: [
-                                        _buildBulletPoint(ability1),
-                                        _buildBulletPoint(ability2),
-                                        _buildBulletPoint(ability3),
-                                        _buildBulletPoint(ability4),
+                                        _buildBulletPoint(
+                                            ability1, ability1Color),
+                                        _buildBulletPoint(
+                                            ability2, ability2Color),
+                                        _buildBulletPoint(
+                                            ability3, ability3Color),
+                                        _buildBulletPoint(
+                                            ability4, ability4Color),
                                       ],
                                     ),
                                   ),
@@ -245,8 +277,10 @@ class _Template1State extends State<Template1> {
                         GestureDetector(
                           onTap: () => _editAboutMe(),
                           child: _buildProfileItem(
-                            title: "Desc",
+                            title: "About Me",
                             description: about,
+                            descriptionColor:
+                                aboutMeColor, // Pass the selected color for the description
                           ),
                         ),
                         SizedBox(height: 3.h),
@@ -264,9 +298,9 @@ class _Template1State extends State<Template1> {
                                 skill['proficiency'],
                               ),
                               child: _buildSkillBar(
-                                skill['name'],
-                                skill['proficiency'],
-                              ),
+                                  skillsData[index]['name'],
+                                  skillsData[index]['proficiency'],
+                                  skillColors[index]),
                             );
                           }).toList(),
                         ),
@@ -276,19 +310,25 @@ class _Template1State extends State<Template1> {
                           child: _buildProfileItem(
                             title: "Experience",
                             description: experience,
+                            descriptionColor: aboutMeColor,
                           ),
                         ),
                         SizedBox(height: 10.h),
                         _buildSectionHeader("EDUCATION"),
                         SizedBox(height: 2.h),
                         Column(
-                          children: education.map((e) {
+                          children: education.asMap().entries.map((entry) {
+                            int index = entry.key;
+                            Map<String, String> e = entry.value;
+
                             return GestureDetector(
-                              onTap: () => _editEducationItem(context, e),
+                              onTap: () =>
+                                  _editEducationItem(context, e, index),
                               child: _buildEducationItem(
                                 e['year']!,
                                 e['degree']!,
                                 e['institution']!,
+                                educationColors[index],
                               ),
                             );
                           }).toList(),
@@ -326,7 +366,7 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  Widget _buildInfoItem(String label, String value) {
+  Widget _buildInfoItem(String label, String value, Color textColor) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.5.h),
       child: Row(
@@ -338,7 +378,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
               fontSize: 2.52.sp,
-              color: Colors.black,
+              color: textColor,
             ),
             textAlign: TextAlign.justify,
           ),
@@ -349,7 +389,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 2.52.sp,
-                color: Colors.black,
+                color: textColor, // Use the selected color
               ),
               textAlign: TextAlign.end,
             ),
@@ -359,7 +399,7 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  Widget _buildBulletPoint(String text) {
+  Widget _buildBulletPoint(String text, Color textColor) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.5.h),
       child: Row(
@@ -374,7 +414,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 2.52.sp,
-                color: Colors.black,
+                color: textColor, // Apply the selected color
               ),
             ),
           ),
@@ -400,7 +440,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
               fontSize: 2.52.sp,
-              color: Colors.black,
+              color: referenceNameColor, // Apply selected color
             ),
           ),
           SizedBox(height: 1.h),
@@ -410,7 +450,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
               fontSize: 2.52.sp,
-              color: Colors.black,
+              color: referenceTitleColor, // Apply selected color
             ),
           ),
           SizedBox(height: 1.h),
@@ -420,7 +460,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
               fontSize: 2.52.sp,
-              color: Colors.black,
+              color: referenceEmailColor, // Apply selected color
             ),
           ),
           SizedBox(height: 1.h),
@@ -430,7 +470,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
               fontSize: 2.52.sp,
-              color: Colors.black,
+              color: referencePhoneColor, // Apply selected color
             ),
           ),
         ],
@@ -464,6 +504,7 @@ class _Template1State extends State<Template1> {
     required String title,
     String? description,
     List<Widget>? skills,
+    Color? descriptionColor,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,7 +532,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
               fontSize: 2.53.sp,
-              color: Colors.white,
+              color: descriptionColor ?? Colors.white,
             ),
             textAlign: TextAlign.justify,
           ),
@@ -504,7 +545,7 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  Widget _buildSkillBar(String skill, double proficiency) {
+  Widget _buildSkillBar(String skill, double proficiency, Color textColor) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -514,10 +555,9 @@ class _Template1State extends State<Template1> {
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
             fontSize: 2.97.sp,
-            color: Colors.white,
+            color: textColor,
           ),
         ),
-        //SizedBox(height: 4.h),
         Stack(
           children: [
             Container(
@@ -537,7 +577,8 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  Widget _buildEducationItem(String year, String title, String institution) {
+  Widget _buildEducationItem(
+      String year, String title, String institution, Color textColor) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -562,7 +603,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w700,
                 fontSize: 2.8.sp,
-                color: Colors.white,
+                color: textColor, // Apply selected color
               ),
             ),
             SizedBox(height: 2.h),
@@ -572,7 +613,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 2.8.sp,
-                color: Colors.white,
+                color: textColor, // Apply selected color
               ),
             ),
             SizedBox(height: 2.h),
@@ -582,7 +623,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 2.8.sp,
-                color: Colors.white,
+                color: textColor,
               ),
             ),
           ],
@@ -599,21 +640,36 @@ class _Template1State extends State<Template1> {
             TextEditingController(text: userName);
         final TextEditingController roleController =
             TextEditingController(text: userRole);
+        Color tempColor = userNameColor;
 
         return AlertDialog(
           title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-              ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                TextField(
+                  controller: roleController,
+                  decoration: const InputDecoration(labelText: 'Role'),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Select Text Color:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                BlockPicker(
+                  pickerColor: tempColor,
+                  onColorChanged: (Color color) {
+                    tempColor = color; // Update the temporary color
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -621,6 +677,8 @@ class _Template1State extends State<Template1> {
                 setState(() {
                   userName = nameController.text;
                   userRole = roleController.text;
+                  userNameColor = tempColor;
+                  userRoleColor = tempColor;
                 });
                 Navigator.of(context).pop();
               },
@@ -650,29 +708,59 @@ class _Template1State extends State<Template1> {
             TextEditingController(text: id);
         final TextEditingController locationController =
             TextEditingController(text: address);
+        Color tempPhoneColor = phoneColor;
+        Color tempEmailColor = emailColor;
+        Color tempIdColor = idColor;
+        Color tempAddressColor = addressColor;
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
-              ),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-              ),
-              TextField(
-                controller: websiteController,
-                decoration: const InputDecoration(labelText: 'Id'),
-              ),
-              TextField(
-                controller: locationController,
-                decoration: const InputDecoration(labelText: 'Address'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(labelText: 'Phone'),
+                ),
+                BlockPicker(
+                  pickerColor: tempPhoneColor,
+                  onColorChanged: (Color color) {
+                    tempPhoneColor = color; // Update temporary color
+                  },
+                ),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                BlockPicker(
+                  pickerColor: tempEmailColor,
+                  onColorChanged: (Color color) {
+                    tempEmailColor = color; // Update temporary color
+                  },
+                ),
+                TextField(
+                  controller: websiteController,
+                  decoration: const InputDecoration(labelText: 'Id'),
+                ),
+                BlockPicker(
+                  pickerColor: tempIdColor,
+                  onColorChanged: (Color color) {
+                    tempIdColor = color; // Update temporary color
+                  },
+                ),
+                TextField(
+                  controller: locationController,
+                  decoration: const InputDecoration(labelText: 'Address'),
+                ),
+                BlockPicker(
+                  pickerColor: tempAddressColor,
+                  onColorChanged: (Color color) {
+                    tempAddressColor = color; // Update temporary color
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -682,6 +770,11 @@ class _Template1State extends State<Template1> {
                   email = emailController.text;
                   id = websiteController.text;
                   address = locationController.text;
+
+                  phoneColor = tempPhoneColor;
+                  emailColor = tempEmailColor;
+                  idColor = tempIdColor;
+                  addressColor = tempAddressColor;
                 });
                 Navigator.of(context).pop();
               },
@@ -703,46 +796,84 @@ class _Template1State extends State<Template1> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController phoneController =
+        final TextEditingController ability1Controller =
             TextEditingController(text: ability1);
-        final TextEditingController emailController =
+        final TextEditingController ability2Controller =
             TextEditingController(text: ability2);
-        final TextEditingController websiteController =
+        final TextEditingController ability3Controller =
             TextEditingController(text: ability3);
-        final TextEditingController locationController =
+        final TextEditingController ability4Controller =
             TextEditingController(text: ability4);
+
+        // Temporary color holders for abilities
+        Color tempAbility1Color = ability1Color;
+        Color tempAbility2Color = ability2Color;
+        Color tempAbility3Color = ability3Color;
+        Color tempAbility4Color = ability4Color;
 
         return AlertDialog(
           title: const Text('Edit Ability Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Ability 1'),
-              ),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(labelText: 'Ability 2'),
-              ),
-              TextField(
-                controller: websiteController,
-                decoration: const InputDecoration(labelText: 'Ability 3'),
-              ),
-              TextField(
-                controller: locationController,
-                decoration: const InputDecoration(labelText: 'Ability 4'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: ability1Controller,
+                  decoration: const InputDecoration(labelText: 'Ability 1'),
+                ),
+                BlockPicker(
+                  pickerColor: tempAbility1Color,
+                  onColorChanged: (Color color) {
+                    tempAbility1Color = color;
+                  },
+                ),
+                TextField(
+                  controller: ability2Controller,
+                  decoration: const InputDecoration(labelText: 'Ability 2'),
+                ),
+                BlockPicker(
+                  pickerColor: tempAbility2Color,
+                  onColorChanged: (Color color) {
+                    tempAbility2Color = color; // Update temp color
+                  },
+                ),
+                TextField(
+                  controller: ability3Controller,
+                  decoration: const InputDecoration(labelText: 'Ability 3'),
+                ),
+                BlockPicker(
+                  pickerColor: tempAbility3Color,
+                  onColorChanged: (Color color) {
+                    tempAbility3Color = color; // Update temp color
+                  },
+                ),
+                TextField(
+                  controller: ability4Controller,
+                  decoration: const InputDecoration(labelText: 'Ability 4'),
+                ),
+                BlockPicker(
+                  pickerColor: tempAbility4Color,
+                  onColorChanged: (Color color) {
+                    tempAbility4Color = color; // Update temp color
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
-                  ability1 = phoneController.text;
-                  ability2 = emailController.text;
-                  ability3 = websiteController.text;
-                  ability4 = locationController.text;
+                  // Update the ability text and the respective colors
+                  ability1 = ability1Controller.text;
+                  ability2 = ability2Controller.text;
+                  ability3 = ability3Controller.text;
+                  ability4 = ability4Controller.text;
+
+                  ability1Color = tempAbility1Color;
+                  ability2Color = tempAbility2Color;
+                  ability3Color = tempAbility3Color;
+                  ability4Color = tempAbility4Color;
                 });
                 Navigator.of(context).pop();
               },
@@ -773,37 +904,75 @@ class _Template1State extends State<Template1> {
         final TextEditingController phoneController =
             TextEditingController(text: item['phone']);
 
+        // Temporary color holders for reference fields
+        Color tempNameColor = referenceNameColor;
+        Color tempTitleColor = referenceTitleColor;
+        Color tempEmailColor = referenceEmailColor;
+        Color tempPhoneColor = referencePhoneColor;
+
         return AlertDialog(
-          title: const Text('Edit Experience'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-              ),
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(labelText: 'Institute'),
-              ),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
-              ),
-              TextField(
-                controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
-              ),
-            ],
+          title: const Text('Edit Reference Details'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                BlockPicker(
+                  pickerColor: tempNameColor,
+                  onColorChanged: (Color color) {
+                    tempNameColor = color;
+                  },
+                ),
+                TextField(
+                  controller: titleController,
+                  decoration: const InputDecoration(labelText: 'Institute'),
+                ),
+                BlockPicker(
+                  pickerColor: tempTitleColor,
+                  onColorChanged: (Color color) {
+                    tempTitleColor = color;
+                  },
+                ),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                BlockPicker(
+                  pickerColor: tempEmailColor,
+                  onColorChanged: (Color color) {
+                    tempEmailColor = color;
+                  },
+                ),
+                TextField(
+                  controller: phoneController,
+                  decoration: const InputDecoration(labelText: 'Phone'),
+                ),
+                BlockPicker(
+                  pickerColor: tempPhoneColor,
+                  onColorChanged: (Color color) {
+                    tempPhoneColor = color; // Update temporary color
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
+                  // Update the reference details and their respective colors
                   item['name'] = nameController.text;
                   item['title'] = titleController.text;
                   item['email'] = emailController.text;
                   item['phone'] = phoneController.text;
+
+                  referenceNameColor = tempNameColor;
+                  referenceTitleColor = tempTitleColor;
+                  referenceEmailColor = tempEmailColor;
+                  referencePhoneColor = tempPhoneColor;
                 });
                 Navigator.of(context).pop();
               },
@@ -824,11 +993,64 @@ class _Template1State extends State<Template1> {
   Future<void> _editAboutMe() async {
     final newAboutMe =
         await _showEditDialog('Description', about, multiline: true);
-    if (newAboutMe != null && newAboutMe.isNotEmpty) {
-      setState(() {
-        about = newAboutMe;
-      });
-    }
+
+    Color tempAboutMeColor = aboutMeColor;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Edit About Me'),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: TextEditingController(text: about),
+                    maxLines: 10,
+                    decoration:
+                        InputDecoration(hintText: 'Enter new description'),
+                    onChanged: (value) {
+                      about = value;
+                    },
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Select Text Color:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  BlockPicker(
+                    pickerColor: tempAboutMeColor,
+                    onColorChanged: (Color color) {
+                      tempAboutMeColor = color;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  about = newAboutMe ?? about;
+                  aboutMeColor = tempAboutMeColor;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> _editExperience() async {
@@ -885,25 +1107,39 @@ class _Template1State extends State<Template1> {
     TextEditingController valueController =
         TextEditingController(text: currentValue.toString());
 
+    Color tempSkillColor =
+        skillColors[index]; // Temporary color holder for the skill
+
     await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text('Edit Skill'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'Skill Name'),
-              ),
-              TextField(
-                controller: valueController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(labelText: 'Skill Name'),
+                ),
+                TextField(
+                  controller: valueController,
+                  keyboardType: TextInputType.number,
+                  decoration:
+                      InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+                ),
+                SizedBox(height: 10),
+                Text('Select Text Color:',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                BlockPicker(
+                  pickerColor: tempSkillColor,
+                  onColorChanged: (Color color) {
+                    tempSkillColor = color;
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -923,6 +1159,7 @@ class _Template1State extends State<Template1> {
                     'name': newName,
                     'proficiency': newValue,
                   };
+                  skillColors[index] = tempSkillColor; // Save selected color
                 });
 
                 Navigator.of(context).pop();
@@ -935,7 +1172,8 @@ class _Template1State extends State<Template1> {
     );
   }
 
-  void _editEducationItem(BuildContext context, Map<String, String> item) {
+  void _editEducationItem(
+      BuildContext context, Map<String, String> item, int index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -946,24 +1184,38 @@ class _Template1State extends State<Template1> {
         final TextEditingController institutionController =
             TextEditingController(text: item['institution']);
 
+        Color tempEducationColor =
+            educationColors[index]; // Temporary color holder
+
         return AlertDialog(
           title: const Text('Edit Education'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: yearController,
-                decoration: const InputDecoration(labelText: 'Year'),
-              ),
-              TextField(
-                controller: degreeController,
-                decoration: const InputDecoration(labelText: 'Degree'),
-              ),
-              TextField(
-                controller: institutionController,
-                decoration: const InputDecoration(labelText: 'Institution'),
-              ),
-            ],
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: yearController,
+                  decoration: const InputDecoration(labelText: 'Year'),
+                ),
+                TextField(
+                  controller: degreeController,
+                  decoration: const InputDecoration(labelText: 'Degree'),
+                ),
+                TextField(
+                  controller: institutionController,
+                  decoration: const InputDecoration(labelText: 'Institution'),
+                ),
+                SizedBox(height: 10),
+                Text('Select Text Color:',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                BlockPicker(
+                  pickerColor: tempEducationColor,
+                  onColorChanged: (Color color) {
+                    tempEducationColor = color; // Update temporary color
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(
@@ -972,6 +1224,8 @@ class _Template1State extends State<Template1> {
                   item['year'] = yearController.text;
                   item['degree'] = degreeController.text;
                   item['institution'] = institutionController.text;
+                  educationColors[index] =
+                      tempEducationColor; // Save selected color
                 });
                 Navigator.of(context).pop();
               },

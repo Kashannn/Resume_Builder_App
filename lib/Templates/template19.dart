@@ -2,6 +2,29 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -131,7 +154,7 @@ class _Template19State extends State<Template19> {
                             Text(
                               userName,
                               style: TextStyle(
-                                fontFamily: 'Inter',
+                                fontFamily: GoogleFonts.inter().fontFamily,
                                 color: Colors.white,
                                 fontSize: 35.sp,
                                 fontWeight: FontWeight.w700,
@@ -141,7 +164,7 @@ class _Template19State extends State<Template19> {
                             Text(
                               userRole,
                               style: TextStyle(
-                                fontFamily: 'Inter',
+                                fontFamily: GoogleFonts.inter().fontFamily,
                                 color: Color(0xFFE3E3E3),
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
@@ -193,7 +216,7 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       mobile1,
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         color: Colors.white,
                                         fontSize: 10.sp,
                                       ),
@@ -202,7 +225,7 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       mobile2,
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         color: Colors.white,
                                         fontSize: 10.sp,
                                       ),
@@ -223,7 +246,7 @@ class _Template19State extends State<Template19> {
                                 Text(
                                   email,
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     color: Colors.white,
                                     fontSize: 10.sp,
                                   ),
@@ -242,7 +265,7 @@ class _Template19State extends State<Template19> {
                                 Text(
                                   address,
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     color: Colors.white,
                                     fontSize: 10.sp,
                                   ),
@@ -278,7 +301,7 @@ class _Template19State extends State<Template19> {
                                 Text(
                                   'About Me',
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontSize: 11.81.sp,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
@@ -291,7 +314,7 @@ class _Template19State extends State<Template19> {
                             Text(
                               about,
                               style: TextStyle(
-                                fontFamily: 'Inter',
+                                fontFamily: GoogleFonts.inter().fontFamily,
                                 fontSize: 9.81.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -320,7 +343,7 @@ class _Template19State extends State<Template19> {
                                 Text(
                                   'Education',
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontSize: 11.81.sp,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
@@ -344,7 +367,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['institution']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -354,7 +377,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['degree']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -364,7 +387,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['year']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -401,7 +424,7 @@ class _Template19State extends State<Template19> {
                                 Text(
                                   'Job Experience',
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontSize: 11.81.sp,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
@@ -425,7 +448,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['fromto']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -435,7 +458,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['title']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -445,7 +468,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['details']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -455,7 +478,7 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['description']!,
                                         style: TextStyle(
-                                          fontFamily: 'Inter',
+                                          fontFamily: GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -485,7 +508,7 @@ class _Template19State extends State<Template19> {
                               Text(
                                 'Portfolio Link',
                                 style: TextStyle(
-                                  fontFamily: 'Inter',
+                                  fontFamily: GoogleFonts.inter().fontFamily,
                                   fontSize: 11.81.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
@@ -500,7 +523,7 @@ class _Template19State extends State<Template19> {
                             child: Text(
                               portfolio,
                               style: TextStyle(
-                                fontFamily: 'Inter',
+                                fontFamily: GoogleFonts.inter().fontFamily,
                                 fontSize: 8.83.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
@@ -537,7 +560,7 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       'Expertise & Skills',
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         fontSize: 11.81.sp,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.white,
@@ -580,7 +603,7 @@ class _Template19State extends State<Template19> {
                               Text(
                                 'Hobbies',
                                 style: TextStyle(
-                                  fontFamily: 'Inter',
+                                  fontFamily: GoogleFonts.inter().fontFamily,
                                   fontSize: 11.81.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
@@ -1032,7 +1055,7 @@ Widget buildSkillCircle(String skillName) {
             skillName,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontSize: 10.sp,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -1048,7 +1071,7 @@ Widget buildHobbyItem(String hobby) {
   return Text(
     hobby,
     style: TextStyle(
-      fontFamily: 'Inter',
+      fontFamily: GoogleFonts.inter().fontFamily,
       fontSize: 8.83.sp,
       fontWeight: FontWeight.w600,
       color: Colors.white,

@@ -242,7 +242,6 @@ class _Template6State extends State<Template6> {
                                         experience['description']!),
                                     SizedBox(height: 15.h),
                                   ],
-
                                 ))
                             .toList(),
                       ),
@@ -253,7 +252,7 @@ class _Template6State extends State<Template6> {
                 Divider(color: AppColorsTemplate10.divider, thickness: 0.5.h),
                 SizedBox(height: 5.h),
                 Container(
-                 // width: 290.w,
+                  // width: 290.w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -385,11 +384,10 @@ class _Template6State extends State<Template6> {
       width: 220.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: skillChunks
             .map((chunk) => Column(
-              children: [
-                Row(
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: chunk
                           .map((skill) => Expanded(
@@ -400,9 +398,9 @@ class _Template6State extends State<Template6> {
                               ))
                           .toList(),
                     ),
-                SizedBox(height: 5.h),
-              ],
-            ))
+                    SizedBox(height: 5.h),
+                  ],
+                ))
             .toList(),
       ),
     );
