@@ -164,8 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.w,
                     mainAxisSpacing: 10.h,
-                    childAspectRatio: 193.w /
-                        250.h, // Adjust aspect ratio to fit images better
+                    childAspectRatio: 193.w / 300.h,
                   ),
                   itemBuilder: (context, index) {
                     return GestureDetector(
