@@ -45,13 +45,13 @@ class _Template9State extends State<Template9> {
       'company': 'Borcelle Studio',
       'position': 'Photographer',
       'years': '2021',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
       'company': 'Creative Lens',
       'position': 'Assistant Photographer',
       'years': '2016',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
   ];
 
@@ -104,7 +104,7 @@ class _Template9State extends State<Template9> {
                   ),
                   child: Container(
                     width: 250.w,
-                    //height: 550.h,
+                    height: 850.h,
                     padding: EdgeInsets.all(16.w),
                     decoration: BoxDecoration(
                         color: Color(0xFF333132),
@@ -116,12 +116,12 @@ class _Template9State extends State<Template9> {
                         Padding(
                           padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
                           child: CircleAvatar(
-                            radius: 65.r,
+                            radius: 93.r,
                             backgroundColor: Color(0xFFFFA200),
                             child: GestureDetector(
                               onTap: _pickImage,
                               child: CircleAvatar(
-                                radius: 60.h,
+                                radius: 90.h,
                                 backgroundImage: _profileImage != null
                                     ? FileImage(_profileImage!)
                                     : AssetImage(AppImages.profilePicture)
@@ -130,19 +130,151 @@ class _Template9State extends State<Template9> {
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: ()=>_editContactDetails(context),
+                        10.verticalSpace,
+                        Container(
+                          width: 200.w,
                           child: Column(
-
                             children: [
+                              GestureDetector(
+                                onTap: ()=>_editContactDetails(context),
+                                child: Column(
 
-                              Text(
-                                'Contact',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20.sp,
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold,
+
+                                  children: [
+
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(AppImages.user,
+                                            width: 25.sp, height: 25.sp
+                                        ),
+                                        SizedBox(width: 10.w),
+                                        Text(
+                                          'Contact',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 20.sp,
+                                            color: Colors.orange,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(
+                                      color: Colors.grey,
+                                      thickness: 1.5.h,
+                                      indent: 20.w,
+                                      endIndent: 20.w,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 5.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.phone,
+                                            color: Colors.orange,
+                                            size: 22.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              phoneNumber,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 14.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.link,
+                                            color: Colors.orange,
+                                            size: 22.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              linkdin,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 14.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.email,
+                                            color: Colors.orange,
+                                            size: 22.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              email,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 14.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.web,
+                                            color: Colors.orange,
+                                            size: 22.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              website,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 14.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              ),
+                              SizedBox(height: 20.h),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(AppImages.skill,
+                                      width: 20.sp, height: 20.sp
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Text(
+                                    'Skills',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 20.sp,
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
                               Divider(
                                 color: Colors.grey,
@@ -150,218 +282,103 @@ class _Template9State extends State<Template9> {
                                 indent: 20.w,
                                 endIndent: 20.w,
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 5.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.phone,
-                                      color: Colors.orange,
-                                      size: 22.sp,
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        phoneNumber,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14.sp,
-                                          color: Colors.white,
-                                        ),
+                              Column(
+                                children: skills.map((skill) {
+                                  return GestureDetector(
+                                    onTap: ()=> _showSkillsEditDialog(),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.circle,
+                                            color: Colors.orange,
+                                            size: 8.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              skill,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 16.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  );
+                                }).toList(),
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 8.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.link,
+                              SizedBox(height: 10.h),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(AppImages.tool,
+                                      width: 20.sp, height: 20.sp
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Text(
+                                    'Tools',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 20.sp,
                                       color: Colors.orange,
-                                      size: 22.sp,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        linkdin,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 8.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.email,
-                                      color: Colors.orange,
-                                      size: 22.sp,
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        email,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1.5.h,
+                                indent: 20.w,
+                                endIndent: 20.w,
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 8.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.web,
-                                      color: Colors.orange,
-                                      size: 22.sp,
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        website,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14.sp,
-                                          color: Colors.white,
-                                        ),
+                              Column(
+                                children: tools.map((skill) {
+                                  return GestureDetector(
+                                    onTap: ()=> _showToolsEditDialog(),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.circle,
+                                            color: Colors.orange,
+                                            size: 8.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Expanded(
+                                            child: Text(
+                                              skill,
+                                              style: GoogleFonts.lato(
+                                                fontSize: 16.sp,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  );
+                                }).toList(),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(height: 20.h),
-                        Row(
-                          children: [
-                            SvgPicture.asset(AppImages.skill,
-                                width: 20.sp, height: 20.sp
-                            ),
-                            SizedBox(width: 10.w),
-                            Text(
-                              'Skills',
-                              style: GoogleFonts.poppins(
-                                fontSize: 20.sp,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1.5.h,
-                          indent: 20.w,
-                          endIndent: 20.w,
-                        ),
-                        Column(
-                          children: skills.map((skill) {
-                            return GestureDetector(
-                              onTap: ()=> _showSkillsEditDialog(),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.circle,
-                                      color: Colors.orange,
-                                      size: 8.sp,
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        skill,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                        SizedBox(height: 10.h),
-                        Row(
-                          children: [
-                            SvgPicture.asset(AppImages.tool,
-                                width: 20.sp, height: 20.sp
-                            ),
-                            SizedBox(width: 10.w),
-                            Text(
-                              'Tools',
-                              style: GoogleFonts.poppins(
-                                fontSize: 20.sp,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                          thickness: 1.5.h,
-                          indent: 20.w,
-                          endIndent: 20.w,
-                        ),
-                        Column(
-                          children: tools.map((skill) {
-                            return GestureDetector(
-                              onTap: ()=> _showToolsEditDialog(),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.circle,
-                                      color: Colors.orange,
-                                      size: 8.sp,
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Expanded(
-                                      child: Text(
-                                        skill,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }).toList(),
                         ),
                       ],
                     ),
                   ),
                 ),
                 Container(
-                  width: 345.w,
-                  //height: 550.h,
+                  width: 366.w,
+                  //height: 850..h,
                   color: Colors.grey[700],
                   child: Column(
                     children: [
                       Container(
-                        width: 345.w,
-                        //height: 200.h,
+                        width: 366.w,
+                        height: 200.h,
                         color: Colors.grey[800],
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 24.h),
@@ -373,7 +390,7 @@ class _Template9State extends State<Template9> {
                             children: [
                               Text(
                                 userName,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.lato(
                                   fontSize: 36.sp,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -382,7 +399,7 @@ class _Template9State extends State<Template9> {
                               SizedBox(height: 8.h),
                               Text(
                                 jobTitle,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.lato(
                                   fontSize: 20.sp,
                                   color: Colors.orangeAccent,
                                   fontWeight: FontWeight.w400,
@@ -393,30 +410,32 @@ class _Template9State extends State<Template9> {
                         ),
                       ),
                       Container(
-                        width: 345.w,
-                        height: 700.h,
+                        width: 366.w,
+                        height: 654.h,
                         color: Colors.white,
                         padding: EdgeInsets.symmetric(
                           horizontal: 16.w,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            10.verticalSpace,
                             // Personal Profile Section
                             Text(
                               'Personal Profile',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.lato(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
                             ),
+                            Divider(color: Colors.black),
                             GestureDetector(
                               onTap: ()=>_editAbout(context),
                               child: Text(
                                 aboutMe,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.lato(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
@@ -424,10 +443,11 @@ class _Template9State extends State<Template9> {
                               ),
                             ),
 
+                            22.verticalSpace,
                             // Work Experience Section
                             Text(
                               'Work Experience',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.lato(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -450,7 +470,7 @@ class _Template9State extends State<Template9> {
                             // Education Section
                             Text(
                               'Education',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.lato(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -477,7 +497,7 @@ class _Template9State extends State<Template9> {
                             // Referees Section
                             Text(
                               'Referees',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.lato(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -488,7 +508,7 @@ class _Template9State extends State<Template9> {
                               onTap:()=>_editRefernce(),
                               child: Text(
                                 reference,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.lato(
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
@@ -525,26 +545,26 @@ class _Template9State extends State<Template9> {
             children: [
               Text(
                 '$position | $company',
-                style: GoogleFonts.poppins(
-                  fontSize: 12.sp,
+                style: GoogleFonts.lato(
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
               Text(
                 duration,
-                style: GoogleFonts.poppins(
-                  fontSize: 12.sp,
+                style: GoogleFonts.lato(
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.normal,
                   color: Colors.black,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 8.h),
           Text(
             description,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.lato(
               fontSize: 12.sp,
               fontWeight: FontWeight.normal,
               color: Colors.black,
@@ -561,13 +581,13 @@ class _Template9State extends State<Template9> {
     required String duration,
   }) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 16.h),
+      padding: EdgeInsets.only(bottom: 18.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             degree,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.lato(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -576,7 +596,7 @@ class _Template9State extends State<Template9> {
           SizedBox(height: 4.h),
           Text(
             institution,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.lato(
               fontSize: 13.sp,
               fontWeight: FontWeight.normal,
               color: Colors.black,
@@ -585,7 +605,7 @@ class _Template9State extends State<Template9> {
           SizedBox(height: 4.h),
           Text(
             duration,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.lato(
               fontSize: 13.sp,
               fontWeight: FontWeight.normal,
               color: Colors.black,

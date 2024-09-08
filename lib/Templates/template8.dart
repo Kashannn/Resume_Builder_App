@@ -143,6 +143,7 @@ class _Template8State extends State<Template8> {
                                         : AssetImage(
                                                 AppImages.Template8ProfilePhoto)
                                             as ImageProvider,
+                                    radius: 65.r,
 
                                   ),
                                 ),
@@ -431,7 +432,7 @@ class _Template8State extends State<Template8> {
                                       height: 5.h,
                                     ),
                                     SizedBox(
-                                      width: 157.w,
+                                      //width: 157.w,
                                       child: GestureDetector(
                                         onTap: () =>
                                             _editContactDetails(context),
@@ -469,6 +470,9 @@ class _Template8State extends State<Template8> {
                                                 fontSize: 9.sp,
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
                                             Text(
                                               email,
                                               style: TextStyle(
@@ -478,6 +482,9 @@ class _Template8State extends State<Template8> {
                                                 fontSize: 9.sp,
                                               ),
                                             ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
                                             Text(
                                               "Call:",
                                               style: TextStyle(
@@ -486,6 +493,9 @@ class _Template8State extends State<Template8> {
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: 5.h,
                                             ),
                                             Text(
                                               phone,
@@ -646,7 +656,7 @@ class _Template8State extends State<Template8> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width: 130.w,
+                                  //width: 130.w,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -670,6 +680,7 @@ class _Template8State extends State<Template8> {
                                     ],
                                   ),
                                 ),
+                                16.verticalSpace,
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: experiences.map((experience) {
@@ -722,7 +733,7 @@ class _Template8State extends State<Template8> {
                                                 experience['description'] ?? '',
                                                 style: TextStyle(
                                                   fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
-                                                  fontWeight: FontWeight.w700,
+
                                                   color: Color(0xFFFFFFFF),
                                                   fontSize: 10.sp,
                                                 ),

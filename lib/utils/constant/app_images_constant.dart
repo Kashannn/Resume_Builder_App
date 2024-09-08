@@ -42,6 +42,7 @@ class AppImages extends AssetImage {
   static const String signature15= '$_iconPath/signature15.svg';
   static const String imagetemplate18= '$_iconPath/imagetemplate18.svg';
 
+  static const String user= '$_iconPath/user.svg';
   static const String instagram = '$_iconPath/instagram.svg';
   static const String twitter = '$_iconPath/twitter.svg';
   static const String linkedin = '$_iconPath/linkedin.svg';
