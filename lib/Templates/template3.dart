@@ -67,31 +67,35 @@ class _Template3State extends State<Template3> {
     },
   ];
 
-  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque sit senectus maecenas donec amet viverra Aliquam aenean eget gravida vitae nunc vitae sit.";
+  String about =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque sit senectus maecenas donec amet viverra Aliquam aenean eget gravida vitae nunc vitae sit.";
 
   List<Map<String, String>> experiences = [
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh',
     },
     {
       'title': 'JOB POSITION / TITLE HERE',
       'details': 'Company Name  - 2010 - 2014',
-      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ',
+      'description':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ',
     },
   ];
-
 
   File? _profileImage;
 
@@ -136,7 +140,8 @@ class _Template3State extends State<Template3> {
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(AppImages.profilePicture) as ImageProvider,
+                              : AssetImage(AppImages.profilePicture)
+                                  as ImageProvider,
                           //radius: 45.h,
                         ),
                       ),
@@ -503,7 +508,7 @@ class _Template3State extends State<Template3> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 12.w, vertical: 8.h),
                                   child: GestureDetector(
-                                    onTap: ()=> _editAbout(context),
+                                    onTap: () => _editAbout(context),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -518,7 +523,8 @@ class _Template3State extends State<Template3> {
                                           ),
                                         ),
                                         SizedBox(height: 8.h),
-                                        Text( about,
+                                        Text(
+                                          about,
                                           style: TextStyle(
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
@@ -542,10 +548,11 @@ class _Template3State extends State<Template3> {
                                 width: 290.w,
                                 //height: 433.h,
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 12.w, vertical: 12.h),
-                                   child:  Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12.w, vertical: 12.h),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Work Experience",
@@ -560,22 +567,26 @@ class _Template3State extends State<Template3> {
                                         // Loop through the experiences list and build each experience item
                                         ...experiences.map((experience) {
                                           return GestureDetector(
-                                            onTap: () => _editExperienceItem(context, experience),
+                                            onTap: () => _editExperienceItem(
+                                                context, experience),
                                             child: Padding(
-                                              padding: EdgeInsets.only(bottom: 16.h), // Add spacing between items
+                                              padding: EdgeInsets.only(
+                                                  bottom: 16
+                                                      .h), // Add spacing between items
                                               child: _buildExperienceItem(
-                                                companyName: experience['details']!, // Extract company name
+                                                companyName: experience[
+                                                    'details']!, // Extract company name
                                                 jobTitle: experience['title']!,
-                                                duration: '', // Extract duration
-                                                description: experience['description']!,
+                                                duration:
+                                                    '', // Extract duration
+                                                description:
+                                                    experience['description']!,
                                               ),
                                             ),
                                           );
                                         }).toList(),
                                       ],
-                                    )
-
-                                ),
+                                    )),
                               ),
                             ],
                           ),
@@ -986,8 +997,7 @@ class _Template3State extends State<Template3> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
-
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -1027,11 +1037,11 @@ class _Template3State extends State<Template3> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -1075,5 +1085,4 @@ class _Template3State extends State<Template3> {
       },
     );
   }
-
 }

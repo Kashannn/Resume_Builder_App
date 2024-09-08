@@ -933,7 +933,7 @@ class _Template1State extends State<Template1> {
                 BlockPicker(
                   pickerColor: tempTitleColor,
                   onColorChanged: (Color color) {
-                    tempTitleColor = color; // Update temporary color
+                    tempTitleColor = color;
                   },
                 ),
                 TextField(
@@ -943,7 +943,7 @@ class _Template1State extends State<Template1> {
                 BlockPicker(
                   pickerColor: tempEmailColor,
                   onColorChanged: (Color color) {
-                    tempEmailColor = color; // Update temporary color
+                    tempEmailColor = color;
                   },
                 ),
                 TextField(
@@ -1008,7 +1008,7 @@ class _Template1State extends State<Template1> {
                 children: [
                   TextField(
                     controller: TextEditingController(text: about),
-                    maxLines: 15,
+                    maxLines: 10,
                     decoration:
                         InputDecoration(hintText: 'Enter new description'),
                     onChanged: (value) {
