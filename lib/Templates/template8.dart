@@ -3,6 +3,30 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -119,7 +143,7 @@ class _Template8State extends State<Template8> {
                                         : AssetImage(
                                                 AppImages.Template8ProfilePhoto)
                                             as ImageProvider,
-                                    radius: 45.h,
+
                                   ),
                                 ),
                               ],
@@ -145,7 +169,7 @@ class _Template8State extends State<Template8> {
                                         Text(
                                           "I’m $userName, a",
                                           style: TextStyle(
-                                            fontFamily: 'SpaceGrotesk',
+                                            fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                             color: Color(0xFF97FFC2),
                                             fontSize: 25.sp,
                                             fontWeight: FontWeight.w700,
@@ -154,7 +178,7 @@ class _Template8State extends State<Template8> {
                                         Text(
                                           userRole,
                                           style: TextStyle(
-                                            fontFamily: 'SpaceGrotesk',
+                                            fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                             color: Color(0xFF97FFC2),
                                             fontSize: 25.sp,
                                             fontWeight: FontWeight.w700,
@@ -181,7 +205,7 @@ class _Template8State extends State<Template8> {
                                           Text(
                                             socialMedia,
                                             style: TextStyle(
-                                              fontFamily: 'SpaceGrotesk',
+                                              fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                               color: Color(0xFF97FFC2),
                                               fontSize: 8.sp,
                                               fontWeight: FontWeight.w700,
@@ -265,7 +289,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "About Me",
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -279,7 +303,7 @@ class _Template8State extends State<Template8> {
                                               child: Text(
                                                 about,
                                                 style: TextStyle(
-                                                  fontFamily: 'SpaceGrotesk',
+                                                  fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                   fontWeight: FontWeight.w400,
                                                   color: Color(0xFFC3CAD5),
                                                   fontSize: 9.sp,
@@ -309,7 +333,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "My education",
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -345,7 +369,7 @@ class _Template8State extends State<Template8> {
                                                                   '',
                                                               style: TextStyle(
                                                                 fontFamily:
-                                                                    'SpaceGrotesk',
+                                                                    GoogleFonts.spaceGrotesk().fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w400,
@@ -358,7 +382,7 @@ class _Template8State extends State<Template8> {
                                                               "/",
                                                               style: TextStyle(
                                                                 fontFamily:
-                                                                    'SpaceGrotesk',
+                                                                    GoogleFonts.spaceGrotesk().fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w900,
@@ -372,7 +396,7 @@ class _Template8State extends State<Template8> {
                                                                   '',
                                                               style: TextStyle(
                                                                 fontFamily:
-                                                                    'SpaceGrotesk',
+                                                                    GoogleFonts.spaceGrotesk().fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w400,
@@ -387,7 +411,7 @@ class _Template8State extends State<Template8> {
                                                           entry['degree'] ?? '',
                                                           style: TextStyle(
                                                             fontFamily:
-                                                                'SpaceGrotesk',
+                                                                GoogleFonts.spaceGrotesk().fontFamily,
                                                             fontWeight:
                                                                 FontWeight.w700,
                                                             color: Color(
@@ -427,7 +451,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Contact information",
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -439,7 +463,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Email",
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -448,7 +472,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               email,
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -457,7 +481,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Call:",
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -466,7 +490,7 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               phone,
                                               style: TextStyle(
-                                                fontFamily: 'SpaceGrotesk',
+                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -501,7 +525,7 @@ class _Template8State extends State<Template8> {
                                           Text(
                                             "Skills",
                                             style: TextStyle(
-                                              fontFamily: 'SpaceGrotesk',
+                                              fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                               fontWeight: FontWeight.w700,
                                               color: Color(0xFF97FFC2),
                                               fontSize: 16.sp,
@@ -527,7 +551,7 @@ class _Template8State extends State<Template8> {
                                                     Text("Java",
                                                         style: TextStyle(
                                                           fontFamily:
-                                                              'SpaceGrotesk',
+                                                              GoogleFonts.spaceGrotesk().fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -549,7 +573,7 @@ class _Template8State extends State<Template8> {
                                                     Text("Html /Css",
                                                         style: TextStyle(
                                                           fontFamily:
-                                                              'SpaceGrotesk',
+                                                              GoogleFonts.spaceGrotesk().fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -571,7 +595,7 @@ class _Template8State extends State<Template8> {
                                                     Text("React Java",
                                                         style: TextStyle(
                                                           fontFamily:
-                                                              'SpaceGrotesk',
+                                                              GoogleFonts.spaceGrotesk().fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -594,7 +618,7 @@ class _Template8State extends State<Template8> {
                                                       "Web Flutter",
                                                       style: TextStyle(
                                                         fontFamily:
-                                                            'SpaceGrotesk',
+                                                            GoogleFonts.spaceGrotesk().fontFamily,
                                                         fontWeight:
                                                             FontWeight.w700,
                                                         color:
@@ -637,7 +661,7 @@ class _Template8State extends State<Template8> {
                                       Text(
                                         "Past Experience",
                                         style: TextStyle(
-                                          fontFamily: 'SpaceGrotesk',
+                                          fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xFF97FFC2),
                                           fontSize: 16.sp,
@@ -674,7 +698,7 @@ class _Template8State extends State<Template8> {
                                                     experience['title'] ?? '',
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          'SpaceGrotesk',
+                                                          GoogleFonts.spaceGrotesk().fontFamily,
                                                       fontWeight:
                                                           FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
@@ -685,7 +709,7 @@ class _Template8State extends State<Template8> {
                                                     experience['details'] ?? '',
                                                     style: TextStyle(
                                                       fontFamily:
-                                                          'SpaceGrotesk',
+                                                          GoogleFonts.spaceGrotesk().fontFamily,
                                                       fontWeight:
                                                           FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
@@ -697,7 +721,7 @@ class _Template8State extends State<Template8> {
                                               Text(
                                                 experience['description'] ?? '',
                                                 style: TextStyle(
-                                                  fontFamily: 'SpaceGrotesk',
+                                                  fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0xFFFFFFFF),
                                                   fontSize: 10.sp,

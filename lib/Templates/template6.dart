@@ -84,7 +84,7 @@ class _Template6State extends State<Template6> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsTemplate10.lightGray,
+        backgroundColor: AppColorsTemplate10.white,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
           child: SingleChildScrollView(
@@ -182,9 +182,9 @@ class _Template6State extends State<Template6> {
                     ),
                   ],
                 ),
-                SizedBox(height: 5.h),
-                Divider(color: AppColorsTemplate10.divider, thickness: 4.h),
-                SizedBox(height: 5.h),
+                SizedBox(height: 2.h),
+                Divider(color: AppColorsTemplate10.divider, thickness: 0.5.h),
+                SizedBox(height: 2.h),
                 Container(
                   width: 545.w,
                   child: Row(
@@ -196,7 +196,7 @@ class _Template6State extends State<Template6> {
                       ),
                       SizedBox(width: 10.w),
                       SizedBox(
-                        width: 240.w,
+                        width: 220.w,
                         child: GestureDetector(
                           onTap: () => _editAboutMe(),
                           child: Text(
@@ -210,11 +210,14 @@ class _Template6State extends State<Template6> {
                     ],
                   ),
                 ),
-                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
+                SizedBox(height: 5.h),
+                Divider(color: AppColorsTemplate10.divider, thickness: 0.5.h),
+                SizedBox(height: 5.h),
                 Container(
                   width: 340.w,
-                  height: 150.h,
+                  //height: 150.h,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Work Experience',
@@ -237,16 +240,20 @@ class _Template6State extends State<Template6> {
                                     ),
                                     buildDescriptionText(
                                         experience['description']!),
+                                    SizedBox(height: 15.h),
                                   ],
+
                                 ))
                             .toList(),
                       ),
                     ],
                   ),
                 ),
-                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
+                SizedBox(height: 5.h),
+                Divider(color: AppColorsTemplate10.divider, thickness: 0.5.h),
+                SizedBox(height: 5.h),
                 Container(
-                  width: 290.w,
+                 // width: 290.w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -254,22 +261,28 @@ class _Template6State extends State<Template6> {
                         'Education',
                         style: AppTextStylesTemplate10.sectionTitleStyle,
                       ),
-                      Column(
-                        children: education
-                            .map((edu) => GestureDetector(
-                                  onTap: () => _editEducation(edu),
-                                  child: buildEducationRow(
-                                    '${edu['from']} - ${edu['to']}',
-                                    edu['degree']!,
-                                    edu['institution']!,
-                                  ),
-                                ))
-                            .toList(),
+                      Container(
+                        width: 220.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: education
+                              .map((edu) => GestureDetector(
+                                    onTap: () => _editEducation(edu),
+                                    child: buildEducationRow(
+                                      '${edu['from']} - ${edu['to']}',
+                                      edu['degree']!,
+                                      edu['institution']!,
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
                       )
                     ],
                   ),
                 ),
-                Divider(color: AppColorsTemplate10.divider, thickness: 1.h),
+                SizedBox(height: 5.h),
+                Divider(color: AppColorsTemplate10.divider, thickness: 0.5.h),
+                SizedBox(height: 5.h),
                 Container(
                   width: 530.w,
                   child: Row(
@@ -369,21 +382,27 @@ class _Template6State extends State<Template6> {
     final skillChunks = splitIntoChunks(skills, 2);
 
     return SizedBox(
-      width: 250.w,
+      width: 220.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: skillChunks
-            .map((chunk) => Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: chunk
-                      .map((skill) => Expanded(
-                            child: Text(
-                              '• $skill',
-                              style: AppTextStylesTemplate10.skillTextStyle,
-                            ),
-                          ))
-                      .toList(),
-                ))
+            .map((chunk) => Column(
+              children: [
+                Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: chunk
+                          .map((skill) => Expanded(
+                                child: Text(
+                                  '• $skill',
+                                  style: AppTextStylesTemplate10.skillTextStyle,
+                                ),
+                              ))
+                          .toList(),
+                    ),
+                SizedBox(height: 5.h),
+              ],
+            ))
             .toList(),
       ),
     );
