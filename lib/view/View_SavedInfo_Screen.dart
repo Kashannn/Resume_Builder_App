@@ -45,13 +45,15 @@ class _ViewSavedInfoScreenState extends State<ViewSavedInfoScreen> {
       twitter = prefs.getString('twitter') ?? '';
       portfolio = prefs.getString('portfolio') ?? '';
 
-      // Decode JSON strings
+      // Decode JSON strings for skills and languages
       skills = (jsonDecode(prefs.getString('skills') ?? '[]') as List<dynamic>)
           .map((skill) => skill.toString())
           .toList();
-      languages = (jsonDecode(prefs.getString('languages') ?? '[]') as List<dynamic>)
-          .map((lang) => lang as Map<String, dynamic>)
-          .toList();
+
+      languages =
+          (jsonDecode(prefs.getString('languages') ?? '[]') as List<dynamic>)
+              .map((lang) => lang as Map<String, dynamic>)
+              .toList();
     });
   }
 
@@ -91,7 +93,6 @@ class _ViewSavedInfoScreenState extends State<ViewSavedInfoScreen> {
               buildInfoRow('Phone', phone, isDarkMode),
               buildInfoRow('Address', address, isDarkMode),
               SizedBox(height: 20),
-
               buildSectionTitle('Social Links', isDarkMode),
               buildInfoRow('Facebook', facebook, isDarkMode),
               buildInfoRow('Instagram', instagram, isDarkMode),
@@ -99,7 +100,6 @@ class _ViewSavedInfoScreenState extends State<ViewSavedInfoScreen> {
               buildInfoRow('Twitter', twitter, isDarkMode),
               buildInfoRow('Portfolio', portfolio, isDarkMode),
               SizedBox(height: 20),
-
               buildSectionTitle('Skills', isDarkMode),
               Text(
                 skills.isNotEmpty ? skills.join(', ') : 'No skills added',
@@ -108,24 +108,25 @@ class _ViewSavedInfoScreenState extends State<ViewSavedInfoScreen> {
                 ),
               ),
               SizedBox(height: 20),
-
               buildSectionTitle('Languages', isDarkMode),
               Column(
                 children: languages.isNotEmpty
-                    ? languages.map((lang) => Text(
-                  '${lang['language']} - ${lang['proficiency']}% proficiency',
-                  style: TextStyle(
-                    color: isDarkMode ? Colors.white : Colors.black,
-                  ),
-                )).toList()
+                    ? languages
+                        .map((lang) => Text(
+                              '${lang['language']} - ${lang['proficiency']}% proficiency',
+                              style: TextStyle(
+                                color: isDarkMode ? Colors.white : Colors.black,
+                              ),
+                            ))
+                        .toList()
                     : [
-                  Text(
-                    'No languages added',
-                    style: TextStyle(
-                      color: isDarkMode ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ],
+                        Text(
+                          'No languages added',
+                          style: TextStyle(
+                            color: isDarkMode ? Colors.white : Colors.black,
+                          ),
+                        ),
+                      ],
               ),
             ],
           ),

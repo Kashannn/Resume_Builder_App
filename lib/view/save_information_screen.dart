@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Allcontrollers/save_info_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../Allcontrollers/theme_changer_controller.dart';
 import '../utils/components/custom_button.dart';
 import '../utils/constant/app_textstyle_constant.dart';
+
 
 class SaveInformationScreen extends StatelessWidget {
   final SaveInformationController controller = Get.put(SaveInformationController());
@@ -40,8 +44,8 @@ class SaveInformationScreen extends StatelessWidget {
             buildSocialLinksSection(isDarkMode),
             SizedBox(height: 20.h),
             buildSectionTitle('Work Experience', isDarkMode),
-            buildTextField('Job Title', 'UI/UX Designer', isDarkMode, null), // Passing null for no controller
-            buildTextField('Description', 'Describe your role...', isDarkMode, null, maxLines: 7), // Passing null for no controller
+            buildTextField('Job Title', 'UI/UX Designer', isDarkMode, null),
+            buildTextField('Description', 'Describe your role...', isDarkMode, null, maxLines: 7),
             SizedBox(height: 20.h),
             buildSectionTitle('Skills', isDarkMode),
             SizedBox(height: 10.h),
@@ -58,8 +62,8 @@ class SaveInformationScreen extends StatelessWidget {
             }, isDarkMode),
             SizedBox(height: 30.h),
             CustomGradientButton(
-              onPressed: () {
-                controller.saveDataLocally();
+              onPressed: () async {
+                await _saveDataLocally();
                 Get.showSnackbar(GetSnackBar(
                   title: 'Success',
                   message: 'Your information has been saved!',
@@ -83,6 +87,32 @@ class SaveInformationScreen extends StatelessWidget {
     );
   }
 
+  // Save data locally including skills and languages
+  Future<void> _saveDataLocally() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Save basic info
+    await prefs.setString('fullName', controller.fullNameController.text);
+    await prefs.setString('about', controller.aboutController.text);
+    await prefs.setString('email', controller.emailController.text);
+    await prefs.setString('phone', controller.phoneController.text);
+    await prefs.setString('address', controller.addressController.text);
+
+    // Save social links
+    await prefs.setString('facebook', controller.facebookController.text);
+    await prefs.setString('instagram', controller.instagramController.text);
+    await prefs.setString('linkedin', controller.linkedinController.text);
+    await prefs.setString('twitter', controller.twitterController.text);
+    await prefs.setString('portfolio', controller.portfolioController.text);
+
+    // Save skills list
+    await prefs.setString('skills', jsonEncode(controller.skills));
+
+    // Save languages list (convert list of maps to JSON)
+    await prefs.setString('languages', jsonEncode(controller.languages));
+
+    print('Data saved successfully');
+  }
   // AppBar builder
   AppBar buildAppBar(bool isDarkMode) {
     return AppBar(
