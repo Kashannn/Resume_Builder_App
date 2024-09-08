@@ -21,7 +21,7 @@ class _Template18State extends State<Template18> {
   String email = 'contact@designer.com';
   String mobile = '+001 123 456 789';
   String location = 'New York, USA';
-  String portfolio = 'www.yourportfolio.com';
+  String portfolio = 'www.yourpo\nrtfolio.com';
 
   String about =
       "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
@@ -112,7 +112,7 @@ class _Template18State extends State<Template18> {
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
                                 : AssetImage(
-                                AppImages.profilePicture)
+                                AppImages.profilePicture18)
                             as ImageProvider,
                             radius: 90.r,
                           ),
@@ -196,7 +196,7 @@ class _Template18State extends State<Template18> {
                           GestureDetector(
                             onTap: () => _editContactDetails(context),
                             child: Container(
-                              width: 324.w,
+                              width: 330.w,
                               //height: 100.h,
                               color: Colors.transparent,
                               child: Column(
@@ -386,7 +386,7 @@ class _Template18State extends State<Template18> {
                           ),
                         ),
                         Container(
-                          width: 300.w,
+                          width: 340.w,
                           //height: 230.h,
                           color: Colors.transparent,
                           child: Column(
@@ -512,7 +512,7 @@ class _Template18State extends State<Template18> {
             ),
             if (showDot)
               Container(
-                width: 8.w,
+                width: 10.w,
                 height: 8.h,
                 decoration: BoxDecoration(
                   color: Color(0xFF6F2DBD), // Dot color
