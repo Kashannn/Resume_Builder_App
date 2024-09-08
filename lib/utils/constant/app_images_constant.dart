@@ -6,7 +6,7 @@ class AppImages extends AssetImage {
   static const String _iconPath = 'assets/IconsSvg';
 //PNG images
   static const String splash = '$_assetsPath/splash.png';
-  static const String profilePicture = '$_assetsPath/kashan.jpg';
+  static const String profilePicture = '$_assetsPath/20.png';
   static const String Template8ProfilePhoto = '$_assetsPath/Template8ProfilePhoto.png';
   static const String template1 = '$_assetsPath/template1.png';
   static const String template2 = '$_assetsPath/template2.png';

@@ -73,7 +73,7 @@ class _Template20State extends State<Template20> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 1500));
+    ScreenUtil.init(context, designSize: const Size(595, 2050));
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -91,22 +91,22 @@ class _Template20State extends State<Template20> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
-                      width: 202.w,
+                      width: 200.w,
                       //height: 200.h,
                       decoration: BoxDecoration(
                         color: Color(0xFF1A1B1C),
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(130.r),
-                          topRight: Radius.circular(130.r),
+                          topLeft: Radius.circular(150.r),
+                          topRight: Radius.circular(150.r),
                         ),
                       ),
                       child: Center(
                         child: Container(
-                          width: 202.w,
-                          //height: 200.h,
+                          width: 130.w,
+                          // height: 200.h,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(130.r),
-                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(100.r),
+                            color: Colors.black,
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(130.r),
