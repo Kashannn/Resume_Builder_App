@@ -122,7 +122,7 @@ class _Template20State extends State<Template20> {
                     Container(
                       width: 280.w,
                       //height: 248.h,
-                      padding: EdgeInsets.all(16.w),
+                      padding: EdgeInsets.only(right: 25.w),
                       // color: Colors.blue,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,8 +210,7 @@ class _Template20State extends State<Template20> {
                  ),
                   Container(
                     // color: Colors.black12,
-                    width: 230.w,
-                    //height: 550.h,
+                    width: 240.w,
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

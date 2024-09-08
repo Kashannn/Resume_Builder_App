@@ -362,7 +362,7 @@ class _Template15State extends State<Template15> {
                     width: 350.w,
                     //height: 660.h,
                     padding:
-                        EdgeInsets.only(bottom: 70),
+                        EdgeInsets.only(bottom: 50),
                     color: Colors
                         .transparent, // Adjust the color or make it transparent
                     child: Column(
@@ -432,7 +432,7 @@ class _Template15State extends State<Template15> {
                         ),
                     Column(
                       children: [
-                        SizedBox(height: 2.h),
+                        SizedBox(height: 7.h),
                         for (var experience in workExperience)
                           Padding(
                             padding: EdgeInsets.only(bottom: 2.h),
@@ -567,7 +567,7 @@ class _Template15State extends State<Template15> {
           ),
         ),
 
-        SizedBox(height: 4.h),
+        SizedBox(height: 6.h),
         Text(
           duration,
           style: GoogleFonts.dmSans(
@@ -585,6 +585,7 @@ class _Template15State extends State<Template15> {
             color: Colors.grey[800],
           ),
         ),
+        SizedBox(height: 1.h),
       ],
     );
   }
