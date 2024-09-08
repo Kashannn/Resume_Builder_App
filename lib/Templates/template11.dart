@@ -2,6 +2,21 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_images_constant.dart';
 
@@ -88,7 +103,7 @@ class _Template11State extends State<Template11> {
             Container(
               width: 182.w,
              // height: 1000.h,
-              color: Colors.black,
+              color: const Color(0xFF222222),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +112,7 @@ class _Template11State extends State<Template11> {
                     width: 150.w,
                     //height: 200.h,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 24.h, left: 24.h),
+                      padding: EdgeInsets.only(top: 2.h, left: 24.h,),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Column(
@@ -115,7 +130,7 @@ class _Template11State extends State<Template11> {
                                 radius: 60.h,
                               ),
                             ),
-                            SizedBox(height: 12.h, width: 12.w),
+                            //SizedBox(height: 12.h, width: 12.w),
                             GestureDetector(
                               onTap: () => _editUserDetails(context),
                               child: RichText(
@@ -125,7 +140,7 @@ class _Template11State extends State<Template11> {
                                     TextSpan(
                                       text: "$name\n",
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 24.sp,
                                         color: Colors.cyanAccent,
@@ -134,7 +149,7 @@ class _Template11State extends State<Template11> {
                                     TextSpan(
                                       text: "$role",
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp,
                                         color: Colors.white70,
@@ -149,21 +164,27 @@ class _Template11State extends State<Template11> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 0.h),
+                  SizedBox(height: 10.h),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                      child: Padding(
+                        padding:  EdgeInsets.only(
+                          left: 16.w,
+                          right: 16.w,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
-                          GestureDetector(
-                            onTap: ()=>_editContactDetails(context),
-                              child: _buildContactSection()),
-                          SizedBox(height: 0.h),
-                          _buildSkillsSection(),
-                          SizedBox(height: 0.h),
-                          _buildLanguageSection(),
-                        ],
+                            GestureDetector(
+                              onTap: ()=>_editContactDetails(context),
+                                child: _buildContactSection()),
+                            SizedBox(height: 0.h),
+                            _buildSkillsSection(),
+                            SizedBox(height: 0.h),
+                            _buildLanguageSection(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -219,12 +240,13 @@ class _Template11State extends State<Template11> {
           Text(
             "Contact",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: Colors.white,
             ),
           ),
+          SizedBox(height: 3.h),
           _buildVerticalSeparator(),
           SizedBox(height: 5.h),
           _buildContactItem(Icons.email, email),
@@ -247,15 +269,15 @@ class _Template11State extends State<Template11> {
           Text(
             "Skills",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
               fontSize: 14.sp,
               color: Colors.white,
             ),
           ),
-
+          SizedBox(height: 3.h),
           _buildVerticalSeparator(),
-          SizedBox(height: 5.h),
+          SizedBox(height: 10.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -292,14 +314,15 @@ class _Template11State extends State<Template11> {
           Text(
             "Languages",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
               fontSize: 14.sp,
               color: Colors.white,
             ),
           ),
+          SizedBox(height: 3.h),
           _buildVerticalSeparator(),
-          SizedBox(height: 16.h),
+          SizedBox(height: 10.h),
           Column(
             children: languages.map((item) {
               int index = languages.indexOf(item);
@@ -323,12 +346,13 @@ class _Template11State extends State<Template11> {
           Text(
             "Profile",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
-              fontSize: 14.sp,
+              fontSize: 18.sp,
               color: Colors.cyanAccent,
             ),
           ),
+          SizedBox(height: 3.h),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
           GestureDetector(
@@ -336,9 +360,9 @@ class _Template11State extends State<Template11> {
             child: Text(
               about,
               style: TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: GoogleFonts.inter().fontFamily,
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 12.sp,
                 color: Colors.black,
               ),
 
@@ -359,12 +383,13 @@ class _Template11State extends State<Template11> {
           Text(
             "Experience",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
-              fontSize: 14.sp,
+              fontSize: 18.sp,
               color: Colors.cyanAccent,
             ),
           ),
+          SizedBox(height: 3.h),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
           ...experiences.map((experience) => Padding(
@@ -392,14 +417,15 @@ class _Template11State extends State<Template11> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Experience",
+            "Education",
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontWeight: FontWeight.w700,
-              fontSize: 14.sp,
+              fontSize: 18.sp,
               color: Colors.cyanAccent,
             ),
           ),
+          SizedBox(height: 3.h),
           buildVerticalSeparator2(),
           SizedBox(height: 8.h),
           ...education.map((experience) => Padding(
@@ -428,9 +454,10 @@ class _Template11State extends State<Template11> {
           Text(
             text,
             style: TextStyle(
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w400,
+              fontFamily: GoogleFonts.inter().fontFamily,
+              fontWeight: FontWeight.w300,
               fontSize: 12.sp,
+
               color: Colors.white,
             ),
           ),
@@ -445,9 +472,9 @@ class _Template11State extends State<Template11> {
         Icon(Icons.circle, size: 6.w, color: Colors.white),
         SizedBox(width: 8.w),
         Text(
-          text,
+          text.toUpperCase(),
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.inter().fontFamily,
             fontWeight: FontWeight.w400,
             fontSize: 14.sp,
             color: Colors.white,
@@ -464,7 +491,7 @@ class _Template11State extends State<Template11> {
           alignment: Alignment.center,
           children: [
             CircleAvatar(
-              radius: 25.w,
+              radius: 30.w,
               backgroundColor: Colors.cyanAccent.withOpacity(0.1),
             ),
             CircularProgressIndicator(
@@ -481,7 +508,7 @@ class _Template11State extends State<Template11> {
               child: Text(
                 skillName,
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: GoogleFonts.inter().fontFamily,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
@@ -507,9 +534,9 @@ class _Template11State extends State<Template11> {
             Text(
               jobTitle,
               style: TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: GoogleFonts.inter().fontFamily,
                 fontWeight: FontWeight.w700,
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 color: Colors.cyanAccent,
               ),
             ),
@@ -517,9 +544,9 @@ class _Template11State extends State<Template11> {
             Text(
               "| $duration",
               style: TextStyle(
-                fontFamily: 'Inter',
+                fontFamily: GoogleFonts.inter().fontFamily,
                 fontWeight: FontWeight.w400,
-                fontSize: 10.sp,
+                fontSize: 12.sp,
                 color: Colors.black,
               ),
             ),
@@ -529,10 +556,10 @@ class _Template11State extends State<Template11> {
         Text(
           description,
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.inter().fontFamily,
             fontWeight: FontWeight.w400,
-            fontSize: 10.sp,
-            color: Colors.black,
+            fontSize: 11.sp,
+            color: Colors.black54,
           ),
         ),
       ],

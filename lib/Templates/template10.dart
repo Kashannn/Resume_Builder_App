@@ -91,7 +91,7 @@ class _Template10State extends State<Template10> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          width: 595.w,
+          width: 650.w,
          // height: 842.h,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -104,12 +104,13 @@ class _Template10State extends State<Template10> {
             ),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
                 child: Container(
-                  width: 298.w,
+                  width:310.w,
                  // height: 842.h,
                   // color: Colors.yellow,
                   child: Column(
@@ -143,7 +144,7 @@ class _Template10State extends State<Template10> {
                                 children: [
                                   Text(
                                     firstName,
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 30.sp,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.grey[800],
@@ -151,7 +152,7 @@ class _Template10State extends State<Template10> {
                                   ),
                                   Text(
                                     lastName,
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 38.sp,
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF5A00E0),
@@ -159,7 +160,7 @@ class _Template10State extends State<Template10> {
                                   ),
                                   Text(
                                     userRole,
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.grey[700],
@@ -172,7 +173,7 @@ class _Template10State extends State<Template10> {
                         ),
                       ),
                       Container(
-                        width: 298.w,
+                        width: 290.w,
                         //height: 655.h,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -219,17 +220,24 @@ class _Template10State extends State<Template10> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
+                                    width: 290.w,
+
                                     decoration: BoxDecoration(
                                       color:
                                           Color(0xFFC4C4C4).withOpacity(0.25),
                                       borderRadius: BorderRadius.circular(8.r),
                                     ),
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
 
                                       children: [
                                         _buildSectionTitle(
                                             'Industry Knowledge'),
                                         Column(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: textItems.map((item) {
                                             int index = textItems.indexOf(item);
                                             return GestureDetector(
@@ -242,6 +250,7 @@ class _Template10State extends State<Template10> {
                                   ),
                                   SizedBox(height: 8.h),
                                   Container(
+                                    width: 290.w,
                                       decoration: BoxDecoration(
                                         color:
                                             Color(0xFFC4C4C4).withOpacity(0.25),
@@ -249,6 +258,8 @@ class _Template10State extends State<Template10> {
                                             BorderRadius.circular(8.r),
                                       ),
                                       child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           _buildSectionTitle('Languages'), Column(
                                             children: languages.map((item) {
@@ -262,6 +273,7 @@ class _Template10State extends State<Template10> {
                                       )),
                                   SizedBox(height: 8.h),
                                   Container(
+                                    width: 290.w,
                                       decoration: BoxDecoration(
                                         color:
                                             Color(0xFFC4C4C4).withOpacity(0.25),
@@ -269,10 +281,14 @@ class _Template10State extends State<Template10> {
                                             BorderRadius.circular(8.r),
                                       ),
                                       child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           GestureDetector(
                                             onTap: ()=>_editSocialDetails(context),
                                             child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 _buildSectionTitle('Social'),
                                                 _buildTextItem(
@@ -293,6 +309,7 @@ class _Template10State extends State<Template10> {
                             ),
                             _buildSectionTitle('Hobbies'),
                             _buildHobbiesRow(),
+                            SizedBox(height: 5.h),
                           ],
                         ),
                       )
@@ -301,18 +318,19 @@ class _Template10State extends State<Template10> {
                 ),
               ),
               Container(
-                width: 297.w,
-                //height: 842.h,
+                width: 305.w,
+                //height: 84.h,
                 // color: Colors.yellow,
+                padding: EdgeInsets.only(right: 10.w),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 10.h,
                     ),
                     Container(
                       width: 297.w,
-                      height: 310.h,
+                      height: 300.h,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -336,17 +354,17 @@ class _Template10State extends State<Template10> {
                                   ),
                                   child: Text(
                                     "EXPERIENCE",
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 12.sp,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Spacer(),
+
                                 Container(
-                                  width: 50.w,
-                                  height: 1.h,
+                                  width: 180.w,
+                                  height: 2.h,
                                   color: Colors.grey[400],
                                 ),
                               ],
@@ -354,6 +372,7 @@ class _Template10State extends State<Template10> {
                           ),
                           // Experience Item 1
                           Column(
+
                             children: experiences.map((experience) {
                               return GestureDetector(
                                 onTap: () => _editExperienceItem(context,experience),
@@ -392,17 +411,16 @@ class _Template10State extends State<Template10> {
                                   ),
                                   child: Text(
                                     "EDUCATION",
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 12.sp,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Spacer(),
                                 Container(
-                                  width: 50.w,
-                                  height: 1.h,
+                                  width: 184.w,
+                                  height: 2.h,
                                   color: Colors.grey[400],
                                 ),
                               ],
@@ -448,17 +466,16 @@ class _Template10State extends State<Template10> {
                                   ),
                                   child: Text(
                                     "MY SKILLS",
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 12.sp,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Spacer(),
                                 Container(
-                                  width: 50.w,
-                                  height: 1.h,
+                                  width: 195.w,
+                                  height: 2.h,
                                   color: Colors.grey[400],
                                 ),
                               ],
@@ -515,17 +532,16 @@ class _Template10State extends State<Template10> {
                                   ),
                                   child: Text(
                                     "OTHER SKILLS",
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.lato(
                                       fontSize: 12.sp,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                Spacer(),
                                 Container(
-                                  width: 50.w,
-                                  height: 1.h,
+                                  width: 175.w,
+                                  height: 2.h,
                                   color: Colors.grey[400],
                                 ),
                               ],
@@ -960,7 +976,7 @@ class _Template10State extends State<Template10> {
         SizedBox(height: 4.h),
         Text(
           skill,
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.lato(
             fontSize: 10.sp,
             color: Colors.black87,
           ),
@@ -992,7 +1008,7 @@ class _Template10State extends State<Template10> {
         SizedBox(height: 4.h),
         Text(
           skill,
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.lato(
             fontSize: 10.sp,
             color: Colors.black87,
           ),
@@ -1019,8 +1035,10 @@ Widget _buildContactInfo({required IconData icon, required String text}) {
             SizedBox(width: 8.w),
             Text(
               text,
-              style: GoogleFonts.montserrat(
-                fontSize: 14.sp,
+              style: TextStyle(
+                fontFamily: //calibri font
+                GoogleFonts.lato().fontFamily,
+                fontSize: 13.sp,
                 color: Colors.white,
               ),
             ),
@@ -1036,7 +1054,7 @@ Widget _buildSectionTitle(String title) {
     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
     child: Text(
       title,
-      style: GoogleFonts.montserrat(
+      style: GoogleFonts.lato(
         fontSize: 16.sp,
         fontWeight: FontWeight.bold,
         color: Colors.white,
@@ -1050,7 +1068,7 @@ Widget _buildTextItem(String text) {
     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.9.h),
     child: Text(
       '• $text',
-      style: GoogleFonts.montserrat(
+      style: GoogleFonts.lato(
         fontSize: 14.sp,
         color: Colors.white,
       ),
@@ -1080,7 +1098,7 @@ Widget _buildHobbyIcon(IconData icon, String label) {
       SizedBox(height: 4.h),
       Text(
         label,
-        style: GoogleFonts.montserrat(
+        style: GoogleFonts.lato(
           fontSize: 12.sp,
           color: Colors.white,
         ),
@@ -1097,28 +1115,28 @@ Widget _buildExperienceItem({
   required String description,
 }) {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8.w),
+    padding: EdgeInsets.symmetric(horizontal: 16.w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           company,
-          style: GoogleFonts.montserrat(
-            fontSize: 14.sp,
+          style: GoogleFonts.lato(
+            fontSize: 16.sp,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
         Text(
           title,
-          style: GoogleFonts.montserrat(
-            fontSize: 12.sp,
+          style: GoogleFonts.lato(
+            fontSize: 14.sp,
             color: Colors.black54,
           ),
         ),
         Text(
           "$duration - $location",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.lato(
             fontSize: 12.sp,
             color: Colors.blueGrey,
           ),
@@ -1126,12 +1144,13 @@ Widget _buildExperienceItem({
         SizedBox(height: 4.h),
         Text(
           description,
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.lato(
             fontSize: 12.sp,
             color: Colors.black87,
           ),
           textAlign: TextAlign.justify,
         ),
+        10.verticalSpace,
       ],
     ),
   );
@@ -1146,30 +1165,32 @@ Widget _buildEducationItem({
     padding: EdgeInsets.symmetric(horizontal: 8.w),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
           degree,
-          style: GoogleFonts.montserrat(
-            fontSize: 14.sp,
+          style: GoogleFonts.lato(
+            fontSize: 16.sp,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
         Text(
           institution,
-          style: GoogleFonts.montserrat(
-            fontSize: 12.sp,
+          style: GoogleFonts.lato(
+            fontSize: 14.sp,
             color: Colors.black54,
+
           ),
         ),
         Text(
           duration,
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.lato(
             fontSize: 12.sp,
             color: Colors.blueGrey,
           ),
         ),
-        SizedBox(height: 4.h),
+        SizedBox(height: 10.h),
       ],
     ),
   );
