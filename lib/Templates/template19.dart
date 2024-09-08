@@ -156,9 +156,9 @@ class _Template19State extends State<Template19> {
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(AppImages.profilePicture)
+                              : AssetImage(AppImages.profilePicture19)
                                   as ImageProvider,
-                          radius: 45.r,
+                          radius: 50.r,
                         ),
                       ),
                     ],
