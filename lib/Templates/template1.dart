@@ -378,7 +378,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
               fontSize: 2.52.sp,
-              color: textColor, // Use the selected color
+              color: textColor,
             ),
             textAlign: TextAlign.justify,
           ),
@@ -504,7 +504,7 @@ class _Template1State extends State<Template1> {
     required String title,
     String? description,
     List<Widget>? skills,
-    Color? descriptionColor, // Add color parameter for description text
+    Color? descriptionColor,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -532,7 +532,7 @@ class _Template1State extends State<Template1> {
               fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
               fontSize: 2.53.sp,
-              color: descriptionColor ?? Colors.white, // Apply selected color
+              color: descriptionColor ?? Colors.white,
             ),
             textAlign: TextAlign.justify,
           ),
@@ -555,7 +555,7 @@ class _Template1State extends State<Template1> {
             fontFamily: 'Inter',
             fontWeight: FontWeight.w700,
             fontSize: 2.97.sp,
-            color: textColor, // Apply the selected color
+            color: textColor,
           ),
         ),
         Stack(
@@ -623,7 +623,7 @@ class _Template1State extends State<Template1> {
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 2.8.sp,
-                color: textColor, // Apply selected color
+                color: textColor,
               ),
             ),
           ],
@@ -647,6 +647,7 @@ class _Template1State extends State<Template1> {
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
                   controller: nameController,
@@ -823,7 +824,7 @@ class _Template1State extends State<Template1> {
                 BlockPicker(
                   pickerColor: tempAbility1Color,
                   onColorChanged: (Color color) {
-                    tempAbility1Color = color; // Update temp color
+                    tempAbility1Color = color;
                   },
                 ),
                 TextField(
@@ -922,7 +923,7 @@ class _Template1State extends State<Template1> {
                 BlockPicker(
                   pickerColor: tempNameColor,
                   onColorChanged: (Color color) {
-                    tempNameColor = color; // Update temporary color
+                    tempNameColor = color;
                   },
                 ),
                 TextField(
@@ -1007,7 +1008,7 @@ class _Template1State extends State<Template1> {
                 children: [
                   TextField(
                     controller: TextEditingController(text: about),
-                    maxLines: 10,
+                    maxLines: 15,
                     decoration:
                         InputDecoration(hintText: 'Enter new description'),
                     onChanged: (value) {
