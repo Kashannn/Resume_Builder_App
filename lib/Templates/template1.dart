@@ -75,7 +75,7 @@ class _Template1State extends State<Template1> {
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile =
-    await picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -113,8 +113,9 @@ class _Template1State extends State<Template1> {
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
-                  child: SingleChildScrollView( // Added SingleChildScrollView
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
+                  child: SingleChildScrollView(
                     child: GestureDetector(
                       onTap: () => _pickImage(),
                       child: Column(
@@ -122,21 +123,21 @@ class _Template1State extends State<Template1> {
                         children: [
                           _profileImage == null
                               ? ClipOval(
-                            child: Image.asset(
-                              AppImages.profilePicture,
-                              fit: BoxFit.cover,
-                              width: 49.w,
-                              height: 49.w,
-                            ),
-                          )
+                                  child: Image.asset(
+                                    AppImages.profilePicture,
+                                    fit: BoxFit.cover,
+                                    width: 49.w,
+                                    height: 49.w,
+                                  ),
+                                )
                               : ClipOval(
-                            child: Image.file(
-                              _profileImage!,
-                              fit: BoxFit.cover,
-                              width: 49.w,
-                              height: 49.w,
-                            ),
-                          ),
+                                  child: Image.file(
+                                    _profileImage!,
+                                    fit: BoxFit.cover,
+                                    width: 49.w,
+                                    height: 49.w,
+                                  ),
+                                ),
                           SizedBox(height: 4.h),
                           GestureDetector(
                             onTap: () => _editUserDetails(context),
@@ -202,7 +203,8 @@ class _Template1State extends State<Template1> {
                                   SizedBox(height: 5.h),
                                   _buildSectionHeader("REFERENCES"),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: reference.map((ref) {
                                       return GestureDetector(
                                         onTap: () =>
@@ -234,7 +236,8 @@ class _Template1State extends State<Template1> {
                 width: 84.w,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 1.w, vertical: 1.h),
-                  child: SingleChildScrollView( // Added SingleChildScrollView
+                  child: SingleChildScrollView(
+                    // Added SingleChildScrollView
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -301,7 +304,6 @@ class _Template1State extends State<Template1> {
       ),
     );
   }
-
 
   Widget _buildSectionHeader(String title) {
     return Column(
@@ -594,9 +596,9 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: userName);
+            TextEditingController(text: userName);
         final TextEditingController roleController =
-        TextEditingController(text: userRole);
+            TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -641,13 +643,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
         final TextEditingController websiteController =
-        TextEditingController(text: id);
+            TextEditingController(text: id);
         final TextEditingController locationController =
-        TextEditingController(text: address);
+            TextEditingController(text: address);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -702,13 +704,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: ability1);
+            TextEditingController(text: ability1);
         final TextEditingController emailController =
-        TextEditingController(text: ability2);
+            TextEditingController(text: ability2);
         final TextEditingController websiteController =
-        TextEditingController(text: ability3);
+            TextEditingController(text: ability3);
         final TextEditingController locationController =
-        TextEditingController(text: ability4);
+            TextEditingController(text: ability4);
 
         return AlertDialog(
           title: const Text('Edit Ability Details'),
@@ -763,13 +765,13 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: item['name']);
+            TextEditingController(text: item['name']);
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController emailController =
-        TextEditingController(text: item['email']);
+            TextEditingController(text: item['email']);
         final TextEditingController phoneController =
-        TextEditingController(text: item['phone']);
+            TextEditingController(text: item['phone']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -821,7 +823,7 @@ class _Template1State extends State<Template1> {
 
   Future<void> _editAboutMe() async {
     final newAboutMe =
-    await _showEditDialog('Description', about, multiline: true);
+        await _showEditDialog('Description', about, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         about = newAboutMe;
@@ -831,7 +833,7 @@ class _Template1State extends State<Template1> {
 
   Future<void> _editExperience() async {
     final newAboutMe =
-    await _showEditDialog('Experience', experience, multiline: true);
+        await _showEditDialog('Experience', experience, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         experience = newAboutMe;
@@ -849,18 +851,18 @@ class _Template1State extends State<Template1> {
           title: Text(title),
           content: multiline
               ? TextField(
-            controller: controller,
-            maxLines: 5,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          )
+                  controller: controller,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                )
               : TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              hintText: 'Enter new $title',
-            ),
-          ),
+                  controller: controller,
+                  decoration: InputDecoration(
+                    hintText: 'Enter new $title',
+                  ),
+                ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -879,9 +881,9 @@ class _Template1State extends State<Template1> {
   Future<void> _editSkillDialog(BuildContext context, int index,
       String currentName, double currentValue) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     TextEditingController valueController =
-    TextEditingController(text: currentValue.toString());
+        TextEditingController(text: currentValue.toString());
 
     await showDialog(
       context: context,
@@ -899,7 +901,7 @@ class _Template1State extends State<Template1> {
                 controller: valueController,
                 keyboardType: TextInputType.number,
                 decoration:
-                InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+                    InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
               ),
             ],
           ),
@@ -938,11 +940,11 @@ class _Template1State extends State<Template1> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),

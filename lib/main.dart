@@ -6,13 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'Allcontrollers/theme_changer_controller.dart';
-<<<<<<< Updated upstream
-=======
-import 'Templates/template12.dart';
-import 'Templates/template16.dart';
-import 'Templates/template17.dart';
-import 'Templates/template19.dart';
->>>>>>> Stashed changes
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,11 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-<<<<<<< Updated upstream
       child: SplashScreen(),
-=======
-      child: Template19(),
->>>>>>> Stashed changes
     );
   }
 }
