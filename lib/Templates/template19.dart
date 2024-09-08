@@ -87,7 +87,7 @@ class _Template19State extends State<Template19> {
     'Photoshop',
     'Illustrator',
     'Figma',
-    'UI/UX Designing',
+    'UI/UX',
   ];
 
   List<String> hobbies = [
@@ -403,14 +403,14 @@ class _Template19State extends State<Template19> {
                         )),
                   ],
                 ),
-                SizedBox(height: 20.h),
+                // SizedBox(height: 20.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                         //height: 172.h,
-                        width: 360.w,
+                        width: 300.w,
                         padding: EdgeInsets.all(10.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -580,7 +580,7 @@ class _Template19State extends State<Template19> {
                                     return GestureDetector(
                                       onTap: () => _editSkillDialog(
                                           context, index, skill),
-                                      child: buildSkillCircle(skill),
+                                      child: buildSkillCircle(skill, 0.75),
                                     );
                                   }).toList(),
                                 ),
@@ -1040,28 +1040,43 @@ class _Template19State extends State<Template19> {
   }
 }
 
-Widget buildSkillCircle(String skillName) {
+Widget buildSkillCircle(String skillName, double skillPercentage) {
   return Column(
     children: [
-      Container(
-        width: 50.w,
-        height: 50.w,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white.withOpacity(0.1), // Background for circle
-        ),
-        child: Center(
-          child: Text(
-            skillName,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: GoogleFonts.inter().fontFamily,
-              fontSize: 10.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
+      Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            width: 50.w,
+            height: 50.w,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(0.1), // Background for circle
             ),
           ),
-        ),
+          SizedBox(
+            width: 50.w,
+            height: 50.w,
+            child: CircularProgressIndicator(
+              value: skillPercentage,
+              backgroundColor: Colors.white.withOpacity(0.1),
+              color: Colors.blue,
+              strokeWidth: 5.w,
+            ),
+          ),
+          Center(
+            child: Text(
+              skillName,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: GoogleFonts.inter().fontFamily,
+                fontSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     ],
   );
