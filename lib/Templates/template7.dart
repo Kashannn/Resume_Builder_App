@@ -79,18 +79,18 @@ class _Template7State extends State<Template7> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(650, 1400));
+    ScreenUtil.init(context, designSize: const Size(686, 1400));
     return SafeArea(
       child: Scaffold(
         body: Container(
-          width: 595.w,
-          //height: 842.h,
+          width: 650.w,
+          height: 1400.h,
           color: Color(0xFF395B6D),
           child: Column(
             children: [
               Container(
-                width: 595.w,
-                //height: 150.h,
+                width: 650.w,
+               // height: 200.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -109,7 +109,7 @@ class _Template7State extends State<Template7> {
                         child:  GestureDetector(
                           onTap: _pickImage,
                           child: CircleAvatar(
-                            radius: 60.h,
+                            radius: 80.h,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
                                 : AssetImage(AppImages.profilePicture)
@@ -169,8 +169,8 @@ class _Template7State extends State<Template7> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 295.w,
-                    height: 706.h,
+                    width: 325.w,
+                    height: 666.5.h,
                     color: Colors.white,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -179,8 +179,8 @@ class _Template7State extends State<Template7> {
                         Padding(
                           padding: EdgeInsets.only(left: 60.h),
                           child: Container(
-                            width: 122.h,
-                            //height: 200.h,
+                            width: 170.w,
+                            height: 200.h,
                             padding: EdgeInsets.symmetric(vertical: 8.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -203,6 +203,7 @@ class _Template7State extends State<Template7> {
                                     email,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
+                                      fontFamily: GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -218,6 +219,7 @@ class _Template7State extends State<Template7> {
                                     phoneNumber,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
+                                      fontFamily: GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -233,6 +235,7 @@ class _Template7State extends State<Template7> {
                                     location,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
+                                      fontFamily: GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -242,7 +245,7 @@ class _Template7State extends State<Template7> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 10.h),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -250,11 +253,11 @@ class _Template7State extends State<Template7> {
                             children: [
                               Container(
                                 width: 3.w,
-                                height: 290.h,
+                                height: 410.h,
                                 color: Color(0xFF3D586D),
                               ),
                               Container(
-                                width: 220.w,
+                                width: 290.w,
                                 // padding: EdgeInsets.all(16.w),
                                 color: Colors.white,
                                 child: Column(
@@ -263,20 +266,23 @@ class _Template7State extends State<Template7> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      width: double.infinity,
+                                      width: 230.w,
+                                      height: 50.h,
+                                      alignment: Alignment.center,
                                       padding:
                                           EdgeInsets.symmetric(vertical: 6.h),
                                       decoration: BoxDecoration(
                                         color: Color(0xFF3D586D),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20.r),
-                                          bottomRight: Radius.circular(20.r),
+                                          topRight: Radius.circular(40.r),
+                                          bottomRight: Radius.circular(40.r),
                                         ),
                                       ),
                                       child: Text(
                                         'EDUCATION',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
+                                          fontFamily: GoogleFonts.montserrat().fontFamily,
                                           color: Colors.white,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
@@ -284,7 +290,10 @@ class _Template7State extends State<Template7> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0,
+                                        vertical: 8.0,
+                                      ),
                                       child: ListView.builder(
                                         shrinkWrap: true,
                                         itemCount: education.length,
@@ -301,28 +310,36 @@ class _Template7State extends State<Template7> {
                                                       '',
                                                   style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 14.sp,
+                                                    fontSize: 16.sp,
+                                                    fontFamily: GoogleFonts.montserrat().fontFamily,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                                 SizedBox(height: 4.h),
-                                                Text(
-                                                  education[index]
-                                                          ['institution'] ??
-                                                      '',
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 14.sp,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 4.h),
-                                                Text(
-                                                  education[index]['years'] ??
-                                                      '',
-                                                  style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 14.sp,
-                                                  ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      education[index]
+                                                              ['institution'] ??
+                                                          '',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14.sp,
+                                                        fontFamily: GoogleFonts.montserrat().fontFamily,
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 4.h),
+                                                    Text(
+                                                      education[index]['years'] ??
+                                                          '',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14.sp,
+                                                        fontFamily: GoogleFonts.montserrat().fontFamily,
+
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 SizedBox(height: 16.h),
                                               ],
@@ -331,16 +348,18 @@ class _Template7State extends State<Template7> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(height: 20.h),
+
                                     Container(
-                                      width: double.infinity,
+                                      width: 230.w,
+                                      height: 50.h,
+                                      alignment: Alignment.center,
                                       padding:
                                           EdgeInsets.symmetric(vertical: 8.h),
                                       decoration: BoxDecoration(
                                         color: Color(0xFF3D586D),
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20.r),
-                                          bottomRight: Radius.circular(20.r),
+                                          topRight: Radius.circular(40.r),
+                                          bottomRight: Radius.circular(40.r),
                                         ),
                                       ),
                                       child: Text(
@@ -350,6 +369,7 @@ class _Template7State extends State<Template7> {
                                           color: Colors.white,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
+                                          fontFamily: GoogleFonts.montserrat().fontFamily,
                                         ),
                                       ),
                                     ),
@@ -366,9 +386,10 @@ class _Template7State extends State<Template7> {
                                                 context, index, skill),
                                             child: Text(
                                               '• $skill',
-                                              style: TextStyle(
+                                              style: GoogleFonts.montserrat(
                                                 color: Colors.black,
-                                                fontSize: 20.sp,
+                                                fontSize: 18.sp,
+
                                               ),
                                             ),
                                           );
@@ -385,28 +406,30 @@ class _Template7State extends State<Template7> {
                     ),
                   ),
                   Container(
-                    width: 295.w,
-                    height: 706.h,
+                    width: 325.w,
+                    height: 666.5.h,
                     color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(height: 5.h),
                         // About Me Section
                         Container(
                           width: 220.w,
+                          height: 50.h,
+                          alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 8.h),
                           decoration: BoxDecoration(
                             color: Color(0xFF3D586D),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20.r),
-                              bottomRight: Radius.circular(20.r),
+                              topRight: Radius.circular(40.r),
+                              bottomRight: Radius.circular(40.r),
                             ),
                           ),
                           child: Center(
                             child: Text(
-                              'About Me',
+                            'ABOUT ME',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Colors.white,
@@ -418,7 +441,10 @@ class _Template7State extends State<Template7> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(12.w),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 10.h,
+                          ),
                           child: GestureDetector(
                             onTap: () => _editAboutMe(),
                             child: Text(
@@ -426,26 +452,30 @@ class _Template7State extends State<Template7> {
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Color(0xFF3D586D),
+
                                   fontSize: 13.sp,
                                 ),
                               ),
                             ),
                           ),
                         ),
+                        SizedBox(height: 10.h),
                         // Experience Section
                         Container(
                           width: 220.w,
+                          height: 50.h,
+                          alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 8.h),
                           decoration: BoxDecoration(
                             color: Color(0xFF3D586D),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20.r),
-                              bottomRight: Radius.circular(20.r),
+                              topRight: Radius.circular(40.r),
+                              bottomRight: Radius.circular(40.r),
                             ),
                           ),
                           child: Center(
                             child: Text(
-                              'Experience',
+                              'EXPERIENCE',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Colors.white,
@@ -475,7 +505,7 @@ class _Template7State extends State<Template7> {
                                         style: GoogleFonts.montserrat(
                                           textStyle: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 16.sp,
+                                            fontSize: 20.sp,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -489,7 +519,7 @@ class _Template7State extends State<Template7> {
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                 color: Color(0xFF3D586D),
-                                                fontSize: 14.sp,
+                                                fontSize: 16.sp,
                                               ),
                                             ),
                                           ),
@@ -498,7 +528,7 @@ class _Template7State extends State<Template7> {
                                             style: GoogleFonts.montserrat(
                                               textStyle: TextStyle(
                                                 color: Color(0xFF3D586D),
-                                                fontSize: 14.sp,
+                                                fontSize: 16.sp,
                                               ),
                                             ),
                                           ),
@@ -510,7 +540,7 @@ class _Template7State extends State<Template7> {
                                         style: GoogleFonts.montserrat(
                                           textStyle: TextStyle(
                                             color: Color(0xFF3D586D),
-                                            fontSize: 14.sp,
+                                            fontSize: 16.sp,
                                           ),
                                         ),
                                       ),
@@ -525,22 +555,25 @@ class _Template7State extends State<Template7> {
                         // Languages Section
                         Container(
                           width: 220.w,
+                          height: 50.h,
+                          alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 8.h),
                           decoration: BoxDecoration(
                             color: Color(0xFF3D586D),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20.r),
-                              bottomRight: Radius.circular(20.r),
+                              topRight: Radius.circular(40.r),
+                              bottomRight: Radius.circular(40.r),
                             ),
                           ),
                           child: Center(
                             child: Text(
-                              'Languages',
+                              'LANGUAGES',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
+
                                 ),
                               ),
                             ),
@@ -549,25 +582,36 @@ class _Template7State extends State<Template7> {
                         Padding(
                           padding: EdgeInsets.all(12.w),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: languages.map((language) {
-                              return GestureDetector(
-                                onTap: () => _editLanguages(
-                                  context,
-                                  languages.indexOf(language),
-                                  language,
-                                ),
-                                child: Text(
-                                  '• $language',
-                                  style: GoogleFonts.montserrat(
-                                    textStyle: TextStyle(
-                                      color: Color(0xFF3D586D),
-                                      fontSize: 14.sp,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: languages.map((language) {
+                                  return GestureDetector(
+                                    onTap: () => _editLanguages(
+                                      context,
+                                      languages.indexOf(language),
+                                      language,
                                     ),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          '• $language',
+                                          style: GoogleFonts.montserrat(
+                                            textStyle: TextStyle(
+                                              color: Color(0xFF3D586D),
+                                              fontSize: 18.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 8.h),
+                                      ],
+                                    ),
+                                  );
+
+                                }).toList(),
+
+                              ),
+                            ],
                           ),
                         ),
                       ],

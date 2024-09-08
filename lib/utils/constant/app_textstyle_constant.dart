@@ -97,77 +97,77 @@ class AppTextStylesTemplate10 {
   static final TextStyle nameStyle = TextStyle(
     color: AppColorsTemplate10.primary,
     fontSize: 15.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w700,
   );
 
   static final TextStyle jobTitleStyle = TextStyle(
     color: AppColorsTemplate10.secondary,
     fontSize: 10.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w500,
   );
 
   static final TextStyle contactLabelStyle = TextStyle(
     color: AppColorsTemplate10.contactText,
     fontSize: 8.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w700,
   );
 
   static final TextStyle contactInfoStyle = TextStyle(
     color: AppColorsTemplate10.contactText,
     fontSize: 8.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w700,
   );
 
   static final TextStyle sectionTitleStyle = TextStyle(
     color: AppColorsTemplate10.primary,
     fontSize: 10.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w700,
   );
 
   static final TextStyle experienceTitleStyle = TextStyle(
     color: AppColorsTemplate10.contactText,
     fontSize: 9.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w600,
   );
 
   static final TextStyle experienceDurationStyle = TextStyle(
     color: AppColorsTemplate10.secondary,
     fontSize: 9.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w600,
   );
 
   static final TextStyle descriptionTextStyle = TextStyle(
     color: AppColorsTemplate10.secondary,
     fontSize: 8.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w500,
   );
 
   static final TextStyle educationTextStyle = TextStyle(
     color: AppColorsTemplate10.secondary,
     fontSize: 9.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w500,
   );
 
   static final TextStyle degreeTextStyle = TextStyle(
     color: AppColorsTemplate10.contactText,
     fontSize: 9.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w600,
   );
 
   static final TextStyle skillTextStyle = TextStyle(
     color: AppColorsTemplate10.secondary,
     fontSize: 7.0.sp,
-    fontFamily: 'Manrope',
+    fontFamily: GoogleFonts.manrope().fontFamily,
     fontWeight: FontWeight.w500,
   );
 }

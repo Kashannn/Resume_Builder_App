@@ -20,6 +20,7 @@ class AppColors {
 
 class AppColorsTemplate10 {
   static const Color lightGray = Color(0xFFF5F5F5);
+  static const Color white = Color(0xFFF7F7F7);
   static const Color primary = Color(0xFF8D54FF);
   static const Color secondary = Color(0xFF5D6890);
   static const Color contactText = Color(0xFF1D2B5F);

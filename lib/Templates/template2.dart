@@ -14,13 +14,16 @@ class Template2 extends StatefulWidget {
 }
 
 class _Template2State extends State<Template2> {
+
   String userName = 'John Carter';
   String userRole = 'Product Designer';
   String email = 'contact@johncarter.com';
   String mobile = '+001 123 456 789';
   String website = 'johncarter.com';
-  String about =
-      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+
+  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+
+  // List of languages with proficiency levels
   List<Map<String, String>> languages = [
     {
       'language': 'English',
@@ -38,22 +41,21 @@ class _Template2State extends State<Template2> {
 
   List<Map<String, String>> workExperience = [
     {
+
       'duration': '2020 - 2021',
       'title': 'Lead Product Designer',
-      'description':
-          'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
+      'description': 'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
     },
     {
       'duration': '2019 - 2020',
       'title': 'Lead Product Designer',
-      'description':
-          'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
+      'description': 'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
     },
     {
+
       'duration': '2018 - 2019',
       'title': 'Lead Product Designer',
-      'description':
-          'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
+      'description': 'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
     },
   ];
 
@@ -104,6 +106,9 @@ class _Template2State extends State<Template2> {
     }
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 1400));
@@ -113,74 +118,75 @@ class _Template2State extends State<Template2> {
         backgroundColor: Color(0xFF26272E), // Dark background color
         body: Stack(
           children: [
-            // Wrapped Row in SingleChildScrollView to handle overflow
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Container(
-                width: 595.w,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 55.h), // Space from the top
-                          _buildAvatarAndFrame(), // Combine avatar and frame
-                          SizedBox(height: 30.h), // Add space between sections
-                          _buildSectionWithLine(
-                            title: "P R O F I L E",
-                            child: _buildProfileSection(),
-                            lineHeight: 150,
-                            showIcon: Icon(Icons.circle,
-                                color: Color(0xff00FF88), size: 10.w),
-                          ),
-                          _buildSectionWithLine(
-                            title: "E X P E R I E N C E",
-                            child: _buildExperienceSection(),
-                            showIcon: Icon(Icons.circle,
-                                color: Color(0xff00FF88), size: 10.w),
-                            lineHeight: 250,
-                          ),
-                          _buildSectionWithLine(
-                            title: " L A N G U A G E S",
-                            child: _buildLanguagesSection(),
-                            lineHeight: 100,
-                            showIcon: Icon(Icons.circle,
-                                color: Color(0xff00FF88), size: 10.w),
-                          ),
-                        ],
-                      ),
+            Container(
+              width: 595.w,
+              //height: 942.h,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 40.h),
+                        // Space from the top
+                        _buildAvatarAndFrame(),
+                        // Combine avatar and frame
+                        SizedBox(
+                            height: 20.h),
+                        // Add space between avatar/frame and other sections
+                        _buildSectionWithLine(
+                          title: "P R O F I L E",
+                          child: _buildProfileSection(),
+                          lineHeight: 100,
+                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                        ),
+                        _buildSectionWithLine(
+                          title: "E X P E R I E N C E",
+                          child: _buildExperienceSection(),
+                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                        ),
+                        _buildSectionWithLine(
+                          title: " L A N G U A G E S",
+                          child: _buildLanguagesSection(),
+                          lineHeight: 100,
+                          showIcon: Icon(Icons.circle, color: Color(0xff00FF88), size: 10.w),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 120.h,
-                            width: 20.w,
-                          ), // Space to align with the mobile frame
-                          _buildContactSection(), // Space between sections
-                          _buildSectionWithLine(
-                            title: "S T U D I E S",
-                            child: _buildStudiesSection(),
-                            lineHeight: 200,
-                          ),
-                          _buildSectionWithLine(
+                  ),
+
+                  // Right side (Contact, Studies, Skills, Social Media)
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 120.h,
+                          width: 20,
+                        ), // Space to align with the mobile frame
+                        _buildContactSection(),
+                        SizedBox(
+                          height: 10,
+                        ), // Place contact section at the top
+                        _buildSectionWithLine(
+                          title: "S T U D I E S",
+                          child: _buildStudiesSection(),
+                        ),
+                        _buildSectionWithLine(
                             title: "S K I L L S",
                             child: _buildSkillsSection(),
-                            lineHeight: 200,
-                          ),
-                        ],
-                      ),
+                            lineHeight: 200),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            // Adjusted Positioned Container on the left
             Positioned(
               top: 0,
               left: 0,
@@ -190,13 +196,12 @@ class _Template2State extends State<Template2> {
                 color: Color(0xff00FF88), // Green color
               ),
             ),
-            // Adjusted Positioned Container on the right
             Positioned(
               bottom: 0,
               right: 0,
               child: Container(
                 width: 50.w,
-                height: 20.h,
+                height: 20,
                 color: Color(0xff00FF88), // Green color
               ),
             ),
@@ -206,13 +211,10 @@ class _Template2State extends State<Template2> {
     );
   }
 
-
-
   Widget _buildAvatarAndFrame() {
     return SizedBox(
       child: Container(
-        width: 600.h,
-        padding: EdgeInsets.only(left: 16.w),
+        width: 300.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -227,22 +229,24 @@ class _Template2State extends State<Template2> {
   }
 
   Widget _buildAvatar() {
-    return GestureDetector(
-      onTap: _pickImage,
-      child: CircleAvatar(
+    return  GestureDetector(
+        onTap: _pickImage,
+        child: CircleAvatar(
         backgroundColor: Colors.transparent,
         backgroundImage: _profileImage != null
-            ? FileImage(_profileImage!)
-            : AssetImage(AppImages.profilePicture) as ImageProvider,
-        radius: 70.w,
-      ),
+        ? FileImage(_profileImage!)
+        : AssetImage(
+    AppImages.profilePicture)
+    as ImageProvider,
+    radius: 70.w,
+    ),
     );
   }
 
   Widget _buildMobileFrame() {
     return Container(
-      width: 110.w, // Adjust width as needed
-      height: 200.h, // Adjust height as needed
+      width: 120.w, // Adjust width as needed
+      height: 100.h, // Adjust height as needed
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(7.r),
@@ -255,16 +259,17 @@ class _Template2State extends State<Template2> {
           bottom: BorderSide(color: Colors.white70, width: 1.w),
         ),
       ),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(
-          width: 2,
-        ),
-        GestureDetector(
-          onTap: () => _editUserDetails(context),
-          child: Container(
-            width: 80,
-            alignment: Alignment.center,
-            child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          SizedBox(width: 2,),
+
+          GestureDetector(
+            onTap: ()=> _editUserDetails(context),
+            child: Container(
+              width: 80,
+              alignment: Alignment.center,
+              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -288,10 +293,11 @@ class _Template2State extends State<Template2> {
                   ),
                 ),
               ],
+                      ),
             ),
           ),
-        ),
-      ]),
+      ]
+      ),
     );
   }
 
@@ -321,16 +327,14 @@ class _Template2State extends State<Template2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...workExperience
-              .map((expItem) => GestureDetector(
-                    onTap: () => _editExperienceItem(context, expItem),
-                    child: _buildExperienceItem(
-                      jobTitle: expItem['title']!,
-                      duration: expItem['duration']!,
-                      description: expItem['description']!,
-                    ),
-                  ))
-              .toList(),
+          ...workExperience.map((expItem) => GestureDetector(
+            onTap: ()=> _editExperienceItem(context, expItem),
+            child: _buildExperienceItem(
+              jobTitle: expItem['title']!,
+              duration: expItem['duration']!,
+              description: expItem['description']!,
+            ),
+          )).toList(),
         ],
       ),
     );
@@ -338,39 +342,39 @@ class _Template2State extends State<Template2> {
 
   Widget _buildLanguagesSection() {
     return Container(
-        padding: EdgeInsets.only(
-            left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ...languages.asMap().entries.map((entry) {
-              int index = entry.key;
-              Map<String, String> lang = entry.value;
+      padding: EdgeInsets.only(
+          left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ...languages.asMap().entries.map((entry) {
+            int index = entry.key;
+            Map<String, String> lang = entry.value;
 
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: () => _editLanguages(context, index,
-                        lang['language']!, lang['proficiency']!),
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 8.h),
-                      child: _buildLanguageItem(
-                          lang['language']!, lang['proficiency']!),
-                    ),
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () => _editLanguages(context, index, lang['language']!, lang['proficiency']!),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 8.h),
+                    child: _buildLanguageItem(lang['language']!, lang['proficiency']!),
                   ),
-                ],
-              );
-            }).toList(),
-          ],
-        ));
+                ),
+              ],
+            );
+          }).toList(),
+        ],
+      )
+
+    );
   }
 
   Widget _buildContactSection() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 60.h),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
       child: GestureDetector(
-        onTap: () => _editContactDetails(context),
+        onTap: ()=> _editContactDetails(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -411,7 +415,7 @@ class _Template2State extends State<Template2> {
                     color: Color(0xff00FF88), size: 16.w),
                 SizedBox(width: 8.w),
                 Text(
-                  website,
+                 website,
                   style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w400,
@@ -433,21 +437,19 @@ class _Template2State extends State<Template2> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...education
-              .map((edu) => Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => _editEducationItem(context, edu),
-                        child: _buildStudiesItem(
-                          edu['institution']!,
-                          edu['year']!,
-                          edu['degree']!,
-                        ),
-                      ),
-                      SizedBox(height: 8.h),
-                    ],
-                  ))
-              .toList(),
+          ...education.map((edu) => Column(
+            children: [
+              GestureDetector(
+                onTap: ()=> _editEducationItem(context, edu),
+                child: _buildStudiesItem(
+                  edu['institution']!,
+                  edu['year']!,
+                  edu['degree']!,
+                   ),
+              ),
+              SizedBox(height: 8.h),
+            ],
+          )).toList(),
         ],
       ),
     );
@@ -464,8 +466,7 @@ class _Template2State extends State<Template2> {
             int index = entry.key;
             Map<String, dynamic> skill = entry.value;
             return GestureDetector(
-              onTap: () => _editSkillDialog(
-                  context, index, skill['name']!, skill['level']!),
+              onTap: () => _editSkillDialog(context, index, skill['name']!, skill['level']!),
               child: Padding(
                 padding: EdgeInsets.only(bottom: 8.h),
                 child: _buildSkillItem(skill['name']!, skill['level']!),
@@ -538,8 +539,7 @@ class _Template2State extends State<Template2> {
               ),
               if (showIcon != null)
                 Positioned(
-                  top: lineHeight.h / 2 -
-                      (showIcon.size ?? 10.w) / 2, // Center the icon vertically
+                  top: lineHeight.h / 2 - (showIcon.size ?? 10.w) / 2, // Center the icon vertically
                   left: -5.w, // Adjust the position as needed
                   child: showIcon, // Use the passed icon
                 ),
@@ -572,9 +572,9 @@ class _Template2State extends State<Template2> {
   Future<void> _editSkillDialog(BuildContext context, int index,
       String currentName, int currentValue) async {
     TextEditingController nameController =
-        TextEditingController(text: currentName);
+    TextEditingController(text: currentName);
     TextEditingController valueController =
-        TextEditingController(text: currentValue.toString());
+    TextEditingController(text: currentValue.toString());
 
     await showDialog(
       context: context,
@@ -592,7 +592,7 @@ class _Template2State extends State<Template2> {
                 controller: valueController,
                 keyboardType: TextInputType.number,
                 decoration:
-                    InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
+                InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
               ),
             ],
           ),
@@ -631,11 +631,11 @@ class _Template2State extends State<Template2> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-            TextEditingController(text: item['year']);
+        TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-            TextEditingController(text: item['degree']);
+        TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-            TextEditingController(text: item['institution']);
+        TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -680,12 +680,9 @@ class _Template2State extends State<Template2> {
     );
   }
 
-  Future<void> _editLanguages(BuildContext context, int index,
-      String currentName, String currentProficiency) async {
-    TextEditingController nameController =
-        TextEditingController(text: currentName);
-    TextEditingController proficiencyController =
-        TextEditingController(text: currentProficiency);
+  Future<void> _editLanguages(BuildContext context, int index, String currentName, String currentProficiency) async {
+    TextEditingController nameController = TextEditingController(text: currentName);
+    TextEditingController proficiencyController = TextEditingController(text: currentProficiency);
 
     await showDialog(
       context: context,
@@ -735,14 +732,15 @@ class _Template2State extends State<Template2> {
     );
   }
 
+
   void _editUserDetails(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-            TextEditingController(text: userName);
+        TextEditingController(text: userName);
         final TextEditingController roleController =
-            TextEditingController(text: userRole);
+        TextEditingController(text: userRole);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -787,11 +785,11 @@ class _Template2State extends State<Template2> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-            TextEditingController(text: item['title']);
+        TextEditingController(text: item['title']);
         final TextEditingController descriptionController =
-            TextEditingController(text: item['description']);
+        TextEditingController(text: item['description']);
         final TextEditingController durationController =
-            TextEditingController(text: item['duration']);
+        TextEditingController(text: item['duration']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -802,6 +800,8 @@ class _Template2State extends State<Template2> {
                 controller: titleController,
                 decoration: const InputDecoration(labelText: 'Title'),
               ),
+
+
               TextField(
                 controller: durationController,
                 decoration: const InputDecoration(labelText: 'Duration'),
@@ -841,11 +841,11 @@ class _Template2State extends State<Template2> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-            TextEditingController(text: mobile);
+        TextEditingController(text: mobile);
         final TextEditingController emailController =
-            TextEditingController(text: email);
+        TextEditingController(text: email);
         final TextEditingController websiteController =
-            TextEditingController(text: website);
+        TextEditingController(text: website);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -864,6 +864,7 @@ class _Template2State extends State<Template2> {
                 controller: websiteController,
                 decoration: const InputDecoration(labelText: 'Website'),
               ),
+
             ],
           ),
           actions: [
@@ -873,6 +874,7 @@ class _Template2State extends State<Template2> {
                   mobile = phoneController.text;
                   email = emailController.text;
                   website = websiteController.text;
+
                 });
                 Navigator.of(context).pop();
               },
@@ -892,14 +894,13 @@ class _Template2State extends State<Template2> {
 
   Future<void> _editAboutMe() async {
     final newAboutMe =
-        await _showEditDialog('Description', about, multiline: true);
+    await _showEditDialog('Description', about, multiline: true);
     if (newAboutMe != null && newAboutMe.isNotEmpty) {
       setState(() {
         about = newAboutMe;
       });
     }
   }
-
   Future<String?> _showEditDialog(String title, String initialValue,
       {bool multiline = false}) async {
     final controller = TextEditingController(text: initialValue);
@@ -910,18 +911,18 @@ class _Template2State extends State<Template2> {
           title: Text(title),
           content: multiline
               ? TextField(
-                  controller: controller,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
-                )
+            controller: controller,
+            maxLines: 5,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          )
               : TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
-                ),
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Enter new $title',
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, controller.text),
@@ -936,6 +937,9 @@ class _Template2State extends State<Template2> {
       },
     );
   }
+
+
+
 }
 
 Widget _buildExperienceItem({
