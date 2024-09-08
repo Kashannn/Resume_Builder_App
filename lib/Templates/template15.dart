@@ -127,7 +127,7 @@ class _Template15State extends State<Template15> {
                                 backgroundImage: _profileImage != null
                                     ? FileImage(_profileImage!)
                                     : AssetImage(
-                                    AppImages.profilePicture)
+                                    AppImages.profilePicture15)
                                 as ImageProvider,
                                 radius: 40.h,
                               ),
@@ -173,6 +173,7 @@ class _Template15State extends State<Template15> {
                   ],
                 ),
               ),
+              SizedBox(height: 5.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -358,37 +359,38 @@ class _Template15State extends State<Template15> {
                     ),
                   ),
                   Container(
-                    width: 330.w,
+                    width: 350.w,
                     //height: 660.h,
                     padding:
-                        EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+                        EdgeInsets.only(bottom: 70),
                     color: Colors
                         .transparent, // Adjust the color or make it transparent
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         // About Me Section
                         Text(
                           "ABOUT ME",
                           style: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w700,
-                            fontSize: 18.sp,
+                            fontSize: 14.sp,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 5.h),
+                        SizedBox(height: 10.h),
                         GestureDetector(
                           onTap: ()=> _editAbout(context),
                           child: Text(
                             about,
                             style: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w400,
-                              fontSize: 14.sp,
+                              fontSize: 11.sp,
                               color: Colors.grey[800],
                             ),
                           ),
                         ),
-                        SizedBox(height: 5.h),
+                        SizedBox(height: 30.h),
                         Divider(color: Colors.grey[400]),
 
                         // Education Section
@@ -396,7 +398,7 @@ class _Template15State extends State<Template15> {
                           "EDUCATION",
                           style: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w700,
-                            fontSize: 18.sp,
+                            fontSize: 14.sp,
                             color: Colors.black,
                           ),
                         ),
@@ -415,7 +417,7 @@ class _Template15State extends State<Template15> {
                             ),
                         ],
                       ),
-                      SizedBox(height: 5.h),
+                      SizedBox(height: 11.h),
                         Divider(color: Colors.grey[400]),
 
 
@@ -424,7 +426,7 @@ class _Template15State extends State<Template15> {
                           "WORK EXPERIENCE",
                           style: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w700,
-                            fontSize: 18.sp,
+                            fontSize: 14.sp,
                             color: Colors.black,
                           ),
                         ),
@@ -511,7 +513,7 @@ class _Template15State extends State<Template15> {
               institution,
               style: GoogleFonts.dmSans(
                 fontWeight: FontWeight.w700,
-                fontSize: 10.sp,
+                fontSize: 9.sp,
                 color: Colors.black,
               ),
             ),
@@ -520,7 +522,7 @@ class _Template15State extends State<Template15> {
               "–",
               style: GoogleFonts.dmSans(
                 fontWeight: FontWeight.w400,
-                fontSize: 11.sp,
+                fontSize: 9.sp,
                 color: Colors.grey,
               ),
             ),
@@ -540,7 +542,7 @@ class _Template15State extends State<Template15> {
           degree,
           style: GoogleFonts.dmSans(
             fontWeight: FontWeight.w700,
-            fontSize: 14.sp,
+            fontSize: 9.sp,
             color: Colors.black,
           ),
         ),
@@ -560,7 +562,7 @@ class _Template15State extends State<Template15> {
           companyName,
           style: GoogleFonts.dmSans(
             fontWeight: FontWeight.w700,
-            fontSize: 16.sp,
+            fontSize: 12.sp,
             color: Colors.black,
           ),
         ),
