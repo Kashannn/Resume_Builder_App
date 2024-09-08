@@ -84,21 +84,34 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
 
   Future<void> _capturePng() async {
     try {
+      // Get the boundary and image from the widget
       RenderRepaintBoundary boundary = _containerKey.currentContext!
           .findRenderObject() as RenderRepaintBoundary;
+
+      // Capture image from the boundary
       ui.Image image = await boundary.toImage(pixelRatio: 5.0);
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+
+      // Get the size of the widget
+      Size widgetSize = boundary.size;
+
+      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
       print('Image captured successfully');
 
-      // Generate PDF
+      // Create a PDF document
       final pdf = pw.Document();
       final pdfImage = pw.MemoryImage(pngBytes);
 
+      // Set the PDF page size to match the widget size
+      final pageFormat = PdfPageFormat(
+        widgetSize.width * PdfPageFormat.mm / 5.0,  // Width converted to millimeters
+        widgetSize.height * PdfPageFormat.mm / 5.0, // Height converted to millimeters
+      );
+
+      // Add a page with custom size
       pdf.addPage(
         pw.Page(
-          pageFormat: PdfPageFormat.a4,
+          pageFormat: pageFormat,
           build: (pw.Context context) {
             return pw.Image(
               pdfImage,
@@ -132,6 +145,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
       rethrow;
     }
   }
+
 
   @override
   void initState() {
@@ -363,7 +377,7 @@ class _CustomizedTemplateScreenState extends State<CustomizedTemplateScreen> {
                       key: _containerKey,
                       child: SizedBox(
                         height: 522.h,
-                        width: 403.w,
+
                         child: _loadSelectedTemplate(),
                       ),
                     ),
