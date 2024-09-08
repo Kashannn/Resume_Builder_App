@@ -10,6 +10,9 @@ class AppImages extends AssetImage {
   static const String profilePicture19 = '$_assetsPath/19.png';
   static const String profilePicture18 = '$_assetsPath/18.png';
   static const String profilePicture17 = '$_assetsPath/17.png';
+  static const String profilePicture16 = '$_assetsPath/16.png';
+  static const String profilePicture15 = '$_assetsPath/15.png';
+
 
   static const String Template8ProfilePhoto = '$_assetsPath/Template8ProfilePhoto.png';
   static const String template1 = '$_assetsPath/template1.png';

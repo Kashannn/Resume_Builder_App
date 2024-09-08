@@ -15,7 +15,9 @@ class Template16 extends StatefulWidget {
 }
 
 class _Template16State extends State<Template16> {
-  String userName = 'Sam Moore';
+  String userName = 'Sam';
+  String userName1 = 'Moore';
+
   String userRole = 'Product Designer';
   String socialMedia = '@john_designer';
   String email = 'contact@john_designer.com';
@@ -119,9 +121,9 @@ class _Template16State extends State<Template16> {
                             backgroundColor: Colors.transparent,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(AppImages.profilePicture)
+                                : AssetImage(AppImages.profilePicture16)
                                     as ImageProvider,
-                            radius: 80.h,
+                            radius: 105.h,
                           ),
                         ),
                         SizedBox(
@@ -143,8 +145,21 @@ class _Template16State extends State<Template16> {
                                         fontFamily:
                                             'Inter', // Ensure 'Inter' is set as the font family
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 20.sp,
+                                        fontSize: 26.sp,
                                         color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        width: 4
+                                            .w), // Adjust spacing between first and last name
+                                    Text(
+                                      userName1,
+                                      style: TextStyle(
+                                        fontFamily:
+                                        'Inter', // Ensure 'Inter' is set as the font family
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 26.sp,
+                                        color: Colors.purple,
                                       ),
                                     ),
                                     SizedBox(
@@ -321,12 +336,13 @@ class _Template16State extends State<Template16> {
                           ),
                         ),
                         SizedBox(
-                          width: 240.w,
+                          width: 250.w,
                           //height: 155.h,
                           child: Padding(
-                            padding: EdgeInsets.all(8.w),
+                            padding: EdgeInsets.all(1.w),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Text(
                                   "Skills",
