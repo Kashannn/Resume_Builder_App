@@ -4,29 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -109,7 +86,7 @@ class _Template8State extends State<Template8> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(595, 842));
+    ScreenUtil.init(context, designSize: const Size(595, 900));
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -119,6 +96,7 @@ class _Template8State extends State<Template8> {
                 width: 595.w,
                 child: Column(
                   children: [
+
                     Container(
                       height: 90.h,
                       width: 595.w,
@@ -141,9 +119,9 @@ class _Template8State extends State<Template8> {
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)
                                         : AssetImage(
-                                                AppImages.Template8ProfilePhoto)
+                                                AppImages.t8)
                                             as ImageProvider,
-                                    radius: 65.r,
+                                    radius: 60.r,
 
                                   ),
                                 ),

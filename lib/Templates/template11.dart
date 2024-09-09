@@ -125,7 +125,7 @@ class _Template11State extends State<Template11> {
                                 backgroundImage: _profileImage != null
                                     ? FileImage(_profileImage!)
                                     : AssetImage(
-                                    AppImages.profilePicture)
+                                    AppImages.t11)
                                 as ImageProvider,
                                 radius: 60.h,
                               ),

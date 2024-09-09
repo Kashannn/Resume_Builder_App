@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Template20 extends StatefulWidget {
   const Template20({super.key});
@@ -70,6 +73,18 @@ class _Template20State extends State<Template20> {
   ];
 
 
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+    await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +100,8 @@ class _Template20State extends State<Template20> {
               Container(
                 width: 595.w,
                 //height: 248.h,
-                // color: Color(0xFFF8F6FA),
+                // color: Color(0xFFF8F6FA
+                // ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -110,9 +126,27 @@ class _Template20State extends State<Template20> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(130.r),
-                            child: Image.asset(
-                              AppImages.profilePicture,
-                              fit: BoxFit.cover,
+                            child: _profileImage == null
+                                ? GestureDetector(
+                              onTap: _pickImage,
+                              child: ClipOval(
+                                child: Image.asset(
+                                  AppImages.profilePicture,
+                                  fit: BoxFit.cover,
+                                  height: 400.h,
+
+                                ),
+                              ),
+                            )
+                                : GestureDetector(
+                              onTap: _pickImage,
+                              child: ClipOval(
+                                child: Image.file(
+                                  _profileImage!,
+                                  fit: BoxFit.cover,
+                                  height: 400.h,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -136,7 +170,7 @@ class _Template20State extends State<Template20> {
                                 Text(
                                   userName,
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 28.sp,
                                     color: Color(0xFF5BBBFF),
@@ -154,7 +188,7 @@ class _Template20State extends State<Template20> {
                                   child: Text(
                                     userRole,
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.inter().fontFamily,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14.sp,
                                       color: Colors.white,
@@ -169,7 +203,7 @@ class _Template20State extends State<Template20> {
                           Text(
                             "PROFILE",
                             style: TextStyle(
-                              fontFamily: 'Inter',
+                              fontFamily: GoogleFonts.inter().fontFamily,
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
                               color: Colors.black,
@@ -188,7 +222,7 @@ class _Template20State extends State<Template20> {
                             child: Text(
                               about,
                               style: TextStyle(
-                                fontFamily: 'Inter',
+                                fontFamily: GoogleFonts.inter().fontFamily,
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14.sp,
                                 color: Color(0xFF4D4D4D),
@@ -206,7 +240,7 @@ class _Template20State extends State<Template20> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                  SizedBox(
-                   width: 3.w,
+                   width: 1.w,
                  ),
                   Container(
                     // color: Colors.black12,
@@ -215,8 +249,8 @@ class _Template20State extends State<Template20> {
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 202.w,
-                          //height: 180.h,
+                          width: 200.w,
+                          height: 250.h,
                           color: Color(0xFF1A1B1C), // Background color of the container
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
@@ -227,7 +261,7 @@ class _Template20State extends State<Template20> {
                                 Text(
                                   'EDUCATION',
                                   style: TextStyle(
-                                    fontFamily: 'Inter', // Ensure 'Inter' font is added
+                                    fontFamily: GoogleFonts.inter().fontFamily, // Ensure GoogleFonts.inter().fontFamily font is added
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -253,7 +287,7 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             item['degree']!,
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 14.sp,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
@@ -262,7 +296,7 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             item['institution']!,
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.normal,
                                               color: Colors.grey,
@@ -271,7 +305,7 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             item['year']!,
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.normal,
                                               color: Colors.grey,
@@ -291,7 +325,7 @@ class _Template20State extends State<Template20> {
                           width: 250.w,
                          // height: 350.h,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
+                            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -299,7 +333,7 @@ class _Template20State extends State<Template20> {
                                 Text(
                                   'EXPERTISE',
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16.sp,
                                     color: Colors.black,
@@ -321,14 +355,16 @@ class _Template20State extends State<Template20> {
                         child: _buildSkillBar(skill['name'], skill['proficiency']),
                         );
                         }).toList(),
-                                SizedBox(height: 16.h),
+
                                 // Contact Information
                                 GestureDetector(
                                   onTap: ()=>_editContactDetails(context),
                                   child: Column(
                                     children: [
                                       _buildContactItem(Icons.phone, 'Phone', phone),
+
                                       _buildContactItem(Icons.email, 'Email', email),
+
                                       _buildContactItem(Icons.location_on, 'Location', address),
                                     ],
                                   ),
@@ -362,7 +398,7 @@ class _Template20State extends State<Template20> {
                               Text(
                                 "WORK EXPERIENCE",
                                 style: TextStyle(
-                                  fontFamily: 'Inter',
+                                  fontFamily: GoogleFonts.inter().fontFamily,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20.sp,
                                   color: Colors.black,
@@ -388,7 +424,7 @@ class _Template20State extends State<Template20> {
                                         Text(
                                           experience['title']!,
                                           style: TextStyle(
-                                            fontFamily: 'Inter',
+                                            fontFamily: GoogleFonts.inter().fontFamily,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18.sp,
                                             color: Colors.black,
@@ -406,7 +442,7 @@ class _Template20State extends State<Template20> {
                                               child: Text(
                                                 experience['fromto']!,
                                                 style: TextStyle(
-                                                  fontFamily: 'Inter',
+                                                  fontFamily: GoogleFonts.inter().fontFamily,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 12.sp,
                                                   color: Colors.white,
@@ -417,7 +453,7 @@ class _Template20State extends State<Template20> {
                                             Text(
                                               experience['details']!,
                                               style: TextStyle(
-                                                fontFamily: 'Inter',
+                                                fontFamily: GoogleFonts.inter().fontFamily,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 11.sp,
                                                 color: Colors.black,
@@ -429,7 +465,7 @@ class _Template20State extends State<Template20> {
                                         Text(
                                           experience['description']!,
                                           style: TextStyle(
-                                            fontFamily: 'Inter',
+                                            fontFamily: GoogleFonts.inter().fontFamily,
                                             fontSize: 12.sp,
                                             color: Colors.grey,
                                           ),
@@ -460,13 +496,13 @@ class _Template20State extends State<Template20> {
                                   Text(
                                     "PORTFOLIO LINK",
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.inter().fontFamily,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16.sp,
                                       color: Colors.black,
                                     ),
                                   ),
-                                  SizedBox(height: 4.h),
+                                  SizedBox(height: 8.h),
                                   // Blue Divider
                                   Container(
                                     width: 40.w,
@@ -480,7 +516,7 @@ class _Template20State extends State<Template20> {
                                     child: Text(
                                       portfolio,
                                       style: TextStyle(
-                                        fontFamily: 'Inter',
+                                        fontFamily: GoogleFonts.inter().fontFamily,
                                         fontWeight: FontWeight.normal,
                                         fontSize: 14.sp,
                                         color: Colors.black,
@@ -492,6 +528,7 @@ class _Template20State extends State<Template20> {
                             ],
                           ),
                         ),
+                        10.verticalSpace,
                         Container(
                           width: 200.w,
                         //  height: 105.h,
@@ -508,7 +545,7 @@ class _Template20State extends State<Template20> {
                                   Text(
                                     "INTERESTS",
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.inter().fontFamily,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16.sp,
                                       color: Colors.black,
@@ -535,13 +572,14 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             "Travel",
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               color: Colors.black,
                                             ),
                                           ),
                                         ],
                                       ),
+                                      8.horizontalSpace,
                                       Column(
                                         children: [
                                           Icon(Icons.headset,
@@ -550,13 +588,14 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             "Music",
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               color: Colors.black,
                                             ),
                                           ),
                                         ],
                                       ),
+                                      8.horizontalSpace,
                                       Column(
                                         children: [
                                           Icon(Icons.edit,
@@ -565,13 +604,14 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             "Writing",
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               color: Colors.black,
                                             ),
                                           ),
                                         ],
                                       ),
+                                      8.horizontalSpace,
                                       Column(
                                         children: [
                                           Icon(Icons.sports_esports,
@@ -580,7 +620,7 @@ class _Template20State extends State<Template20> {
                                           Text(
                                             "Gaming",
                                             style: TextStyle(
-                                              fontFamily: 'Inter',
+                                              fontFamily: GoogleFonts.inter().fontFamily,
                                               fontSize: 12.sp,
                                               color: Colors.black,
                                             ),
@@ -608,7 +648,7 @@ class _Template20State extends State<Template20> {
                                 Text(
                                   "EXPERTISE",
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.inter().fontFamily,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16.sp,
                                     color: Colors.black,
@@ -639,7 +679,7 @@ class _Template20State extends State<Template20> {
                                             Text(
                                              skill,
                                               style: TextStyle(
-                                                fontFamily: 'Inter',
+                                                fontFamily: GoogleFonts.inter().fontFamily,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 14.sp,
                                                 color: Colors.black,
@@ -1080,20 +1120,21 @@ class _Template20State extends State<Template20> {
 
   Widget _buildSkillBar(String skill, double level) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             skill,
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: GoogleFonts.inter().fontFamily,
               fontSize: 14.sp,
               color: Colors.black,
             ),
           ),
-          SizedBox(width: 8.w),
-          Expanded(
+
+          Container(
+            width: 100.w,
             child: LinearProgressIndicator(
               value: level,
               backgroundColor: Colors.grey[300],
@@ -1124,7 +1165,7 @@ class _Template20State extends State<Template20> {
               Text(
                 title,
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: GoogleFonts.inter().fontFamily,
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -1134,7 +1175,7 @@ class _Template20State extends State<Template20> {
               Text(
                 detail,
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: GoogleFonts.inter().fontFamily,
                   fontSize: 14.sp,
                   color: Colors.grey,
                 ),

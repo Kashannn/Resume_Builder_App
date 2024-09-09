@@ -108,7 +108,7 @@ class _Template17State extends State<Template17> {
             children: [
               Container(
                 width: 595.w,
-                height: 80.h,
+                height: 120.h,
                 color: Colors.transparent,
                 child: Row(
                   children: [
@@ -123,7 +123,7 @@ class _Template17State extends State<Template17> {
                               : AssetImage(
                               AppImages.profilePicture17)
                           as ImageProvider,
-                          radius: 40.r,
+                          radius: 60.r,
                         ),
                       ),
                     ),

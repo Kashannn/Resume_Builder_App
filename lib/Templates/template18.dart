@@ -114,7 +114,7 @@ class _Template18State extends State<Template18> {
                                 : AssetImage(
                                 AppImages.profilePicture18)
                             as ImageProvider,
-                            radius: 90.r,
+                            radius: 100.r,
                           ),
                         ),
                       ),

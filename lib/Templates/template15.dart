@@ -220,7 +220,7 @@ class _Template15State extends State<Template15> {
                               Text(
                                 email,
                                 style: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w700,
+
                                   fontSize: 14.sp,
                                   color: Colors.black,
                                 ),
@@ -244,7 +244,7 @@ class _Template15State extends State<Template15> {
                               Text(
                                mobile,
                                 style: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w700,
+
                                   fontSize: 14.sp,
                                   color: Colors.black,
                                 ),
@@ -269,7 +269,6 @@ class _Template15State extends State<Template15> {
                               Text(
                                 website,
                                 style: GoogleFonts.dmSans(
-                                  fontWeight: FontWeight.w700,
                                   fontSize: 14.sp,
                                   color: Colors.black,
                                 ),
@@ -435,7 +434,7 @@ class _Template15State extends State<Template15> {
                         SizedBox(height: 7.h),
                         for (var experience in workExperience)
                           Padding(
-                            padding: EdgeInsets.only(bottom: 2.h),
+                            padding: EdgeInsets.only(bottom: 20.h),
                             child: GestureDetector(
                               onTap: () => _editExperience(experience),
                               child: _buildExperienceItem(

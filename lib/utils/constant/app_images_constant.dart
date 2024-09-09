@@ -13,6 +13,28 @@ class AppImages extends AssetImage {
   static const String profilePicture16 = '$_assetsPath/16.png';
   static const String profilePicture15 = '$_assetsPath/15.png';
 
+  //t1 images
+
+  static const String t1 = '$_assetsPath/t1.png';
+  static const String t2 = '$_assetsPath/t2.png';
+  static const String t3 = '$_assetsPath/t3.png';
+  static const String t4 = '$_assetsPath/t4.png';
+  static const String t5 = '$_assetsPath/t5.png';
+  static const String t6 = '$_assetsPath/t6.png';
+  static const String t7 = '$_assetsPath/t7.png';
+  static const String t8 = '$_assetsPath/t8.png';
+  static const String t9 = '$_assetsPath/t9.png';
+  static const String t10 = '$_assetsPath/t10.png';
+  static const String t11 = '$_assetsPath/t11.png';
+  static const String t12 = '$_assetsPath/t12.png';
+  static const String t13 = '$_assetsPath/t13.png';
+  static const String t14 = '$_assetsPath/t14.png';
+  static const String t15 = '$_assetsPath/t15.png';
+  static const String t16 = '$_assetsPath/t16.png';
+  static const String t17 = '$_assetsPath/t17.png';
+  static const String t18 = '$_assetsPath/t18.png';
+  static const String t19 = '$_assetsPath/t19.png';
+  static const String t20 = '$_assetsPath/t20.png';
 
   static const String Template8ProfilePhoto = '$_assetsPath/Template8ProfilePhoto.png';
   static const String template1 = '$_assetsPath/template1.png';
@@ -26,7 +48,7 @@ class AppImages extends AssetImage {
   static const String template9 = '$_assetsPath/template9.png';
   static const String template10 = '$_assetsPath/template10.png';
   static const String template11 = '$_assetsPath/template11.png';
-  static const String template12 = '$_assetsPath/template13.png';
+  static const String template12 = '$_assetsPath/template12.png';
   static const String template13 = '$_assetsPath/template13.png';
   static const String template14 = '$_assetsPath/template14.png';
   static const String template15 = '$_assetsPath/template15.png';
@@ -37,7 +59,6 @@ class AppImages extends AssetImage {
   static const String template20 = '$_assetsPath/template20.png';
   static const String AppLogoIcon = '$_assetsPath/AppLogoIcon.png';
   static const String imagepicker = '$_assetsPath/imagepicker.png';
-
 
 //Svg images
   static const String icons = '$_iconPath/icons.svg';

@@ -198,8 +198,8 @@ class _Template2State extends State<Template2> {
               top: 0,
               left: 0,
               child: Container(
-                width: 70.w,
-                height: 60.h,
+                width: 50.w,
+                height: 50.h,
                 color: Color(0xff00FF88), // Green color
               ),
             ),
@@ -221,12 +221,13 @@ class _Template2State extends State<Template2> {
   Widget _buildAvatarAndFrame() {
     return SizedBox(
       child: Container(
-        width: 300.h,
+        width: 400.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             // Circular Avatar
             _buildAvatar(),
+            SizedBox(width: 10.w),
             // Mobile Frame
             _buildMobileFrame(),
           ],
@@ -242,8 +243,8 @@ class _Template2State extends State<Template2> {
         backgroundColor: Colors.transparent,
         backgroundImage: _profileImage != null
             ? FileImage(_profileImage!)
-            : AssetImage(AppImages.profilePicture) as ImageProvider,
-        radius: 70.w,
+            : AssetImage(AppImages.t2) as ImageProvider,
+        radius: 60.w,
       ),
     );
   }

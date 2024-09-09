@@ -78,7 +78,7 @@ class _Template5State extends State<Template5> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(686, 1330));
+    ScreenUtil.init(context, designSize: const Size(686, 1450));
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -112,7 +112,7 @@ class _Template5State extends State<Template5> {
                             child: CircleAvatar(
                               radius: 85.r,
                               backgroundImage:
-                                  AssetImage(AppImages.profilePicture),
+                                  AssetImage(AppImages.t5),
                             ),
                           ),
                         ),

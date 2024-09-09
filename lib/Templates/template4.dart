@@ -118,7 +118,7 @@ class _Template4State extends State<Template4> {
                                     radius: 40.r,
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)
-                                        : AssetImage(AppImages.Template8ProfilePhoto) as ImageProvider,
+                                        : AssetImage(AppImages.t4) as ImageProvider,
                                   ),
                                 ),
                                 SizedBox(

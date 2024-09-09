@@ -3,6 +3,32 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -89,18 +115,18 @@ class _Template16State extends State<Template16> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          width: 595.w,
-          height: 842.h,
+          width: 650.w,
+          //height: 842.h,
           color: Colors.white,
           child: Column(
             children: [
               Container(
-                width: 595.w,
+                width: 650.w,
                 //height: 110.h,
                 // color: Colors.red,
                 child: SvgPicture.asset(
                   AppImages.toptemplate16,
-                  width: 595.w,
+                  width: 650.w,
                   height: 110.h,
                   fit: BoxFit.fill,
                 ),
@@ -109,8 +135,11 @@ class _Template16State extends State<Template16> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 280.w,
-                    height: 685.h,
+                    width: 300.w,
+                    padding: EdgeInsets.only(
+                      left: 20.w,
+                    ),
+                    //height: 685.h,
                     // color: Colors.red,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,6 +157,7 @@ class _Template16State extends State<Template16> {
                         ),
                         SizedBox(
                           width: 166.w,
+
                           // height: 68.h,
                           child: GestureDetector(
                             onTap: () => _editUserDetails(context),
@@ -143,7 +173,7 @@ class _Template16State extends State<Template16> {
                                       userName,
                                       style: TextStyle(
                                         fontFamily:
-                                            'Inter', // Ensure 'Inter' is set as the font family
+                                            GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
                                         fontWeight: FontWeight.w700,
                                         fontSize: 26.sp,
                                         color: Colors.black,
@@ -156,7 +186,7 @@ class _Template16State extends State<Template16> {
                                       userName1,
                                       style: TextStyle(
                                         fontFamily:
-                                        'Inter', // Ensure 'Inter' is set as the font family
+                                        GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
                                         fontWeight: FontWeight.w700,
                                         fontSize: 26.sp,
                                         color: Colors.purple,
@@ -174,7 +204,7 @@ class _Template16State extends State<Template16> {
                                   userRole,
                                   style: TextStyle(
                                     fontFamily:
-                                        'Inter', // Ensure 'Inter' is set as the font family
+                                        GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14.sp,
                                     color: Colors.black,
@@ -184,10 +214,11 @@ class _Template16State extends State<Template16> {
                             ),
                           ),
                         ),
+                        10.verticalSpace,
                         GestureDetector(
                           onTap: () => _editContactDetails(context),
                           child: SizedBox(
-                            width: 240.w,
+
                             //height: 140.h,
                             child: Padding(
                               padding: EdgeInsets.all(
@@ -207,7 +238,7 @@ class _Template16State extends State<Template16> {
                                         email,
                                         style: TextStyle(
                                           fontFamily:
-                                              'Inter', // Ensure 'Inter' is set as the font family
+                                              GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14.sp,
                                           color: Colors.grey[700],
@@ -215,6 +246,7 @@ class _Template16State extends State<Template16> {
                                       ),
                                     ],
                                   ),
+                                  10.verticalSpace,
                                   // Phone Row
                                   Row(
                                     children: [
@@ -225,7 +257,7 @@ class _Template16State extends State<Template16> {
                                         mobile,
                                         style: TextStyle(
                                           fontFamily:
-                                              'Inter', // Ensure 'Inter' is set as the font family
+                                              GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14.sp,
                                           color: Colors.grey[700],
@@ -234,22 +266,23 @@ class _Template16State extends State<Template16> {
                                     ],
                                   ),
                                   SizedBox(
-                                      height: 8
+                                      height: 16
                                           .h), // Space between phone and follow me section
                                   // Follow Me Text
                                   Text(
                                     "Follow me",
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.poppins().fontFamily,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 16.sp,
                                       color: Colors.purple,
                                     ),
                                   ),
+                                  8.verticalSpace,
                                   Text(
                                     socialMedia,
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.poppins().fontFamily,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14.sp,
                                       color: Colors.grey[700],
@@ -261,35 +294,42 @@ class _Template16State extends State<Template16> {
                                   // Social Media Icons
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.start,
                                     children: [
                                       Icon(Icons.facebook,
                                           size: 20.w, color: Colors.black),
+                                      8.horizontalSpace,
                                       SvgPicture.asset(AppImages.twitter,
                                           width: 10.w,
                                           height: 10.h,
                                           color: Colors.black),
+                                      8.horizontalSpace,
                                       SvgPicture.asset(AppImages.facebook,
                                           width: 10.w,
                                           height: 10.h,
                                           color: Colors.black),
+                                      8.horizontalSpace,
                                       SvgPicture.asset(AppImages.whatsapp12,
                                           width: 10.w,
                                           height: 10.h,
                                           color: Colors.black),
+                                      8.horizontalSpace,
 
                                       Icon(Icons.youtube_searched_for,
                                           size: 20.w,
                                           color: Colors
-                                              .black), // Example for YouTube
+                                              .black), // Example for
+                                      8.horizontalSpace,// YouTube
                                       Icon(Icons.sports_basketball,
                                           size: 20.w,
                                           color: Colors
-                                              .black), // Example for Dribbble
+                                              .black), // Ex
+                                      8.horizontalSpace,// ample for Dribbble
                                       Icon(Icons.beach_access,
                                           size: 20.w,
                                           color: Colors
-                                              .black), // Example for Behance
+                                              .black), // Ex
+                                      8.horizontalSpace,// ample for Behance
                                     ],
                                   ),
                                 ],
@@ -297,8 +337,9 @@ class _Template16State extends State<Template16> {
                             ),
                           ),
                         ),
+                        10.verticalSpace,
                         SizedBox(
-                          width: 240.w,
+
                           //height: 188.h,
                           child: Padding(
                             padding:
@@ -309,7 +350,7 @@ class _Template16State extends State<Template16> {
                                 Text(
                                   "About me",
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.poppins().fontFamily,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20.sp,
                                     color: Colors.purple,
@@ -321,7 +362,7 @@ class _Template16State extends State<Template16> {
                                   child: Text(
                                     about,
                                     style: TextStyle(
-                                      fontFamily: 'Inter',
+                                      fontFamily: GoogleFonts.poppins().fontFamily,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 13.sp,
                                       color: Colors.grey[700],
@@ -335,8 +376,9 @@ class _Template16State extends State<Template16> {
                             ),
                           ),
                         ),
+                        10.verticalSpace,
                         SizedBox(
-                          width: 250.w,
+                          //width: 0.w,
                           //height: 155.h,
                           child: Padding(
                             padding: EdgeInsets.all(1.w),
@@ -347,13 +389,13 @@ class _Template16State extends State<Template16> {
                                 Text(
                                   "Skills",
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.poppins().fontFamily,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20.sp,
                                     color: Colors.purple,
                                   ),
                                 ),
-                                SizedBox(height: 8.h),
+                                SizedBox(height: 10.h),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -362,6 +404,7 @@ class _Template16State extends State<Template16> {
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         for (int i = 0;
                                             i < skills.length;
@@ -405,8 +448,8 @@ class _Template16State extends State<Template16> {
                     ),
                   ),
                   SizedBox(
-                    width: 280.w,
-                    height: 685.h,
+                    width: 300.w,
+                    height: 700.h,
                     child: Padding(
                       padding: EdgeInsets.all(8.w),
                       child: Row(
@@ -427,7 +470,7 @@ class _Template16State extends State<Template16> {
                                 Text(
                                   "Past experience",
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.poppins().fontFamily,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20.sp,
                                     color: Colors.black,
@@ -465,7 +508,7 @@ class _Template16State extends State<Template16> {
                                 Text(
                                   "Education",
                                   style: TextStyle(
-                                    fontFamily: 'Inter',
+                                    fontFamily: GoogleFonts.poppins().fontFamily,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20.sp,
                                     color: Colors.black,
@@ -514,9 +557,9 @@ class _Template16State extends State<Template16> {
         Text(
           skill,
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.poppins().fontFamily,
             fontWeight: FontWeight.w400,
-            fontSize: 12.sp,
+            fontSize: 13.sp,
             color: Colors.grey[700],
           ),
         ),
@@ -543,7 +586,7 @@ class _Template16State extends State<Template16> {
                   Text(
                     companyName,
                     style: TextStyle(
-                      fontFamily: 'Inter',
+                      fontFamily: GoogleFonts.poppins().fontFamily,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                       color: Colors.black,
@@ -553,7 +596,7 @@ class _Template16State extends State<Template16> {
                   Text(
                     "—",
                     style: TextStyle(
-                      fontFamily: 'Inter',
+                      fontFamily: GoogleFonts.poppins().fontFamily,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                       color: Colors.grey,
@@ -563,7 +606,7 @@ class _Template16State extends State<Template16> {
                   Text(
                     duration,
                     style: TextStyle(
-                      fontFamily: 'Inter',
+                      fontFamily: GoogleFonts.poppins().fontFamily,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                       color: Colors.grey,
@@ -575,7 +618,7 @@ class _Template16State extends State<Template16> {
               Text(
                 jobTitle,
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: GoogleFonts.poppins().fontFamily,
                   fontWeight: FontWeight.w700,
                   fontSize: 18.sp,
                   color: Colors.black,
@@ -585,7 +628,7 @@ class _Template16State extends State<Template16> {
               Text(
                 description,
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: GoogleFonts.poppins().fontFamily,
                   fontWeight: FontWeight.w400,
                   fontSize: 14.sp,
                   color: Colors.grey[700],
@@ -610,7 +653,7 @@ class _Template16State extends State<Template16> {
         Text(
           duration,
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.poppins().fontFamily,
             fontWeight: FontWeight.w400,
             fontSize: 14.sp,
             color: Colors.grey[700],
@@ -620,7 +663,7 @@ class _Template16State extends State<Template16> {
         Text(
           degree,
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.poppins().fontFamily,
             fontWeight: FontWeight.w700,
             fontSize: 16.sp,
             color: Colors.black,
@@ -630,7 +673,7 @@ class _Template16State extends State<Template16> {
         Text(
           institution,
           style: TextStyle(
-            fontFamily: 'Inter',
+            fontFamily: GoogleFonts.poppins().fontFamily,
             fontWeight: FontWeight.w400,
             fontSize: 14.sp,
             color: Colors.grey[700],

@@ -124,7 +124,7 @@ class _Template9State extends State<Template9> {
                                 radius: 90.h,
                                 backgroundImage: _profileImage != null
                                     ? FileImage(_profileImage!)
-                                    : AssetImage(AppImages.profilePicture)
+                                    : AssetImage(AppImages.t9)
                                 as ImageProvider,
                               ),
                             ),

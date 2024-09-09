@@ -80,8 +80,10 @@ class _Template6State extends State<Template6> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColorsTemplate10.white,
@@ -102,7 +104,7 @@ class _Template6State extends State<Template6> {
                             radius: 30.0,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(AppImages.profilePicture)
+                                : AssetImage(AppImages.t6)
                                     as ImageProvider,
                           ),
                         ),

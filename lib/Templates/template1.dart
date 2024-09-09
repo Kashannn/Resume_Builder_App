@@ -150,7 +150,7 @@ class _Template1State extends State<Template1> {
                               onTap: _pickImage,
                               child: ClipOval(
                                   child: Image.asset(
-                                    AppImages.profilePicture,
+                                    AppImages.t1,
                                     fit: BoxFit.cover,
                                     width: 49.w,
                                     height: 49.w,

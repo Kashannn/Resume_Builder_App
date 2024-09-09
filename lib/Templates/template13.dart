@@ -149,7 +149,7 @@ class _Template13State extends State<Template13> {
                                     ),
                                     child: _profileImage == null
                                         ? Image.asset(
-                                            AppImages.profilePicture,
+                                            AppImages.t13,
                                             fit: BoxFit.cover, // Default image
                                           )
                                         : Image.file(

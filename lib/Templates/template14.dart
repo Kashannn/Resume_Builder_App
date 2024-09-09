@@ -87,7 +87,7 @@ class _Template14State extends State<Template14> {
         body: Stack(
           children: [
             Container(
-              width: 595.w,
+              width: 650.w,
               height: 842.h,
               color: Colors.white,
               child: Row(
@@ -114,41 +114,56 @@ class _Template14State extends State<Template14> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal: 8.w,
+                                      horizontal: 10.w,
+                                      vertical: 10.h,
                                     ),
                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        GestureDetector(
-                                          onTap: _pickImage,
-                                          child: CircleAvatar(
-                                            backgroundColor: Colors.transparent,
-                                            backgroundImage: _profileImage != null
-                                                ? FileImage(_profileImage!)
-                                                : AssetImage(
-                                                AppImages.profilePicture)
-                                            as ImageProvider,
-                                            radius: 60.h,
+                                        15.verticalSpace,
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 10
                                           ),
-                                        ),
-                                        SizedBox(height: 20.h),
-                                        GestureDetector(
-                                          onTap: ()=> _editUserDetails(context),
                                           child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                userName,
-                                                style: GoogleFonts.inter(
-                                                  fontSize: 18.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black,
+                                              GestureDetector(
+                                                onTap: _pickImage,
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.transparent,
+                                                  backgroundImage: _profileImage != null
+                                                      ? FileImage(_profileImage!)
+                                                      : AssetImage(
+                                                      AppImages.t14)
+                                                  as ImageProvider,
+                                                  radius: 80.h,
                                                 ),
                                               ),
-                                              Text(
-                                                userRole,
-                                                style: GoogleFonts.inter(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.white,
+                                              SizedBox(height: 10.h),
+                                              GestureDetector(
+                                                onTap: ()=> _editUserDetails(context),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      userName,
+                                                      style: GoogleFonts.inter(
+                                                        fontSize: 25.sp,
+
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      userRole,
+                                                      style: GoogleFonts.inter(
+                                                        fontSize: 14.sp,
+                                                        fontWeight: FontWeight.w400,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
@@ -257,44 +272,52 @@ class _Template14State extends State<Template14> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 20.w,
-                                    height: 20.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.purple, // The purple circle
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  Expanded(
-                                    child: Container(
-                                      height: 20.h,
+                              Container(
+                                height: 25.h,
+                                decoration: BoxDecoration(
+                                  color: Colors
+                                      .black, // The black rounded rectangle
+                                  borderRadius:
+                                  BorderRadius.circular(25.r),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 25.w,
+                                      height: 25.h,
                                       decoration: BoxDecoration(
-                                        color: Colors
-                                            .black, // The black rounded rectangle
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
+                                        color: Color(0xFFAE84E9), // The purple circle
+                                        shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'PROFILE',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.bold,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 25.h,
+                                        decoration: BoxDecoration(
+                                          color: Colors
+                                              .black, // The black rounded rectangle
+                                          borderRadius:
+                                              BorderRadius.circular(25.r),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.w),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'PROFILE',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               SizedBox(height: 10.h),
                               GestureDetector(
@@ -322,44 +345,53 @@ class _Template14State extends State<Template14> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 20.w,
-                                    height: 20.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.purple, // The purple circle
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  Expanded(
-                                    child: Container(
-                                      height: 20.h,
+                              Container(
+                                height: 25.h,
+                                decoration: BoxDecoration(
+                                  color: Colors
+                                      .black, // The black rounded rectangle
+                                  borderRadius:
+                                  BorderRadius.circular(25.r),
+                                ),
+
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 25.w,
+                                      height: 25.h,
                                       decoration: BoxDecoration(
-                                        color: Colors
-                                            .black, // The black rounded rectangle
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
+                                        color: Color(0xFFAE84E9), // The purple circle
+                                        shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'WORK EXPERIENCE',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.bold,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 25.h,
+                                        decoration: BoxDecoration(
+                                          color: Colors
+                                              .black, // The black rounded rectangle
+                                          borderRadius:
+                                              BorderRadius.circular(25.r),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.w),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'WORK EXPERIENCE',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               SizedBox(height: 10.h),
                       Column(
@@ -392,44 +424,52 @@ class _Template14State extends State<Template14> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 20.w,
-                                    height: 20.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.purple, // The purple circle
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  Expanded(
-                                    child: Container(
-                                      height: 20.h,
+                              Container(
+                                height: 25.h,
+                                decoration: BoxDecoration(
+                                  color: Colors
+                                      .black, // The black rounded rectangle
+                                  borderRadius:
+                                  BorderRadius.circular(25.r),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 25.w,
+                                      height: 25.h,
                                       decoration: BoxDecoration(
-                                        color: Colors
-                                            .black, // The black rounded rectangle
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
+                                        color: Color(0xFFAE84E9), // The purple circle
+                                        shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'EDUCATION',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14.sp,
-                                              fontWeight: FontWeight.bold,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 25.h,
+                                        decoration: BoxDecoration(
+                                          color: Colors
+                                              .black, // The black rounded rectangle
+                                          borderRadius:
+                                              BorderRadius.circular(25.r),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.w),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'EDUCATION',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               SizedBox(height: 10.h),
                     Column(
@@ -865,7 +905,7 @@ class _Template14State extends State<Template14> {
               Text(
                 title,
                 style: TextStyle(
-                  color: Colors.purple,
+                  color: Color(0xFFAE84E9),
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -912,7 +952,7 @@ class _Template14State extends State<Template14> {
               Text(
                 title,
                 style: TextStyle(
-                  color: Colors.purple,
+                  color: Color(0xFFAE84E9),
                   fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -943,13 +983,13 @@ class _Template14State extends State<Template14> {
               value: 0.8,
               strokeWidth: 4.w,
               backgroundColor: Colors.grey.shade300,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
             ),
             Container(
-              width: 20.w,
-              height: 20.h,
+              width: 40.w,
+              height: 40.h,
               decoration: BoxDecoration(
-                color: Colors.purple,
+                color: Color(0xFFAE84E9),
                 shape: BoxShape.circle,
               ),
             ),
@@ -970,25 +1010,29 @@ class _Template14State extends State<Template14> {
 
   Widget _buildSectionHeader(String title) {
     return Container(
+      height: 25.h,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30.r),
+      ),
       width: 180.w,
       child: Row(
         children: [
           Container(
-            width: 20.w,
-            height: 20.h,
+            width: 25.w,
+            height: 25.h,
             decoration: BoxDecoration(
               color: Colors.black,
               shape: BoxShape.circle,
             ),
           ),
-          SizedBox(width: 5.w),
           Expanded(
             child: Container(
 
-              height: 20.h,
+              height: 25.h,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(30.r),
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -998,8 +1042,8 @@ class _Template14State extends State<Template14> {
                     title,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 20.sp,
+
                     ),
                   ),
                 ),
@@ -1020,8 +1064,8 @@ class _Template14State extends State<Template14> {
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
-              color: Colors.black,
+            style: GoogleFonts.inter(
+              color: Colors.white,
               fontSize: 12.sp,
             ),
           ),
@@ -1043,9 +1087,8 @@ class _Template14State extends State<Template14> {
           Text(
             refence,
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(height: 5.h),

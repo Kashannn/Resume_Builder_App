@@ -131,16 +131,21 @@ class _Template3State extends State<Template3> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+
+                    10.w.horizontalSpace,
                     SizedBox(
                       width: 87.w,
                       height: 87.h,
                       child: GestureDetector(
                         onTap: _pickImage,
                         child: CircleAvatar(
+
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(AppImages.profilePicture)
+                              : AssetImage(AppImages.t3,
+
+                          )
                                   as ImageProvider,
                           //radius: 45.h,
                         ),

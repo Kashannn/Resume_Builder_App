@@ -98,7 +98,7 @@ class _CustomizeTemplateScreenState extends State<CustomizeTemplateScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                   child: Image.asset(
                     widget.imagePaths![currentIndex],
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
               ),

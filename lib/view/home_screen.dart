@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.w,
                     mainAxisSpacing: 10.h,
-                    childAspectRatio: 193.w / 300.h,
+                    childAspectRatio: 250.w / 330.h,
                   ),
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Image.asset(
                             filteredTemplates[index],
                             fit: BoxFit
-                                .contain, // Ensures the entire image is visible and not cut off
+                                .cover, // Ensures the entire image is visible and not cut off
                           ),
                         ),
                       ),
