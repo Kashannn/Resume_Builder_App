@@ -14,7 +14,8 @@ class Template12 extends StatefulWidget {
 }
 
 class _Template12State extends State<Template12> {
-
+  Color userNameColor = Colors.purple;
+  Color userRoleColor = Colors.black;
   String userName = 'John';
   String userRole = 'Product Designer';
   String socialMedia = '@john_designer';
@@ -22,7 +23,8 @@ class _Template12State extends State<Template12> {
   String mobile = '+001 123 456 789';
   String website = 'www.yourportfolio.com';
 
-  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+  String about =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
   List<Map<String, String>> education = [
     {
       'year': '2017 - 2020',
@@ -41,23 +43,21 @@ class _Template12State extends State<Template12> {
       'title': 'Google VP of Design',
       'details': '2021 - 2022',
       'description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
     },
     {
       'title': 'Facebook Senior Product Design',
       'details': '2010 - 2014',
       'description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
     },
     {
       'title': 'Twitter Lead UI Designer',
       'details': '2010 - 2014',
       'description':
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy.',
     },
-
   ];
-
 
   File? _profileImage;
 
@@ -101,9 +101,7 @@ class _Template12State extends State<Template12> {
                             backgroundColor: Colors.transparent,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(
-                                AppImages.t12)
-                            as ImageProvider,
+                                : AssetImage(AppImages.t12) as ImageProvider,
                             radius: 45.h,
                           ),
                         ),
@@ -141,7 +139,8 @@ class _Template12State extends State<Template12> {
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 24.sp,
-                                    color: Colors.purple,
+                                    color:
+                                        userNameColor, // Apply dynamic name color
                                     shadows: [
                                       Shadow(
                                         offset: Offset(2.0, 2.0),
@@ -161,7 +160,7 @@ class _Template12State extends State<Template12> {
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w700,
                               fontSize: 24.sp,
-                              color: Colors.black,
+                              color: userRoleColor, // Apply dynamic role color
                               shadows: [
                                 Shadow(
                                   offset: Offset(2.0, 2.0),
@@ -173,14 +172,14 @@ class _Template12State extends State<Template12> {
                           ),
                         ],
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
               SizedBox(height: 10.h),
               Container(
                 width: 555.w,
-               // height: 660.h,
+                // height: 660.h,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30.r),
@@ -193,7 +192,8 @@ class _Template12State extends State<Template12> {
                       ),
                     ]),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 10.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,7 +255,8 @@ class _Template12State extends State<Template12> {
                                         Row(
                                           children: [
                                             Icon(Icons.email,
-                                                size: 16.w, color: Colors.black),
+                                                size: 16.w,
+                                                color: Colors.black),
                                             SizedBox(width: 8.w),
                                             Text(
                                               email,
@@ -272,7 +273,8 @@ class _Template12State extends State<Template12> {
                                         Row(
                                           children: [
                                             Icon(Icons.phone,
-                                                size: 16.w, color: Colors.black),
+                                                size: 16.w,
+                                                color: Colors.black),
                                             SizedBox(width: 8.w),
                                             Text(
                                               mobile,
@@ -289,10 +291,11 @@ class _Template12State extends State<Template12> {
                                         Row(
                                           children: [
                                             Icon(Icons.language,
-                                                size: 16.w, color: Colors.black),
+                                                size: 16.w,
+                                                color: Colors.black),
                                             SizedBox(width: 8.w),
                                             Text(
-                                             website,
+                                              website,
                                               style: TextStyle(
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
@@ -485,7 +488,7 @@ class _Template12State extends State<Template12> {
                               SizedBox(width: 16.w),
                               Expanded(
                                 child: GestureDetector(
-                                  onTap: ()=>_editAbout(context),
+                                  onTap: () => _editAbout(context),
                                   child: Text(
                                     about,
                                     style: TextStyle(
@@ -516,7 +519,8 @@ class _Template12State extends State<Template12> {
                         //height: 30.h,
                         // color: Colors.blue,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.h),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 8.h),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -540,15 +544,21 @@ class _Template12State extends State<Template12> {
                               Expanded(
                                 child: Column(
                                   children: [
-                                    for (int i = 0; i < education.length; i += 2) // Loop through the education list
+                                    for (int i = 0;
+                                        i < education.length;
+                                        i +=
+                                            2) // Loop through the education list
                                       GestureDetector(
-                                        onTap: () => _editEducationItem(context,education[i]),
+                                        onTap: () => _editEducationItem(
+                                            context, education[i]),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Row(
                                                     children: [
@@ -556,7 +566,8 @@ class _Template12State extends State<Template12> {
                                                         education[i]['degree']!,
                                                         style: TextStyle(
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w700,
+                                                          fontWeight:
+                                                              FontWeight.w700,
                                                           fontSize: 14.sp,
                                                           color: Colors.black,
                                                         ),
@@ -566,7 +577,8 @@ class _Template12State extends State<Template12> {
                                                         education[i]['year']!,
                                                         style: TextStyle(
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
+                                                          fontWeight:
+                                                              FontWeight.w400,
                                                           fontSize: 12.sp,
                                                           color: Colors.grey,
                                                         ),
@@ -574,10 +586,12 @@ class _Template12State extends State<Template12> {
                                                     ],
                                                   ),
                                                   Text(
-                                                    education[i]['institution']!,
+                                                    education[i]
+                                                        ['institution']!,
                                                     style: TextStyle(
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                       fontSize: 12.sp,
                                                       color: Colors.grey,
                                                     ),
@@ -585,41 +599,60 @@ class _Template12State extends State<Template12> {
                                                 ],
                                               ),
                                             ),
-                                            if (i + 1 < education.length) // Check if there is a second item in the row
+                                            if (i + 1 <
+                                                education
+                                                    .length) // Check if there is a second item in the row
                                               Expanded(
                                                 child: GestureDetector(
-                                                  onTap: () => _editEducationItem(context,education[i + 1]),
+                                                  onTap: () =>
+                                                      _editEducationItem(
+                                                          context,
+                                                          education[i + 1]),
                                                   child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Row(
                                                         children: [
                                                           Text(
-                                                            education[i + 1]['degree']!,
+                                                            education[i + 1]
+                                                                ['degree']!,
                                                             style: TextStyle(
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w700,
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
                                                               fontSize: 14.sp,
-                                                              color: Colors.black,
+                                                              color:
+                                                                  Colors.black,
                                                             ),
                                                           ),
                                                           SizedBox(width: 8.w),
                                                           Text(
-                                                            education[i + 1]['year']!,
+                                                            education[i + 1]
+                                                                ['year']!,
                                                             style: TextStyle(
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
                                                               fontSize: 12.sp,
-                                                              color: Colors.grey,
+                                                              color:
+                                                                  Colors.grey,
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                       Text(
-                                                        education[i + 1]['institution']!,
+                                                        education[i + 1]
+                                                            ['institution']!,
                                                         style: TextStyle(
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
+                                                          fontWeight:
+                                                              FontWeight.w400,
                                                           fontSize: 12.sp,
                                                           color: Colors.grey,
                                                         ),
@@ -638,47 +671,51 @@ class _Template12State extends State<Template12> {
                           ),
                         ),
                       ),
-                  Container(
-                    width: 464.w,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Past experience",
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18.sp,
-                              color: Colors.purple,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 3.0,
-                                  color: Colors.grey.withOpacity(0.5),
+                      Container(
+                        width: 464.w,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 14.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Past experience",
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 18.sp,
+                                  color: Colors.purple,
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(2.0, 2.0),
+                                      blurRadius: 3.0,
+                                      color: Colors.grey.withOpacity(0.5),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          for (var experience in experiences) ...[
-                            GestureDetector(
-                              onTap: () => _editExperienceItem(context,experience),
-                              child: _buildExperienceItem(
-                                iconPath: getIconPath(experience['title']!), // Define a function to get the icon based on the title or company
-                                companyName: '', // Extract the company name if it's not directly stored
-                                jobTitle: experience['title']!,
-                                duration: experience['details']!,
-                                description: experience['description']!,
                               ),
-                            ),
-                            SizedBox(height: 10.h),
-                          ],
-                        ],
-                      ),
-                    ),
-                  )
+                              SizedBox(height: 16.h),
+                              for (var experience in experiences) ...[
+                                GestureDetector(
+                                  onTap: () =>
+                                      _editExperienceItem(context, experience),
+                                  child: _buildExperienceItem(
+                                    iconPath: getIconPath(experience[
+                                        'title']!), // Define a function to get the icon based on the title or company
+                                    companyName:
+                                        '', // Extract the company name if it's not directly stored
+                                    jobTitle: experience['title']!,
+                                    duration: experience['details']!,
+                                    description: experience['description']!,
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                              ],
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -689,6 +726,7 @@ class _Template12State extends State<Template12> {
       ),
     );
   }
+
   String getIconPath(String title) {
     if (title.contains("Google")) {
       return AppImages.google12;
@@ -712,8 +750,6 @@ class _Template12State extends State<Template12> {
       return ''; // default or fallback company name
     }
   }
-
-
 
   Widget _buildExperienceItem({
     required String? iconPath,
@@ -784,47 +820,141 @@ class _Template12State extends State<Template12> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-        TextEditingController(text: userName);
-        final TextEditingController roleController =
-        TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.purple,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor =
+                                    color; // Update temp name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.orange,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor =
+                                    color; // Update temp role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor =
+                          tempUserNameColor; // Save selected name color
+                      userRoleColor =
+                          tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -835,7 +965,7 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: socialMedia);
+            TextEditingController(text: socialMedia);
 
         return AlertDialog(
           title: const Text('Edit User Name'),
@@ -875,7 +1005,7 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -915,9 +1045,9 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -962,11 +1092,11 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -1016,11 +1146,11 @@ class _Template12State extends State<Template12> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -1064,5 +1194,4 @@ class _Template12State extends State<Template12> {
       },
     );
   }
-
 }

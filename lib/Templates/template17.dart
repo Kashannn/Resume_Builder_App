@@ -16,13 +16,15 @@ class Template17 extends StatefulWidget {
 
 class _Template17State extends State<Template17> {
   @override
-
+  Color userNameColor = Colors.blueAccent;
+  Color userRoleColor = Colors.grey;
   String userName = 'John Carter';
   String userRole = 'Product Designer';
   String socialMedia = '@johncarter';
   String email = 'contact@johncarter.com';
   String mobile = '+001 123 456 789';
-  String about = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+  String about =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
 
   List<Map<String, String>> education = [
     {
@@ -47,19 +49,22 @@ class _Template17State extends State<Template17> {
       'company': 'FACEBOOK',
       'duration': '2020 - 2021',
       'title': 'Lead Product Designer',
-      'description': 'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
+      'description':
+          'Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non.',
     },
     {
       'company': 'GOOGLE',
       'duration': '2019 - 2020',
       'title': 'Lead Product Designer',
-      'description': 'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
+      'description':
+          'Ultrices proin elit, tellus euismod leo id volutpat cursus integer faucibus.',
     },
     {
       'company': 'TWITTER',
       'duration': '2018 - 2019',
       'title': 'Lead Product Designer',
-      'description': 'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
+      'description':
+          'Lorem ipsum dolor sit amet justo, rhoncus felis dolor sit.',
     },
   ];
 
@@ -88,7 +93,6 @@ class _Template17State extends State<Template17> {
       });
     }
   }
-
 
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 1200));
@@ -120,9 +124,8 @@ class _Template17State extends State<Template17> {
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(
-                              AppImages.profilePicture17)
-                          as ImageProvider,
+                              : AssetImage(AppImages.profilePicture17)
+                                  as ImageProvider,
                           radius: 60.r,
                         ),
                       ),
@@ -140,7 +143,7 @@ class _Template17State extends State<Template17> {
                             style: GoogleFonts.sourceCodePro(
                               fontWeight: FontWeight.w700,
                               fontSize: 24.sp,
-                              color: Colors.blueAccent,
+                              color: userNameColor,
                             ),
                           ),
                           Text(
@@ -148,7 +151,7 @@ class _Template17State extends State<Template17> {
                             style: GoogleFonts.sourceCodePro(
                               fontWeight: FontWeight.w400,
                               fontSize: 16.sp,
-                              color: Colors.grey,
+                              color: userRoleColor, // Dynamic role color
                             ),
                           ),
                         ],
@@ -287,16 +290,21 @@ class _Template17State extends State<Template17> {
                                   ),
                                   SizedBox(height: 8.h),
                                   // Education Item 1
-                                  SizedBox(height: 16.h,),
+                                  SizedBox(
+                                    height: 16.h,
+                                  ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       for (var edu in education)
                                         GestureDetector(
-                                          onTap: () => _editEducationItem(context,edu),
+                                          onTap: () =>
+                                              _editEducationItem(context, edu),
                                           child: Padding(
-                                            padding: EdgeInsets.only(bottom: 16.h),
+                                            padding:
+                                                EdgeInsets.only(bottom: 16.h),
                                             child: _buildEducationItem(
                                               duration: edu['year']!,
                                               degree: edu['degree']!,
@@ -306,19 +314,16 @@ class _Template17State extends State<Template17> {
                                         ),
                                     ],
                                   )
-
                                 ],
                               ),
                             ),
                           ),
                           Container(
                             width: 250.w,
-                           // height: 40.h,
+                            // height: 40.h,
                             // color: Colors.yellow, // Background color for demonstration; adjust or remove as needed
                             child: GestureDetector(
-
                               onTap: () => _editSocialMedia(context),
-
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -404,7 +409,8 @@ class _Template17State extends State<Template17> {
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 16.h),
                                   child: GestureDetector(
-                                    onTap: () => _editExperienceItem(context,experience),
+                                    onTap: () => _editExperienceItem(
+                                        context, experience),
                                     child: _buildExperienceItem(
                                       company: experience['company']!,
                                       duration: experience['duration']!,
@@ -464,14 +470,15 @@ class _Template17State extends State<Template17> {
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                          for (var i = 0; i < languages.length; i++)
-                        GestureDetector(
-                        onTap: ()=>_editLanguages(context, i, languages[i]),
-                          child: _buildSkillItem(languages[i]),)
-                      ])
+                                for (var i = 0; i < languages.length; i++)
+                                  GestureDetector(
+                                    onTap: () => _editLanguages(
+                                        context, i, languages[i]),
+                                    child: _buildSkillItem(languages[i]),
+                                  )
+                              ])
                         ],
                       ),
-
                     ),
                   )
                 ],
@@ -482,14 +489,15 @@ class _Template17State extends State<Template17> {
       ),
     );
   }
+
   void _editContactDetails(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: mobile);
+            TextEditingController(text: mobile);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -512,7 +520,6 @@ class _Template17State extends State<Template17> {
                 setState(() {
                   mobile = phoneController.text;
                   email = emailController.text;
-
                 });
                 Navigator.of(context).pop();
               },
@@ -529,6 +536,7 @@ class _Template17State extends State<Template17> {
       },
     );
   }
+
   Widget _buildEducationItem({
     required String duration,
     required String degree,
@@ -629,47 +637,137 @@ class _Template17State extends State<Template17> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-        TextEditingController(text: userName);
-        final TextEditingController roleController =
-        TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.blueAccent,
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.grey,
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor =
+                          tempUserNameColor; // Save selected name color
+                      userRoleColor =
+                          tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -680,11 +778,11 @@ class _Template17State extends State<Template17> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -734,7 +832,7 @@ class _Template17State extends State<Template17> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController aboutController =
-        TextEditingController(text: about);
+            TextEditingController(text: about);
 
         return AlertDialog(
           title: const Text('Edit About'),
@@ -774,7 +872,7 @@ class _Template17State extends State<Template17> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: socialMedia);
+            TextEditingController(text: socialMedia);
 
         return AlertDialog(
           title: const Text('Edit User Name'),
@@ -814,13 +912,13 @@ class _Template17State extends State<Template17> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController companyController =
-        TextEditingController(text: item['company']);
+            TextEditingController(text: item['company']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
         final TextEditingController durationController =
-        TextEditingController(text: item['duration']);
+            TextEditingController(text: item['duration']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -835,7 +933,6 @@ class _Template17State extends State<Template17> {
                 controller: companyController,
                 decoration: const InputDecoration(labelText: 'Company'),
               ),
-
               TextField(
                 controller: durationController,
                 decoration: const InputDecoration(labelText: 'Duration'),
@@ -870,6 +967,7 @@ class _Template17State extends State<Template17> {
       },
     );
   }
+
   Future<List<String>?> _showSkillsEditDialog() async {
     final skillsController = TextEditingController(text: skills.join(', '));
     return await showDialog<List<String>>(
@@ -887,7 +985,6 @@ class _Template17State extends State<Template17> {
           actions: [
             TextButton(
               onPressed: () {
-
                 //update the skills
                 setState(() {
                   skills = skillsController.text
@@ -902,7 +999,6 @@ class _Template17State extends State<Template17> {
                         .split(',')
                         .map((s) => s.trim())
                         .toList());
-
               },
               child: Text('Save'),
             ),
@@ -915,10 +1011,11 @@ class _Template17State extends State<Template17> {
       },
     );
   }
-  Future<void> _editLanguages(BuildContext context, int index,
-      String currentName) async {
+
+  Future<void> _editLanguages(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -946,7 +1043,6 @@ class _Template17State extends State<Template17> {
 
                 setState(() {
                   languages[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -958,6 +1054,4 @@ class _Template17State extends State<Template17> {
       },
     );
   }
-
-
 }

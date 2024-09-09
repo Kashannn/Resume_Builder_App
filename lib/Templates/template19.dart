@@ -3,28 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -37,6 +16,8 @@ class Template19 extends StatefulWidget {
 }
 
 class _Template19State extends State<Template19> {
+  Color userNameColor = Colors.white;
+  Color userRoleColor = Color(0xFFE3E3E3);
   String userName = 'John Deo';
   String userRole = 'UI DESIGNER';
   String mobile1 = '+001 123 456 789';
@@ -155,7 +136,8 @@ class _Template19State extends State<Template19> {
                               userName,
                               style: TextStyle(
                                 fontFamily: GoogleFonts.inter().fontFamily,
-                                color: Colors.white,
+                                color:
+                                    userNameColor, // Apply dynamic name color
                                 fontSize: 35.sp,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -165,7 +147,8 @@ class _Template19State extends State<Template19> {
                               userRole,
                               style: TextStyle(
                                 fontFamily: GoogleFonts.inter().fontFamily,
-                                color: Color(0xFFE3E3E3),
+                                color:
+                                    userRoleColor, // Apply dynamic role color
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -216,7 +199,8 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       mobile1,
                                       style: TextStyle(
-                                        fontFamily: GoogleFonts.inter().fontFamily,
+                                        fontFamily:
+                                            GoogleFonts.inter().fontFamily,
                                         color: Colors.white,
                                         fontSize: 10.sp,
                                       ),
@@ -225,7 +209,8 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       mobile2,
                                       style: TextStyle(
-                                        fontFamily: GoogleFonts.inter().fontFamily,
+                                        fontFamily:
+                                            GoogleFonts.inter().fontFamily,
                                         color: Colors.white,
                                         fontSize: 10.sp,
                                       ),
@@ -367,7 +352,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['institution']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -377,7 +363,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['degree']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -387,7 +374,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         edu['year']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 7.85.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -448,7 +436,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['fromto']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -458,7 +447,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['title']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -468,7 +458,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['details']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -478,7 +469,8 @@ class _Template19State extends State<Template19> {
                                       Text(
                                         exp['description']!,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.inter().fontFamily,
+                                          fontFamily:
+                                              GoogleFonts.inter().fontFamily,
                                           fontSize: 8.83.sp,
                                           fontWeight: FontWeight.w400,
                                           color: Colors.white,
@@ -560,7 +552,8 @@ class _Template19State extends State<Template19> {
                                     Text(
                                       'Expertise & Skills',
                                       style: TextStyle(
-                                        fontFamily: GoogleFonts.inter().fontFamily,
+                                        fontFamily:
+                                            GoogleFonts.inter().fontFamily,
                                         fontSize: 11.81.sp,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.white,
@@ -648,47 +641,137 @@ class _Template19State extends State<Template19> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.white,
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Color(0xFFE3E3E3),
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor =
+                          tempUserNameColor; // Save selected name color
+                      userRoleColor =
+                          tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

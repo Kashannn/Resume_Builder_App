@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import '../utils/constant/app_colors.dart';
 import '../utils/constant/app_images_constant.dart';
@@ -15,8 +16,10 @@ class Template6 extends StatefulWidget {
 }
 
 class _Template6State extends State<Template6> {
-  String name = 'John Doe';
-  String jobTitle = 'Software Developer';
+  String userName = 'John Doe';
+  String userRole = 'Software Developer';
+  Color userNameColor = Colors.black;
+  Color userRoleColor = Colors.black;
   String email = 'contact@entreprenur.com';
   String phone = '(443) 212 - 6501';
   String aboutMe =
@@ -80,10 +83,8 @@ class _Template6State extends State<Template6> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColorsTemplate10.white,
@@ -104,8 +105,7 @@ class _Template6State extends State<Template6> {
                             radius: 30.0,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(AppImages.t6)
-                                    as ImageProvider,
+                                : AssetImage(AppImages.t6) as ImageProvider,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -114,17 +114,34 @@ class _Template6State extends State<Template6> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
-                              onTap: () => _editName(),
-                              child: Text(
-                                name,
-                                style: AppTextStylesTemplate10.nameStyle,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => _editJobTitle(),
-                              child: Text(
-                                jobTitle,
-                                style: AppTextStylesTemplate10.jobTitleStyle,
+                              onTap: () => _editUserDetails(context),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '$userName.',
+                                    style: TextStyle(
+                                      fontSize: 15.0.sp,
+                                      fontFamily:
+                                          GoogleFonts.manrope().fontFamily,
+                                      fontWeight: FontWeight.w700,
+                                      color:
+                                          userRoleColor, // Role color dynamically set
+                                    ),
+                                  ),
+                                  Text(
+                                    '$userRole.',
+                                    style: TextStyle(
+                                      fontSize: 13.0.sp,
+                                      fontFamily:
+                                          GoogleFonts.manrope().fontFamily,
+                                      fontWeight: FontWeight.w700,
+                                      color:
+                                          userRoleColor, // Role color dynamically set
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -369,7 +386,6 @@ class _Template6State extends State<Template6> {
   }
 
   Widget buildSkillsRow() {
-    // Helper function to split the list into chunks of the specified size
     List<List<String>> splitIntoChunks(List<String> list, int chunkSize) {
       List<List<String>> chunks = [];
       for (int i = 0; i < list.length; i += chunkSize) {
@@ -408,22 +424,190 @@ class _Template6State extends State<Template6> {
     );
   }
 
-  Future<void> _editName() async {
-    final newName = await _showEditDialog('Name', name);
-    if (newName != null && newName.isNotEmpty) {
-      setState(() {
-        name = newName;
-      });
-    }
-  }
+  void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
 
-  Future<void> _editJobTitle() async {
-    final newJobTitle = await _showEditDialog('Job Title', jobTitle);
-    if (newJobTitle != null && newJobTitle.isNotEmpty) {
-      setState(() {
-        jobTitle = newJobTitle;
-      });
-    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Edit User Details',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action here
+                    },
+                  ),
+                ],
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Name input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Role input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter role',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Name color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    // Role color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Update the values when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   Future<void> _editAboutMe() async {

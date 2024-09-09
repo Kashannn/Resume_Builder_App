@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,8 +16,11 @@ class Template3 extends StatefulWidget {
 }
 
 class _Template3State extends State<Template3> {
-  String userName = 'John moore';
-  String role = 'digital designer';
+  String userName = "John Moore";
+  String role = "Digital Designer";
+  Color userRoleColor = Color(0xFF00C781);
+  Color userNameColor = Color(0xFF00C781);
+
   String socialMedia = '@johnmoore';
   String email = 'contact@john.com';
   String mobile = '+001 123 456 789';
@@ -118,8 +122,6 @@ class _Template3State extends State<Template3> {
       child: Scaffold(
         body: Container(
           width: 595.w,
-
-          ///height: 842.h,
           color: Colors.black,
           child: Column(
             children: [
@@ -131,7 +133,6 @@ class _Template3State extends State<Template3> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     10.w.horizontalSpace,
                     SizedBox(
                       width: 87.w,
@@ -139,14 +140,12 @@ class _Template3State extends State<Template3> {
                       child: GestureDetector(
                         onTap: _pickImage,
                         child: CircleAvatar(
-
                           backgroundColor: Colors.transparent,
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
-                              : AssetImage(AppImages.t3,
-
-                          )
-                                  as ImageProvider,
+                              : AssetImage(
+                                  AppImages.t3,
+                                ) as ImageProvider,
                           //radius: 45.h,
                         ),
                       ),
@@ -162,12 +161,6 @@ class _Template3State extends State<Template3> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 30.w,
-                                height: 2.h,
-                                color: Color(0xFF00C781),
-                                margin: EdgeInsets.only(bottom: 8.h),
-                              ),
                               RichText(
                                 text: TextSpan(
                                   children: [
@@ -186,7 +179,8 @@ class _Template3State extends State<Template3> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
                                         fontSize: 24.sp,
-                                        color: Colors.white,
+                                        color:
+                                            userNameColor, // Dynamically change name color
                                       ),
                                     ),
                                     TextSpan(
@@ -194,8 +188,9 @@ class _Template3State extends State<Template3> {
                                       style: TextStyle(
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 24.sp,
-                                        color: Color(0xFF00C781), // Green color
+                                        fontSize: 23.sp,
+                                        color:
+                                            userRoleColor, // Dynamically change role color
                                       ),
                                     ),
                                   ],
@@ -713,47 +708,201 @@ class _Template3State extends State<Template3> {
   }
 
   void _editUserDetails(BuildContext context) {
+    // Temporary variables to hold updated values
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController = TextEditingController(text: role);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: role);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            // Use setStateDialog for the dialog-specific updates
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox.shrink(), // Empty space to align delete icon
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action here
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  role = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Name',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Role',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Name Color',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                // Update dialog-specific state
+                                tempNameColor =
+                                    color; // Update temporary name color dynamically
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Role Color',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                // Update dialog-specific state
+                                tempRoleColor =
+                                    color; // Update temporary role color dynamically
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.grey.shade300),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child:
+                        Text('Discard', style: TextStyle(color: Colors.black)),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Now, we update the parent widget when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      role = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Text('Save', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );

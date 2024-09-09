@@ -15,6 +15,8 @@ class Template18 extends StatefulWidget {
 }
 
 class _Template18State extends State<Template18> {
+  Color userNameColor = Colors.blueAccent;
+  Color userRoleColor = Colors.black;
   String firstName = 'Malkin';
   String lastName = 'Anderson';
   String userRole = 'UI/UX Designer';
@@ -121,77 +123,67 @@ class _Template18State extends State<Template18> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () => _editUserDetails(context),
-                            child: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 170.w, top: 50.h),
-                                child: Container(
-                                  width: 200.w,
-                                  //height: 110.h,
-                                  // color: Colors.red,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'HELLO! I\'M',
-                                        style: GoogleFonts.inter(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      ShaderMask(
-                                        shaderCallback: (bounds) =>
-                                            LinearGradient(
-                                          colors: [
-                                            Color(0xFF5BBBFF),
-                                            Color(0xFF005592)
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ).createShader(bounds),
-                                        child: Text(
-                                          firstName,
-                                          style: GoogleFonts.inter(
-                                            fontSize: 35.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      ShaderMask(
-                                        shaderCallback: (bounds) =>
-                                            const LinearGradient(
-                                          colors: [
-                                            Color(0xFF5BBBFF),
-                                            Color(0xFF005592)
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ).createShader(bounds),
-                                        child: Text(
-                                          lastName,
-                                          style: GoogleFonts.inter(
-                                            fontSize: 40.sp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 16.h),
-                                      Text(
-                                        userRole,
-                                        style: GoogleFonts.inter(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                          ),
+                          onTap: () => _editUserDetails(context),
+      child: Padding(
+        padding: EdgeInsets.only(left: 170.w, top: 50.h),
+        child: Container(
+          width: 200.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'HELLO! I\'M',
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+              ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                  colors: [Color(0xFF5BBBFF), Color(0xFF005592)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ).createShader(bounds),
+                child: Text(
+                  firstName,
+                  style: GoogleFonts.inter(
+                    fontSize: 35.sp,
+                    fontWeight: FontWeight.bold,
+                    color: userNameColor, // Apply dynamic name color
+                  ),
+                ),
+              ),
+              ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                  colors: [Color(0xFF5BBBFF), Color(0xFF005592)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ).createShader(bounds),
+                child: Text(
+                  lastName,
+                  style: GoogleFonts.inter(
+                    fontSize: 40.sp,
+                    fontWeight: FontWeight.bold,
+                    color: userNameColor, // Apply dynamic last name color
+                  ),
+                ),
+              ),
+              SizedBox(height: 16.h),
+              Text(
+                userRole,
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: userRoleColor, // Apply dynamic role color
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
                           SizedBox(height: 40.h),
                           GestureDetector(
                             onTap: () => _editContactDetails(context),
@@ -643,54 +635,138 @@ class _Template18State extends State<Template18> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: firstName);
+    TextEditingController ndController = TextEditingController(text: lastName);
+    TextEditingController roleController = TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: firstName);
-        final TextEditingController ndController =
-            TextEditingController(text: lastName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'First Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'First Name'),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: ndController,
+                      decoration: const InputDecoration(labelText: 'Last Name'),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: ndController,
-                decoration: const InputDecoration(labelText: 'Last Name'),
-              ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  firstName = nameController.text;
-                  lastName = ndController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      firstName = nameController.text;
+                      lastName = ndController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempUserNameColor; // Save selected name color
+                      userRoleColor = tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

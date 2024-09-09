@@ -16,6 +16,8 @@ class Template8 extends StatefulWidget {
 }
 
 class _Template8State extends State<Template8> {
+  Color userNameColor = Color(0xFF97FFC2);
+  Color userRoleColor = Color(0xFF97FFC2);
   String userName = 'John';
   String userRole = 'WEB DEVELOPER';
   String socialMedia = '@johncarter';
@@ -96,7 +98,6 @@ class _Template8State extends State<Template8> {
                 width: 595.w,
                 child: Column(
                   children: [
-
                     Container(
                       height: 90.h,
                       width: 595.w,
@@ -118,11 +119,9 @@ class _Template8State extends State<Template8> {
                                     backgroundColor: Colors.transparent,
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)
-                                        : AssetImage(
-                                                AppImages.t8)
+                                        : AssetImage(AppImages.t8)
                                             as ImageProvider,
                                     radius: 60.r,
-
                                   ),
                                 ),
                               ],
@@ -148,8 +147,11 @@ class _Template8State extends State<Template8> {
                                         Text(
                                           "I’m $userName, a",
                                           style: TextStyle(
-                                            fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
-                                            color: Color(0xFF97FFC2),
+                                            fontFamily:
+                                                GoogleFonts.spaceGrotesk()
+                                                    .fontFamily,
+                                            color:
+                                                userNameColor, // Dynamically set name color
                                             fontSize: 25.sp,
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -157,8 +159,11 @@ class _Template8State extends State<Template8> {
                                         Text(
                                           userRole,
                                           style: TextStyle(
-                                            fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
-                                            color: Color(0xFF97FFC2),
+                                            fontFamily:
+                                                GoogleFonts.spaceGrotesk()
+                                                    .fontFamily,
+                                            color:
+                                                userRoleColor, // Dynamically set role color
                                             fontSize: 25.sp,
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -184,7 +189,9 @@ class _Template8State extends State<Template8> {
                                           Text(
                                             socialMedia,
                                             style: TextStyle(
-                                              fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                              fontFamily:
+                                                  GoogleFonts.spaceGrotesk()
+                                                      .fontFamily,
                                               color: Color(0xFF97FFC2),
                                               fontSize: 8.sp,
                                               fontWeight: FontWeight.w700,
@@ -268,7 +275,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "About Me",
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -282,7 +291,9 @@ class _Template8State extends State<Template8> {
                                               child: Text(
                                                 about,
                                                 style: TextStyle(
-                                                  fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                  fontFamily:
+                                                      GoogleFonts.spaceGrotesk()
+                                                          .fontFamily,
                                                   fontWeight: FontWeight.w400,
                                                   color: Color(0xFFC3CAD5),
                                                   fontSize: 9.sp,
@@ -312,7 +323,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "My education",
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -347,8 +360,9 @@ class _Template8State extends State<Template8> {
                                                               entry['institution'] ??
                                                                   '',
                                                               style: TextStyle(
-                                                                fontFamily:
-                                                                    GoogleFonts.spaceGrotesk().fontFamily,
+                                                                fontFamily: GoogleFonts
+                                                                        .spaceGrotesk()
+                                                                    .fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w400,
@@ -360,8 +374,9 @@ class _Template8State extends State<Template8> {
                                                             Text(
                                                               "/",
                                                               style: TextStyle(
-                                                                fontFamily:
-                                                                    GoogleFonts.spaceGrotesk().fontFamily,
+                                                                fontFamily: GoogleFonts
+                                                                        .spaceGrotesk()
+                                                                    .fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w900,
@@ -374,8 +389,9 @@ class _Template8State extends State<Template8> {
                                                               entry['year'] ??
                                                                   '',
                                                               style: TextStyle(
-                                                                fontFamily:
-                                                                    GoogleFonts.spaceGrotesk().fontFamily,
+                                                                fontFamily: GoogleFonts
+                                                                        .spaceGrotesk()
+                                                                    .fontFamily,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w400,
@@ -389,8 +405,9 @@ class _Template8State extends State<Template8> {
                                                         Text(
                                                           entry['degree'] ?? '',
                                                           style: TextStyle(
-                                                            fontFamily:
-                                                                GoogleFonts.spaceGrotesk().fontFamily,
+                                                            fontFamily: GoogleFonts
+                                                                    .spaceGrotesk()
+                                                                .fontFamily,
                                                             fontWeight:
                                                                 FontWeight.w700,
                                                             color: Color(
@@ -430,7 +447,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Contact information",
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFF97FFC2),
                                                 fontSize: 16.sp,
@@ -442,7 +461,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Email",
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -454,7 +475,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               email,
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -466,7 +489,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               "Call:",
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -478,7 +503,9 @@ class _Template8State extends State<Template8> {
                                             Text(
                                               phone,
                                               style: TextStyle(
-                                                fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                                fontFamily:
+                                                    GoogleFonts.spaceGrotesk()
+                                                        .fontFamily,
                                                 fontWeight: FontWeight.w700,
                                                 color: Color(0xFFC3CAD5),
                                                 fontSize: 9.sp,
@@ -513,7 +540,9 @@ class _Template8State extends State<Template8> {
                                           Text(
                                             "Skills",
                                             style: TextStyle(
-                                              fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                              fontFamily:
+                                                  GoogleFonts.spaceGrotesk()
+                                                      .fontFamily,
                                               fontWeight: FontWeight.w700,
                                               color: Color(0xFF97FFC2),
                                               fontSize: 16.sp,
@@ -538,8 +567,9 @@ class _Template8State extends State<Template8> {
                                                     SizedBox(height: 5.h),
                                                     Text("Java",
                                                         style: TextStyle(
-                                                          fontFamily:
-                                                              GoogleFonts.spaceGrotesk().fontFamily,
+                                                          fontFamily: GoogleFonts
+                                                                  .spaceGrotesk()
+                                                              .fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -560,8 +590,9 @@ class _Template8State extends State<Template8> {
                                                     SizedBox(height: 5.h),
                                                     Text("Html /Css",
                                                         style: TextStyle(
-                                                          fontFamily:
-                                                              GoogleFonts.spaceGrotesk().fontFamily,
+                                                          fontFamily: GoogleFonts
+                                                                  .spaceGrotesk()
+                                                              .fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -582,8 +613,9 @@ class _Template8State extends State<Template8> {
                                                     SizedBox(height: 5.h),
                                                     Text("React Java",
                                                         style: TextStyle(
-                                                          fontFamily:
-                                                              GoogleFonts.spaceGrotesk().fontFamily,
+                                                          fontFamily: GoogleFonts
+                                                                  .spaceGrotesk()
+                                                              .fontFamily,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color:
@@ -605,8 +637,9 @@ class _Template8State extends State<Template8> {
                                                     Text(
                                                       "Web Flutter",
                                                       style: TextStyle(
-                                                        fontFamily:
-                                                            GoogleFonts.spaceGrotesk().fontFamily,
+                                                        fontFamily: GoogleFonts
+                                                                .spaceGrotesk()
+                                                            .fontFamily,
                                                         fontWeight:
                                                             FontWeight.w700,
                                                         color:
@@ -649,7 +682,8 @@ class _Template8State extends State<Template8> {
                                       Text(
                                         "Past Experience",
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                                          fontFamily: GoogleFonts.spaceGrotesk()
+                                              .fontFamily,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xFF97FFC2),
                                           fontSize: 16.sp,
@@ -686,8 +720,9 @@ class _Template8State extends State<Template8> {
                                                   Text(
                                                     experience['title'] ?? '',
                                                     style: TextStyle(
-                                                      fontFamily:
-                                                          GoogleFonts.spaceGrotesk().fontFamily,
+                                                      fontFamily: GoogleFonts
+                                                              .spaceGrotesk()
+                                                          .fontFamily,
                                                       fontWeight:
                                                           FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
@@ -697,8 +732,9 @@ class _Template8State extends State<Template8> {
                                                   Text(
                                                     experience['details'] ?? '',
                                                     style: TextStyle(
-                                                      fontFamily:
-                                                          GoogleFonts.spaceGrotesk().fontFamily,
+                                                      fontFamily: GoogleFonts
+                                                              .spaceGrotesk()
+                                                          .fontFamily,
                                                       fontWeight:
                                                           FontWeight.w700,
                                                       color: Color(0xFFFFFFFF),
@@ -710,8 +746,9 @@ class _Template8State extends State<Template8> {
                                               Text(
                                                 experience['description'] ?? '',
                                                 style: TextStyle(
-                                                  fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
-
+                                                  fontFamily:
+                                                      GoogleFonts.spaceGrotesk()
+                                                          .fontFamily,
                                                   color: Color(0xFFFFFFFF),
                                                   fontSize: 10.sp,
                                                 ),
@@ -744,47 +781,174 @@ class _Template8State extends State<Template8> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Edit User Details',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action if needed
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Name',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter Name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Role',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter Role',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Name Color',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('Role Color',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Update the values when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

@@ -13,6 +13,8 @@ class Template5 extends StatefulWidget {
 }
 
 class _Template5State extends State<Template5> {
+  Color userNameColor = Colors.white;
+  Color userRoleColor = Colors.white;
   String userName = 'John Carter';
   String userRole = 'Attorney';
   String email = 'contact@johncarter.com';
@@ -229,14 +231,13 @@ class _Template5State extends State<Template5> {
                           child: Container(
                             width: 400.w,
                             height: 120.h,
-                            color: Color(0xFF1B2530),
+                            color: const Color(0xFF1B2530),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.w, vertical: 25.h),
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 25.h),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  // Title
+                                  // Title (Role)
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -250,7 +251,7 @@ class _Template5State extends State<Template5> {
                                         userRole,
                                         style: GoogleFonts.playfairDisplay(
                                           fontSize: 12.sp,
-                                          color: Colors.white.withOpacity(0.7),
+                                          color: userRoleColor.withOpacity(0.7), // Dynamically set role color
                                           letterSpacing: 1.5,
                                         ),
                                       ),
@@ -262,7 +263,7 @@ class _Template5State extends State<Template5> {
                                     userName,
                                     style: GoogleFonts.playfairDisplay(
                                       fontSize: 35.sp,
-                                      color: Colors.white,
+                                      color: userNameColor, // Dynamically set name color
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -718,47 +719,179 @@ class _Template5State extends State<Template5> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: userName);
+    TextEditingController roleController = TextEditingController(text: userRole);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Edit User Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action here
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Name input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Role input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter role',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Name color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    // Role color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Update the values when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

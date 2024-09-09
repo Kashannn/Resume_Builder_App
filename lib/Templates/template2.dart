@@ -307,16 +307,16 @@ class _Template2State extends State<Template2> {
 
   Widget _buildProfileSection() {
     return GestureDetector(
-      onTap: () => _editAboutMe(),
+      onTap: () => _editAboutMe(context),
       child: Container(
-        padding: EdgeInsets.only(left: 24.w, right: 16.w),
+        padding: EdgeInsets.only(left: 24.0, right: 16.0),
         child: Text(
           about,
           style: TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w400,
             fontSize: 14.sp,
-            color: aboutColor,
+            color: aboutColor, // Dynamic color for About text
           ),
           textAlign: TextAlign.justify,
         ),
@@ -748,78 +748,137 @@ class _Template2State extends State<Template2> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-        Color tempNameColor = Colors.greenAccent;
-        Color tempRoleColor = Colors.blue;
-
-        return SizedBox(
-          height: 300.h,
-          width: 300.w,
-          child: AlertDialog(
-            title: const Text('Edit User Details'),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(labelText: 'Name'),
-                  ),
-                  SizedBox(height: 10.h),
-                  TextField(
-                    controller: roleController,
-                    decoration: const InputDecoration(labelText: 'Role'),
-                  ),
-                  SizedBox(height: 20.h),
-                  Text('Select Name Color:'),
-                  BlockPicker(
-                    pickerColor: tempNameColor,
-                    onColorChanged: (Color color) {
-                      setState(() {
-                        tempNameColor = color;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 10.h),
-                  Text('Select Role Color:'),
-                  BlockPicker(
-                    pickerColor: tempRoleColor,
-                    onColorChanged: (Color color) {
-                      setState(() {
-                        tempRoleColor = color;
-                      });
-                    },
-                  ),
-                ],
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Color(0xFF5BBBFF),
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.lightBlueAccent,
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    userName = nameController.text;
-                    userRole = roleController.text;
-                    userNameColor = tempNameColor;
-                    userRoleColor = tempRoleColor;
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Save'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Cancel'),
-              ),
-            ],
-          ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor =
+                          tempUserNameColor; // Save selected name color
+                      userRoleColor =
+                          tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -853,60 +912,21 @@ class _Template2State extends State<Template2> {
                     TextField(
                       controller: titleController,
                       decoration: const InputDecoration(labelText: 'Title'),
-                      style: TextStyle(color: tempTitleColor),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Select Title Color:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    BlockPicker(
-                      pickerColor: tempTitleColor,
-                      onColorChanged: (Color color) {
-                        setState(() {
-                          tempTitleColor = color;
-                        });
-                      },
+                      style: TextStyle(color: Colors.black),
                     ),
                     SizedBox(height: 10.h),
                     TextField(
                       controller: durationController,
                       decoration: const InputDecoration(labelText: 'Duration'),
-                      style: TextStyle(color: tempDurationColor),
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Select Duration Color:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    BlockPicker(
-                      pickerColor: tempDurationColor,
-                      onColorChanged: (Color color) {
-                        setState(() {
-                          tempDurationColor = color;
-                        });
-                      },
+                      style: TextStyle(color: Colors.black),
                     ),
                     SizedBox(height: 10.h),
                     TextField(
                       controller: descriptionController,
                       decoration:
                           const InputDecoration(labelText: 'Description'),
-                      style: TextStyle(color: tempDescriptionColor),
+                      style: TextStyle(color: Colors.black),
                       maxLines: 5,
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      'Select Description Color:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    BlockPicker(
-                      pickerColor: tempDescriptionColor,
-                      onColorChanged: (Color color) {
-                        setState(() {
-                          tempDescriptionColor = color;
-                        });
-                      },
                     ),
                   ],
                 ),
@@ -992,66 +1012,53 @@ class _Template2State extends State<Template2> {
     );
   }
 
-  Future<void> _editAboutMe() async {
-    Color tempAboutColor = aboutColor; // Temporary variable to store the color
+  void _editAboutMe(BuildContext context) {
+    TextEditingController aboutController = TextEditingController(text: about);
+    Color tempAboutColor = aboutColor;
 
-    final newAboutMe = await showDialog<String>(
+    showDialog(
       context: context,
-      builder: (context) {
-        final TextEditingController aboutController =
-            TextEditingController(text: about);
-
-        return AlertDialog(
-          title: const Text('Edit About Me'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: aboutController,
-                  maxLines: 10,
-                  decoration: const InputDecoration(labelText: 'About'),
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit About Me'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: aboutController,
+                      decoration: const InputDecoration(labelText: 'About Me'),
+                      maxLines: 3,
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20.h),
-                Text('Select About Text Color:'),
-                BlockPicker(
-                  pickerColor: tempAboutColor,
-                  onColorChanged: (Color color) {
-                    setState(() {
-                      tempAboutColor = color;
-                    });
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
                   },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      about = aboutController.text;
+                      aboutColor = tempAboutColor; // Save selected about color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
                 ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  about = aboutController.text;
-                  aboutColor = tempAboutColor;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+            );
+          },
         );
       },
     );
-
-    if (newAboutMe != null && newAboutMe.isNotEmpty) {
-      setState(() {
-        about = newAboutMe;
-      });
-    }
   }
 
   Future<String?> _showEditDialog(String title, String initialValue,

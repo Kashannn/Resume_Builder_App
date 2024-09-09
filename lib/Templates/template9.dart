@@ -15,7 +15,8 @@ class Template9 extends StatefulWidget {
 }
 
 class _Template9State extends State<Template9> {
-
+  Color userNameColor = Color(0xFFFFFFFF);
+  Color userRoleColor = Color(0xFF97FFC2);
   String userName = 'Emily Johnson';
   String jobTitle = 'UX/UI Designer';
   String email = 'hello@reallygreatsite.com';
@@ -383,7 +384,7 @@ class _Template9State extends State<Template9> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 24.h),
                         child: GestureDetector(
-                          onTap: ()=>_editUserDetails(context),
+                          onTap: () => _editUserDetails(context),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -392,7 +393,7 @@ class _Template9State extends State<Template9> {
                                 userName,
                                 style: GoogleFonts.lato(
                                   fontSize: 36.sp,
-                                  color: Colors.white,
+                                  color: userNameColor, // Apply dynamically selected name color
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -401,7 +402,7 @@ class _Template9State extends State<Template9> {
                                 jobTitle,
                                 style: GoogleFonts.lato(
                                   fontSize: 20.sp,
-                                  color: Colors.orangeAccent,
+                                  color: userRoleColor, // Apply dynamically selected job title color
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -617,47 +618,147 @@ class _Template9State extends State<Template9> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: userName);
+    TextEditingController roleController = TextEditingController(text: jobTitle);
+    Color tempNameColor = userNameColor; // Assuming these are defined
+    Color tempRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-        TextEditingController(text: userName);
-        final TextEditingController roleController =
-        TextEditingController(text: jobTitle);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Job Title',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Job Title Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color; // Update job title color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  jobTitle = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      jobTitle = roleController.text;
+                      userNameColor = tempNameColor; // Save name color
+                      userRoleColor = tempRoleColor; // Save job title color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

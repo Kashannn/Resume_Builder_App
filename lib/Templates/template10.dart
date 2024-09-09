@@ -15,7 +15,9 @@ class Template10 extends StatefulWidget {
 }
 
 class _Template10State extends State<Template10> {
-
+  Color firstNameColor = Colors.grey[800]!;
+  Color lastNameColor = Color(0xFF5A00E0);
+  Color userRoleColor = Colors.grey[700]!;
   String firstName = 'Folly';
   String lastName = 'Justin';
   String userRole = 'Photographer';
@@ -47,13 +49,15 @@ class _Template10State extends State<Template10> {
       'title': 'Senior UI Designer',
       'details': 'Blue Moon Consultancy Studio',
       'fromto': 'Aug 2020 - Present',
-      'description': 'Product team to prototype, design and deliver the UI and UX experience with a lean design process: research, design, test, and iterate.',
+      'description':
+          'Product team to prototype, design and deliver the UI and UX experience with a lean design process: research, design, test, and iterate.',
     },
     {
       'title': 'Senior UX Designer',
       'details': 'Black Yark Product Design',
       'fromto': 'Aug 2015 - Aug 2020',
-      'description': 'Lead the UI design with the accountability of the design system, collaborated with product and development teams on core projects to improve product interfaces and experiences.',
+      'description':
+          'Lead the UI design with the accountability of the design system, collaborated with product and development teams on core projects to improve product interfaces and experiences.',
     },
   ];
 
@@ -68,7 +72,6 @@ class _Template10State extends State<Template10> {
       'degree': 'Bachelor Degree',
       'institution': 'Institute',
     },
-
   ];
 
   File? _profileImage;
@@ -92,7 +95,7 @@ class _Template10State extends State<Template10> {
       child: Scaffold(
         body: Container(
           width: 650.w,
-         // height: 842.h,
+          // height: 842.h,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -110,14 +113,14 @@ class _Template10State extends State<Template10> {
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
                 child: Container(
-                  width:310.w,
-                 // height: 842.h,
+                  width: 310.w,
+                  // height: 842.h,
                   // color: Colors.yellow,
                   child: Column(
                     children: [
                       Container(
                         //height: 133.h,
-                       // width: 298.w,
+                        // width: 298.w,
                         color: Colors.white,
                         child: Row(
                           children: [
@@ -131,13 +134,13 @@ class _Template10State extends State<Template10> {
                                   backgroundImage: _profileImage != null
                                       ? FileImage(_profileImage!)
                                       : AssetImage(AppImages.t10)
-                                  as ImageProvider,
+                                          as ImageProvider,
                                 ),
-                            ),
+                              ),
                             ),
                             SizedBox(width: 12.w),
                             GestureDetector(
-                              onTap: ()=>_editUserDetails(context),
+                              onTap: () => _editUserDetails(context),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +150,8 @@ class _Template10State extends State<Template10> {
                                     style: GoogleFonts.lato(
                                       fontSize: 30.sp,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.grey[800],
+                                      color:
+                                          firstNameColor, // Dynamic color for first name
                                     ),
                                   ),
                                   Text(
@@ -155,7 +159,8 @@ class _Template10State extends State<Template10> {
                                     style: GoogleFonts.lato(
                                       fontSize: 38.sp,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF5A00E0),
+                                      color:
+                                          lastNameColor, // Dynamic color for last name
                                     ),
                                   ),
                                   Text(
@@ -163,7 +168,8 @@ class _Template10State extends State<Template10> {
                                     style: GoogleFonts.lato(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500,
-                                      color: Colors.grey[700],
+                                      color:
+                                          userRoleColor, // Dynamic color for role
                                     ),
                                   ),
                                 ],
@@ -190,7 +196,7 @@ class _Template10State extends State<Template10> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             GestureDetector(
-                              onTap: ()=>_editContactDetails(context),
+                              onTap: () => _editContactDetails(context),
                               child: Column(
                                 children: [
                                   _buildContactInfo(
@@ -221,27 +227,29 @@ class _Template10State extends State<Template10> {
                                 children: [
                                   Container(
                                     width: 290.w,
-
                                     decoration: BoxDecoration(
                                       color:
                                           Color(0xFFC4C4C4).withOpacity(0.25),
                                       borderRadius: BorderRadius.circular(8.r),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
-
                                       children: [
                                         _buildSectionTitle(
                                             'Industry Knowledge'),
                                         Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: textItems.map((item) {
                                             int index = textItems.indexOf(item);
                                             return GestureDetector(
-                                                onTap: ()=>_editItemsDialog(context,index,item),
+                                                onTap: () => _editItemsDialog(
+                                                    context, index, item),
                                                 child: _buildTextItem(item));
                                           }).toList(),
                                         ),
@@ -250,7 +258,7 @@ class _Template10State extends State<Template10> {
                                   ),
                                   SizedBox(height: 8.h),
                                   Container(
-                                    width: 290.w,
+                                      width: 290.w,
                                       decoration: BoxDecoration(
                                         color:
                                             Color(0xFFC4C4C4).withOpacity(0.25),
@@ -258,14 +266,20 @@ class _Template10State extends State<Template10> {
                                             BorderRadius.circular(8.r),
                                       ),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          _buildSectionTitle('Languages'), Column(
+                                          _buildSectionTitle('Languages'),
+                                          Column(
                                             children: languages.map((item) {
-                                              int index = languages.indexOf(item);
+                                              int index =
+                                                  languages.indexOf(item);
                                               return GestureDetector(
-                                                  onTap: ()=>_editLanguagesDialog(context,index,item),
+                                                  onTap: () =>
+                                                      _editLanguagesDialog(
+                                                          context, index, item),
                                                   child: _buildTextItem(item));
                                             }).toList(),
                                           ),
@@ -273,7 +287,7 @@ class _Template10State extends State<Template10> {
                                       )),
                                   SizedBox(height: 8.h),
                                   Container(
-                                    width: 290.w,
+                                      width: 290.w,
                                       decoration: BoxDecoration(
                                         color:
                                             Color(0xFFC4C4C4).withOpacity(0.25),
@@ -281,24 +295,25 @@ class _Template10State extends State<Template10> {
                                             BorderRadius.circular(8.r),
                                       ),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           GestureDetector(
-                                            onTap: ()=>_editSocialDetails(context),
+                                            onTap: () =>
+                                                _editSocialDetails(context),
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 _buildSectionTitle('Social'),
-                                                _buildTextItem(
-                                                    website),
-                                                _buildTextItem(
-                                                    linkedin),
-                                                _buildTextItem(
-                                                    dribbble),
-                                                _buildTextItem(
-                                                    behance),
+                                                _buildTextItem(website),
+                                                _buildTextItem(linkedin),
+                                                _buildTextItem(dribbble),
+                                                _buildTextItem(behance),
                                               ],
                                             ),
                                           ),
@@ -342,7 +357,7 @@ class _Template10State extends State<Template10> {
                           // Experience Header
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 8.w, vertical: 25.h),
+                                horizontal: 8.w, vertical: 20.h),
                             child: Row(
                               children: [
                                 Container(
@@ -361,7 +376,6 @@ class _Template10State extends State<Template10> {
                                     ),
                                   ),
                                 ),
-
                                 Container(
                                   width: 180.w,
                                   height: 2.h,
@@ -372,10 +386,10 @@ class _Template10State extends State<Template10> {
                           ),
                           // Experience Item 1
                           Column(
-
                             children: experiences.map((experience) {
                               return GestureDetector(
-                                onTap: () => _editExperienceItem(context,experience),
+                                onTap: () =>
+                                    _editExperienceItem(context, experience),
                                 child: _buildExperienceItem(
                                   company: experience['details']!,
                                   title: experience['title']!,
@@ -426,19 +440,19 @@ class _Template10State extends State<Template10> {
                               ],
                             ),
                           ),
-                         Column(
-                           children: education.map((edu) {
-                             int index = education.indexOf(edu);
-                             return GestureDetector(
-                               onTap: ()=> _editEducationItem(context,edu),
-                               child: _buildEducationItem(
-                                 degree: edu['degree']!,
-                                 institution: edu['institution']!,
-                                 duration: edu['year']!,
-                               ),
-                             );
-                           }).toList(),
-                         )
+                          Column(
+                            children: education.map((edu) {
+                              int index = education.indexOf(edu);
+                              return GestureDetector(
+                                onTap: () => _editEducationItem(context, edu),
+                                child: _buildEducationItem(
+                                  degree: edu['degree']!,
+                                  institution: edu['institution']!,
+                                  duration: edu['year']!,
+                                ),
+                              );
+                            }).toList(),
+                          )
 
                           // Skills List (you can replace this with actual skill items)
                         ],
@@ -579,14 +593,14 @@ class _Template10State extends State<Template10> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController positionController =
-        TextEditingController(text: item['detail']);
+            TextEditingController(text: item['detail']);
         final TextEditingController fromtoController =
-        TextEditingController(text: item['fromto']);
+            TextEditingController(text: item['fromto']);
 
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -637,54 +651,186 @@ class _Template10State extends State<Template10> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController firstNameController =
+        TextEditingController(text: firstName);
+    TextEditingController lastNameController =
+        TextEditingController(text: lastName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempFirstNameColor = firstNameColor;
+    Color tempLastNameColor = lastNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-        TextEditingController(text: firstName);
-        final TextEditingController ndController =
-        TextEditingController(text: lastName);
-        final TextEditingController roleController =
-        TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'First Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: firstNameController,
+                      decoration: InputDecoration(labelText: 'First Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'First Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.orange,
+                          Colors.purple,
+                          Colors.teal,
+                          Colors.yellow,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempFirstNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempFirstNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: lastNameController,
+                      decoration: InputDecoration(labelText: 'Last Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Last Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.orange,
+                          Colors.purple,
+                          Colors.teal,
+                          Colors.yellow,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempLastNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempLastNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.blue,
+                          Colors.red,
+                          Colors.green,
+                          Colors.orange,
+                          Colors.purple,
+                          Colors.teal,
+                          Colors.yellow,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: ndController,
-                decoration: const InputDecoration(labelText: 'Last Name'),
-              ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  firstName = nameController.text;
-                  lastName = ndController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      firstName = firstNameController.text;
+                      lastName = lastNameController.text;
+                      userRole = roleController.text;
+                      firstNameColor = tempFirstNameColor;
+                      lastNameColor = tempLastNameColor;
+                      userRoleColor = tempUserRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -695,13 +841,13 @@ class _Template10State extends State<Template10> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController wsController =
-        TextEditingController(text: website);
+            TextEditingController(text: website);
         final TextEditingController ldController =
-        TextEditingController(text: linkedin);
+            TextEditingController(text: linkedin);
         final TextEditingController drController =
-        TextEditingController(text: dribbble);
+            TextEditingController(text: dribbble);
         final TextEditingController bhController =
-        TextEditingController(text: behance);
+            TextEditingController(text: behance);
         return AlertDialog(
           title: const Text('Edit Social Details'),
           content: Column(
@@ -750,10 +896,10 @@ class _Template10State extends State<Template10> {
     );
   }
 
-  Future<void> _editItemsDialog(BuildContext context, int index,
-      String currentName) async {
+  Future<void> _editItemsDialog(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -781,7 +927,6 @@ class _Template10State extends State<Template10> {
 
                 setState(() {
                   textItems[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -794,10 +939,10 @@ class _Template10State extends State<Template10> {
     );
   }
 
-  Future<void> _editLanguagesDialog(BuildContext context, int index,
-      String currentName) async {
+  Future<void> _editLanguagesDialog(
+      BuildContext context, int index, String currentName) async {
     TextEditingController nameController =
-    TextEditingController(text: currentName);
+        TextEditingController(text: currentName);
     await showDialog(
       context: context,
       builder: (context) {
@@ -825,7 +970,6 @@ class _Template10State extends State<Template10> {
 
                 setState(() {
                   languages[index] = newName;
-
                 });
 
                 Navigator.of(context).pop();
@@ -843,11 +987,11 @@ class _Template10State extends State<Template10> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -891,18 +1035,19 @@ class _Template10State extends State<Template10> {
       },
     );
   }
+
   void _editContactDetails(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController phoneController =
-        TextEditingController(text: phoneNumber);
+            TextEditingController(text: phoneNumber);
         final TextEditingController emailController =
-        TextEditingController(text: email);
+            TextEditingController(text: email);
         final TextEditingController websiteController =
-        TextEditingController(text: website);
+            TextEditingController(text: website);
         final TextEditingController locationController =
-        TextEditingController(text: location);
+            TextEditingController(text: location);
 
         return AlertDialog(
           title: const Text('Edit Contact Details'),
@@ -925,7 +1070,6 @@ class _Template10State extends State<Template10> {
                 controller: locationController,
                 decoration: const InputDecoration(labelText: 'Address'),
               ),
-
             ],
           ),
           actions: [
@@ -952,7 +1096,6 @@ class _Template10State extends State<Template10> {
       },
     );
   }
-
 
   Widget _buildOtherSkillItem(String skill, String imagePath) {
     return Column(
@@ -1031,13 +1174,17 @@ Widget _buildContactInfo({required IconData icon, required String text}) {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Icon(icon, color: Colors.white,size: 15.sp,),
+            Icon(
+              icon,
+              color: Colors.white,
+              size: 15.sp,
+            ),
             SizedBox(width: 8.w),
             Text(
               text,
               style: TextStyle(
                 fontFamily: //calibri font
-                GoogleFonts.lato().fontFamily,
+                    GoogleFonts.lato().fontFamily,
                 fontSize: 13.sp,
                 color: Colors.white,
               ),
@@ -1180,7 +1327,6 @@ Widget _buildEducationItem({
           style: GoogleFonts.lato(
             fontSize: 14.sp,
             color: Colors.black54,
-
           ),
         ),
         Text(
@@ -1194,7 +1340,4 @@ Widget _buildEducationItem({
       ],
     ),
   );
-
-
-
 }

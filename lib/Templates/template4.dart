@@ -14,35 +14,34 @@ class Template4 extends StatefulWidget {
 }
 
 class _Template4State extends State<Template4> {
-
+  Color userNameColor = Colors.white;
+  Color userRoleColor = Colors.white;
   String userName = 'Peter';
   String userRole = 'Product Designer';
   String socialMedia = '@peterdesigner';
   String email = 'contact@peterdesigner.com';
   String mobile = '+001 123 456 789';
   String portfolio = 'www.yourportfolio.com';
-  String about1 = "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
-  String about2 = "Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non quam curabitur lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor, malesuada adipiscing congue diam.";
+  String about1 =
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor malesuada adipiscing congue diam quis orci amet porttitor blandit amet nullam sit elit, purus blandit non ut non quam curabitur.";
+  String about2 =
+      "Quis orci amet porttitor blandit amet nullam sit elit purus blandit non ut non quam curabitur lorem ipsum dolor sit amet consectetur adipiscing elit neque tempor, malesuada adipiscing congue diam.";
   List<Map<String, String>> experiences = [
     {
       'title': 'JOB POSITION',
       'details': 'Company Name',
-      'description':
-      'from - to',
+      'description': 'from - to',
     },
     {
       'title': 'JOB POSITION ',
       'details': 'Company Name',
-      'description':
-      'from - to',
+      'description': 'from - to',
     },
     {
       'title': 'JOB POSITION',
       'details': 'Company Name',
-      'description':
-      'from - to',
+      'description': 'from - to',
     },
-
   ];
 
   List<Map<String, String>> education = [
@@ -118,32 +117,38 @@ class _Template4State extends State<Template4> {
                                     radius: 40.r,
                                     backgroundImage: _profileImage != null
                                         ? FileImage(_profileImage!)
-                                        : AssetImage(AppImages.t4) as ImageProvider,
+                                        : AssetImage(AppImages.t4)
+                                            as ImageProvider,
                                   ),
                                 ),
                                 SizedBox(
                                   width: 25.w,
                                 ),
                                 GestureDetector(
-                                  onTap: ()=> _editUserDetails(context),
+                                  onTap: () => _editUserDetails(context),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text('Hello, I am $userName.',
-                                          style: TextStyle(
-                                            fontSize: 20.sp,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white,
-                                          )),
+                                      Text(
+                                        'Hello, I am $userName.',
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              userNameColor, // Name color dynamically set
+                                        ),
+                                      ),
                                       Text(
                                         'A $userRole.',
                                         style: TextStyle(
                                           fontSize: 20.sp,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.white,
+                                          color:
+                                              userRoleColor, // Role color dynamically set
                                         ),
                                       ),
                                     ],
@@ -345,7 +350,8 @@ class _Template4State extends State<Template4> {
                               onTap: () => _editAboutDetail(context),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'About Me',
@@ -412,7 +418,7 @@ class _Template4State extends State<Template4> {
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: ()=> _editSocialMedia(context),
+                                      onTap: () => _editSocialMedia(context),
                                       child: Text(
                                         socialMedia,
                                         style: TextStyle(
@@ -568,67 +574,75 @@ class _Template4State extends State<Template4> {
                                       ),
                                     ),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: experiences.map((experience) {
                                         return SizedBox(
                                           //height: 80.h,
                                           width: 267.w,
                                           child: GestureDetector(
-                                             onTap: () =>
-                                                 _editExperienceItem(context, experience),
-                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            onTap: () => _editExperienceItem(
+                                                context, experience),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                              SizedBox(
-                                              //height: 45.h,
-                                              width: 109.w,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    experience['title']!,
-                                                    style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w600,
-                                                      color: Colors.white,
-                                                    ),
+                                                SizedBox(
+                                                  //height: 45.h,
+                                                  width: 109.w,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        experience['title']!,
+                                                        style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        experience['details']!,
+                                                        style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        experience[
+                                                            'description']!,
+                                                        style: TextStyle(
+                                                          fontSize: 11.sp,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Text(
-                                                    experience['details']!,
-                                                    style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    experience['description']!,
-                                                    style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                                ),
                                                 SizedBox(
                                                   height: 15.h,
                                                 )
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                                                                );
-
+                                        );
                                       }).toList(),
-
                                     ),
                                   ],
                                 ),
@@ -638,8 +652,7 @@ class _Template4State extends State<Template4> {
                                 width: 150.w,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       'Education',
@@ -654,27 +667,31 @@ class _Template4State extends State<Template4> {
                                       height: 10.h,
                                     ),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: education.map((entry) {
                                         return Padding(
-                                          padding: EdgeInsets.only(bottom: 10.h),
+                                          padding:
+                                              EdgeInsets.only(bottom: 10.h),
                                           child: GestureDetector(
-                                            onTap: () => _editEducationItem(context, entry),
-                                            child:  SizedBox(
+                                            onTap: () => _editEducationItem(
+                                                context, entry),
+                                            child: SizedBox(
                                               height: 35.h,
-
                                               child: Column(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     entry['degree']!,
                                                     style: TextStyle(
                                                       fontSize: 13.sp,
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       color: Colors.white,
                                                     ),
                                                   ),
@@ -683,7 +700,8 @@ class _Template4State extends State<Template4> {
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                       color: Colors.white,
                                                     ),
                                                   ),
@@ -692,7 +710,8 @@ class _Template4State extends State<Template4> {
                                                     style: TextStyle(
                                                       fontSize: 12.sp,
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                       color: Colors.white,
                                                     ),
                                                   ),
@@ -703,7 +722,6 @@ class _Template4State extends State<Template4> {
                                         );
                                       }).toList(),
                                     ),
-
                                   ],
                                 ),
                               ),
@@ -728,7 +746,8 @@ class _Template4State extends State<Template4> {
                               onTap: () => _editEmail(context),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Contact',
@@ -740,7 +759,8 @@ class _Template4State extends State<Template4> {
                                     ),
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Email',
@@ -832,48 +852,214 @@ class _Template4State extends State<Template4> {
       ),
     );
   }
+
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-        TextEditingController(text: userName);
-        final TextEditingController roleController =
-        TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Edit User Details',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action here
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Name input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Role input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter role',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Name color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    // Role color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.grey.shade300),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child:
+                        Text('Discard', style: TextStyle(color: Colors.black)),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Update the values when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Text('Save', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -884,9 +1070,9 @@ class _Template4State extends State<Template4> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-        TextEditingController(text: about1);
+            TextEditingController(text: about1);
         final TextEditingController about2Controller =
-        TextEditingController(text: about2);
+            TextEditingController(text: about2);
 
         return AlertDialog(
           title: const Text('Edit User Details'),
@@ -925,13 +1111,13 @@ class _Template4State extends State<Template4> {
       },
     );
   }
+
   void _editSocialMedia(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController nameController =
-        TextEditingController(text: socialMedia);
-
+            TextEditingController(text: socialMedia);
 
         return AlertDialog(
           title: const Text('Edit User Name'),
@@ -965,16 +1151,17 @@ class _Template4State extends State<Template4> {
       },
     );
   }
+
   void _editExperienceItem(BuildContext context, Map<String, String> item) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-        TextEditingController(text: item['title']);
+            TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-        TextEditingController(text: item['details']);
+            TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-        TextEditingController(text: item['description']);
+            TextEditingController(text: item['description']);
 
         return AlertDialog(
           title: const Text('Edit Experience'),
@@ -1018,16 +1205,17 @@ class _Template4State extends State<Template4> {
       },
     );
   }
+
   void _editEducationItem(BuildContext context, Map<String, String> item) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController yearController =
-        TextEditingController(text: item['year']);
+            TextEditingController(text: item['year']);
         final TextEditingController degreeController =
-        TextEditingController(text: item['degree']);
+            TextEditingController(text: item['degree']);
         final TextEditingController institutionController =
-        TextEditingController(text: item['institution']);
+            TextEditingController(text: item['institution']);
 
         return AlertDialog(
           title: const Text('Edit Education'),
@@ -1072,16 +1260,17 @@ class _Template4State extends State<Template4> {
     );
   }
 
-  void _editEmail(BuildContext context,) {
+  void _editEmail(
+    BuildContext context,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-        TextEditingController(text: email);
-
+            TextEditingController(text: email);
 
         return AlertDialog(
-          title:  Text('Edit Email'),
+          title: Text('Edit Email'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -1113,16 +1302,17 @@ class _Template4State extends State<Template4> {
     );
   }
 
-  void _editPhone(BuildContext context,) {
+  void _editPhone(
+    BuildContext context,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-        TextEditingController(text: mobile);
-
+            TextEditingController(text: mobile);
 
         return AlertDialog(
-          title:  Text('Edit Phone'),
+          title: Text('Edit Phone'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -1153,16 +1343,18 @@ class _Template4State extends State<Template4> {
       },
     );
   }
-  void _editPortfolio(BuildContext context,) {
+
+  void _editPortfolio(
+    BuildContext context,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-        TextEditingController(text: portfolio);
-
+            TextEditingController(text: portfolio);
 
         return AlertDialog(
-          title:  Text('Edit Portfolio'),
+          title: Text('Edit Portfolio'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

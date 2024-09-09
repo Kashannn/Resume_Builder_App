@@ -147,8 +147,8 @@ class _Template1State extends State<Template1> {
                       children: [
                         _profileImage == null
                             ? GestureDetector(
-                              onTap: _pickImage,
-                              child: ClipOval(
+                                onTap: _pickImage,
+                                child: ClipOval(
                                   child: Image.asset(
                                     AppImages.t1,
                                     fit: BoxFit.cover,
@@ -156,10 +156,10 @@ class _Template1State extends State<Template1> {
                                     height: 49.w,
                                   ),
                                 ),
-                            )
+                              )
                             : GestureDetector(
-                              onTap: _pickImage,
-                              child: ClipOval(
+                                onTap: _pickImage,
+                                child: ClipOval(
                                   child: Image.file(
                                     _profileImage!,
                                     fit: BoxFit.cover,
@@ -167,7 +167,7 @@ class _Template1State extends State<Template1> {
                                     height: 49.w,
                                   ),
                                 ),
-                            ),
+                              ),
                         SizedBox(height: 4.h),
                         GestureDetector(
                           onTap: () => _editUserDetails(context),
@@ -239,8 +239,7 @@ class _Template1State extends State<Template1> {
                                 SizedBox(height: 5.h),
                                 _buildSectionHeader("REFERENCES"),
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: reference.map((ref) {
                                     return GestureDetector(
                                       onTap: () =>
@@ -636,64 +635,137 @@ class _Template1State extends State<Template1> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-        Color tempColor = userNameColor;
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Color(0xFF5BBBFF),
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.lightBlueAccent,
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
-                TextField(
-                  controller: roleController,
-                  decoration: const InputDecoration(labelText: 'Role'),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Select Text Color:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                BlockPicker(
-                  pickerColor: tempColor,
-                  onColorChanged: (Color color) {
-                    tempColor = color; // Update the temporary color
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
                   },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor =
+                          tempUserNameColor; // Save selected name color
+                      userRoleColor =
+                          tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
                 ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                  userNameColor = tempColor;
-                  userRoleColor = tempColor;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+            );
+          },
         );
       },
     );
@@ -726,41 +798,17 @@ class _Template1State extends State<Template1> {
                   controller: phoneController,
                   decoration: const InputDecoration(labelText: 'Phone'),
                 ),
-                BlockPicker(
-                  pickerColor: tempPhoneColor,
-                  onColorChanged: (Color color) {
-                    tempPhoneColor = color; // Update temporary color
-                  },
-                ),
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(labelText: 'Email'),
-                ),
-                BlockPicker(
-                  pickerColor: tempEmailColor,
-                  onColorChanged: (Color color) {
-                    tempEmailColor = color; // Update temporary color
-                  },
                 ),
                 TextField(
                   controller: websiteController,
                   decoration: const InputDecoration(labelText: 'Id'),
                 ),
-                BlockPicker(
-                  pickerColor: tempIdColor,
-                  onColorChanged: (Color color) {
-                    tempIdColor = color; // Update temporary color
-                  },
-                ),
                 TextField(
                   controller: locationController,
                   decoration: const InputDecoration(labelText: 'Address'),
-                ),
-                BlockPicker(
-                  pickerColor: tempAddressColor,
-                  onColorChanged: (Color color) {
-                    tempAddressColor = color; // Update temporary color
-                  },
                 ),
               ],
             ),
@@ -824,41 +872,17 @@ class _Template1State extends State<Template1> {
                   controller: ability1Controller,
                   decoration: const InputDecoration(labelText: 'Ability 1'),
                 ),
-                BlockPicker(
-                  pickerColor: tempAbility1Color,
-                  onColorChanged: (Color color) {
-                    tempAbility1Color = color;
-                  },
-                ),
                 TextField(
                   controller: ability2Controller,
                   decoration: const InputDecoration(labelText: 'Ability 2'),
-                ),
-                BlockPicker(
-                  pickerColor: tempAbility2Color,
-                  onColorChanged: (Color color) {
-                    tempAbility2Color = color; // Update temp color
-                  },
                 ),
                 TextField(
                   controller: ability3Controller,
                   decoration: const InputDecoration(labelText: 'Ability 3'),
                 ),
-                BlockPicker(
-                  pickerColor: tempAbility3Color,
-                  onColorChanged: (Color color) {
-                    tempAbility3Color = color; // Update temp color
-                  },
-                ),
                 TextField(
                   controller: ability4Controller,
                   decoration: const InputDecoration(labelText: 'Ability 4'),
-                ),
-                BlockPicker(
-                  pickerColor: tempAbility4Color,
-                  onColorChanged: (Color color) {
-                    tempAbility4Color = color; // Update temp color
-                  },
                 ),
               ],
             ),
@@ -923,41 +947,17 @@ class _Template1State extends State<Template1> {
                   controller: nameController,
                   decoration: const InputDecoration(labelText: 'Name'),
                 ),
-                BlockPicker(
-                  pickerColor: tempNameColor,
-                  onColorChanged: (Color color) {
-                    tempNameColor = color;
-                  },
-                ),
                 TextField(
                   controller: titleController,
                   decoration: const InputDecoration(labelText: 'Institute'),
-                ),
-                BlockPicker(
-                  pickerColor: tempTitleColor,
-                  onColorChanged: (Color color) {
-                    tempTitleColor = color;
-                  },
                 ),
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(labelText: 'Email'),
                 ),
-                BlockPicker(
-                  pickerColor: tempEmailColor,
-                  onColorChanged: (Color color) {
-                    tempEmailColor = color;
-                  },
-                ),
                 TextField(
                   controller: phoneController,
                   decoration: const InputDecoration(labelText: 'Phone'),
-                ),
-                BlockPicker(
-                  pickerColor: tempPhoneColor,
-                  onColorChanged: (Color color) {
-                    tempPhoneColor = color; // Update temporary color
-                  },
                 ),
               ],
             ),
@@ -1016,17 +1016,6 @@ class _Template1State extends State<Template1> {
                         InputDecoration(hintText: 'Enter new description'),
                     onChanged: (value) {
                       about = value;
-                    },
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Select Text Color:',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  BlockPicker(
-                    pickerColor: tempAboutMeColor,
-                    onColorChanged: (Color color) {
-                      tempAboutMeColor = color;
                     },
                   ),
                 ],
@@ -1132,15 +1121,6 @@ class _Template1State extends State<Template1> {
                   decoration:
                       InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
                 ),
-                SizedBox(height: 10),
-                Text('Select Text Color:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                BlockPicker(
-                  pickerColor: tempSkillColor,
-                  onColorChanged: (Color color) {
-                    tempSkillColor = color;
-                  },
-                ),
               ],
             ),
           ),
@@ -1207,15 +1187,6 @@ class _Template1State extends State<Template1> {
                 TextField(
                   controller: institutionController,
                   decoration: const InputDecoration(labelText: 'Institution'),
-                ),
-                SizedBox(height: 10),
-                Text('Select Text Color:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                BlockPicker(
-                  pickerColor: tempEducationColor,
-                  onColorChanged: (Color color) {
-                    tempEducationColor = color; // Update temporary color
-                  },
                 ),
               ],
             ),

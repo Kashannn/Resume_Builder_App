@@ -4,31 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 import '../utils/constant/app_images_constant.dart';
@@ -43,7 +19,9 @@ class Template16 extends StatefulWidget {
 class _Template16State extends State<Template16> {
   String userName = 'Sam';
   String userName1 = 'Moore';
-
+  Color userNameColor = Colors.black;
+  Color userName1Color = Colors.purple;
+  Color userRoleColor = Colors.black;
   String userRole = 'Product Designer';
   String socialMedia = '@john_designer';
   String email = 'contact@john_designer.com';
@@ -172,47 +150,37 @@ class _Template16State extends State<Template16> {
                                     Text(
                                       userName,
                                       style: TextStyle(
-                                        fontFamily:
-                                            GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
+                                        fontFamily: GoogleFonts.poppins().fontFamily, // First name font
                                         fontWeight: FontWeight.w700,
                                         fontSize: 26.sp,
-                                        color: Colors.black,
+                                        color: userNameColor, // Dynamic first name color
                                       ),
                                     ),
-                                    SizedBox(
-                                        width: 4
-                                            .w), // Adjust spacing between first and last name
+                                    SizedBox(width: 4.w), // Adjust spacing between first and last name
                                     Text(
                                       userName1,
                                       style: TextStyle(
-                                        fontFamily:
-                                        GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
+                                        fontFamily: GoogleFonts.poppins().fontFamily, // Last name font
                                         fontWeight: FontWeight.w700,
                                         fontSize: 26.sp,
-                                        color: Colors.purple,
+                                        color: userName1Color, // Dynamic last name color
                                       ),
                                     ),
-                                    SizedBox(
-                                        width: 4
-                                            .w), // Adjust spacing between first and last name
                                   ],
                                 ),
-                                SizedBox(
-                                    height:
-                                        4.h), // Space between name and title
+                                SizedBox(height: 4.h), // Space between name and role
                                 Text(
                                   userRole,
                                   style: TextStyle(
-                                    fontFamily:
-                                        GoogleFonts.poppins().fontFamily, // Ensure GoogleFonts.poppins().fontFamily is set as the font family
+                                    fontFamily: GoogleFonts.poppins().fontFamily, // Role font
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14.sp,
-                                    color: Colors.black,
+                                    color: userRoleColor, // Dynamic role color
                                   ),
                                 ),
                               ],
                             ),
-                          ),
+                          )
                         ),
                         10.verticalSpace,
                         GestureDetector(
@@ -684,47 +652,177 @@ class _Template16State extends State<Template16> {
   }
 
   void _editUserDetails(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: userName);
+    TextEditingController name1Controller = TextEditingController(text: userName1);
+    TextEditingController roleController = TextEditingController(text: userRole);
+
+    Color tempUserNameColor = userNameColor;
+    Color tempUserName1Color = userName1Color;
+    Color tempUserRoleColor = userRoleColor;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController nameController =
-            TextEditingController(text: userName);
-        final TextEditingController roleController =
-            TextEditingController(text: userRole);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: const InputDecoration(labelText: 'First Name'),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: name1Controller,
+                      decoration: const InputDecoration(labelText: 'Last Name'),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: const InputDecoration(labelText: 'Role'),
+                    ),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'First Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserNameColor = color; // Update first name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserNameColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Last Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserName1Color = color; // Update last name color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserName1Color == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: const Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.black,
+                          Colors.red,
+                          Colors.green,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempUserRoleColor = color; // Update role color
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempUserRoleColor == color
+                                  ? Icon(Icons.check, color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: roleController,
-                decoration: const InputDecoration(labelText: 'Role'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  userName = nameController.text;
-                  userRole = roleController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      userName = nameController.text;
+                      userName1 = name1Controller.text;
+                      userRole = roleController.text;
+                      userNameColor = tempUserNameColor; // Save selected first name color
+                      userName1Color = tempUserName1Color; // Save selected last name color
+                      userRoleColor = tempUserRoleColor; // Save selected role color
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );

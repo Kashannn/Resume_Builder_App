@@ -15,8 +15,10 @@ class Template7 extends StatefulWidget {
 }
 
 class _Template7State extends State<Template7> {
-  String name = 'Richard Sanchez';
-  String jobTitle = 'Photographer';
+  String userName = 'Richard Sanchez';
+  String userRole = 'Photographer';
+  Color userNameColor = Colors.white;
+  Color userRoleColor = Colors.white;
   String email = 'hello@reallygreatsite.com';
   String phoneNumber = '+123-456-7890';
   String location = '123 Anywhere St., Any City';
@@ -68,14 +70,13 @@ class _Template7State extends State<Template7> {
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile =
-    await picker.pickImage(source: ImageSource.gallery);
+        await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class _Template7State extends State<Template7> {
             children: [
               Container(
                 width: 650.w,
-               // height: 200.h,
+                // height: 200.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -106,14 +107,13 @@ class _Template7State extends State<Template7> {
                             border: Border.all(
                               color: Colors.white,
                             )),
-                        child:  GestureDetector(
+                        child: GestureDetector(
                           onTap: _pickImage,
                           child: CircleAvatar(
                             radius: 80.h,
                             backgroundImage: _profileImage != null
                                 ? FileImage(_profileImage!)
-                                : AssetImage(AppImages.t7)
-                            as ImageProvider,
+                                : AssetImage(AppImages.t7) as ImageProvider,
                           ),
                         ),
                       ),
@@ -126,14 +126,14 @@ class _Template7State extends State<Template7> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () => _editName(),
+                          onTap: () => _editUserDetails(context),
                           child: Text(
-                            name,
+                            userName,
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 38.sp,
-                                color: Colors.white,
+                                color: userRoleColor,
                               ),
                             ),
                           ),
@@ -147,14 +147,14 @@ class _Template7State extends State<Template7> {
                         ),
                         SizedBox(height: 8.h),
                         GestureDetector(
-                          onTap: () => _editJobTitle(),
+                          onTap: () => _editUserDetails(context),
                           child: Text(
-                            jobTitle,
+                            userRole,
                             style: GoogleFonts.montserrat(
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 18.sp,
-                                color: Colors.white,
+                                color: userRoleColor,
                               ),
                             ),
                           ),
@@ -203,7 +203,8 @@ class _Template7State extends State<Template7> {
                                     email,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
-                                      fontFamily: GoogleFonts.montserrat().fontFamily,
+                                      fontFamily:
+                                          GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -219,7 +220,8 @@ class _Template7State extends State<Template7> {
                                     phoneNumber,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
-                                      fontFamily: GoogleFonts.montserrat().fontFamily,
+                                      fontFamily:
+                                          GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -235,7 +237,8 @@ class _Template7State extends State<Template7> {
                                     location,
                                     style: TextStyle(
                                       color: Color(0xFF3D586D),
-                                      fontFamily: GoogleFonts.montserrat().fontFamily,
+                                      fontFamily:
+                                          GoogleFonts.montserrat().fontFamily,
                                       fontSize: 12.sp,
                                     ),
                                     textAlign: TextAlign.center,
@@ -282,7 +285,8 @@ class _Template7State extends State<Template7> {
                                         'EDUCATION',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: GoogleFonts.montserrat().fontFamily,
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,
                                           color: Colors.white,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
@@ -311,7 +315,9 @@ class _Template7State extends State<Template7> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16.sp,
-                                                    fontFamily: GoogleFonts.montserrat().fontFamily,
+                                                    fontFamily:
+                                                        GoogleFonts.montserrat()
+                                                            .fontFamily,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -325,18 +331,22 @@ class _Template7State extends State<Template7> {
                                                       style: TextStyle(
                                                         color: Colors.grey,
                                                         fontSize: 14.sp,
-                                                        fontFamily: GoogleFonts.montserrat().fontFamily,
+                                                        fontFamily: GoogleFonts
+                                                                .montserrat()
+                                                            .fontFamily,
                                                       ),
                                                     ),
                                                     SizedBox(width: 4.h),
                                                     Text(
-                                                      education[index]['years'] ??
+                                                      education[index]
+                                                              ['years'] ??
                                                           '',
                                                       style: TextStyle(
                                                         color: Colors.grey,
                                                         fontSize: 14.sp,
-                                                        fontFamily: GoogleFonts.montserrat().fontFamily,
-
+                                                        fontFamily: GoogleFonts
+                                                                .montserrat()
+                                                            .fontFamily,
                                                       ),
                                                     ),
                                                   ],
@@ -348,7 +358,6 @@ class _Template7State extends State<Template7> {
                                         },
                                       ),
                                     ),
-
                                     Container(
                                       width: 230.w,
                                       height: 50.h,
@@ -369,7 +378,8 @@ class _Template7State extends State<Template7> {
                                           color: Colors.white,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
-                                          fontFamily: GoogleFonts.montserrat().fontFamily,
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,
                                         ),
                                       ),
                                     ),
@@ -389,7 +399,6 @@ class _Template7State extends State<Template7> {
                                               style: GoogleFonts.montserrat(
                                                 color: Colors.black,
                                                 fontSize: 18.sp,
-
                                               ),
                                             ),
                                           );
@@ -429,7 +438,7 @@ class _Template7State extends State<Template7> {
                           ),
                           child: Center(
                             child: Text(
-                            'ABOUT ME',
+                              'ABOUT ME',
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Colors.white,
@@ -452,7 +461,6 @@ class _Template7State extends State<Template7> {
                               style: GoogleFonts.montserrat(
                                 textStyle: TextStyle(
                                   color: Color(0xFF3D586D),
-
                                   fontSize: 13.sp,
                                 ),
                               ),
@@ -573,7 +581,6 @@ class _Template7State extends State<Template7> {
                                   color: Colors.white,
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
-
                                 ),
                               ),
                             ),
@@ -607,9 +614,7 @@ class _Template7State extends State<Template7> {
                                       ],
                                     ),
                                   );
-
                                 }).toList(),
-
                               ),
                             ],
                           ),
@@ -626,22 +631,190 @@ class _Template7State extends State<Template7> {
     );
   }
 
-  void _editName() async {
-    final newName = await _editField('Name', name);
-    if (newName != null) {
-      setState(() {
-        name = newName;
-      });
-    }
-  }
+  void _editUserDetails(BuildContext context) {
+    TextEditingController nameController =
+        TextEditingController(text: userName);
+    TextEditingController roleController =
+        TextEditingController(text: userRole);
+    Color tempNameColor = userNameColor;
+    Color tempRoleColor = userRoleColor;
 
-  void _editJobTitle() async {
-    final newJobTitle = await _editField('Job Title', jobTitle);
-    if (newJobTitle != null) {
-      setState(() {
-        jobTitle = newJobTitle;
-      });
-    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              titlePadding: EdgeInsets.only(top: 10, right: 20),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Edit User Details',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: Colors.red, size: 30),
+                    onPressed: () {
+                      // Handle delete action here
+                    },
+                  ),
+                ],
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Name input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter name',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Role input
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        labelText: 'Enter role',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    // Name color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Name Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempNameColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempNameColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    // Role color selection
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Role Color',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (var color in [
+                          Colors.cyan,
+                          Colors.black,
+                          Colors.green,
+                          Colors.red,
+                          Colors.yellow,
+                          Colors.teal,
+                          Colors.blue,
+                          Colors.purple,
+                        ])
+                          GestureDetector(
+                            onTap: () {
+                              setStateDialog(() {
+                                tempRoleColor = color;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: color,
+                              radius: 15,
+                              child: tempRoleColor == color
+                                  ? Icon(Icons.check,
+                                      color: Colors.white, size: 16)
+                                  : SizedBox.shrink(),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Update the values when "Save" is pressed
+                    setState(() {
+                      userName = nameController.text;
+                      userRole = roleController.text;
+                      userNameColor = tempNameColor;
+                      userRoleColor = tempRoleColor;
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   void _editEmail() async {
