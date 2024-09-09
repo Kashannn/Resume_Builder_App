@@ -142,21 +142,24 @@ class _Template1State extends State<Template1> {
                   padding:
                       EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
                   child: SingleChildScrollView(
-                    child: GestureDetector(
-                      onTap: () => _pickImage(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min, // Added mainAxisSize
-                        children: [
-                          _profileImage == null
-                              ? ClipOval(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min, // Added mainAxisSize
+                      children: [
+                        _profileImage == null
+                            ? GestureDetector(
+                              onTap: _pickImage,
+                              child: ClipOval(
                                   child: Image.asset(
                                     AppImages.profilePicture,
                                     fit: BoxFit.cover,
                                     width: 49.w,
                                     height: 49.w,
                                   ),
-                                )
-                              : ClipOval(
+                                ),
+                            )
+                            : GestureDetector(
+                              onTap: _pickImage,
+                              child: ClipOval(
                                   child: Image.file(
                                     _profileImage!,
                                     fit: BoxFit.cover,
@@ -164,98 +167,98 @@ class _Template1State extends State<Template1> {
                                     height: 49.w,
                                   ),
                                 ),
-                          SizedBox(height: 4.h),
-                          GestureDetector(
-                            onTap: () => _editUserDetails(context),
+                            ),
+                        SizedBox(height: 4.h),
+                        GestureDetector(
+                          onTap: () => _editUserDetails(context),
+                          child: Column(
+                            children: [
+                              Text(
+                                userName,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 5.sp,
+                                  color: userNameColor,
+                                ),
+                              ),
+                              Text(
+                                userRole,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 3.9.sp,
+                                  color: userRoleColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 6.h),
+                        Container(
+                          width: 142.w,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 1.w, vertical: 1.h),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  userName,
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 5.sp,
-                                    color: userNameColor,
+                                _buildSectionHeader("BASIC INFO"),
+                                SizedBox(height: 1.h),
+                                GestureDetector(
+                                  onTap: () => _editContactDetails(context),
+                                  child: Column(
+                                    children: [
+                                      _buildInfoItem(
+                                          "Phone", mobile, phoneColor),
+                                      _buildInfoItem(
+                                          "Email", email, emailColor),
+                                      _buildInfoItem("ID", id, idColor),
+                                      _buildInfoItem(
+                                          "Address", address, addressColor),
+                                    ],
                                   ),
                                 ),
-                                Text(
-                                  userRole,
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 3.9.sp,
-                                    color: userRoleColor,
+                                SizedBox(height: 4.h),
+                                _buildSectionHeader("ABILITIES"),
+                                GestureDetector(
+                                  onTap: () => _editAbilityDetails(context),
+                                  child: Column(
+                                    children: [
+                                      _buildBulletPoint(
+                                          ability1, ability1Color),
+                                      _buildBulletPoint(
+                                          ability2, ability2Color),
+                                      _buildBulletPoint(
+                                          ability3, ability3Color),
+                                      _buildBulletPoint(
+                                          ability4, ability4Color),
+                                    ],
                                   ),
+                                ),
+                                SizedBox(height: 5.h),
+                                _buildSectionHeader("REFERENCES"),
+                                Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: reference.map((ref) {
+                                    return GestureDetector(
+                                      onTap: () =>
+                                          _editReferenceDetails(context, ref),
+                                      child: _buildReferenceItem(
+                                        name: ref['name']!,
+                                        title: ref['title']!,
+                                        email: ref['email']!,
+                                        phone: ref['phone']!,
+                                      ),
+                                    );
+                                  }).toList(),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(height: 6.h),
-                          Container(
-                            width: 142.w,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 1.w, vertical: 1.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildSectionHeader("BASIC INFO"),
-                                  SizedBox(height: 1.h),
-                                  GestureDetector(
-                                    onTap: () => _editContactDetails(context),
-                                    child: Column(
-                                      children: [
-                                        _buildInfoItem(
-                                            "Phone", mobile, phoneColor),
-                                        _buildInfoItem(
-                                            "Email", email, emailColor),
-                                        _buildInfoItem("ID", id, idColor),
-                                        _buildInfoItem(
-                                            "Address", address, addressColor),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 4.h),
-                                  _buildSectionHeader("ABILITIES"),
-                                  GestureDetector(
-                                    onTap: () => _editAbilityDetails(context),
-                                    child: Column(
-                                      children: [
-                                        _buildBulletPoint(
-                                            ability1, ability1Color),
-                                        _buildBulletPoint(
-                                            ability2, ability2Color),
-                                        _buildBulletPoint(
-                                            ability3, ability3Color),
-                                        _buildBulletPoint(
-                                            ability4, ability4Color),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 5.h),
-                                  _buildSectionHeader("REFERENCES"),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: reference.map((ref) {
-                                      return GestureDetector(
-                                        onTap: () =>
-                                            _editReferenceDetails(context, ref),
-                                        child: _buildReferenceItem(
-                                          name: ref['name']!,
-                                          title: ref['title']!,
-                                          email: ref['email']!,
-                                          phone: ref['phone']!,
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
