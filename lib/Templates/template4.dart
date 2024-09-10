@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -76,6 +77,16 @@ class _Template4State extends State<Template4> {
     }
   }
 
+
+  List<Skill> skills = [
+    Skill(name: 'Product Design', imagePath: AppImages.product),
+    Skill(name: 'UX Research', imagePath: AppImages.search),
+    Skill(name: 'UI/UX Design', imagePath: AppImages.phone),
+    Skill(name: 'UI/UX Design', imagePath: AppImages.icon),
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(595, 842));
@@ -85,7 +96,7 @@ class _Template4State extends State<Template4> {
           child: Column(
             children: [
               Container(
-                //height: 798.h,
+                height: 842.h,
                 width: 595.w,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -181,168 +192,57 @@ class _Template4State extends State<Template4> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 35.h,
-                                  decoration: BoxDecoration(
+                                ...skills.map((skill) => GestureDetector(
+                                  onTap: () => _showEditSkillDialog(context, skill, _updateSkill),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 35.h,
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5.r),
                                       color: Color(0xFF242424),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                      )),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r),
-                                          color: Color(0xFF646464),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SvgPicture.asset(
-                                            AppImages.product,
-                                            height: 14.h,
-                                            width: 14.w,
+                                      border: Border.all(color: Colors.white),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8.r),
+                                            color: Color(0xFF646464),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: skill.imagePath.endsWith('.svg')
+                                                ? SvgPicture.asset(
+                                              skill.imagePath,
+                                              height: 14.h,
+
+                                              width: 14.w,
+                                            )
+                                                : Image.file(
+                                              File(skill.imagePath),
+                                              height: 20.h,
+                                              width: 20.w,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        'Product Design',
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 35.h,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: Color(0xFF242424),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                      )),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r),
-                                          color: Color(0xFF646464),
-                                        ),
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(3.0),
-                                            child: SvgPicture.asset(
-                                              AppImages.search,
-                                              height: 14.h,
-                                              width: 14.w,
-                                            )),
-                                      ),
-                                      Text(
-                                        'UX Research',
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 35.h,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: Color(0xFF242424),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                      )),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r),
-                                          color: Color(0xFF646464),
-                                        ),
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(3.0),
-                                            child: SvgPicture.asset(
-                                              AppImages.phone,
-                                              height: 14.h,
-                                              width: 14.w,
-                                            )),
-                                      ),
-                                      Text(
-                                        'UI/UX Design',
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 35.h,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      color: Color(0xFF242424),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                      )),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r),
-                                          color: Color(0xFF646464),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: SvgPicture.asset(
-                                            AppImages.icon,
-                                            height: 14.h,
-                                            width: 14.h,
+                                        Text(
+                                          skill.name,
+                                          style: TextStyle(
+                                            fontSize: 10.sp,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
                                             color: Colors.white,
                                           ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'UI/UX Design',
-                                        style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                )).toList(),
                               ],
                             ),
                           ),
+
                           SizedBox(
                             height: 160.h,
                             width: 314.w,
@@ -1070,43 +970,92 @@ class _Template4State extends State<Template4> {
       context: context,
       builder: (BuildContext context) {
         final TextEditingController about1Controller =
-            TextEditingController(text: about1);
+        TextEditingController(text: about1);
         final TextEditingController about2Controller =
-            TextEditingController(text: about2);
+        TextEditingController(text: about2);
 
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: about1Controller,
-                decoration: const InputDecoration(labelText: 'About'),
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              title: const Text('Edit User About'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // About 1
+                    TextField(
+                      maxLines: 8,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(200),
+                      ],
+                      controller: about1Controller,
+                      onChanged: (value) {
+                        setState(() {}); // Rebuild the dialog to update the character count
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'About',
+                        hintText: 'Tell us about yourself (200 characters max)',
+                        border: const OutlineInputBorder(),
+                        counterText: '', // Hide the default character counter
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '${about1Controller.text.length}/200', // Display character count
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // About 2
+                    TextField(
+                      controller: about2Controller,
+                      maxLines: 8,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(200),
+                      ],
+                      onChanged: (value) {
+                        setState(() {}); // Rebuild the dialog to update the character count
+                      },
+                      decoration: InputDecoration(
+                        labelText: 'Detail',
+                        hintText:
+                        'Tell us about your about detail (200 characters max)',
+                        border: const OutlineInputBorder(),
+                        counterText: '', // Hide the default character counter
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '${about2Controller.text.length}/200', // Display character count
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              TextField(
-                controller: about2Controller,
-                decoration: const InputDecoration(labelText: 'Detail'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  about2 = about2Controller.text;
-                  about1 = about1Controller.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      about1 = about1Controller.text;
+                      about2 = about2Controller.text;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -1126,7 +1075,8 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: nameController,
-                decoration: const InputDecoration(labelText: 'UserName'),
+                decoration: const InputDecoration(labelText: 'UserName',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1170,15 +1120,20 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: detailsController,
-                decoration: const InputDecoration(labelText: 'Details'),
+                decoration: const InputDecoration(labelText: 'Details',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1224,15 +1179,20 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: yearController,
-                decoration: const InputDecoration(labelText: 'Year'),
+                decoration: const InputDecoration(labelText: 'Year',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: degreeController,
-                decoration: const InputDecoration(labelText: 'Degree'),
+                decoration: const InputDecoration(labelText: 'Degree',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: institutionController,
-                decoration: const InputDecoration(labelText: 'Institution'),
+                decoration: const InputDecoration(labelText: 'Institution',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1276,7 +1236,8 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: about1Controller,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(labelText: 'Email',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1318,7 +1279,8 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: about1Controller,
-                decoration: InputDecoration(labelText: 'Phone Number'),
+                decoration: InputDecoration(labelText: 'Phone Number',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1360,7 +1322,8 @@ class _Template4State extends State<Template4> {
             children: [
               TextField(
                 controller: about1Controller,
-                decoration: InputDecoration(labelText: 'Portfolio'),
+                decoration: InputDecoration(labelText: 'Portfolio',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1385,4 +1348,97 @@ class _Template4State extends State<Template4> {
       },
     );
   }
+
+
+
+  Future<void> _showEditSkillDialog(BuildContext context, Skill skill, Function(Skill) onSave) async {
+    final TextEditingController nameController = TextEditingController(text: skill.name);
+    String? newImagePath = skill.imagePath; // Initially, it could be an SVG asset
+
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              title: const Text('Edit Skill'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Image Update Section
+                  GestureDetector(
+                    onTap: () async {
+                      // Pick image from gallery
+                      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (pickedFile != null) {
+                        setState(() {
+                          newImagePath = pickedFile.path; // Update with local file path
+                        });
+                      }
+                    },
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundImage: newImagePath != null && !newImagePath!.endsWith('.svg')
+                          ? FileImage(File(newImagePath!)) as ImageProvider
+                          : AssetImage(skill.imagePath), // Default SVG or asset
+                      child: newImagePath == null || newImagePath!.endsWith('.svg')
+                          ? SvgPicture.asset(skill.imagePath) // Display SVG if it's still the default
+                          : null, // If it's a file, `FileImage` will handle the display
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Skill Name Update Section
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(labelText: 'Skill Name',
+                    border: OutlineInputBorder()),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    // Pass the updated skill back to the parent widget
+                    skill.name = nameController.text;
+                    skill.imagePath = newImagePath ?? skill.imagePath;
+
+                    onSave(skill); // Pass updated skill to the parent widget
+                    Navigator.of(context).pop(); // Close the dialog
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _updateSkill(Skill updatedSkill) {
+    setState(() {
+      // Find the index of the skill being updated and replace it
+      int index = skills.indexWhere((skill) => skill.name == updatedSkill.name);
+      if (index != -1) {
+        skills[index] = updatedSkill; // Update the skill in the list
+      }
+    });
+  }
+
 }
+
+
+
+class Skill {
+  String name;
+  String imagePath;
+
+  Skill({required this.name, required this.imagePath});
+}
+

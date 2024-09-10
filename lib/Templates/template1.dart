@@ -796,19 +796,29 @@ class _Template1State extends State<Template1> {
               children: [
                 TextField(
                   controller: phoneController,
-                  decoration: const InputDecoration(labelText: 'Phone'),
+                  decoration: const InputDecoration(labelText: 'Phone',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email',
+                    border: OutlineInputBorder(),),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: websiteController,
-                  decoration: const InputDecoration(labelText: 'Id'),
+                  decoration: const InputDecoration(labelText: 'Id',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: locationController,
-                  decoration: const InputDecoration(labelText: 'Address'),
+                  decoration: const InputDecoration(labelText: 'Address',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ],
             ),
@@ -863,25 +873,31 @@ class _Template1State extends State<Template1> {
                       int index = entry.key;
                       TextEditingController controller = entry.value;
 
-                      return Row(
+                      return Column(
                         children: [
-                          Expanded(
-                            child: TextField(
-                              controller: controller,
-                              decoration: InputDecoration(
-                                labelText: 'Ability ${index + 1}',
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: controller,
+                                  decoration: InputDecoration(
+                                    labelText: 'Ability ${index + 1}',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
                               ),
-                            ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setState(() {
+                                    controllers.removeAt(index);
+                                    abilities.removeAt(index);
+                                  });
+                                },
+                              ),
+                            ],
                           ),
-                          IconButton(
-                            icon: Icon(Icons.remove_circle),
-                            onPressed: () {
-                              setState(() {
-                                controllers.removeAt(index);
-                                abilities.removeAt(index);
-                              });
-                            },
-                          ),
+                          10.verticalSpace,
                         ],
                       );
                     }).toList(),
@@ -960,19 +976,30 @@ class _Template1State extends State<Template1> {
               children: [
                 TextField(
                   controller: nameController,
-                  decoration: const InputDecoration(labelText: 'Name'),
+                  decoration: const InputDecoration(labelText: 'Name',
+                  border: OutlineInputBorder()
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: titleController,
-                  decoration: const InputDecoration(labelText: 'Institute'),
+                  decoration: const InputDecoration(labelText: 'Institute',
+                  border: OutlineInputBorder()
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email',
+                  border: OutlineInputBorder()
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: phoneController,
-                  decoration: const InputDecoration(labelText: 'Phone'),
+                  decoration: const InputDecoration(labelText: 'Phone',
+                  border: OutlineInputBorder()
+                  ),
                 ),
               ],
             ),
@@ -1183,13 +1210,18 @@ class _Template1State extends State<Template1> {
               children: [
                 TextField(
                   controller: nameController,
-                  decoration: InputDecoration(labelText: 'Skill Name'),
+                  decoration: InputDecoration(labelText: 'Skill Name',
+                    border: const OutlineInputBorder(),
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: valueController,
                   keyboardType: TextInputType.number,
                   decoration:
-                      InputDecoration(labelText: 'Skill Value (0.0 - 1.0)'),
+                      InputDecoration(labelText: 'Skill Value (0.0 - 1.0)',
+                        border: const OutlineInputBorder(),
+                      ),
                 ),
               ],
             ),
@@ -1248,15 +1280,23 @@ class _Template1State extends State<Template1> {
               children: [
                 TextField(
                   controller: yearController,
-                  decoration: const InputDecoration(labelText: 'Year'),
+                  decoration: const InputDecoration(labelText: 'Year',
+                  border: const OutlineInputBorder(),
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: degreeController,
-                  decoration: const InputDecoration(labelText: 'Degree'),
+                  decoration: const InputDecoration(labelText: 'Degree',
+                  border: const OutlineInputBorder(),
+                  ),
                 ),
+                10.verticalSpace,
                 TextField(
                   controller: institutionController,
-                  decoration: const InputDecoration(labelText: 'Institution'),
+                  decoration: const InputDecoration(labelText: 'Institution',
+                  border: OutlineInputBorder()
+                  ),
                 ),
               ],
             ),

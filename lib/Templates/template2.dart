@@ -595,38 +595,45 @@ class _Template2State extends State<Template2> {
                       TextEditingController valueController =
                       TextEditingController(text: skill['level'].toString());
 
-                      return Row(
+                      return Column(
                         children: [
-                          Expanded(
-                            child: TextField(
-                              controller: nameController,
-                              decoration:
-                              InputDecoration(labelText: 'Skill Name'),
-                              onChanged: (value) {
-                                tempSkills[index]['name'] = value;
-                              },
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: nameController,
+                                  decoration:
+                                  InputDecoration(labelText: 'Skill Name',
+                                  border: OutlineInputBorder()),
+                                  onChanged: (value) {
+                                    tempSkills[index]['name'] = value;
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  controller: valueController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(labelText: 'Level',
+                                  border: OutlineInputBorder()),
+                                  onChanged: (value) {
+                                    tempSkills[index]['level'] =
+                                        int.tryParse(value) ?? 0;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setStateDialog(() {
+                                    tempSkills.removeAt(index);
+                                  });
+                                },
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: TextField(
-                              controller: valueController,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(labelText: 'Level'),
-                              onChanged: (value) {
-                                tempSkills[index]['level'] =
-                                    int.tryParse(value) ?? 0;
-                              },
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.remove_circle),
-                            onPressed: () {
-                              setStateDialog(() {
-                                tempSkills.removeAt(index);
-                              });
-                            },
-                          ),
+                          SizedBox(height: 8),
                         ],
                       );
                     }).toList(),
@@ -690,15 +697,20 @@ class _Template2State extends State<Template2> {
             children: [
               TextField(
                 controller: yearController,
-                decoration: const InputDecoration(labelText: 'Year'),
+                decoration: const InputDecoration(labelText: 'Year',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: degreeController,
-                decoration: const InputDecoration(labelText: 'Degree'),
+                decoration: const InputDecoration(labelText: 'Degree',
+                border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: institutionController,
-                decoration: const InputDecoration(labelText: 'Institution'),
+                decoration: const InputDecoration(labelText: 'Institution',
+                border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -751,36 +763,43 @@ class _Template2State extends State<Template2> {
                       TextEditingController proficiencyController =
                       TextEditingController(text: language['proficiency']);
 
-                      return Row(
+                      return Column(
                         children: [
-                          Expanded(
-                            child: TextField(
-                              controller: nameController,
-                              decoration: InputDecoration(labelText: 'Language'),
-                              onChanged: (value) {
-                                tempLanguages[index]['language'] = value;
-                              },
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: nameController,
+                                  decoration: InputDecoration(labelText: 'Language',
+                                  border: OutlineInputBorder()),
+                                  onChanged: (value) {
+                                    tempLanguages[index]['language'] = value;
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: TextField(
+                                  controller: proficiencyController,
+                                  decoration:
+                                  InputDecoration(labelText: 'Proficiency',
+                                  border: OutlineInputBorder()),
+                                  onChanged: (value) {
+                                    tempLanguages[index]['proficiency'] = value;
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setStateDialog(() {
+                                    tempLanguages.removeAt(index);
+                                  });
+                                },
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: TextField(
-                              controller: proficiencyController,
-                              decoration:
-                              InputDecoration(labelText: 'Proficiency'),
-                              onChanged: (value) {
-                                tempLanguages[index]['proficiency'] = value;
-                              },
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.remove_circle),
-                            onPressed: () {
-                              setStateDialog(() {
-                                tempLanguages.removeAt(index);
-                              });
-                            },
-                          ),
+                          SizedBox(height: 8),
                         ],
                       );
                     }).toList(),
@@ -845,7 +864,9 @@ class _Template2State extends State<Template2> {
                   children: [
                     TextField(
                       controller: nameController,
-                      decoration: const InputDecoration(labelText: 'Name'),
+                      decoration: const InputDecoration(labelText: 'Name',
+                      border: OutlineInputBorder()
+                      ),
                     ),
                     SizedBox(height: 10),
                     Align(
@@ -888,7 +909,9 @@ class _Template2State extends State<Template2> {
                     SizedBox(height: 20),
                     TextField(
                       controller: roleController,
-                      decoration: const InputDecoration(labelText: 'Role'),
+                      decoration: const InputDecoration(labelText: 'Role',
+                      border: OutlineInputBorder()
+                      ),
                     ),
                     SizedBox(height: 10),
                     Align(
@@ -985,19 +1008,22 @@ class _Template2State extends State<Template2> {
                   children: [
                     TextField(
                       controller: titleController,
-                      decoration: const InputDecoration(labelText: 'Title'),
+                      decoration: const InputDecoration(labelText: 'Title',
+                      border: OutlineInputBorder()),
                       style: const TextStyle(color: Colors.black),
                     ),
                     SizedBox(height: 10),
                     TextField(
                       controller: durationController,
-                      decoration: const InputDecoration(labelText: 'Duration'),
+                      decoration: const InputDecoration(labelText: 'Duration',
+                      border: OutlineInputBorder()),
                       style: const TextStyle(color: Colors.black),
                     ),
                     SizedBox(height: 10),
                     TextField(
                       controller: descriptionController,
-                      decoration: const InputDecoration(labelText: 'Description'),
+                      decoration: const InputDecoration(labelText: 'Description',
+                      border: OutlineInputBorder()),
                       style: const TextStyle(color: Colors.black),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(75),
@@ -1042,8 +1068,6 @@ class _Template2State extends State<Template2> {
       },
     );
   }
-
-
   void _editContactDetails(BuildContext context) {
     showDialog(
       context: context,
@@ -1062,15 +1086,20 @@ class _Template2State extends State<Template2> {
             children: [
               TextField(
                 controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration: const InputDecoration(labelText: 'Phone',
+                border: OutlineInputBorder()),
               ),
+              SizedBox(height: 10),
               TextField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email',
+                border: OutlineInputBorder()),
               ),
+              SizedBox(height: 10),
               TextField(
                 controller: websiteController,
-                decoration: const InputDecoration(labelText: 'Website'),
+                decoration: const InputDecoration(labelText: 'Website',
+                border: OutlineInputBorder()),
               ),
             ],
           ),

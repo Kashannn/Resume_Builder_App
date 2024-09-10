@@ -965,15 +965,20 @@ class _Template3State extends State<Template3> {
             children: [
               TextField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email',
+                    border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration: const InputDecoration(labelText: 'Phone',
+                    border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: webisteController,
-                decoration: const InputDecoration(labelText: 'Website'),
+                decoration: const InputDecoration(labelText: 'Website',
+                    border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1019,15 +1024,20 @@ class _Template3State extends State<Template3> {
             children: [
               TextField(
                 controller: yearController,
-                decoration: const InputDecoration(labelText: 'Year'),
+                decoration: const InputDecoration(labelText: 'Year',
+                    border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: degreeController,
-                decoration: const InputDecoration(labelText: 'Degree'),
+                decoration: const InputDecoration(labelText: 'Degree',
+                    border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: institutionController,
-                decoration: const InputDecoration(labelText: 'Institution'),
+                decoration: const InputDecoration(labelText: 'Institution',
+                    border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -1076,30 +1086,36 @@ class _Template3State extends State<Template3> {
                           int index = entry.key;
                           String expertiseName = entry.value['name']!;
               
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          return Column(
                             children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: TextEditingController(text: expertiseName),
-                                  decoration: InputDecoration(
-                                    labelText: 'Expertise Name',
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: TextField(
+                                      controller: TextEditingController(text: expertiseName),
+                                      decoration: InputDecoration(
+                                        labelText: 'Expertise Name',
+                                        border: OutlineInputBorder(),
+                                      ),
+                                      onChanged: (value) {
+                                        setStateDialog(() {
+                                          expertiseData[index] = {'name': value};
+                                        });
+                                      },
+                                    ),
                                   ),
-                                  onChanged: (value) {
-                                    setStateDialog(() {
-                                      expertiseData[index] = {'name': value};
-                                    });
-                                  },
-                                ),
+                                  IconButton(
+                                    icon: Icon(Icons.remove_circle),
+                                    onPressed: () {
+                                      setStateDialog(() {
+                                        expertiseData.removeAt(index); // Remove item and update dialog state
+                                      });
+                                    },
+                                  ),
+                                ],
                               ),
-                              IconButton(
-                                icon: Icon(Icons.remove_circle),
-                                onPressed: () {
-                                  setStateDialog(() {
-                                    expertiseData.removeAt(index); // Remove item and update dialog state
-                                  });
-                                },
-                              ),
+                              10.verticalSpace,
                             ],
                           );
                         }).toList(),
@@ -1173,30 +1189,36 @@ class _Template3State extends State<Template3> {
                           int index = entry.key;
                           String skillName = entry.value['name']!;
               
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          return Column(
                             children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: TextEditingController(text: skillName),
-                                  decoration: InputDecoration(
-                                    labelText: 'Skill Name',
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: TextField(
+                                      controller: TextEditingController(text: skillName),
+                                      decoration: InputDecoration(
+                                        labelText: 'Skill Name',
+                                        border: OutlineInputBorder(),
+                                      ),
+                                      onChanged: (value) {
+                                        setStateDialog(() {
+                                          skillsData[index] = {'name': value};
+                                        });
+                                      },
+                                    ),
                                   ),
-                                  onChanged: (value) {
-                                    setStateDialog(() {
-                                      skillsData[index] = {'name': value};
-                                    });
-                                  },
-                                ),
+                                  IconButton(
+                                    icon: Icon(Icons.remove_circle),
+                                    onPressed: () {
+                                      setStateDialog(() {
+                                        skillsData.removeAt(index); // Remove skill
+                                      });
+                                    },
+                                  ),
+                                ],
                               ),
-                              IconButton(
-                                icon: Icon(Icons.remove_circle),
-                                onPressed: () {
-                                  setStateDialog(() {
-                                    skillsData.removeAt(index); // Remove skill
-                                  });
-                                },
-                              ),
+                              10.verticalSpace,
                             ],
                           );
                         }).toList(),
@@ -1340,16 +1362,21 @@ class _Template3State extends State<Template3> {
                 children: [
                   TextField(
                     controller: titleController,
-                    decoration: const InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title',
+                    border: OutlineInputBorder()),
                   ),
+                  10.verticalSpace,
                   TextField(
                     controller: detailsController,
-                    decoration: const InputDecoration(labelText: 'Details'),
+                    decoration: const InputDecoration(labelText: 'Details',
+                    border: OutlineInputBorder()),
                   ),
+                  10.verticalSpace,
                   TextFormField(
                     maxLines: 5,
                     controller: descriptionController,
-                    decoration: const InputDecoration(labelText: 'Description'),
+                    decoration: const InputDecoration(labelText: 'Description',
+                    border: OutlineInputBorder()),
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(100),
                     ],

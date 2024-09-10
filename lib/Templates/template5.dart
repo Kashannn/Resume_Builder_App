@@ -1,6 +1,7 @@
 import 'package:cvapp/utils/constant/app_images_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -80,7 +81,7 @@ class _Template5State extends State<Template5> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(686, 1450));
+    ScreenUtil.init(context, designSize: const Size(686, 1320));
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -95,7 +96,7 @@ class _Template5State extends State<Template5> {
                 children: [
                   Container(
                     width: 250.w,
-                    height: 812.h,
+                    height: 800.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     decoration: BoxDecoration(
                       color: Color(0xFF1B2530),
@@ -222,7 +223,7 @@ class _Template5State extends State<Template5> {
                   ),
                   Container(
                     width: 400.w,
-                    height: 812.h,
+                    height: 800.h,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -456,15 +457,19 @@ class _Template5State extends State<Template5> {
             children: [
               TextField(
                 controller: yearController,
-                decoration: const InputDecoration(labelText: 'Year'),
+                decoration: const InputDecoration(labelText: 'Year',       border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: degreeController,
-                decoration: const InputDecoration(labelText: 'Degree'),
+                decoration: const InputDecoration(labelText: 'Degree',       border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: institutionController,
-                decoration: const InputDecoration(labelText: 'Institution'),
+                decoration: const InputDecoration(labelText: 'Institution',
+                  border: OutlineInputBorder()
+                ),
               ),
             ],
           ),
@@ -512,19 +517,33 @@ class _Template5State extends State<Template5> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title', border: const OutlineInputBorder(),),
               ),
+              10.verticalSpace,
               TextField(
                 controller: companyController,
-                decoration: const InputDecoration(labelText: 'Company'),
+                decoration: const InputDecoration(labelText: 'Company', border: const OutlineInputBorder(),),
               ),
+              10.verticalSpace,
               TextField(
                 controller: durationController,
-                decoration: const InputDecoration(labelText: 'Duration'),
+                decoration: const InputDecoration(labelText: 'Duration',
+                  border: const OutlineInputBorder(),
+                ),
               ),
+              10.verticalSpace,
               TextField(
+                maxLines: 5,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(100)
+                ],
                 controller: descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  hintText: 'Add a short description (200 characters max)',
+                  border: const OutlineInputBorder(),
+                  counterText: '', // Hide the default character counter
+                ),
               ),
             ],
           ),
@@ -553,83 +572,193 @@ class _Template5State extends State<Template5> {
     );
   }
 
-  Future<List<String>?> _showSkillsEditDialog() async {
-    final skillsController = TextEditingController(text: skills.join(', '));
+  Future<void> _showSkillsEditDialog() async {
+    // List of controllers for each skill text field
+    List<TextEditingController> skillControllers = skills
+        .map((skill) => TextEditingController(text: skill))
+        .toList();
 
-    return await showDialog<List<String>>(
+    // Show dialog for editing skills
+    await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Skills'),
-          content: TextField(
-            controller: skillsController,
-            decoration: InputDecoration(
-              labelText: 'Skills (comma separated)',
-            ),
-            maxLines: 5,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  skills = skillsController.text
-                      .split(',')
-                      .map((s) => s.trim())
-                      .where((s) => s.isNotEmpty) // filter out any empty skills
-                      .toList();
-                });
-                Navigator.pop(context, skills);
-              },
-              child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, null),
-              child: Text('Cancel'),
-            ),
-          ],
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text('Edit Skills'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ...List.generate(skillControllers.length, (index) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: skillControllers[index],
+                                  decoration: InputDecoration(
+                                    labelText: 'Skill ${index + 1}',
+                                    border: const OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setState(() {
+                                    // Remove skill and its controller
+                                    skillControllers.removeAt(index);
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                        ],
+                      );
+                    }),
+                    SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          // Add a new empty skill
+                          skillControllers.add(TextEditingController());
+                        });
+                      },
+                      icon: Icon(Icons.add),
+                      label: Text('Add Skill'),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    // Update the main skills list from the controllers
+                    setState(() {
+                      skills = skillControllers
+                          .map((controller) => controller.text.trim())
+                          .where((text) => text.isNotEmpty)
+                          .toList();
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
+
+    // After dialog is dismissed, call setState() to rebuild the parent widget with updated skills
+    setState(() {});
   }
 
-  Future<List<String>?> _showValuesEditDialog() async {
-    final skillsController = TextEditingController(text: Values.join(', '));
 
-    return await showDialog<List<String>>(
+
+  Future<void> _showValuesEditDialog() async {
+    // List of controllers for each value text field
+    List<TextEditingController> valueControllers = Values
+        .map((value) => TextEditingController(text: value))
+        .toList();
+
+    // Show dialog for editing values
+    await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Values'),
-          content: TextField(
-            controller: skillsController,
-            decoration: InputDecoration(
-              labelText: 'Values (comma separated)',
-            ),
-            maxLines: 5,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  Values = skillsController.text
-                      .split(',')
-                      .map((s) => s.trim())
-                      .where((s) => s.isNotEmpty) // filter out any empty skills
-                      .toList();
-                });
-                Navigator.pop(context, skills);
-              },
-              child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, null),
-              child: Text('Cancel'),
-            ),
-          ],
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text('Edit Values'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Generate TextFields for each value
+                    ...List.generate(valueControllers.length, (index) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: valueControllers[index],
+                                  decoration: InputDecoration(
+                                    labelText: 'Value ${index + 1}',
+                                    border: const OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setState(() {
+                                    // Remove value and its controller
+                                    valueControllers.removeAt(index);
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8), // Add space between text fields
+                        ],
+                      );
+                    }),
+                    SizedBox(height: 16),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          // Add a new empty value
+                          valueControllers.add(TextEditingController());
+                        });
+                      },
+                      icon: Icon(Icons.add),
+                      label: Text('Add Value'),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      // Update the main Values list from the controllers
+                      Values = valueControllers
+                          .map((controller) => controller.text.trim())
+                          .where((text) => text.isNotEmpty)
+                          .toList();
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
+
+    // After dialog is dismissed, call setState() in the parent to update the UI
+    setState(() {});
   }
+
 
   void _editContactDetails(BuildContext context) {
     showDialog(
@@ -647,11 +776,12 @@ class _Template5State extends State<Template5> {
             children: [
               TextField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email',border: OutlineInputBorder()),
               ),
+              10.verticalSpace,
               TextField(
                 controller: phoneController,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration: const InputDecoration(labelText: 'Phone',border: OutlineInputBorder()),
               ),
             ],
           ),
@@ -692,7 +822,9 @@ class _Template5State extends State<Template5> {
             children: [
               TextField(
                 controller: nameController,
-                decoration: const InputDecoration(labelText: 'UserName'),
+                decoration: const InputDecoration(labelText: 'UserName',
+                border: OutlineInputBorder()
+                ),
               ),
             ],
           ),
@@ -898,44 +1030,75 @@ class _Template5State extends State<Template5> {
   }
 
   void _editAboutDetail(BuildContext context) {
+    // Controller to manage text input inside the dialog
+    final TextEditingController about1Controller = TextEditingController(text: about);
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController about1Controller =
-            TextEditingController(text: about);
-
-        return AlertDialog(
-          title: const Text('Edit User Details'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: about1Controller,
-                decoration: const InputDecoration(labelText: 'About'),
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit User Details'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    maxLines: 8,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(200),
+                    ],
+                    controller: about1Controller,
+                    onChanged: (text) {
+                      setStateDialog(() {}); // Update character count within the dialog
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Experience',
+                      hintText: 'Tell us about your experience (200 characters max)',
+                      border: const OutlineInputBorder(),
+                      counterText: '', // Hide the default character counter
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '${about1Controller.text.length}/200', // Display character count
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  about = about1Controller.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    // Close the dialog and update the 'about' field after popping
+                    Navigator.of(context).pop(about1Controller.text); // Return the updated text when closing the dialog
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
-    );
+    ).then((updatedText) {
+      // Check if the dialog returned an updated text (when "Save" is pressed)
+      if (updatedText != null) {
+        setState(() {
+          about = updatedText; // Update the 'about' value in the parent widget
+        });
+      }
+    });
   }
+
+
+
 
   Widget _buildEducationItem({
     required String degree,
