@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -40,13 +41,15 @@ class _Template1State extends State<Template1> {
   String email = 'contact@peter.com';
   String mobile = '+001 123 456 789';
   String address = 'address, city, country';
-  String ability1 = 'Lorem ipsum dolor sit amet';
-  String ability2 = 'Lorem ipsum dolor sit amet';
-  String ability3 = 'Lorem ipsum dolor sit amet';
-  String ability4 = 'Lorem ipsum dolor sit amet';
+  List<String> abilities = [
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor sit amet'
+  ];
 
   String about =
-      "Position title and any relevant details. I am a tech enthusiast .I am passionate about designs, goal driven, quick to learn and a highly productive individual. I have various industry ready design skills, I am experienced in various software design tools, experienced in providing technical support to users, collaborated on design projects and working in a team-oriented environment. Both remotely and on-site.";
+      "Position title and any relevant details. I am a tech enthusiast .I am passionate about designs, goal driven, quick to learn and a highly productive individual. I have various industry ready design skills, I am experienced in various software design tools.";
   String experience =
       "As the creative director at Longchris foundation, I worked to create graphic design and marketing solutions to deliver engaging content that meets our audience’s needs. Designed the foundation’s website and managed its contentsto pass standard and accurate brand identity.";
 
@@ -225,17 +228,13 @@ class _Template1State extends State<Template1> {
                                   onTap: () => _editAbilityDetails(context),
                                   child: Column(
                                     children: [
-                                      _buildBulletPoint(
-                                          ability1, ability1Color),
-                                      _buildBulletPoint(
-                                          ability2, ability2Color),
-                                      _buildBulletPoint(
-                                          ability3, ability3Color),
-                                      _buildBulletPoint(
-                                          ability4, ability4Color),
+
+                                      for (int i = 0; i < abilities.length; i++)
+                                        _buildBulletPoint(abilities[i], ability1Color),
                                     ],
                                   ),
                                 ),
+
                                 SizedBox(height: 5.h),
                                 _buildSectionHeader("REFERENCES"),
                                 Column(
@@ -791,6 +790,7 @@ class _Template1State extends State<Template1> {
         return AlertDialog(
           title: const Text('Edit Contact Details'),
           content: SingleChildScrollView(
+
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -844,79 +844,94 @@ class _Template1State extends State<Template1> {
   }
 
   void _editAbilityDetails(BuildContext context) {
+    List<TextEditingController> controllers = abilities
+        .map((ability) => TextEditingController(text: ability))
+        .toList();
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController ability1Controller =
-            TextEditingController(text: ability1);
-        final TextEditingController ability2Controller =
-            TextEditingController(text: ability2);
-        final TextEditingController ability3Controller =
-            TextEditingController(text: ability3);
-        final TextEditingController ability4Controller =
-            TextEditingController(text: ability4);
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Edit Ability Details'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ...controllers.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      TextEditingController controller = entry.value;
 
-        // Temporary color holders for abilities
-        Color tempAbility1Color = ability1Color;
-        Color tempAbility2Color = ability2Color;
-        Color tempAbility3Color = ability3Color;
-        Color tempAbility4Color = ability4Color;
-
-        return AlertDialog(
-          title: const Text('Edit Ability Details'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  controller: ability1Controller,
-                  decoration: const InputDecoration(labelText: 'Ability 1'),
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: controller,
+                              decoration: InputDecoration(
+                                labelText: 'Ability ${index + 1}',
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.remove_circle),
+                            onPressed: () {
+                              setState(() {
+                                controllers.removeAt(index);
+                                abilities.removeAt(index);
+                              });
+                            },
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            setState(() {
+                              controllers.add(TextEditingController(text: ''));
+                              abilities.add('');
+                            });
+                          },
+                          icon: Icon(Icons.add),
+                          label: Text('Add'),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                TextField(
-                  controller: ability2Controller,
-                  decoration: const InputDecoration(labelText: 'Ability 2'),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      // Update the abilities list with the new values from controllers
+                      abilities = controllers.map((c) => c.text).toList();
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Save'),
                 ),
-                TextField(
-                  controller: ability3Controller,
-                  decoration: const InputDecoration(labelText: 'Ability 3'),
-                ),
-                TextField(
-                  controller: ability4Controller,
-                  decoration: const InputDecoration(labelText: 'Ability 4'),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
                 ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  // Update the ability text and the respective colors
-                  ability1 = ability1Controller.text;
-                  ability2 = ability2Controller.text;
-                  ability3 = ability3Controller.text;
-                  ability4 = ability4Controller.text;
-
-                  ability1Color = tempAbility1Color;
-                  ability2Color = tempAbility2Color;
-                  ability3Color = tempAbility3Color;
-                  ability4Color = tempAbility4Color;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+            );
+          },
         );
       },
-    );
+    ).then((_) {
+      // Force a rebuild of the parent widget after the dialog is closed
+      setState(() {});
+    });
   }
+
 
   void _editReferenceDetails(BuildContext context, Map<String, String> item) {
     showDialog(
@@ -994,52 +1009,72 @@ class _Template1State extends State<Template1> {
   }
 
   Future<void> _editAboutMe() async {
-    final newAboutMe =
-        await _showEditDialog('Description', about, multiline: true);
+    TextEditingController aboutController = TextEditingController(text: about);
+    int charCount = aboutController.text.length;
 
-    Color tempAboutMeColor = aboutMeColor;
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Edit About Me'),
-          content: SingleChildScrollView(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: TextEditingController(text: about),
-                    maxLines: 10,
-                    decoration:
-                        InputDecoration(hintText: 'Enter new description'),
-                    onChanged: (value) {
-                      about = value;
-                    },
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit About Me'),
+              content: SingleChildScrollView(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'About',
+                          hintText:
+                              'Tell us about yourself (300 characters max)',
+                          border: const OutlineInputBorder(),
+                          counterText: '', // Hide the default character counter
+                        ),
+                        controller: aboutController,
+                        maxLines: 10,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(300),
+                        ],
+                        onChanged: (value) {
+                          setStateDialog(() {
+                            charCount = value.length; // Update character count
+                          });
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          '$charCount/300', // Display updated character count
+                          style:
+                              const TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  about = newAboutMe ?? about;
-                  aboutMeColor = tempAboutMeColor;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      about = aboutController.text;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -1055,42 +1090,77 @@ class _Template1State extends State<Template1> {
     }
   }
 
-  Future<String?> _showEditDialog(String title, String initialValue,
-      {bool multiline = false}) async {
+  Future<String?> _showEditDialog(
+      String title,
+      String initialValue, {
+        bool multiline = false,
+      }) async {
     final controller = TextEditingController(text: initialValue);
+
     return await showDialog<String>(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text(title),
-          content: multiline
-              ? TextField(
-                  controller: controller,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
-                )
-              : TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                    hintText: 'Enter new $title',
-                  ),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: Text(title),
+              content: multiline
+                  ? Container(
+                height: 300,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: controller,
+                      maxLines: 12,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(300)
+                      ],
+                      decoration: InputDecoration(
+                        labelText: 'Experience',
+                        hintText:
+                        'Tell us about your experience (300 characters max)',
+                        border: const OutlineInputBorder(),
+                        counterText: '', // Hide the default character counter
+                      ),
+                      onChanged: (text) {
+                        setStateDialog(() {
+                          // Trigger rebuild to update the character count
+                        });
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '${controller.text.length}/300', // Display character count
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, controller.text),
-              child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, null),
-              child: Text('Cancel'),
-            ),
-          ],
+              )
+                  : TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  hintText: 'Enter new $title',
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, controller.text),
+                  child: Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, null),
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
   }
+
 
   Future<void> _editSkillDialog(BuildContext context, int index,
       String currentName, double currentValue) async {
