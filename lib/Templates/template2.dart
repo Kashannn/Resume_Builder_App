@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -309,7 +310,7 @@ class _Template2State extends State<Template2> {
     return GestureDetector(
       onTap: () => _editAboutMe(context),
       child: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 16.0),
+        padding: EdgeInsets.only(left: 18.0, right: 16.0),
         child: Text(
           about,
           style: TextStyle(
@@ -319,6 +320,7 @@ class _Template2State extends State<Template2> {
             color: aboutColor, // Dynamic color for About text
           ),
           textAlign: TextAlign.justify,
+
         ),
       ),
     );
@@ -349,33 +351,25 @@ class _Template2State extends State<Template2> {
   }
 
   Widget _buildLanguagesSection() {
-    return Container(
-        padding: EdgeInsets.only(
-            left: 24.w, right: 16.w, top: 5.h, bottom: 5.h), // Add padding here
+    return GestureDetector(
+      onTap: () => _editLanguagesDialog(context),
+      child: Container(
+        padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 5.h, bottom: 5.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...languages.asMap().entries.map((entry) {
-              int index = entry.key;
-              Map<String, String> lang = entry.value;
-
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: () => _editLanguages(context, index,
-                        lang['language']!, lang['proficiency']!),
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 8.h),
-                      child: _buildLanguageItem(
-                          lang['language']!, lang['proficiency']!),
-                    ),
-                  ),
-                ],
+            ...languages.map((lang) {
+              return Padding(
+                padding: EdgeInsets.only(bottom: 8.h),
+                child: _buildLanguageItem(lang['language']!, lang['proficiency']!),
               );
             }).toList(),
           ],
-        ));
+        ),
+      ),
+    );
   }
+
 
   Widget _buildContactSection() {
     return Container(
@@ -466,25 +460,22 @@ class _Template2State extends State<Template2> {
   }
 
   Widget _buildSkillsSection() {
-    return Container(
-      padding: EdgeInsets.only(
-          left: 24.w, right: 16.w, top: 24.h, bottom: 24.h), // Add padding here
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ...skills.asMap().entries.map((entry) {
-            int index = entry.key;
-            Map<String, dynamic> skill = entry.value;
-            return GestureDetector(
-              onTap: () => _editSkillDialog(
-                  context, index, skill['name']!, skill['level']!),
-              child: Padding(
+    return GestureDetector(
+      onTap: () => _editSkillsDialog(context),
+      child: Container(
+        padding: EdgeInsets.only(
+            left: 24.w, right: 16.w, top: 24.h, bottom: 24.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ...skills.map((skill) {
+              return Padding(
                 padding: EdgeInsets.only(bottom: 8.h),
-                child: _buildSkillItem(skill['name']!, skill['level']!),
-              ),
-            );
-          }).toList(),
-        ],
+                child: _buildSkillItem(skill['name'], skill['level']),
+              );
+            }).toList(),
+          ],
+        ),
       ),
     );
   }
@@ -581,58 +572,101 @@ class _Template2State extends State<Template2> {
     );
   }
 
-  Future<void> _editSkillDialog(BuildContext context, int index,
-      String currentName, int currentValue) async {
-    TextEditingController nameController =
-        TextEditingController(text: currentName);
-    TextEditingController valueController =
-        TextEditingController(text: currentValue.toString());
+  Future<void> _editSkillsDialog(BuildContext context) async {
+    List<Map<String, dynamic>> tempSkills = List.from(skills);
 
     await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Skill'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'Skill Name'),
-              ),
-              TextField(
-                controller: valueController,
-                keyboardType: TextInputType.number,
-                decoration:
-                    InputDecoration(labelText: 'Skill Value (0.0 - 100)'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                String newName = nameController.text;
-                int newValue =
-                    int.tryParse(valueController.text) ?? currentValue;
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: Text('Edit Skills'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ...tempSkills.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      Map<String, dynamic> skill = entry.value;
 
-                setState(() {
-                  skills[index] = {
-                    'name': newName,
-                    'level': newValue,
-                  };
-                });
+                      TextEditingController nameController =
+                      TextEditingController(text: skill['name']);
+                      TextEditingController valueController =
+                      TextEditingController(text: skill['level'].toString());
 
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: nameController,
+                              decoration:
+                              InputDecoration(labelText: 'Skill Name'),
+                              onChanged: (value) {
+                                tempSkills[index]['name'] = value;
+                              },
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Expanded(
+                            child: TextField(
+                              controller: valueController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(labelText: 'Level'),
+                              onChanged: (value) {
+                                tempSkills[index]['level'] =
+                                    int.tryParse(value) ?? 0;
+                              },
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.remove_circle),
+                            onPressed: () {
+                              setStateDialog(() {
+                                tempSkills.removeAt(index);
+                              });
+                            },
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            setStateDialog(() {
+                              tempSkills.add({'name': '', 'level': 0});
+                            });
+                          },
+                          icon: Icon(Icons.add),
+                          label: Text('Add'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      skills = tempSkills; // Save changes to the main list
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
@@ -692,60 +726,102 @@ class _Template2State extends State<Template2> {
     );
   }
 
-  Future<void> _editLanguages(BuildContext context, int index,
-      String currentName, String currentProficiency) async {
-    TextEditingController nameController =
-        TextEditingController(text: currentName);
-    TextEditingController proficiencyController =
-        TextEditingController(text: currentProficiency);
+  Future<void> _editLanguagesDialog(BuildContext context) async {
+    // Create a temporary copy of languages to edit
+    List<Map<String, String>> tempLanguages = List.from(languages);
 
     await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Language'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'Language Name'),
-              ),
-              SizedBox(height: 16.h),
-              TextField(
-                controller: proficiencyController,
-                decoration: InputDecoration(labelText: 'Proficiency Level'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                String newName = nameController.text;
-                String newProficiency = proficiencyController.text;
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: Text('Edit Languages'),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Display each language with edit and remove options
+                    ...tempLanguages.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      Map<String, String> language = entry.value;
 
-                setState(() {
-                  languages[index] = {
-                    'language': newName,
-                    'proficiency': newProficiency,
-                  };
-                });
+                      TextEditingController nameController =
+                      TextEditingController(text: language['language']);
+                      TextEditingController proficiencyController =
+                      TextEditingController(text: language['proficiency']);
 
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: nameController,
+                              decoration: InputDecoration(labelText: 'Language'),
+                              onChanged: (value) {
+                                tempLanguages[index]['language'] = value;
+                              },
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Expanded(
+                            child: TextField(
+                              controller: proficiencyController,
+                              decoration:
+                              InputDecoration(labelText: 'Proficiency'),
+                              onChanged: (value) {
+                                tempLanguages[index]['proficiency'] = value;
+                              },
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.remove_circle),
+                            onPressed: () {
+                              setStateDialog(() {
+                                tempLanguages.removeAt(index);
+                              });
+                            },
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                    SizedBox(height: 10),
+                    // Add language button
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setStateDialog(() {
+                          tempLanguages.add({'language': '', 'proficiency': ''});
+                        });
+                      },
+                      icon: Icon(Icons.add),
+                      label: Text('Add Language'),
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog without saving
+                  },
+                  child: Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      languages = tempLanguages; // Update main languages list
+                    });
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: Text('Save'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
   }
+
 
   void _editUserDetails(BuildContext context) {
     TextEditingController nameController =
@@ -886,23 +962,21 @@ class _Template2State extends State<Template2> {
 
   void _editExperienceItem(BuildContext context, Map<String, String> item) {
     Color tempTitleColor = Colors.greenAccent; // Temporary color for the title
-    Color tempDescriptionColor =
-        Colors.white70; // Temporary color for the description
-    Color tempDurationColor =
-        Colors.white70; // Temporary color for the duration
+    Color tempDescriptionColor = Colors.white70; // Temporary color for description
+    Color tempDurationColor = Colors.white70; // Temporary color for duration
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-            TextEditingController(text: item['title']);
+        TextEditingController(text: item['title']);
         final TextEditingController descriptionController =
-            TextEditingController(text: item['description']);
+        TextEditingController(text: item['description']);
         final TextEditingController durationController =
-            TextEditingController(text: item['duration']);
+        TextEditingController(text: item['duration']);
 
         return StatefulBuilder(
-          builder: (context, setState) {
+          builder: (context, setStateDialog) {
             return AlertDialog(
               title: const Text('Edit Experience'),
               content: SingleChildScrollView(
@@ -912,21 +986,33 @@ class _Template2State extends State<Template2> {
                     TextField(
                       controller: titleController,
                       decoration: const InputDecoration(labelText: 'Title'),
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 10),
                     TextField(
                       controller: durationController,
                       decoration: const InputDecoration(labelText: 'Duration'),
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 10),
                     TextField(
                       controller: descriptionController,
-                      decoration:
-                          const InputDecoration(labelText: 'Description'),
-                      style: TextStyle(color: Colors.black),
+                      decoration: const InputDecoration(labelText: 'Description'),
+                      style: const TextStyle(color: Colors.black),
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(75),
+                      ],
                       maxLines: 5,
+                      onChanged: (text) {
+                        setStateDialog(() {}); // Rebuild the dialog to update character count
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '${descriptionController.text.length}/75', // Display character count
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
                     ),
                   ],
                 ),
@@ -938,15 +1024,14 @@ class _Template2State extends State<Template2> {
                       item['title'] = titleController.text;
                       item['description'] = descriptionController.text;
                       item['duration'] = durationController.text;
-                      // Save the selected colors
                     });
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(); // Close dialog
                   },
                   child: const Text('Save'),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(); // Close dialog without saving
                   },
                   child: const Text('Cancel'),
                 ),
@@ -957,6 +1042,7 @@ class _Template2State extends State<Template2> {
       },
     );
   }
+
 
   void _editContactDetails(BuildContext context) {
     showDialog(
@@ -1030,8 +1116,26 @@ class _Template2State extends State<Template2> {
                   children: [
                     TextField(
                       controller: aboutController,
-                      decoration: const InputDecoration(labelText: 'About Me'),
-                      maxLines: 3,
+                      decoration: InputDecoration(
+                        labelText: 'About',
+                        hintText: 'Tell us about yourself (200 characters max)',
+                        border: const OutlineInputBorder(),
+                        counterText: '', // Hide the default character counter
+                      ),
+                      maxLines: 8,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(200), // Limit to 300 characters
+                      ],
+                      onChanged: (text) {
+                        setStateDialog(() {}); // Rebuild dialog to update character count
+                      },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        '${aboutController.text.length}/200', // Display character count
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
                     ),
                   ],
                 ),
@@ -1060,6 +1164,8 @@ class _Template2State extends State<Template2> {
       },
     );
   }
+
+
 
   Future<String?> _showEditDialog(String title, String initialValue,
       {bool multiline = false}) async {

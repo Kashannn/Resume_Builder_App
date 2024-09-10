@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -398,43 +399,41 @@ class _Template3State extends State<Template3> {
                                 ],
                               )),
                         ),
+
+// Main widget for expertise section
                         SizedBox(
                           width: 190.w,
-                          //height: 113.h,
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8.w, vertical: 8.h),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Expertise",
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.sp,
-                                      color: Colors.white,
-                                    ),
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Expertise",
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16.sp,
+                                    color: Colors.white,
                                   ),
-                                  SizedBox(height: 8.h),
-                                  // Loop through the skillsData list and build each item
-                                  ...expertiseData.map((skill) {
-                                    int index = expertiseData.indexOf(skill);
-                                    return GestureDetector(
-                                      onTap: () => _editExpertiseDialog(
-                                          context, index, skill['name']!),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 4
-                                                .h), // Adjust the spacing between items
-                                        child:
-                                            _buildExpertiseItem(skill['name']!),
-                                      ),
-                                    );
-                                  }).toList(),
-                                ],
-                              )),
+                                ),
+                                SizedBox(height: 8.h),
+                                // Loop through the expertiseData list and build each item
+                                ...expertiseData.map((expertise) {
+                                  int index = expertiseData.indexOf(expertise);
+                                  return GestureDetector(
+                                    onTap: () => _editExpertiseDialog(context),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(bottom: 4.h),
+                                      child: _buildExpertiseItem(expertise['name']!),
+                                    ),
+                                  );
+                                }).toList(),
+                              ],
+                            ),
+                          ),
                         ),
+
                         SizedBox(
                           width: 190.w,
                           //height: 113.h,
@@ -457,7 +456,7 @@ class _Template3State extends State<Template3> {
                                   int index = skillsData.indexOf(skill);
                                   return GestureDetector(
                                     onTap: () => _editSkillDialog(
-                                        context, index, skill['name']!),
+                                        context),
                                     child: Padding(
                                       padding: EdgeInsets.only(
                                           bottom: 4
@@ -563,7 +562,7 @@ class _Template3State extends State<Template3> {
                                             color: Colors.white,
                                           ),
                                         ),
-                                        SizedBox(height: 8.h),
+                                        SizedBox(height: 5.h),
                                         // Loop through the experiences list and build each experience item
                                         ...experiences.map((experience) {
                                           return GestureDetector(
@@ -1056,187 +1055,342 @@ class _Template3State extends State<Template3> {
     );
   }
 
-  Future<void> _editExpertiseDialog(
-      BuildContext context, int index, String currentName) async {
-    TextEditingController nameController =
-        TextEditingController(text: currentName);
+  Future<void> _editExpertiseDialog(BuildContext context) async {
+    TextEditingController newExpertiseController = TextEditingController();
+
     await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Expertise'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'Expertise Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) { // Using setStateDialog to update inside the dialog
+            return SingleChildScrollView(
+              child: AlertDialog(
+                title: Text('Edit Expertise'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Show all existing expertise items
+                    Column(
+                      children: [
+                        ...expertiseData.asMap().entries.map((entry) {
+                          int index = entry.key;
+                          String expertiseName = entry.value['name']!;
+              
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: TextEditingController(text: expertiseName),
+                                  decoration: InputDecoration(
+                                    labelText: 'Expertise Name',
+                                  ),
+                                  onChanged: (value) {
+                                    setStateDialog(() {
+                                      expertiseData[index] = {'name': value};
+                                    });
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setStateDialog(() {
+                                    expertiseData.removeAt(index); // Remove item and update dialog state
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ],
+                    ),
+                    SizedBox(height: 10.h),
+                    // Text field to add new expertise
+
+                    SizedBox(height: 10.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            setStateDialog(() {
+                              expertiseData.add({'name': '', });
+                            });
+                          },
+                          icon: Icon(Icons.add),
+                          label: Text('Add'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        // Update the state in the parent widget if necessary
+                        // This will save the data when the user clicks save
+                      });
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Save'),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                String newName = nameController.text;
-
-                setState(() {
-                  expertiseData[index] = {
-                    'name': newName,
-                  };
-                });
-
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
+            );
+          },
         );
       },
     );
   }
 
-  Future<void> _editSkillDialog(
-      BuildContext context, int index, String currentName) async {
-    TextEditingController nameController =
-        TextEditingController(text: currentName);
+
+  Future<void> _editSkillDialog(BuildContext context) async {
+    TextEditingController newSkillController = TextEditingController();
+
     await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text('Edit Skill'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: 'Skill Name'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return SingleChildScrollView(
+              child: AlertDialog(
+                title: Text('Edit Skills'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Display all skills with the ability to remove
+                    Column(
+                      children: [
+                        ...skillsData.asMap().entries.map((entry) {
+                          int index = entry.key;
+                          String skillName = entry.value['name']!;
+              
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: TextEditingController(text: skillName),
+                                  decoration: InputDecoration(
+                                    labelText: 'Skill Name',
+                                  ),
+                                  onChanged: (value) {
+                                    setStateDialog(() {
+                                      skillsData[index] = {'name': value};
+                                    });
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.remove_circle),
+                                onPressed: () {
+                                  setStateDialog(() {
+                                    skillsData.removeAt(index); // Remove skill
+                                  });
+                                },
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ],
+                    ),
+                    SizedBox(height: 10.h),
+                    // Input for adding new skill
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            setStateDialog(() {
+                              skillsData.add({'name': ''});
+                            });
+                          },
+                          icon: Icon(Icons.add),
+                          label: Text('Add'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Cancel and close the dialog
+                    },
+                    child: Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        // Ensure parent widget reflects changes
+                      });
+                      Navigator.of(context).pop(); // Save and close the dialog
+                    },
+                    child: Text('Save'),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                String newName = nameController.text;
-
-                setState(() {
-                  skillsData[index] = {
-                    'name': newName,
-                  };
-                });
-
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-          ],
+            );
+          },
         );
       },
     );
   }
+
+
 
   void _editAbout(BuildContext context) {
+    final TextEditingController aboutController = TextEditingController(text: about);
+    int charCount = aboutController.text.length;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final TextEditingController aboutController =
-            TextEditingController(text: about);
-
-        return AlertDialog(
-          title: const Text('Edit About'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: aboutController,
-                decoration: const InputDecoration(labelText: 'About'),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Edit About'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: aboutController,
+                    maxLines: 7, // Allow multiline input
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(200), // Limit to 200 characters
+                    ],
+                    decoration: InputDecoration(
+                      labelText: 'About',
+                      hintText: 'Tell us about yourself (200 characters max)',
+                      border: const OutlineInputBorder(),
+                      counterText: '', // Hide the default character counter
+                    ),
+                    onChanged: (text) {
+                      setState(() {
+                        charCount = text.length;
+                      });
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '$charCount/200', // Display the current character count
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  about = aboutController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    // Update the parent state with the new about text
+                    Navigator.of(context).pop(aboutController.text);
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the dialog without saving
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
-    );
+    ).then((newAbout) {
+      if (newAbout != null) {
+        // This ensures the parent state is updated
+        setState(() {
+          about = newAbout;
+        });
+      }
+    });
   }
+
+
 
   void _editExperienceItem(BuildContext context, Map<String, String> item) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         final TextEditingController titleController =
-            TextEditingController(text: item['title']);
+        TextEditingController(text: item['title']);
         final TextEditingController detailsController =
-            TextEditingController(text: item['details']);
+        TextEditingController(text: item['details']);
         final TextEditingController descriptionController =
-            TextEditingController(text: item['description']);
+        TextEditingController(text: item['description']);
 
-        return AlertDialog(
-          title: const Text('Edit Experience'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text('Edit Experience'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    controller: detailsController,
+                    decoration: const InputDecoration(labelText: 'Details'),
+                  ),
+                  TextFormField(
+                    maxLines: 5,
+                    controller: descriptionController,
+                    decoration: const InputDecoration(labelText: 'Description'),
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(100),
+                    ],
+                    onChanged: (text) {
+                      // Update character count dynamically
+                      setStateDialog(() {});
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '${descriptionController.text.length}/100', // Display character count
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
-              TextField(
-                controller: detailsController,
-                decoration: const InputDecoration(labelText: 'Details'),
-              ),
-              TextField(
-                controller: descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  item['title'] = titleController.text;
-                  item['details'] = detailsController.text;
-                  item['description'] = descriptionController.text;
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      item['title'] = titleController.text;
+                      item['details'] = detailsController.text;
+                      item['description'] = descriptionController.text;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Save'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
   }
+
 }
